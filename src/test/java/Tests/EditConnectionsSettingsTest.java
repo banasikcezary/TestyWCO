@@ -19,17 +19,11 @@ public class EditConnectionsSettingsTest extends TestBase{
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
         userList.typeIntoSearchfield();
-        userList.checkIfTheUserYouAreLookingForExists();
+        //userList.checkIfTheUserYouAreLookingForExists();
+
         userList.clickOnUser();
 
 
-        try{
-
-                Thread.sleep(7000);
-            }
-
-        catch(InterruptedException e){
-        }
 
         ConnectionsSettingsPage connectionsSettingsPage = new ConnectionsSettingsPage(driver);
         connectionsSettingsPage.clickIntoEditButton();

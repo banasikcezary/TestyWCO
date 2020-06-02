@@ -27,7 +27,7 @@ public class TestBase {
         driver.manage().window().maximize();
 
         driver.navigate().to("http://51.178.55.34:8005/login");
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+       // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
     }
 
