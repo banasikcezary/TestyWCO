@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.testng.Assert.assertEquals;
 
 public class LoginPage {
 
@@ -13,8 +17,10 @@ public class LoginPage {
     WebElement username;
     @FindBy(id = "password")
     WebElement password;
-    @FindBy(xpath = "/html/body/app-root/app-login-page/div/form/button")
+    @FindBy(id = "login-button")
     WebElement logIn;
+    @FindBy(id = "logout_button")
+    WebElement logoutButton;
 
     private WebDriver driver;
     public LoginPage(WebDriver driver) {
@@ -30,9 +36,19 @@ public class LoginPage {
         password.sendKeys("User12345!@#");
 }
 public void typeIntoPasswordFieldFailed(){password.sendKeys("1");}
-    public void clickIntoLogInButton() { logIn.click();
+    public void clickIntoLogInButton() { logIn.click();}
 
+    public void checkPositiveLoginToApp(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
+        assertEquals(logoutButton.getText(), "Wyloguj");}
 
+    public void checkNegativeLoginToApp(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        webDriverWait.until(ExpectedConditions.visibilityOf(logIn));
+        assertEquals(logIn.getText(), "Zaloguj")
+
+       ;}
     }
 
-}
+

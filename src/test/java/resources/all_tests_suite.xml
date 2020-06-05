@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="LBPROV USER SERVER">
+
+    <test name="BuyAnAdditionalPackageFromTheStore">
+        <classes>
+            <class name="Tests.BuyAnAdditionalPackageFromTheStore"/>
+        </classes>
+    </test>
+
+    <test name="BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed">
+        <classes>
+            <class name="Tests.BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed"/>
+    </classes>
+    </test>
+
+    <test name="BuyingNewFunctionalitiesFromTheStore">
+        <classes>
+            <class name="Tests.BuyingNewFunctionalitiesFromTheStore"/>
+        </classes>
+    </test>
+
+    <test name="CsvExport">
+        <classes>
+            <class name="Tests.CsvExport"/>
+        </classes>
+    </test>
+    <test name="EditConnectionsSettingsTest">
+        <classes>
+            <class name="Tests.EditConnectionsSettingsTest"/>
+        </classes>
+    </test>
+
+
+    <test name="GenerateCyclicalReport">
+        <classes>
+            <class name="Tests.GenerateCyclicalReport"/>
+        </classes>
+    </test>
+    <test name="GenerateSingleReport">
+        <classes>
+            <class name="Tests.GenerateSingleReport"/>
+        </classes>
+    </test>
+    <test name="ImportCsv">
+        <classes>
+            <class name="Tests.ImportCsv"/>
+        </classes>
+    </test>
+    <test name="LoginFailedTests">
+        <classes>
+            <class name="Tests.LoginFailedTest"/>
+        </classes>
+    </test>
+    <test name="LoginTest">
+        <classes>
+            <class name="Tests.PositiveLoginTest"/>
+        </classes>
+    </test>
+    <test name="RecordingTest">
+        <classes>
+            <class name="Tests.RecordingTest"/>
+        </classes>
+    </test>
+    <test name="SearchUserOnListTest">
+        <classes>
+            <class name="Tests.SearchUserOnListTest"/>
+        </classes>
+    </test>
+    <test name="SellingFunctionalityFromTheStore">
+        <classes>
+            <class name="Tests.SellingFunctionalityFromTheStore"/>
+        </classes>
+    </test>
+
+</suite>

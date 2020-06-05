@@ -1,34 +1,34 @@
 package PageObject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class UserList {
-    @FindBy(xpath = "//*[@id=\"navbarSupportedContent\"]/ul/li[1]/a")
+    @FindBy(id = "user_list_link")
     WebElement userListLink;
-    @FindBy(id = "mat-input-0")
+    @FindBy(id = "filterValue_placeholder")
     WebElement searchField;
-    @FindBy(xpath = "/html/body/app-root/app-main-view/div/app-users-list/div/mat-table/mat-row")
+    @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row")
     WebElement checkList;
-    @FindBy(xpath = "//*[@id=\"mat-checkbox-12\"]/label/div")
+    @FindBy(id = "mat-checkbox-24")
     WebElement checkbox;
-    @FindBy(xpath = "/html/body/app-root/app-main-view/div/app-users-list/div/div/div[1]/button")
+    @FindBy(id = "export_csv_button")
     WebElement exportCsvButton;
-    @FindBy(xpath = "/html/body/app-root/app-main-view/div/app-users-list/div/div/div[2]/button")
+    @FindBy(id = "import_csv_button")
     WebElement importCsv;
     @FindBy(id = "file")
     WebElement chooseFileButton;
-    @FindBy(xpath = "//*[@id=\"mat-dialog-0\"]/app-file-upload-dialog/div[2]/div[1]/button")
+    @FindBy(id = "send_button")
     WebElement sendFileButton;
 
 
@@ -50,9 +50,19 @@ public class UserList {
         searchField.sendKeys("USR");
     searchField.sendKeys(Keys.ENTER);}
     public void checkIfTheUserYouAreLookingForExists(){
+//
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+//        webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
 
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
+
+
+        FluentWait<WebDriver> fluentWait = new FluentWait(driver);
+        fluentWait.withTimeout(Duration.ofSeconds(30));
+        fluentWait.pollingEvery(Duration.ofMillis(250));
+        fluentWait.ignoring(NoSuchElementException.class);
+        fluentWait.until(ExpectedConditions.visibilityOf(checkList));
+        searchField.isDisplayed();
+        checkList.isDisplayed();
         assertTrue(checkList.getText().contains("USR"));
         System.out.println(checkList.getText());}
         public void clickOnUser(){
@@ -62,7 +72,7 @@ public class UserList {
             action.moveToElement(checkList).click().build().perform();
     }
     public void clickOnCheckboxUSR(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkbox));
         checkbox.click();
     }

@@ -1,5 +1,6 @@
 package PageObject;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,21 +11,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RecordingPage {
 
-    @FindBy(xpath = "//*[@id=\"navbarSupportedContent\"]/ul/li[2]/a")
+    @FindBy(id = "recording_list_link")
     WebElement recordingTab;
-    @FindBy(xpath = "//*[@id=\"headingOne\"]/h5/span")
+    @FindBy(id = "headingOne")
     WebElement filterCriteria;
-    @FindBy(xpath = "//*[@id=\"numberHeader\"]/span")
+    @FindBy(id = "numberHeader")
     WebElement filterNumber;
     @FindBy(id = "mainNumber")
     WebElement filterNumberField;
-    @FindBy(xpath = "//*[@id=\"filterSegmentAccordion\"]/button")
+    @FindBy(id = "filter_button")
     WebElement filter;
-    @FindBy(xpath = "/html/body/app-root/app-main-view/div/app-recording-list/div/div[2]/div[1]/mat-table/mat-row[1]/mat-cell[11]/div/div[2]/button")
+    @FindBy(id = "13822_edit_tags")
     WebElement editTags;
-    @FindBy(xpath = "//*[@id=\"mat-input-12\"]")
+    @FindBy(id = "mat-input-11")
     WebElement tagsField;
-    @FindBy(xpath = "//*[@id=\"mat-dialog-1\"]/app-tag-column-edit/div/div[2]/div[1]/button")
+    @FindBy(id = "save_button")
     WebElement saveEditTagsButton;
 
 
@@ -56,7 +57,7 @@ public class RecordingPage {
     public void typeIntoFilterNumberField(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
         webDriverWait.until(ExpectedConditions.visibilityOf(filterNumberField));
-        filterNumberField.sendKeys("48517583076");
+        filterNumberField.sendKeys("48222903841");
     }
     public void clickOnFilterButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
@@ -64,17 +65,24 @@ public class RecordingPage {
         filter.click();
     }
     public void clickOnEditTagsButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 15);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
         webDriverWait.until(ExpectedConditions.visibilityOf(editTags));
         Actions action = new Actions(driver);
         action.moveToElement(editTags).click().perform();
     }
+
+
+
+
     public void typeIntoEditTagsField(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(tagsField));
 
-        Actions action = new Actions(driver);
-        action.moveToElement(tagsField).sendKeys("testEdycjiTagu").build().perform();
+        tagsField.isDisplayed();
+        tagsField.clear();
+        tagsField.sendKeys("test");
+
+
 
     }
     public void clickOnSaveEditTagsButton(){

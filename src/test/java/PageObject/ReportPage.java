@@ -10,27 +10,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ReportPage {
 
-    @FindBy(xpath = "//*[@id=\"navbarSupportedContent\"]/ul/li[3]/a")
+    @FindBy(id = "reports_list_link")
     WebElement reportButton;
-    @FindBy(xpath = "//*[@id=\"headingOne\"]")
+    @FindBy(id = "headingOne")
     WebElement property;
-    @FindBy(xpath = "//*[@id=\"headingCyclicReport\"]")
+    @FindBy(id = "heading_cyclic_report")
     WebElement cyclicalReport;
-    @FindBy(xpath = "//*[@id=\"startReportDate\"]")
+    @FindBy(id = "startReportDate")
     WebElement startReportDate;
-    @FindBy(xpath = "//*[@id=\"endReportDate\"]")
+    @FindBy(id = "endReportDate")
     WebElement endReportDate;
     @FindBy(xpath = "//*[@id=\"collapseOne\"]/form/button")
     WebElement generateSingleReportButton;
-    @FindBy(xpath = "//*[@id=\"generateCyclicReports\"]/label/div")
+    @FindBy(id = "generate_cyclic_reports")
     WebElement checkboxGenerateReportCyclical;
 
-    @FindBy(xpath = "//*[@id=\"numberOfIntervalOfReport\"]")
+    @FindBy(id = "number_of_interval_report")
     WebElement generateReportEveryField;
-    @FindBy(xpath = "//*[@id=\"collapseCyclicReport\"]/form/div[2]/div[2]/select")
+    @FindBy(id = "interval_of_report")
     WebElement selectChooseInterval;
 
-    @FindBy(xpath = "//*[@id=\"startCyclicReportDate\"]")
+    @FindBy(id = "start_cyclic_report_date")
     WebElement endReportDateForCyclical;
     @FindBy(xpath = "//*[@id=\"collapseCyclicReport\"]/form/button")
     WebElement generateCyclicalReport;
