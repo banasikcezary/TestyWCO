@@ -38,7 +38,7 @@ public class RecordingPage {
 
     }
     public void clickOnRecordingTab(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(recordingTab));
         recordingTab.click();
     }

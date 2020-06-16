@@ -44,7 +44,7 @@ public class ReportPage {
 
     }
     public void clickOnReportTab(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(reportButton));
         reportButton.click();
     }
