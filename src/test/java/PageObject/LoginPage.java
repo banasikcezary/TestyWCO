@@ -30,10 +30,10 @@ public class LoginPage {
 
     }
 
-    public void typeIntoPhoneNumberField() { telNumber.sendKeys("502369741"); }
-    public void typeIntoUsernameField() { username.sendKeys("jan.nowak"); }
+    public void typeIntoPhoneNumberField() { telNumber.sendKeys("503896452"); }
+    public void typeIntoUsernameField() { username.sendKeys("j.bond"); }
     public void typeIntoPasswordField() {
-        password.sendKeys("User12345!@#");
+        password.sendKeys("test");
 }
 public void typeIntoPasswordFieldFailed(){password.sendKeys("1");}
     public void clickIntoLogInButton() { logIn.click();}
