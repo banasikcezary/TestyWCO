@@ -21,6 +21,8 @@ public class LoginPage {
     WebElement logIn;
     @FindBy(id = "logout_button")
     WebElement logoutButton;
+    @FindBy(xpath = "/html/body/app-root/cookie-law/cookie-law-component/div/div/a")
+    WebElement cooki;
 
     private WebDriver driver;
     public LoginPage(WebDriver driver) {
@@ -34,6 +36,7 @@ public class LoginPage {
     public void typeIntoUsernameField() { username.sendKeys("u.user2"); }
     public void typeIntoPasswordField() {
         password.sendKeys("test");
+        cooki.click();
 }
 public void typeIntoPasswordFieldFailed(){password.sendKeys("1");}
     public void clickIntoLogInButton() { logIn.click();}

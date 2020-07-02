@@ -11,8 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.*;
 
 public class UserAndPermissions {
 
@@ -42,7 +41,7 @@ public class UserAndPermissions {
     WebElement showRoleButton;
     @FindBy(id = "add_assignment_button")
     WebElement addAssignmentButton;
-    @FindBy(xpath = "//*[@id=\"choose_role\"]/div/div[1]")
+    @FindBy(id = "choose_role")
     WebElement selectRole;
     @FindBy(id = "privilege_add")
     WebElement addRoleButton;
@@ -50,6 +49,12 @@ public class UserAndPermissions {
     WebElement deleteUser;
     @FindBy(xpath = "(//p[contains(@id,\"username\")])[last()]")
     WebElement assertRoleName;
+
+    @FindBy(id = "mat-option-0")
+    WebElement role;
+
+    @FindBy(xpath = "//*[contains(@id, \"role_\")]")
+    WebElement assertUserRole;
 
 
     private WebDriver driver;
@@ -66,7 +71,10 @@ public class UserAndPermissions {
     }
 
     public void clickOnUserButton() {
-        users.click();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(users));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(users).click().build().perform();
     }
 
     public void clickOnAddUserButton() {
@@ -118,21 +126,19 @@ public class UserAndPermissions {
     //  public void clickOnSearchButton(){searchButton.click();}
 
     public void clickOnShowRoleButton() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
+
+
+
         try {
-
-            Actions actions = new Actions(driver);
-            actions.moveToElement(showRoleButton).click().build().perform();
-
-
-
-        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
-
-            Actions actions = new Actions(driver);
-            actions.moveToElement(showRoleButton).click().build().perform();
-
-
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
+            showRoleButton.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
+            showRoleButton.click();
         }
     }
 
@@ -140,41 +146,54 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addAssignmentButton));
         addAssignmentButton.click();
+
     }
 
     public void selectRole() {
-        Select select = new Select(selectRole);
-        select.selectByVisibleText("rola1");
+
+        selectRole.click();
+        role.click();
+
     }
 
     public void clickAddRoleButton() {
         addRoleButton.click();
     }
 
+    public void assertionAddRoleForUser(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(assertUserRole));
+        String userRola = assertUserRole.getText();
+        assertEquals(userRola,"admin2");
+    }
+
     public void clickOnDeleteUser() {
 
         try {
-
-            Actions actions = new Actions(driver);
-            actions.moveToElement(deleteUser).click().build().perform();
-            driver.navigate().refresh();
             WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-            webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
+            webDriverWait.until(ExpectedConditions.visibilityOf(deleteUser));
+           deleteUser.click();
+            driver.findElement(By.xpath("//html")).click();
+            driver.navigate().refresh();
+            WebDriverWait webDriverWait1 = new WebDriverWait(driver, 10);
+            webDriverWait1.until(ExpectedConditions.visibilityOf(assertRoleName));
             String name = assertRoleName.getText();
             assertNotEquals(name, "KarolN");
 
         } catch (org.openqa.selenium.StaleElementReferenceException ex) {
 
-            Actions actions = new Actions(driver);
-            actions.moveToElement(deleteUser).click().build().perform();
-
-            driver.navigate().refresh();
             WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-            webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
+            webDriverWait.until(ExpectedConditions.visibilityOf(deleteUser));
+            deleteUser.click();
+            driver.findElement(By.xpath("//html")).click();
+            driver.navigate().refresh();
+
+            WebDriverWait webDriverWait1 = new WebDriverWait(driver, 10);
+            webDriverWait1.until(ExpectedConditions.visibilityOf(assertRoleName));
             String name = assertRoleName.getText();
             assertNotEquals(name, "KarolN");
         }
-        //deleteUser.click();}
+
 
     }
 }
