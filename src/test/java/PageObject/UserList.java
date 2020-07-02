@@ -50,9 +50,7 @@ public class UserList {
         searchField.sendKeys("USR");
     searchField.sendKeys(Keys.ENTER);}
     public void checkIfTheUserYouAreLookingForExists(){
-//
-//        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
-//        webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
+
 
 
 

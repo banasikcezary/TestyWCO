@@ -1,7 +1,7 @@
 package Tests;
 
-import PageObject.LoginPage;
-import org.testng.annotations.Test;
+        import PageObject.LoginPage;
+        import org.testng.annotations.Test;
 
 public class NegativeLoginTest extends TestBase  {
     @Test

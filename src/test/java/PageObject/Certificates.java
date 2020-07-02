@@ -38,7 +38,7 @@ WebElement searchNameField;
 @FindBy(id = "search_button")
 WebElement searchCertificateButton;
 
-@FindBy(id = "roles_0")
+@FindBy(id = "(//button[text()=\"Pokaż role\"])[last()]")
 WebElement showRoles;
 @FindBy(id = "add_assignment_button")
 WebElement addAssignmentButton;
@@ -47,10 +47,10 @@ WebElement chooseRole;
 @FindBy(id = "privilege_add")
 WebElement saveNewRoleButton;
 
-@FindBy(id = "download_0")
+@FindBy(id = "(//button[text()=\"Pobierz\"])[last()]")
 WebElement downloadCertificateButton;
 
-@FindBy(id = "delete_0")
+@FindBy(id = "(//button[text()=\"Usuń\"])[last()]")
 WebElement deleteCertificateButton;
 
 
@@ -82,7 +82,7 @@ WebElement deleteCertificateButton;
     public void clickAddAssignmentButton(){addAssignmentButton.click();}
     public void selectChooseRole(){
         Select select= new Select(chooseRole);
-    select.selectByIndex(1);}
+    select.selectByVisibleText("rola1");}
     public void clickOnSaveNewRoleButton(){saveNewRoleButton.click();}
     public void clickOnDownloadCertificateButton(){downloadCertificateButton.click();}
     public void clickOnDeleteCertificateButton(){deleteCertificateButton.click();}

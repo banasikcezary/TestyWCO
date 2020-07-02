@@ -31,7 +31,7 @@ public class LoginPage {
     }
 
     public void typeIntoPhoneNumberField() { telNumber.sendKeys("503896452"); }
-    public void typeIntoUsernameField() { username.sendKeys("j.bond"); }
+    public void typeIntoUsernameField() { username.sendKeys("u.user2"); }
     public void typeIntoPasswordField() {
         password.sendKeys("test");
 }

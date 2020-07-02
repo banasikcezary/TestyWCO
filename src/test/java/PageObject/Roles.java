@@ -20,7 +20,7 @@ public class Roles {
     @FindBy(id = "role_add")
     WebElement saveNewRole;
 
-    @FindBy(id = "edit_role_4")
+    @FindBy(id = "(//button[text()=\"Edytuj\"])[last()]")
     WebElement editRole;
     @FindBy(id = "edit_role_name")
     WebElement editRoleNameField;
@@ -30,19 +30,19 @@ public class Roles {
     WebElement saveEditRole;
 
 
-    @FindBy(id = "add_privilege_4")
+    @FindBy(id = "(//button[text()=\"Dodaj uprawnienie\"])[last()]")
     WebElement addPrivilageForNewRole;
     @FindBy(id = "choose_privilege")
     WebElement choosePrivilage;
     @FindBy(id = "privilege_add")
     WebElement savePrivilege;
 
-    @FindBy(id = "open_folder_button_4")
+    @FindBy(id = "(//img)[last()]")
     WebElement openRole;
-    @FindBy(id = "delete_privilege_4_0")
+    @FindBy(id = "(//button[contains(@id, \"delete_privilege_\")])[last()]")
     WebElement deletePrivilegeFromRole;
 
-    @FindBy(id = "delete_role_4")
+    @FindBy(id = "(//button[(text()=\"Usuń\")])[last()]")
     WebElement deleteRole;
 
 
@@ -67,7 +67,7 @@ public class Roles {
     public void clickAddPrivilegeForNewRole(){addPrivilageForNewRole.click();}
     public void selectChoosePrivilege(){
         Select select = new Select(choosePrivilage);
-        select.selectByIndex(1);
+        select.selectByVisibleText("test");
     }
     public void clickOnSavePrivilege(){savePrivilege.click();}
     public void clickOpenRole(){openRole.click();}

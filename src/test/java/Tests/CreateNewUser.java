@@ -27,9 +27,10 @@ public class CreateNewUser extends TestBase {
         user.typeIntoEmailField();
         user.typeIntoPhoneField();
         user.clickOnSaveNewUserButton();
+        user.assertUser();
 
-        user.typeIntoSearchUserField();
-        user.clickOnSearchButton();
+        //user.typeIntoSearchUserField();
+       // user.clickOnSearchButton();
     }
 
 

@@ -20,8 +20,8 @@ public class deleteUser extends TestBase {
         UserAndPermissions user = new UserAndPermissions(driver);
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
-        user.typeIntoSearchUserField();
-        user.clickOnSearchButton();
+       // user.typeIntoSearchUserField();
+      //  user.clickOnSearchButton();
         user.clickOnDeleteUser();
 
     }

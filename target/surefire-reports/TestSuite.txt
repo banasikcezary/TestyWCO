@@ -1,8 +1,121 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 253.312 s <<< FAILURE! - in TestSuite
-asUserTrySearchUserOnTheList(Tests.SearchUserOnListTest)  Time elapsed: 6.296 s  <<< FAILURE!
-java.lang.AssertionError: did not expect to find [true] but found [false]
-	at Tests.SearchUserOnListTest.asUserTrySearchUserOnTheList(SearchUserOnListTest.java:22)
+Tests run: 39, Failures: 13, Errors: 0, Skipped: 26, Time elapsed: 281.705 s <<< FAILURE! - in TestSuite
+beforeTest(Tests.BuyAnAdditionalPackageFromTheStore)  Time elapsed: 26.851 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed)  Time elapsed: 21.432 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.BuyingNewFunctionalitiesFromTheStore)  Time elapsed: 21.23 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.CsvExport)  Time elapsed: 21.213 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.EditConnectionsSettingsTest)  Time elapsed: 21.16 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.GenerateCyclicalReport)  Time elapsed: 21.162 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.GenerateSingleReport)  Time elapsed: 21.161 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.ImportCsv)  Time elapsed: 21.165 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.LoginFailedTest)  Time elapsed: 21.235 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.PositiveLoginTest)  Time elapsed: 21.151 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.RecordingTest)  Time elapsed: 21.119 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.SearchUserOnListTest)  Time elapsed: 21.087 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
+
+beforeTest(Tests.SellingFunctionalityFromTheStore)  Time elapsed: 21.073 s  <<< FAILURE!
+org.openqa.selenium.remote.UnreachableBrowserException: 
+Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '3.141.5', revision: 'd54ebd709a', time: '2018-11-06T11:42:16'
+System info: host: 'LENOVO-PBLDPFA', ip: '192.168.56.1', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: RemoteWebDriver
+Caused by: java.net.ConnectException: Failed to connect to /192.168.0.129:4444
+Caused by: java.net.ConnectException: Connection timed out: connect
 
