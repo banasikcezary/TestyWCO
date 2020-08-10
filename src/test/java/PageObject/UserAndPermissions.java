@@ -33,7 +33,7 @@ public class UserAndPermissions {
     WebElement phoneField;
     @FindBy(id = "user_add")
     WebElement saveUserButton;
-    @FindBy(xpath = "//*[@id=\"mat-input-0\"]")
+    @FindBy(id = "search_login")
     WebElement searchUserField;
     @FindBy(id = "search_button")
     WebElement searchButton;
@@ -55,6 +55,9 @@ public class UserAndPermissions {
 
     @FindBy(xpath = "//*[contains(@id, \"role_\")]")
     WebElement assertUserRole;
+
+    @FindBy(id = "close_dialog")
+    WebElement acceptPopupButton;
 
 
     private WebDriver driver;
@@ -116,14 +119,14 @@ public class UserAndPermissions {
         assertEquals(name, "KarolN");
     }
 
-//    public void typeIntoSearchUserField() {
-////        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-////        webDriverWait.until(ExpectedConditions.visibilityOf(searchUserField));
-////        searchUserField.clear();
-////        searchUserField.sendKeys("KarolN");
-//    }
+    public void typeIntoSearchUserField() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(searchUserField));
+        searchUserField.clear();
+        searchUserField.sendKeys("KarolN");
+    }
 
-    //  public void clickOnSearchButton(){searchButton.click();}
+      public void clickOnSearchButton(){searchButton.click();}
 
     public void clickOnShowRoleButton() {
 
@@ -165,6 +168,14 @@ public class UserAndPermissions {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(assertUserRole));
         String userRola = assertUserRole.getText();
         assertEquals(userRola,"admin2");
+    }
+
+    public void clickOnAcceptPopupButton(){
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(acceptPopupButton));
+        acceptPopupButton.isDisplayed();
+        acceptPopupButton.click();
     }
 
     public void clickOnDeleteUser() {

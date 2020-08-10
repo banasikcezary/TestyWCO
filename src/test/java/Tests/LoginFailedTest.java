@@ -9,9 +9,9 @@ public class LoginFailedTest extends TestBase{
     public void asUserTryLogintoAccountFail(){
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField();
-        loginPage.typeIntoUsernameField();
-        loginPage.typeIntoPasswordFieldFailed();
+        loginPage.typeIntoPhoneNumberField("+48617890766");
+        loginPage.typeIntoUsernameField( "u.user1");
+        loginPage.typeIntoPasswordFieldFailed("bad");
         loginPage.clickIntoLogInButton();
     }
 }

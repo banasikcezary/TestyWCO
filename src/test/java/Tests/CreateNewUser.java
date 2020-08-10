@@ -10,9 +10,9 @@ public class CreateNewUser extends TestBase {
     @Test
     public void asAdminTryCreateNewUser(){
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField();
-        loginPage.typeIntoUsernameField();
-        loginPage.typeIntoPasswordField();
+        loginPage.typeIntoPhoneNumberField("+48617890766");
+        loginPage.typeIntoUsernameField( "u.user1");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -27,10 +27,12 @@ public class CreateNewUser extends TestBase {
         user.typeIntoEmailField();
         user.typeIntoPhoneField();
         user.clickOnSaveNewUserButton();
+        user.clickOnAcceptPopupButton();
+        user.typeIntoSearchUserField();
+        user.clickOnSearchButton();
         user.assertUser();
 
-        //user.typeIntoSearchUserField();
-       // user.clickOnSearchButton();
+
     }
 
 

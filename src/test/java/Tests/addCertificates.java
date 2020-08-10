@@ -12,9 +12,9 @@ public class addCertificates extends TestBase {
     public void asAdminTryAddNewCertificate(){
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField();
-        loginPage.typeIntoUsernameField();
-        loginPage.typeIntoPasswordField();
+        loginPage.typeIntoPhoneNumberField("+48617890766");
+        loginPage.typeIntoUsernameField( "u.user1");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -34,6 +34,7 @@ public class addCertificates extends TestBase {
         cert.clickSaveNewCertificateButton();
         cert.typeIntoSearchNameField();
         cert.clickOnSearchCertificateButton();
+        cert.validateTheCertificateCreation();
 
     }
 

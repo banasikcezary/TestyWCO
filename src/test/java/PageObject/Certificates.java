@@ -2,9 +2,16 @@ package PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
+
+import static org.testng.Assert.assertEquals;
 
 public class Certificates {
 
@@ -25,15 +32,15 @@ WebElement addCityField;
 WebElement addCountryField;
 @FindBy(id = "add_state")
 WebElement addStateField;
-@FindBy(id = "add_organisation")
+@FindBy(id = "add_organization")
 WebElement addOrganisationField;
-@FindBy(id = "add_organisational_unit")
+@FindBy(id = "add_organizational_unit")
 WebElement addOrganisationalUnitField;
-@FindBy(id = "ngx-mat-file-input-2")
+@FindBy(xpath = "//*[@id=\"ngx-mat-file-input-0\"]/input")
 WebElement chooseFile;
 @FindBy(id = "cert_add")
 WebElement saveNewCertidicate;
-@FindBy(id = "mat-input-32")
+@FindBy(id = "filter_value_input")
 WebElement searchNameField;
 @FindBy(id = "search_button")
 WebElement searchCertificateButton;
@@ -53,6 +60,9 @@ WebElement downloadCertificateButton;
 @FindBy(id = "(//button[text()=\"Usuń\"])[last()]")
 WebElement deleteCertificateButton;
 
+@FindBy(xpath = "//p[contains(@id,'cn')]")
+WebElement verifyCreateCert;
+
 
 
 
@@ -64,21 +74,62 @@ WebElement deleteCertificateButton;
 
     }
 
-    public void clickOnCertificatesButton(){certificatesButton.click();}
-    public void clickOnAddUserButton(){addUserButton.click();}
-    public void typeIntoAddNameField(){addNameField.sendKeys("testName");}
-    public void typeIntoAddEmailField(){addEmailField.sendKeys("testEmail@o2.pl");}
-    public void typeIntoAddCityField(){addCityField.sendKeys("testMiasto");}
-    public void typeIntoAddCountryField(){addCountryField.sendKeys("testPanstwo");}
-    public void typeIntoAddStateField(){addStateField.sendKeys("testState");}
-    public void typeIntoAddOrganisationField(){addOrganisationField.sendKeys("testOrgarnisation");}
-    public void typeIntoAddOrganisationalUnitField(){addOrganisationalUnitField.sendKeys("testOrganisationalUnit");}
-    public void loadFileWithCertificates(){chooseFile.sendKeys("");}
-    public void clickSaveNewCertificateButton(){saveNewCertidicate.click();}
-    public void typeIntoSearchNameField(){searchNameField.sendKeys("testName");}
-    public void clickOnSearchCertificateButton(){searchCertificateButton.click();}
+    public void clickOnCertificatesButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(certificatesButton));
+        certificatesButton.click();}
+    public void clickOnAddUserButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addUserButton));
+        addUserButton.click();}
+    public void typeIntoAddNameField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
+        addNameField.sendKeys("Artur");}
+    public void typeIntoAddEmailField(){addEmailField.sendKeys("artur@o2.pl");}
+    public void typeIntoAddCityField(){addCityField.sendKeys("Warszawa");}
+    public void typeIntoAddCountryField(){addCountryField.sendKeys("Polska");}
+    public void typeIntoAddStateField(){addStateField.sendKeys("Stan");}
+    public void typeIntoAddOrganisationField(){addOrganisationField.sendKeys("Organizacja");}
+    public void typeIntoAddOrganisationalUnitField(){addOrganisationalUnitField.sendKeys("Dział");}
+    public void loadFileWithCertificates(){
 
-    public void clickIntoShowRoles(){showRoles.click();}
+       chooseFile.sendKeys("C:\\Users\\DELL\\Downloads\\cert.crt");
+       }
+    public void clickSaveNewCertificateButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(saveNewCertidicate));
+        saveNewCertidicate.click();
+
+        try{
+            Thread.sleep(10000);
+        }
+        catch(InterruptedException ie){
+        }}
+    public void typeIntoSearchNameField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(searchNameField));
+        searchNameField.sendKeys("Artur");}
+    public void clickOnSearchCertificateButton() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(searchCertificateButton).click().build().perform();
+    }
+    public void validateTheCertificateCreation(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(verifyCreateCert));
+
+        List<WebElement> allElement= (List<WebElement>) verifyCreateCert;
+        int count=allElement.size();
+        String result=allElement.get(count-1).getText();
+
+        assertEquals("imie",result);
+
+    }
+    public void clickIntoShowRoles(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(showRoles));
+
+        showRoles.click();}
     public void clickAddAssignmentButton(){addAssignmentButton.click();}
     public void selectChooseRole(){
         Select select= new Select(chooseRole);

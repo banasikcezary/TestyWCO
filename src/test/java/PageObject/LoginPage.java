@@ -32,13 +32,13 @@ public class LoginPage {
 
     }
 
-    public void typeIntoPhoneNumberField() { telNumber.sendKeys("503896452"); }
-    public void typeIntoUsernameField() { username.sendKeys("u.user2"); }
-    public void typeIntoPasswordField() {
-        password.sendKeys("test");
+    public void typeIntoPhoneNumberField(String phoneNumber) { telNumber.sendKeys(phoneNumber); }
+    public void typeIntoUsernameField(String user) { username.sendKeys(user); }
+    public void typeIntoPasswordField(String pass) {
+        password.sendKeys(pass);
         cooki.click();
 }
-public void typeIntoPasswordFieldFailed(){password.sendKeys("1");}
+public void typeIntoPasswordFieldFailed(String passFail){password.sendKeys(passFail);}
     public void clickIntoLogInButton() { logIn.click();}
 
     public void checkPositiveLoginToApp(){
