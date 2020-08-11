@@ -1,13 +1,10 @@
 package Tests;
 
-import PageObject.Certificates;
-import PageObject.LoginPage;
-import PageObject.Roles;
-import PageObject.UserAndPermissions;
+import PageObject.*;
 import org.testng.annotations.Test;
 
 public class addRole extends TestBase{
-    @Test
+    @Test(priority = 1)
     public void asAdminTryAddNewRole(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -25,6 +22,11 @@ public class addRole extends TestBase{
         role.typeIntoAddRoleNameField();
         role.typeIntoAddRoleDescriptionField();
         role.clickOnSaveNewRole();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        role.clickOnRolesButton();
+
+        role.validateAddRole();
 
 
     }

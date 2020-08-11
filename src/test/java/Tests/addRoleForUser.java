@@ -1,11 +1,12 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 
 public class addRoleForUser extends TestBase {
-    @Test
+    @Test(priority = 2)
     public void asAdminTryAddRoleForUser(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,7 +25,9 @@ public class addRoleForUser extends TestBase {
         user.clickOnAddAssignmentButton();
         user.selectRole();
        user.clickAddRoleButton();
-       user.clickOnAcceptPopupButton();
+        Dialog dialog=new Dialog(driver);
+       dialog.clickOnAcceptPopupButton();
+
        user.assertionAddRoleForUser();
 
     }

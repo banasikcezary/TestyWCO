@@ -1,5 +1,7 @@
 package PageObject;
 
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 public class Certificates {
 
@@ -45,23 +48,27 @@ WebElement searchNameField;
 @FindBy(id = "search_button")
 WebElement searchCertificateButton;
 
-@FindBy(id = "(//button[text()=\"Pokaż role\"])[last()]")
+@FindBy(xpath= "(//button[text()=\"Pokaż role\"])[last()]")
 WebElement showRoles;
 @FindBy(id = "add_assignment_button")
 WebElement addAssignmentButton;
 @FindBy(id = "choose_role")
-WebElement chooseRole;
+WebElement clickInRole;
+@FindBy(id = "mat-option-0")
+WebElement clickOnSelectRole;
 @FindBy(id = "privilege_add")
 WebElement saveNewRoleButton;
 
-@FindBy(id = "(//button[text()=\"Pobierz\"])[last()]")
+@FindBy(xpath = "(//button[text()=\"Pobierz\"])[last()]")
 WebElement downloadCertificateButton;
 
-@FindBy(id = "(//button[text()=\"Usuń\"])[last()]")
+@FindBy(xpath = "(//button[text()=\"Usuń\"])[last()]")
 WebElement deleteCertificateButton;
 
 @FindBy(xpath = "//p[contains(@id,'cn')]")
 WebElement verifyCreateCert;
+@FindBy(xpath = "//p[contains(@id,'role')]")
+WebElement verifyAddRole;
 
 
 
@@ -74,69 +81,173 @@ WebElement verifyCreateCert;
 
     }
 
+    @Step("click On Certificates Button")
     public void clickOnCertificatesButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(certificatesButton));
+
         certificatesButton.click();}
+
+    @Step("click On Add User Button")
     public void clickOnAddUserButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(addUserButton));
         addUserButton.click();}
+
+    @Step("type Into Name Field")
     public void typeIntoAddNameField(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
         addNameField.sendKeys("Artur");}
-    public void typeIntoAddEmailField(){addEmailField.sendKeys("artur@o2.pl");}
-    public void typeIntoAddCityField(){addCityField.sendKeys("Warszawa");}
-    public void typeIntoAddCountryField(){addCountryField.sendKeys("Polska");}
-    public void typeIntoAddStateField(){addStateField.sendKeys("Stan");}
-    public void typeIntoAddOrganisationField(){addOrganisationField.sendKeys("Organizacja");}
-    public void typeIntoAddOrganisationalUnitField(){addOrganisationalUnitField.sendKeys("Dział");}
+    @Step("type Into Email Field")
+    public void typeIntoAddEmailField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addEmailField));
+        addEmailField.sendKeys("artur@o2.pl");}
+    @Step("type Into City Field")
+    public void typeIntoAddCityField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addCityField));
+        addCityField.sendKeys("Warszawa");}
+    @Step("type Into Country Field")
+    public void typeIntoAddCountryField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addCountryField));
+        addCountryField.sendKeys("Polska");}
+    @Step("type Into State Field")
+    public void typeIntoAddStateField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addStateField));
+        addStateField.sendKeys("Stan");}
+    @Step("type Into Organisation Field")
+    public void typeIntoAddOrganisationField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addOrganisationField));
+        addOrganisationField.sendKeys("Organizacja");}
+    @Step("type Into OrganisationalUnit Field")
+    public void typeIntoAddOrganisationalUnitField(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addOrganisationalUnitField));
+        addOrganisationalUnitField.sendKeys("Dział");}
+    @Step("load File With Certificates")
     public void loadFileWithCertificates(){
 
-       chooseFile.sendKeys("C:\\Users\\DELL\\Downloads\\cert.crt");
-       }
+        chooseFile.sendKeys("C:\\Users\\User\\Downloads\\cert.crt"); }
+    @Step("click Save New Certificate Button")
     public void clickSaveNewCertificateButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(saveNewCertidicate));
-        saveNewCertidicate.click();
-
-        try{
-            Thread.sleep(10000);
-        }
-        catch(InterruptedException ie){
-        }}
+        saveNewCertidicate.click(); }
+    @Step("type Into Search Name Field")
     public void typeIntoSearchNameField(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(searchNameField));
         searchNameField.sendKeys("Artur");}
+    @Step("click On Search Certificate Button")
     public void clickOnSearchCertificateButton() {
         Actions actions = new Actions(driver);
         actions.moveToElement(searchCertificateButton).click().build().perform();
     }
+    @Step("validate The Certificate Creation")
     public void validateTheCertificateCreation(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyCreateCert));
 
-        List<WebElement> allElement= (List<WebElement>) verifyCreateCert;
+        List<WebElement> allElement=driver.findElements(By.xpath("//p[contains(@id,'cn')]")) ;
         int count=allElement.size();
         String result=allElement.get(count-1).getText();
 
-        assertEquals("imie",result);
+        assertEquals(result,"Artur");
 
     }
+    @Step("click Into Show Roles")
     public void clickIntoShowRoles(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(showRoles));
 
-        showRoles.click();}
-    public void clickAddAssignmentButton(){addAssignmentButton.click();}
+
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(showRoles));
+            showRoles.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(showRoles));
+            showRoles.click();
+        }
+       }
+
+    @Step("click Add Assignment Button")
+    public void clickAddAssignmentButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addAssignmentButton));
+        addAssignmentButton.click();}
+    @Step("select Choose Role")
     public void selectChooseRole(){
-        Select select= new Select(chooseRole);
-    select.selectByVisibleText("rola1");}
-    public void clickOnSaveNewRoleButton(){saveNewRoleButton.click();}
-    public void clickOnDownloadCertificateButton(){downloadCertificateButton.click();}
-    public void clickOnDeleteCertificateButton(){deleteCertificateButton.click();}
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(clickInRole));
+       clickInRole.click();
+   clickOnSelectRole.click();}
+    @Step("click On Save New Role Button")
+    public void clickOnSaveNewRoleButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(saveNewRoleButton));
+        saveNewRoleButton.click();}
+    @Step("click On Download Certificate Button")
+    public void clickOnDownloadCertificateButton(){
+
+
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(downloadCertificateButton));
+            downloadCertificateButton.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(downloadCertificateButton));
+            downloadCertificateButton.click();
+        }
+        }
+    @Step("click On Delete Certificate Button")
+    public void clickOnDeleteCertificateButton(){
+
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(deleteCertificateButton));
+            deleteCertificateButton.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(deleteCertificateButton));
+            deleteCertificateButton.click();
+        }}
+
+        @Step("validateAddRoleForCertificate")
+        public void validateAddRoleForCertificate() {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddRole));
+
+            List<WebElement> allElement = driver.findElements(By.xpath("//p[contains(@id,'role')]"));
+            int count = allElement.size();
+            String result = allElement.get(count - 1).getText();
+
+            assertEquals(result, "Super Admin");
+        }
+
+    @Step("validate The Certificate Creation")
+    public void validateTheCertificateDelete(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(verifyCreateCert));
+
+        List<WebElement> allElement=driver.findElements(By.xpath("//p[contains(@id,'cn')]")) ;
+        int count=allElement.size();
+        String result=allElement.get(count-1).getText();
+
+        assertNotEquals(result,"Artur");
+
+    }
 
 
 }

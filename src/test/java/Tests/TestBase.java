@@ -26,8 +26,7 @@ public class TestBase {
         driver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), options);
         driver.manage().window().maximize();
 
-        driver.navigate().to("http://51.178.55.34:8005/login");
-       // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.navigate().to("http://172.25.0.33:8005/");
 
     }
 

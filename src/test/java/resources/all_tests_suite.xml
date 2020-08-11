@@ -1,76 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="LBPROV USER SERVER">
+<suite name="My Suite" verbose="1" parallel="classes" thread-count="1">
 
-    <test name="BuyAnAdditionalPackageFromTheStore">
+    <test name="test">
         <classes>
+            <class name="Tests.addCertificates"/>
+            <class name="Tests.addNewPrivilege"/>
+            <class name="Tests.addNewRoleForCertificate"/>
+            <class name="Tests.addPrivilegeForRole"/>
+            <class name="Tests.addRole"/>
+            <class name="Tests.addRoleForGroup"/>
+            <class name="Tests.addRoleForUser"/>
             <class name="Tests.BuyAnAdditionalPackageFromTheStore"/>
-        </classes>
-    </test>
-
-    <test name="BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed">
-        <classes>
             <class name="Tests.BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed"/>
-    </classes>
-    </test>
-
-    <test name="BuyingNewFunctionalitiesFromTheStore">
-        <classes>
             <class name="Tests.BuyingNewFunctionalitiesFromTheStore"/>
-        </classes>
-    </test>
-
-    <test name="CsvExport">
-        <classes>
+            <class name="Tests.createNewGroup"/>
+            <class name="Tests.CreateNewUser"/>
             <class name="Tests.CsvExport"/>
-        </classes>
-    </test>
-    <test name="EditConnectionsSettingsTest">
-        <classes>
+            <class name="Tests.deleteCertificate"/>
+            <class name="Tests.deleteGroup"/>
+            <class name="Tests.deletePrivilegeFromRole"/>
+            <class name="Tests.deleteRole"/>
+            <class name="Tests.deleteRoleWithGroup"/>
+            <class name="Tests.deleteUser"/>
+            <class name="Tests.downloadCertificate"/>
             <class name="Tests.EditConnectionsSettingsTest"/>
-        </classes>
-    </test>
-
-
-    <test name="GenerateCyclicalReport">
-        <classes>
+            <class name="Tests.editGroup"/>
+            <class name="Tests.editRole"/>
             <class name="Tests.GenerateCyclicalReport"/>
-        </classes>
-    </test>
-    <test name="GenerateSingleReport">
-        <classes>
             <class name="Tests.GenerateSingleReport"/>
-        </classes>
-    </test>
-    <test name="ImportCsv">
-        <classes>
             <class name="Tests.ImportCsv"/>
-        </classes>
-    </test>
-    <test name="LoginFailedTests">
-        <classes>
             <class name="Tests.LoginFailedTest"/>
-        </classes>
-    </test>
-    <test name="LoginTest">
-        <classes>
             <class name="Tests.PositiveLoginTest"/>
-        </classes>
-    </test>
-    <test name="RecordingTest">
-        <classes>
-            <class name="Tests.RecordingTest"/>
-        </classes>
-    </test>
-    <test name="SearchUserOnListTest">
-        <classes>
+            <class name="Tests.RecordingTagsTest"/>
             <class name="Tests.SearchUserOnListTest"/>
-        </classes>
-    </test>
-    <test name="SellingFunctionalityFromTheStore">
-        <classes>
             <class name="Tests.SellingFunctionalityFromTheStore"/>
         </classes>
+
     </test>
 
 </suite>

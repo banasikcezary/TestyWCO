@@ -1,5 +1,6 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.Roles;
 import PageObject.UserAndPermissions;
@@ -7,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class deletePrivilegeFromRole extends TestBase {
 
-    @Test
+    @Test(priority = 3)
     public void asAdminTryDeletePrivilegeFromRole(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -23,6 +24,12 @@ public class deletePrivilegeFromRole extends TestBase {
         role.clickOnRolesButton();
         role.clickOpenRole();
         role.clickOnDeletePrivilegeFromRoleButton();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        role.clickOnRolesButton();
+
+
+        role.validateDeletePermissionForRole();
 
 
     }

@@ -1,5 +1,6 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.Roles;
 import PageObject.UserAndPermissions;
@@ -7,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class editRole extends TestBase{
 
-    @Test
+    @Test(priority = 2)
     public void asAdminTryEditRole(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -25,6 +26,12 @@ public class editRole extends TestBase{
         role.typeIntoEditRoleNameField();
         role.typeIntoEditRoleDescription();
         role.clickOnSaveEditRoleButton();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        role.clickOnRolesButton();
+
+
+        role.validateEditRole();
 
 
     }

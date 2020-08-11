@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class SearchUserOnListTest extends TestBase{
 
 
-    @Test
+    @Test(priority = 2)
     public void asUserTrySearchUserOnTheList(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -19,6 +19,7 @@ public class SearchUserOnListTest extends TestBase{
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
         userList.typeIntoSearchfield();
+
         userList.checkIfTheUserYouAreLookingForExists();
     }
 }

@@ -20,7 +20,7 @@ public class UserList {
     WebElement searchField;
     @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row")
     WebElement checkList;
-    @FindBy(id = "mat-checkbox-24")
+    @FindBy(id = "mat-checkbox-27")
     WebElement checkbox;
     @FindBy(id = "export_csv_button")
     WebElement exportCsvButton;
@@ -47,22 +47,24 @@ public class UserList {
     public void typeIntoSearchfield(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
         webDriverWait.until(ExpectedConditions.visibilityOf(searchField));
-        searchField.sendKeys("USR");
+        searchField.sendKeys("adod2232");
     searchField.sendKeys(Keys.ENTER);}
     public void checkIfTheUserYouAreLookingForExists(){
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
+            assertTrue(checkList.getText().contains("adod2232"));
+            System.out.println(checkList.getText());
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
+            assertTrue(checkList.getText().contains("adod2232"));
+            System.out.println(checkList.getText());
+        }
 
-
-
-
-        FluentWait<WebDriver> fluentWait = new FluentWait(driver);
-        fluentWait.withTimeout(Duration.ofSeconds(30));
-        fluentWait.pollingEvery(Duration.ofMillis(250));
-        fluentWait.ignoring(NoSuchElementException.class);
-        fluentWait.until(ExpectedConditions.visibilityOf(checkList));
-        searchField.isDisplayed();
-        checkList.isDisplayed();
-        assertTrue(checkList.getText().contains("USR"));
-        System.out.println(checkList.getText());}
+        }
         public void clickOnUser(){
             WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
             webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
@@ -85,9 +87,8 @@ public class UserList {
         importCsv.click();
     }
     public void clickOnButtonChooseFile(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(chooseFileButton));
-        chooseFileButton.sendKeys("C:\\Users\\DELL\\Downloads\\fileName.csv");
+
+        chooseFileButton.sendKeys("C:\\Users\\User\\Downloads\\1.csv");
     }
     public void clickOnButtonSendFileToApp(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 5);

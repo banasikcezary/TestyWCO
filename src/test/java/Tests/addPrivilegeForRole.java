@@ -1,5 +1,6 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.Roles;
 import PageObject.UserAndPermissions;
@@ -7,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class addPrivilegeForRole extends TestBase{
 
-    @Test
+    @Test(priority = 2)
     public void asAdminTryAddPrivilegeForRole(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,6 +25,14 @@ public class addPrivilegeForRole extends TestBase{
         role.clickAddPrivilegeForNewRole();
         role.selectChoosePrivilege();
         role.clickOnSavePrivilege();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        user.clickOnUserAndPermissionButton();
+        role.clickOnRolesButton();
+
+
+        role.validateAddRole();
+        role.validateAddPermissionForRole();
 
 
     }

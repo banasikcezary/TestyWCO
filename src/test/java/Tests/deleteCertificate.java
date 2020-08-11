@@ -1,13 +1,14 @@
 package Tests;
 
 import PageObject.Certificates;
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 
 public class deleteCertificate extends TestBase {
 
-    @Test
+    @Test(priority = 3)
     public void asAdminTryDownloadCertificate(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,6 +25,15 @@ public class deleteCertificate extends TestBase {
         cert.typeIntoSearchNameField();
         cert.clickOnSearchCertificateButton();
         cert.clickOnDeleteCertificateButton();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        cert.clickOnSearchCertificateButton();
+
+        cert.typeIntoSearchNameField();
+        cert.clickOnSearchCertificateButton();
+
+
+        cert.validateTheCertificateDelete();
 
     }
 

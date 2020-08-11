@@ -1,5 +1,6 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.Roles;
 import PageObject.UserAndPermissions;
@@ -7,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class deleteRole extends TestBase {
 
-    @Test
+    @Test(priority = 3)
     public void asAdminTryDeleteRole(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -22,6 +23,12 @@ public class deleteRole extends TestBase {
         Roles role = new Roles(driver);
         role.clickOnRolesButton();
         role.clickDeleteRoleButton();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        role.clickOnRolesButton();
+
+
+        role.validateDeleteRole();
     }
 
 }

@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class addNewRoleForCertificate extends TestBase {
 
-    @Test
+    @Test(priority = 2)
     public void asAdminTryAddNewRoleForCertificate(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -27,6 +27,8 @@ public class addNewRoleForCertificate extends TestBase {
         cert.clickAddAssignmentButton();
         cert.selectChooseRole();
         cert.clickOnSaveNewRoleButton();
+
+        cert.validateAddRoleForCertificate();
 
     }
 

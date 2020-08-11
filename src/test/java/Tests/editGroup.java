@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class editGroup extends TestBase {
 
-    @Test
+    @Test(priority = 2)
     public void asAdminTryEditGroup(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -26,6 +26,9 @@ public class editGroup extends TestBase {
         group.typeIntoAddNameField();
         group.typeIntoAddDescriptionField();
         group.clickOnSaveNewGroupButton();
+
+        group.validateAddNewGroup();
+
     }
 
 }

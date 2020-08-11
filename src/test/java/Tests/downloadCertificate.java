@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class downloadCertificate extends TestBase {
 
-    @Test
+    @Test(priority = 2)
     public void asAdminTryDownloadCertificate(){
 
         LoginPage loginPage = new LoginPage(driver);

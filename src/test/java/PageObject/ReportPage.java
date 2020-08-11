@@ -2,6 +2,7 @@ package PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -72,12 +73,13 @@ public class ReportPage {
 
 
     public void clickOnButtonCyclicalReport(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(cyclicalReport));
-        cyclicalReport.click();
+        Actions actions=new Actions(driver);
+        actions.moveToElement(cyclicalReport).click().build().perform();
     }
     public void clickOncheckboxGenerateReport(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkboxGenerateReportCyclical));
         checkboxGenerateReportCyclical.click();
     }

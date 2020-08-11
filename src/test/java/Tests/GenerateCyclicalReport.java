@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class GenerateCyclicalReport extends TestBase {
 
 
-    @Test
+    @Test(priority = 2)
     public void asUserTryGenerateCyclicalReport() {
 
         LoginPage loginPage = new LoginPage(driver);

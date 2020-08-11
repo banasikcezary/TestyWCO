@@ -1,6 +1,7 @@
 package PageObject;
 
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -21,9 +22,9 @@ public class RecordingPage {
     WebElement filterNumberField;
     @FindBy(id = "filter_button")
     WebElement filter;
-    @FindBy(id = "13822_edit_tags")
+    @FindBy(id = "13869_edit_tags")
     WebElement editTags;
-    @FindBy(id = "mat-input-11")
+    @FindBy(id = "mat-input-8")
     WebElement tagsField;
     @FindBy(id = "save_button")
     WebElement saveEditTagsButton;
@@ -43,30 +44,33 @@ public class RecordingPage {
         recordingTab.click();
     }
 
-    public void clickOnButtonfilterCriteria(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(filterCriteria));
-        filterCriteria.click();
-    }
+//    public void clickOnButtonfilterCriteria(){
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+//        webDriverWait.until(ExpectedConditions.visibilityOf(filterCriteria));
+//        filterCriteria.click();
+//    }
 
-    public void clickOnButtonFilterNumber(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(filterNumber));
-        filterNumber.click();
-    }
-    public void typeIntoFilterNumberField(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(filterNumberField));
-        filterNumberField.sendKeys("48222903841");
-    }
-    public void clickOnFilterButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(filter));
-        filter.click();
-    }
+//    public void clickOnButtonFilterNumber(){
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+//        webDriverWait.until(ExpectedConditions.visibilityOf(filterNumber));
+//        filterNumber.click();
+//    }
+//    public void typeIntoFilterNumberField(){
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+//        webDriverWait.until(ExpectedConditions.visibilityOf(filterNumberField));
+//        filterNumberField.sendKeys("48222903841");
+//    }
+//    public void clickOnFilterButton(){
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+//        webDriverWait.until(ExpectedConditions.visibilityOf(filter));
+//        filter.click();
+//    }
+
+
     public void clickOnEditTagsButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(editTags));
+
         Actions action = new Actions(driver);
         action.moveToElement(editTags).click().perform();
     }
@@ -75,11 +79,12 @@ public class RecordingPage {
 
 
     public void typeIntoEditTagsField(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(tagsField));
 
-        tagsField.isDisplayed();
-        tagsField.clear();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        webDriverWait.until(ExpectedConditions.visibilityOf(tagsField));
+        webDriverWait.ignoring(TimeoutException.class);
+
+
         tagsField.sendKeys("test");
 
 

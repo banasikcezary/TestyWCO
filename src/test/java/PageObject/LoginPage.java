@@ -2,6 +2,7 @@ package PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,7 +14,7 @@ public class LoginPage {
 
     @FindBy(id = "telNumber")
     WebElement telNumber;
-    @FindBy (id = "username")
+    @FindBy(id = "username")
     WebElement username;
     @FindBy(id = "password")
     WebElement password;
@@ -25,6 +26,7 @@ public class LoginPage {
     WebElement cooki;
 
     private WebDriver driver;
+
     public LoginPage(WebDriver driver) {
 
         this.driver = driver;
@@ -32,26 +34,49 @@ public class LoginPage {
 
     }
 
-    public void typeIntoPhoneNumberField(String phoneNumber) { telNumber.sendKeys(phoneNumber); }
-    public void typeIntoUsernameField(String user) { username.sendKeys(user); }
+    public void typeIntoPhoneNumberField(String phoneNumber) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(telNumber));
+        telNumber.sendKeys(phoneNumber);
+    }
+
+    public void typeIntoUsernameField(String user) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(username));
+        username.sendKeys(user);
+    }
+
     public void typeIntoPasswordField(String pass) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(password));
         password.sendKeys(pass);
         cooki.click();
-}
-public void typeIntoPasswordFieldFailed(String passFail){password.sendKeys(passFail);}
-    public void clickIntoLogInButton() { logIn.click();}
+    }
 
-    public void checkPositiveLoginToApp(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
-        assertEquals(logoutButton.getText(), "Wyloguj");}
+    public void typeIntoPasswordFieldFailed(String passFail) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(password));
+        password.sendKeys(passFail);
+    }
 
-    public void checkNegativeLoginToApp(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+    public void clickIntoLogInButton() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(logIn));
-        assertEquals(logIn.getText(), "Zaloguj")
+        Actions actions = new Actions(driver);
+        actions.moveToElement(logIn).click().build().perform();
+        //   logIn.click();}
+    }
+        public void checkPositiveLoginToApp() {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
+            assertEquals(logoutButton.getText(), "Wyloguj");
+        }
 
-       ;}
+        public void checkNegativeLoginToApp() {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.visibilityOf(logIn));
+            assertEquals(logIn.getText(), "Zaloguj");
+        }
     }
 
 

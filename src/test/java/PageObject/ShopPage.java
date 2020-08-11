@@ -1,5 +1,6 @@
 package PageObject;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,13 +33,17 @@ public class ShopPage {
     }
 
     public void clickOnShopTab(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(shopTab));
+        webDriverWait.ignoring(TimeoutException.class);
+
         shopTab.click();
     }
     public void buyNewFaxFunctionalitiesWithExceedingTheAmount (){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
         webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
+        webDriverWait.ignoring(TimeoutException.class);
+
         faxField.clear();
         faxField.sendKeys("200");
     }

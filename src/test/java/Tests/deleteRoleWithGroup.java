@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class deleteRoleWithGroup extends TestBase {
 
-    @Test
+    @Test(priority = 3)
     public void asAdminTryDeleteRoleWithGroup(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -23,6 +23,8 @@ public class deleteRoleWithGroup extends TestBase {
         group.clickOnGroupButton();
         group.clickOnChooseGroup();
         group.clickDeleteRoleButton();
+
+        group.validateDeleteRoleForCertificate();
     }
 
 }

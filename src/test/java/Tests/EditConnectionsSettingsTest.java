@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class EditConnectionsSettingsTest extends TestBase{
 
-    @Test
+    @Test(priority = 2)
     public void asUserTryEditUserSettings(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -19,7 +19,7 @@ public class EditConnectionsSettingsTest extends TestBase{
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
         userList.typeIntoSearchfield();
-        //userList.checkIfTheUserYouAreLookingForExists();
+        userList.checkIfTheUserYouAreLookingForExists();
 
         userList.clickOnUser();
 

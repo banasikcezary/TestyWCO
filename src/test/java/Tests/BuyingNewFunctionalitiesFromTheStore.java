@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class BuyingNewFunctionalitiesFromTheStore extends TestBase {
 
 
-    @Test
+    @Test(priority = 3)
     public void asUserTryBuyNewFunctionalitiesFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

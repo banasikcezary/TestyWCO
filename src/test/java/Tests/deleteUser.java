@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class deleteUser extends TestBase {
 
-    @Test
+    @Test(priority = 3)
     public void asAdminTryDeleteUser(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -21,6 +21,8 @@ public class deleteUser extends TestBase {
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
         user.clickOnDeleteUser();
+
+        user.assertDeleteUser();
 
     }
 }

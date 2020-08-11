@@ -1,9 +1,6 @@
 package PageObject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -33,7 +30,7 @@ public class UserAndPermissions {
     WebElement phoneField;
     @FindBy(id = "user_add")
     WebElement saveUserButton;
-    @FindBy(id = "search_login")
+    @FindBy(id = "filter_value_input")
     WebElement searchUserField;
     @FindBy(id = "search_button")
     WebElement searchButton;
@@ -56,8 +53,6 @@ public class UserAndPermissions {
     @FindBy(xpath = "//*[contains(@id, \"role_\")]")
     WebElement assertUserRole;
 
-    @FindBy(id = "close_dialog")
-    WebElement acceptPopupButton;
 
 
     private WebDriver driver;
@@ -70,6 +65,9 @@ public class UserAndPermissions {
     }
 
     public void clickOnUserAndPermissionButton() {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(userAndPermission));
         userAndPermission.click();
     }
 
@@ -81,30 +79,50 @@ public class UserAndPermissions {
     }
 
     public void clickOnAddUserButton() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addUserButton));
+
         addUserButton.click();
     }
 
     public void typeIntoLoginField() {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        webDriverWait.until(ExpectedConditions.visibilityOf(loginField));
+        webDriverWait.ignoring(TimeoutException.class);
+
         loginField.sendKeys("KarolN");
     }
 
     public void typeIntoFirstNameField() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(firstNameField));
         firstNameField.sendKeys("Karol");
     }
 
     public void typeIntoLastName() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(lastNameField));
         lastNameField.sendKeys("Nowak");
     }
 
     public void typeIntoEmailField() {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(emailField));
         emailField.sendKeys("qwerty@o2.pl");
     }
 
     public void typeIntoPhoneField() {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(phoneField));
         phoneField.sendKeys("666555777");
     }
 
     public void clickOnSaveNewUserButton() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(saveUserButton));
         saveUserButton.click();
         driver.findElement(By.xpath("//html")).click();
 
@@ -112,11 +130,20 @@ public class UserAndPermissions {
 
     public void assertUser() {
         driver.navigate().refresh();
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
 
         String name = assertRoleName.getText();
         assertEquals(name, "KarolN");
+    }
+
+    public void assertDeleteUser() {
+        driver.navigate().refresh();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
+
+        String name = assertRoleName.getText();
+        assertNotEquals(name, "KarolN");
     }
 
     public void typeIntoSearchUserField() {
@@ -126,7 +153,10 @@ public class UserAndPermissions {
         searchUserField.sendKeys("KarolN");
     }
 
-      public void clickOnSearchButton(){searchButton.click();}
+      public void clickOnSearchButton(){
+          WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+          webDriverWait.until(ExpectedConditions.visibilityOf(searchButton));
+        searchButton.click();}
 
     public void clickOnShowRoleButton() {
 
@@ -153,6 +183,8 @@ public class UserAndPermissions {
     }
 
     public void selectRole() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(selectRole));
 
         selectRole.click();
         role.click();
@@ -160,6 +192,9 @@ public class UserAndPermissions {
     }
 
     public void clickAddRoleButton() {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(addRoleButton));
         addRoleButton.click();
     }
 
@@ -167,16 +202,10 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(assertUserRole));
         String userRola = assertUserRole.getText();
-        assertEquals(userRola,"admin2");
+        assertEquals(userRola,"Super Admin");
     }
 
-    public void clickOnAcceptPopupButton(){
 
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(acceptPopupButton));
-        acceptPopupButton.isDisplayed();
-        acceptPopupButton.click();
-    }
 
     public void clickOnDeleteUser() {
 

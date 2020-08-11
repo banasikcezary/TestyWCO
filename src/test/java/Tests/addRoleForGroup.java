@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class addRoleForGroup extends TestBase {
 
-    @Test
+    @Test(priority = 2)
     public void asAdminTryAddRoleForGroup(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,6 +24,8 @@ public class addRoleForGroup extends TestBase {
         group.clickOnChooseGroup();
         group.selectChooseRole();
         group.clickAddRoleButton();
+
+        group.validateAddRoleForCertificate();
     }
 
 }

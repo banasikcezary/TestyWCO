@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class GenerateSingleReport extends TestBase {
 
-    @Test
+    @Test(priority = 2)
     public void asUserTryGenerateSingleReport() {
 
         LoginPage loginPage = new LoginPage(driver);

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed extends TestBase {
 
-    @Test
+    @Test(priority = 3)
     public void asUserTryBuyFunctionalitiesWithExceedingTheAmountToBeUsedFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

@@ -5,7 +5,7 @@ import PageObject.ShopPage;
 import org.testng.annotations.Test;
 
 public class SellingFunctionalityFromTheStore extends TestBase {
-    @Test
+    @Test(priority = 3)
     public void asUserTrySellFunctionalitiesFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BuyAnAdditionalPackageFromTheStore extends TestBase {
 
-    @Test
+    @Test(priority = 3)
     public void asUserTryBuyAnAdditionalPackageFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

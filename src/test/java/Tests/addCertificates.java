@@ -1,14 +1,11 @@
 package Tests;
 
-import PageObject.Certificates;
-import PageObject.GroupPage;
-import PageObject.LoginPage;
-import PageObject.UserAndPermissions;
+import PageObject.*;
 import org.testng.annotations.Test;
 
 public class addCertificates extends TestBase {
 
-    @Test
+    @Test(priority= 1)
     public void asAdminTryAddNewCertificate(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -32,8 +29,12 @@ public class addCertificates extends TestBase {
         cert.typeIntoAddOrganisationalUnitField();
         cert.loadFileWithCertificates();
         cert.clickSaveNewCertificateButton();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        cert.clickOnSearchCertificateButton();
         cert.typeIntoSearchNameField();
         cert.clickOnSearchCertificateButton();
+
         cert.validateTheCertificateCreation();
 
     }

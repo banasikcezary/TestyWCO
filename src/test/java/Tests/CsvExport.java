@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class CsvExport extends TestBase {
 
 
-    @Test
+    @Test(priority = 2)
     public void asUserTryExportCsvFile() {
 
         LoginPage loginPage = new LoginPage(driver);

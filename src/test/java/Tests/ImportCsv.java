@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class ImportCsv extends TestBase {
 
 
-    @Test
+    @Test(priority = 2)
     public void asUserTryImportCsvFile() {
 
         LoginPage loginPage = new LoginPage(driver);

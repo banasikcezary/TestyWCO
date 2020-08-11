@@ -1,6 +1,7 @@
 package PageObject;
 
 import com.google.gson.internal.$Gson$Preconditions;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ConnectionsSettingsPage {
 
-    @FindBy(id = "37_edit_element")
+    @FindBy(id = "1591_edit_element")
     WebElement editSettingsButton;
     @FindBy(id ="mat-radio-2")
     WebElement recordingVPABXConnections;
@@ -32,30 +33,44 @@ public class ConnectionsSettingsPage {
         PageFactory.initElements(driver, this);
 
     }
-
+    @Step("click Into Edit Button")
     public void clickIntoEditButton() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(editSettingsButton));
         editSettingsButton.click(); }
+
+    @Step("click Into Agree Recording VPABX Connections")
     public void clickIntoToAgreeRecordingVPABXConnections(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOf(recordingVPABXConnections));
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingVPABXConnections).click().perform();
         }
+
+    @Step("click Into Agree Recording Connections")
     public void clickIntoToAgreeRecordingConnections(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(recordingConnections));
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingConnections).click().perform();
         }
+
     public void clickIntoToAgreeDisableOutgoingCalls(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(disableOutgoingCalls));
         Actions actions = new Actions(driver);
         actions.moveToElement(disableOutgoingCalls).click().perform();
         }
     public void clickIntoToAgreeRecordingOutgoingCalls(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(recordingOutgoingCalls));
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingOutgoingCalls).click().perform();
         }
-    public void clickIntoSaveSettingsButton(){saveSettingsButton.click();}
+    public void clickIntoSaveSettingsButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOf(saveSettingsButton));
+        saveSettingsButton.click();}
 
 
 

@@ -1,5 +1,6 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.GroupPage;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
@@ -8,7 +9,7 @@ import org.testng.annotations.Test;
 public class deleteGroup extends TestBase {
 
 
-    @Test
+    @Test(priority = 3)
     public void asAdminTryDeleteGroup(){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -23,8 +24,13 @@ public class deleteGroup extends TestBase {
         GroupPage group = new GroupPage(driver);
         group.clickOnGroupButton();
         group.clickOnChooseGroup();
-        group.selectChooseRole();
         group.clickOnDeleteGroupButton();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+        group.clickOnGroupButton();
+
+
+        group.validateDeleteGroup();
     }
 
 }
