@@ -12,8 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.*;
 
 public class GroupPage {
 
@@ -41,9 +40,9 @@ public class GroupPage {
     WebElement deleteGroupButton;
     @FindBy(id = "edit_group")
     WebElement editGroupButton;
-    @FindBy(xpath = "//p[contains(@id,'role_')]")
+    @FindBy(xpath = "(//p[contains(@id,'role_')])[last()]")
     WebElement checkRoleInGroup;
-    @FindBy(xpath = "//button[contains(@id,'_list_element')]")
+    @FindBy(xpath = "(//button[contains(@id,'_list_element')])[last()]")
     WebElement checkAddNewGroup;
 
 
@@ -57,58 +56,59 @@ public class GroupPage {
     }
 
     public void clickOnGroupButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(groupsButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(groupsButton));
         groupsButton.click();}
     public void clickOnAddGroupButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addGroupButton));
         addGroupButton.click();}
-    public void typeIntoAddNameField(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+    public void typeIntoAddNameField(String addName){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
-        addNameField.sendKeys("test123");}
-    public void typeIntoAddDescriptionField(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        addNameField.clear();
+        addNameField.sendKeys(addName);}
+    public void typeIntoAddDescriptionField(String description){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addDescriptionField));
-        addDescriptionField.sendKeys("test opisu grupy");}
+        addDescriptionField.sendKeys(description);}
     public void clickOnSaveNewGroupButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(saveNewGroupButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(saveNewGroupButton));
         saveNewGroupButton.click();}
     public void clickOnChooseGroup(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(chooseGroup));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseGroup));
         chooseGroup.click();}
     public void selectChooseRole(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(chooseRole));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRole));
         chooseRole.click();
        selectRole.click();}
     public void clickAddRoleButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(addRoleButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(addRoleButton));
         addRoleButton.click();}
     public void clickDeleteRoleButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(deleteRoleButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRoleButton));
         deleteRoleButton.click();}
     public void clickOnDeleteGroupButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(deleteGroupButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteGroupButton));
         deleteGroupButton.click();}
     public void clickOnEditGroupButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(editGroupButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(editGroupButton));
         editGroupButton.click();}
 
 
     @Step("validateAddRoleForCertificate")
     public void validateAddRoleForCertificate() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkRoleInGroup));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("//p[contains(@id,'role_')]"));
+        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_')])[last()]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
@@ -117,39 +117,38 @@ public class GroupPage {
 
     @Step("validateAddRoleForCertificate")
     public void validateDeleteRoleForCertificate() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkRoleInGroup));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("//p[contains(@id,'role_')]"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
 
-        assertNotEquals(result, "Super Admin");
+        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_')])[last()]"));
+
+        assertTrue(allElement.isEmpty());
+
+
     }
 
     @Step("validateAddRoleForCertificate")
-    public void validateAddNewGroup() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+    public void validateAddNewGroup(String groupName) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("//button[contains(@id,'_list_element')]"));
+        List<WebElement> allElement = driver.findElements(By.xpath("(//button[contains(@id,'_list_element')])[last()]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertEquals(result, "test123");
+        assertEquals(result, groupName);
     }
 
 
     @Step("validateAddRoleForCertificate")
-    public void validateDeleteGroup() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkRoleInGroup));
+    public void validateDeleteGroup(String groupName) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("//button[contains(@id,'_list_element')]"));
+        List<WebElement> allElement = driver.findElements(By.xpath("(//button[contains(@id,'_list_element')])[last()]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertNotEquals(result, "test123");
+        assertNotEquals(result, groupName);
     }
 
 }

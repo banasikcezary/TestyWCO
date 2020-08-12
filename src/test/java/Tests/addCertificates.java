@@ -1,16 +1,21 @@
 package Tests;
 
-import PageObject.*;
+import PageObject.Certificates;
+import PageObject.Dialog;
+import PageObject.LoginPage;
+import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
+import testng.listeners.RetryAnalyzer;
 
 public class addCertificates extends TestBase {
 
-    @Test(priority= 1)
-    public void asAdminTryAddNewCertificate(){
+    @Test(priority = 1,
+            retryAnalyzer = RetryAnalyzer.class)
+    public void asAdminTryAddNewCertificate() {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField( "u.user1");
+        loginPage.typeIntoUsernameField("u.user1");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -20,22 +25,23 @@ public class addCertificates extends TestBase {
         Certificates cert = new Certificates(driver);
         cert.clickOnCertificatesButton();
         cert.clickOnAddUserButton();
-        cert.typeIntoAddNameField();
-        cert.typeIntoAddEmailField();
-        cert.typeIntoAddCityField();
-        cert.typeIntoAddCountryField();
-        cert.typeIntoAddStateField();
-        cert.typeIntoAddOrganisationField();
-        cert.typeIntoAddOrganisationalUnitField();
+        String name = "Artur";
+        cert.typeIntoAddNameField(name);
+        cert.typeIntoAddEmailField("artur@o2.pl");
+        cert.typeIntoAddCityField("Warszawa");
+        cert.typeIntoAddCountryField("Polska");
+        cert.typeIntoAddStateField("Stan");
+        cert.typeIntoAddOrganisationField("Organizacja");
+        cert.typeIntoAddOrganisationalUnitField("Dział");
         cert.loadFileWithCertificates();
         cert.clickSaveNewCertificateButton();
-        Dialog dialog=new Dialog(driver);
+        Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
         cert.clickOnSearchCertificateButton();
-        cert.typeIntoSearchNameField();
+        cert.typeIntoSearchNameField(name);
         cert.clickOnSearchCertificateButton();
 
-        cert.validateTheCertificateCreation();
+        cert.validateTheCertificateCreation(name);
 
     }
 

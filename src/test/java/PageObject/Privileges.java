@@ -43,28 +43,28 @@ public class Privileges {
     }
 
     public void clickOnPrivilegeButton() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
-        webDriverWait.until(ExpectedConditions.visibilityOf(privilegesButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(privilegesButton));
         webDriverWait.ignoring(TimeoutException.class);
 
         privilegesButton.click();
     }
 
     public void clickOnAddPrivilegeButton() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(addNewPrivillegeButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(addNewPrivillegeButton));
         addNewPrivillegeButton.click();
     }
 
-    public void typeIntoAddNameField() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+    public void typeIntoAddNameField(String name) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
-        addNameField.sendKeys("testNameField");
+        addNameField.sendKeys(name);
     }
 
     public void clickOnSaveNewPrivilege() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(saveNewPrivilege));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(saveNewPrivilege));
         saveNewPrivilege.click();
     }
 
@@ -73,14 +73,14 @@ public class Privileges {
     }
 
     @Step("validate The Certificate Creation")
-    public void validateThePrivilegesCreation() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+    public void validateThePrivilegesCreation(String privilege) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddPrivilege));
 
         List<WebElement> allElement = driver.findElements(By.xpath("//p[contains(@id,'name')]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertEquals(result, "testNameField");
+        assertEquals(result, privilege);
     }
 }

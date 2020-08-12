@@ -2,15 +2,17 @@ package Tests;
 
 import PageObject.LoginPage;
 import org.testng.annotations.Test;
+import testng.listeners.RetryAnalyzer;
 
 public class PositiveLoginTest extends TestBase {
 
-    @Test(priority = 1)
-public void asUserTryPositiveLogintoAccount(){
+    @Test(priority = 1,
+            retryAnalyzer = RetryAnalyzer.class)
+    public void asUserTryPositiveLogintoAccount() {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField( "u.user1");
+        loginPage.typeIntoUsernameField("u.user1");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
 

@@ -5,15 +5,17 @@ import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
+import testng.listeners.RetryAnalyzer;
 
 public class deleteCertificate extends TestBase {
 
-    @Test(priority = 3)
-    public void asAdminTryDownloadCertificate(){
+    @Test(priority = 3,
+            retryAnalyzer = RetryAnalyzer.class)
+    public void asAdminTryDeleteCertificate() {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField( "u.user1");
+        loginPage.typeIntoUsernameField("u.user1");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -22,18 +24,15 @@ public class deleteCertificate extends TestBase {
         user.clickOnUserAndPermissionButton();
         Certificates cert = new Certificates(driver);
         cert.clickOnCertificatesButton();
-        cert.typeIntoSearchNameField();
+        cert.typeIntoSearchNameField("Artur");
         cert.clickOnSearchCertificateButton();
         cert.clickOnDeleteCertificateButton();
-        Dialog dialog=new Dialog(driver);
+        Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
-        cert.clickOnSearchCertificateButton();
-
-        cert.typeIntoSearchNameField();
-        cert.clickOnSearchCertificateButton();
+        cert.clearCertificateSearchField();
 
 
-        cert.validateTheCertificateDelete();
+        cert.validateTheCertificateDelete("Artur");
 
     }
 

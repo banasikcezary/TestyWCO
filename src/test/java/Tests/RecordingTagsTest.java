@@ -2,16 +2,17 @@ package Tests;
 
 import PageObject.LoginPage;
 import PageObject.RecordingPage;
-import PageObject.UserList;
 import org.testng.annotations.Test;
+import testng.listeners.RetryAnalyzer;
 
 public class RecordingTagsTest extends TestBase {
-    @Test(priority = 2)
+    @Test(priority = 2,
+            retryAnalyzer = RetryAnalyzer.class)
     public void asUserTryEditTagsInRecords() {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField( "u.user1");
+        loginPage.typeIntoUsernameField("u.user1");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
 
@@ -22,11 +23,8 @@ public class RecordingTagsTest extends TestBase {
 //        recordingPage.typeIntoFilterNumberField();
 //        recordingPage.clickOnFilterButton();
         recordingPage.clickOnEditTagsButton();
-        recordingPage.typeIntoEditTagsField();
+        recordingPage.typeIntoEditTagsField("test");
         recordingPage.clickOnSaveEditTagsButton();
-
-
-
 
 
     }

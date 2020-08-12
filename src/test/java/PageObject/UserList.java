@@ -18,7 +18,7 @@ public class UserList {
     WebElement userListLink;
     @FindBy(id = "filterValue_placeholder")
     WebElement searchField;
-    @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row")
+    @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row[1]")
     WebElement checkList;
     @FindBy(id = "mat-checkbox-27")
     WebElement checkbox;
@@ -41,49 +41,49 @@ public class UserList {
     }
 
     public void clickIntoUserListLink(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(userListLink));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(userListLink));
         userListLink.click();}
-    public void typeIntoSearchfield(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+    public void typeIntoSearchfield(String searchUser){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(searchField));
-        searchField.sendKeys("adod2232");
+        searchField.sendKeys(searchUser);
     searchField.sendKeys(Keys.ENTER);}
-    public void checkIfTheUserYouAreLookingForExists(){
+    public void checkIfTheUserYouAreLookingForExists(String user){
         try {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
-            assertTrue(checkList.getText().contains("adod2232"));
+            assertTrue(checkList.getText().contains(user));
             System.out.println(checkList.getText());
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex)
         {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
-            assertTrue(checkList.getText().contains("adod2232"));
+            assertTrue(checkList.getText().contains(user));
             System.out.println(checkList.getText());
         }
 
         }
         public void clickOnUser(){
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-            webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(checkList));
             Actions action = new Actions(driver);
             action.moveToElement(checkList).click().build().perform();
     }
     public void clickOnCheckboxUSR(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkbox));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(checkbox));
         checkbox.click();
     }
     public void clickOnButtonExportToCsv(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(exportCsvButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(exportCsvButton));
         exportCsvButton.click();
     }
     public void clickOnButtonImportCsv(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(importCsv));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(importCsv));
         importCsv.click();
     }
     public void clickOnButtonChooseFile(){
@@ -91,8 +91,8 @@ public class UserList {
         chooseFileButton.sendKeys("C:\\Users\\User\\Downloads\\1.csv");
     }
     public void clickOnButtonSendFileToApp(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(sendFileButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(sendFileButton));
         sendFileButton.click();
     }
 

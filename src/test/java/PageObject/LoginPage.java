@@ -61,7 +61,7 @@ public class LoginPage {
 
     public void clickIntoLogInButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(logIn));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(logIn));
         Actions actions = new Actions(driver);
         actions.moveToElement(logIn).click().build().perform();
         //   logIn.click();}

@@ -25,7 +25,7 @@ public class Dialog {
     public void clickOnAcceptPopupButton(){
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(acceptPopupButton));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(acceptPopupButton));
         acceptPopupButton.click();
     }
 }

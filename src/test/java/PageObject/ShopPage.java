@@ -34,49 +34,49 @@ public class ShopPage {
 
     public void clickOnShopTab(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(shopTab));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(shopTab));
         webDriverWait.ignoring(TimeoutException.class);
 
         shopTab.click();
     }
     public void buyNewFaxFunctionalitiesWithExceedingTheAmount (){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
         webDriverWait.ignoring(TimeoutException.class);
 
         faxField.clear();
-        faxField.sendKeys("200");
+        faxField.sendKeys("20000");
     }
     public void buyNewFaxFunctionalities(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
         faxField.clear();
         faxField.sendKeys("7");
     }
     public void sellFaxFunctionalities(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
         faxField.clear();
         faxField.sendKeys("0");
     }
     public void clickOnSaveChangeButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(saveChangeButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(saveChangeButton));
         saveChangeButton.click();
     }
     public void clickOnBuyPackageButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(buyPackage));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(buyPackage));
         buyPackage.click();
     }
     public void clickOnAdditionalFundsAvailableTab(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(additionalFundsAvailableTab));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(additionalFundsAvailableTab));
         additionalFundsAvailableTab.click();
     }
 
     public void selectValuePackageWithList(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(valuePackage));
         Select listValuePackage = new Select(valuePackage);
         listValuePackage.selectByIndex(1);

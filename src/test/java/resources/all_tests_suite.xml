@@ -2,6 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="My Suite" verbose="1" parallel="classes" thread-count="1">
 
+    <listeners>
+        <listener class-name="testng.listeners.AnnotationTransformer"/>
+    </listeners>
+
     <test name="test">
         <classes>
             <class name="Tests.addCertificates"/>

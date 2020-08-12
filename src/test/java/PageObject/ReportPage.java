@@ -45,64 +45,64 @@ public class ReportPage {
 
     }
     public void clickOnReportTab(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(reportButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(reportButton));
         reportButton.click();
     }
 
     public void clickOnProperty(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(property));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(property));
         property.click();
     }
     public void chooseStartReportDay(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate));
         startReportDate.sendKeys("3.05.2020");
     }
     public void chooseEndReportDay(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(endReportDate));
         endReportDate.sendKeys("30.05.2020");
     }
     public void clickOnButtonGenerateSingletonReport(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(generateSingleReportButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(generateSingleReportButton));
         generateSingleReportButton.click();
     }
 
 
     public void clickOnButtonCyclicalReport(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(cyclicalReport));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cyclicalReport));
         Actions actions=new Actions(driver);
         actions.moveToElement(cyclicalReport).click().build().perform();
     }
     public void clickOncheckboxGenerateReport(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkboxGenerateReportCyclical));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(checkboxGenerateReportCyclical));
         checkboxGenerateReportCyclical.click();
     }
     public void clickOnGenerateReportEveryField(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(generateReportEveryField));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(generateReportEveryField));
         generateReportEveryField.sendKeys("2");
     }
     public void selectChooseInterval(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(selectChooseInterval));
         Select select = new Select(selectChooseInterval);
         select.selectByIndex(1);
     }
 
     public void typeIntoEndReportDateForCyclical(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(endReportDateForCyclical));
         endReportDateForCyclical.sendKeys("31.05.2020");
     }
     public void clickOnGenerateCyclicalReport(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(generateCyclicalReport));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(generateCyclicalReport));
         generateCyclicalReport.click();
     }
 

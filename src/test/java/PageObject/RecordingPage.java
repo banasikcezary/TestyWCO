@@ -1,9 +1,6 @@
 package PageObject;
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -22,9 +19,9 @@ public class RecordingPage {
     WebElement filterNumberField;
     @FindBy(id = "filter_button")
     WebElement filter;
-    @FindBy(id = "13869_edit_tags")
+    @FindBy(xpath= "//*[@id=\"13869_edit_tags\"]")
     WebElement editTags;
-    @FindBy(id = "mat-input-8")
+    @FindBy(xpath = "//*[@id=\"mat-input-8\"]")
     WebElement tagsField;
     @FindBy(id = "save_button")
     WebElement saveEditTagsButton;
@@ -39,8 +36,8 @@ public class RecordingPage {
 
     }
     public void clickOnRecordingTab(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(recordingTab));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(recordingTab));
         recordingTab.click();
     }
 
@@ -68,8 +65,8 @@ public class RecordingPage {
 
 
     public void clickOnEditTagsButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
-        webDriverWait.until(ExpectedConditions.visibilityOf(editTags));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(editTags));
 
         Actions action = new Actions(driver);
         action.moveToElement(editTags).click().perform();
@@ -78,21 +75,21 @@ public class RecordingPage {
 
 
 
-    public void typeIntoEditTagsField(){
+    public void typeIntoEditTagsField(String editTags){
 
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(tagsField));
-        webDriverWait.ignoring(TimeoutException.class);
 
 
-        tagsField.sendKeys("test");
+        tagsField.clear();
+        tagsField.sendKeys(editTags);
 
 
 
     }
     public void clickOnSaveEditTagsButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
-        webDriverWait.until(ExpectedConditions.visibilityOf(saveEditTagsButton));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(saveEditTagsButton));
         saveEditTagsButton.click();
     }
 
