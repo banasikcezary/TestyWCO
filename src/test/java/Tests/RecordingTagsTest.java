@@ -7,7 +7,9 @@ import testng.listeners.RetryAnalyzer;
 
 public class RecordingTagsTest extends TestBase {
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Edit Tags In Records",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryEditTagsInRecords() {
 
         LoginPage loginPage = new LoginPage(driver);

@@ -9,7 +9,9 @@ public class GenerateCyclicalReport extends TestBase {
 
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Generate Cyclical Report",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryGenerateCyclicalReport() {
 
         LoginPage loginPage = new LoginPage(driver);

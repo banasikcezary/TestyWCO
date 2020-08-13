@@ -11,7 +11,9 @@ public class addNewPrivilege extends TestBase {
 
 
     @Test(priority = 1,
-            retryAnalyzer = RetryAnalyzer.class)
+            description ="as Admin Try Add New Privilege",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryAddNewPrivilege() {
 
 
@@ -27,14 +29,15 @@ public class addNewPrivilege extends TestBase {
         Privileges privileges = new Privileges(driver);
         privileges.clickOnPrivilegeButton();
         privileges.clickOnAddPrivilegeButton();
-        privileges.typeIntoAddNameField("testNameField");
+        String privilege ="testNameField";
+        privileges.typeIntoAddNameField(privilege);
         privileges.clickOnSaveNewPrivilege();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
         privileges.clickOnPrivilegeButton();
 
 
-        privileges.validateThePrivilegesCreation("testNameField");
+        privileges.validateThePrivilegesCreation(privilege);
 
     }
 

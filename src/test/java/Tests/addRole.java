@@ -9,7 +9,9 @@ import testng.listeners.RetryAnalyzer;
 
 public class addRole extends TestBase {
     @Test(priority = 1,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Add New Role",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryAddNewRole() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,14 +26,15 @@ public class addRole extends TestBase {
         Roles role = new Roles(driver);
         role.clickOnRolesButton();
         role.clickOnAddRoleButton();
-        role.typeIntoAddRoleNameField("testRoleName");
+        String rola="testRoleName";
+        role.typeIntoAddRoleNameField(rola);
         role.typeIntoAddRoleDescriptionField("Rola123");
         role.clickOnSaveNewRole();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
         role.clickOnRolesButton();
 
-        role.validateAddRole("testRoleName");
+        role.validateAddRole(rola);
 
 
     }

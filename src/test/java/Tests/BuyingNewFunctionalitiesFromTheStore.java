@@ -9,7 +9,9 @@ public class BuyingNewFunctionalitiesFromTheStore extends TestBase {
 
 
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Buy New Functionalities From The Store",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryBuyNewFunctionalitiesFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

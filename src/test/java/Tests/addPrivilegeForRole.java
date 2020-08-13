@@ -10,7 +10,9 @@ import testng.listeners.RetryAnalyzer;
 public class addPrivilegeForRole extends TestBase {
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Add Privilege For Role",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryAddPrivilegeForRole() {
 
         LoginPage loginPage = new LoginPage(driver);

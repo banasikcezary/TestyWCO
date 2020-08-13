@@ -10,7 +10,9 @@ import testng.listeners.RetryAnalyzer;
 public class deleteRoleWithGroup extends TestBase {
 
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Delete Role With Group",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryDeleteRoleWithGroup() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -30,7 +32,7 @@ public class deleteRoleWithGroup extends TestBase {
         dialog.clickOnAcceptPopupButton();
 
 
-        group.validateDeleteRoleForCertificate();
+        group.validateDeleteRoleForGroup();
     }
 
 }

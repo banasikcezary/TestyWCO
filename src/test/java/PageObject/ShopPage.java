@@ -1,5 +1,6 @@
 package PageObject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,7 @@ public class ShopPage {
         PageFactory.initElements(driver, this);
 
     }
+    @Step("clickOnShopTab")
 
     public void clickOnShopTab(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -39,6 +41,7 @@ public class ShopPage {
 
         shopTab.click();
     }
+    @Step("buyNewFaxFunctionalitiesWithExceedingTheAmount")
     public void buyNewFaxFunctionalitiesWithExceedingTheAmount (){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
@@ -47,34 +50,40 @@ public class ShopPage {
         faxField.clear();
         faxField.sendKeys("20000");
     }
+    @Step("buyNewFaxFunctionalities")
     public void buyNewFaxFunctionalities(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
         faxField.clear();
         faxField.sendKeys("7");
     }
+    @Step("sellFaxFunctionalities")
     public void sellFaxFunctionalities(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
         faxField.clear();
         faxField.sendKeys("0");
     }
+    @Step("clickOnSaveChangeButton")
     public void clickOnSaveChangeButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveChangeButton));
         saveChangeButton.click();
     }
+    @Step("clickOnBuyPackageButton")
     public void clickOnBuyPackageButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(buyPackage));
         buyPackage.click();
     }
+    @Step("clickOnAdditionalFundsAvailableTab")
     public void clickOnAdditionalFundsAvailableTab(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(additionalFundsAvailableTab));
         additionalFundsAvailableTab.click();
     }
 
+    @Step("selectValuePackageWithList")
     public void selectValuePackageWithList(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(valuePackage));

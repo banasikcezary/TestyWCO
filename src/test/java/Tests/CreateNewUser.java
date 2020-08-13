@@ -10,7 +10,9 @@ public class CreateNewUser extends TestBase {
 
 
     @Test(priority = 1,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Create New User",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryCreateNewUser() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48617890766");
@@ -24,7 +26,8 @@ public class CreateNewUser extends TestBase {
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
         user.clickOnAddUserButton();
-        user.typeIntoLoginField("KarolN");
+        String login="KarolN";
+        user.typeIntoLoginField(login);
         user.typeIntoFirstNameField("Karol");
         user.typeIntoLastName("Nowak");
         user.typeIntoEmailField("qwerty@o2.pl");
@@ -33,10 +36,10 @@ public class CreateNewUser extends TestBase {
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
         user.clickOnUserButton();
-        user.typeIntoSearchUserField("KarolN");
+        user.typeIntoSearchUserField(login);
         user.clickOnSearchButton();
 
-        user.assertUser("KarolN");
+        user.assertUser(login);
 
 
     }

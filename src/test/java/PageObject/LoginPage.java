@@ -1,5 +1,6 @@
 package PageObject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -33,18 +34,21 @@ public class LoginPage {
         PageFactory.initElements(driver, this);
 
     }
+    @Step("typeIntoPhoneNumberField")
 
     public void typeIntoPhoneNumberField(String phoneNumber) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(telNumber));
         telNumber.sendKeys(phoneNumber);
     }
+    @Step("typeIntoUsernameField")
 
     public void typeIntoUsernameField(String user) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(username));
         username.sendKeys(user);
     }
+    @Step("typeIntoPasswordField")
 
     public void typeIntoPasswordField(String pass) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -52,12 +56,14 @@ public class LoginPage {
         password.sendKeys(pass);
         cooki.click();
     }
+    @Step("typeIntoPasswordFieldFailed")
 
     public void typeIntoPasswordFieldFailed(String passFail) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(password));
         password.sendKeys(passFail);
     }
+    @Step("clickIntoLogInButton")
 
     public void clickIntoLogInButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -66,11 +72,14 @@ public class LoginPage {
         actions.moveToElement(logIn).click().build().perform();
         //   logIn.click();}
     }
-        public void checkPositiveLoginToApp() {
+    @Step("checkPositiveLoginToApp")
+
+    public void checkPositiveLoginToApp() {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
             assertEquals(logoutButton.getText(), "Wyloguj");
         }
+    @Step("checkNegativeLoginToApp")
 
         public void checkNegativeLoginToApp() {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);

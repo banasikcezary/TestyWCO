@@ -54,19 +54,21 @@ public class ConnectionsSettingsPage {
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingConnections).click().perform();
         }
-
+    @Step("clickIntoToAgreeDisableOutgoingCalls")
     public void clickIntoToAgreeDisableOutgoingCalls(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(disableOutgoingCalls));
         Actions actions = new Actions(driver);
         actions.moveToElement(disableOutgoingCalls).click().perform();
         }
+    @Step("clickIntoToAgreeRecordingOutgoingCalls")
     public void clickIntoToAgreeRecordingOutgoingCalls(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(recordingOutgoingCalls));
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingOutgoingCalls).click().perform();
         }
+    @Step("clickIntoSaveSettingsButton")
     public void clickIntoSaveSettingsButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveSettingsButton));

@@ -10,7 +10,9 @@ import testng.listeners.RetryAnalyzer;
 public class deleteRole extends TestBase {
 
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Delete Role",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryDeleteRole() {
 
         LoginPage loginPage = new LoginPage(driver);

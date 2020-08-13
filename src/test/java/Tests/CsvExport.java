@@ -9,7 +9,9 @@ public class CsvExport extends TestBase {
 
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Export Csv File",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryExportCsvFile() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,6 +26,12 @@ public class CsvExport extends TestBase {
         userList.clickOnCheckboxUSR();
         userList.clickOnButtonExportToCsv();
 
+        userList.verifyDownloadFile("C:\\Users\\User\\Downloads","fileName.csv");
 
+        try{
+            Thread.sleep(5000);
+        }
+        catch(InterruptedException ie){
+        }
     }
 }

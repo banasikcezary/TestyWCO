@@ -9,7 +9,9 @@ public class SearchUserOnListTest extends TestBase {
 
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Search User On The List",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTrySearchUserOnTheList() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -20,8 +22,9 @@ public class SearchUserOnListTest extends TestBase {
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
-        userList.typeIntoSearchfield("adod2232");
+        String user="adod2232";
+        userList.typeIntoSearchfield(user);
 
-        userList.checkIfTheUserYouAreLookingForExists("adod2232");
+        userList.checkIfTheUserYouAreLookingForExists(user);
     }
 }

@@ -11,7 +11,9 @@ public class deleteGroup extends TestBase {
 
 
     @Test(priority = 4,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Delete Group",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryDeleteGroup() {
 
         LoginPage loginPage = new LoginPage(driver);

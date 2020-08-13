@@ -1,5 +1,6 @@
 package PageObject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -44,33 +45,43 @@ public class ReportPage {
         PageFactory.initElements(driver, this);
 
     }
+    @Step("clickOnReportTab")
+
     public void clickOnReportTab(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(reportButton));
         reportButton.click();
     }
+    @Step("clickOnProperty")
 
     public void clickOnProperty(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(property));
         property.click();
     }
+    @Step("chooseStartReportDay")
+
     public void chooseStartReportDay(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate));
         startReportDate.sendKeys("3.05.2020");
     }
+    @Step("chooseEndReportDay")
+
     public void chooseEndReportDay(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(endReportDate));
         endReportDate.sendKeys("30.05.2020");
     }
+    @Step("clickOnButtonGenerateSingletonReport")
+
     public void clickOnButtonGenerateSingletonReport(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(generateSingleReportButton));
         generateSingleReportButton.click();
     }
 
+    @Step("clickOnButtonCyclicalReport")
 
     public void clickOnButtonCyclicalReport(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -78,28 +89,37 @@ public class ReportPage {
         Actions actions=new Actions(driver);
         actions.moveToElement(cyclicalReport).click().build().perform();
     }
+    @Step("clickOncheckboxGenerateReport")
+
     public void clickOncheckboxGenerateReport(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(checkboxGenerateReportCyclical));
         checkboxGenerateReportCyclical.click();
     }
+    @Step("clickOnGenerateReportEveryField")
+
     public void clickOnGenerateReportEveryField(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(generateReportEveryField));
         generateReportEveryField.sendKeys("2");
     }
+    @Step("selectChooseInterval")
+
     public void selectChooseInterval(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(selectChooseInterval));
         Select select = new Select(selectChooseInterval);
         select.selectByIndex(1);
     }
+    @Step("typeIntoEndReportDateForCyclical")
 
     public void typeIntoEndReportDateForCyclical(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(endReportDateForCyclical));
         endReportDateForCyclical.sendKeys("31.05.2020");
     }
+    @Step("clickOnGenerateCyclicalReport")
+
     public void clickOnGenerateCyclicalReport(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(generateCyclicalReport));

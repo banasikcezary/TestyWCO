@@ -8,7 +8,9 @@ import testng.listeners.RetryAnalyzer;
 
 public class addRoleForUser extends TestBase {
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Add Role For User",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryAddRoleForUser() {
 
         LoginPage loginPage = new LoginPage(driver);

@@ -41,6 +41,7 @@ public class Privileges {
         PageFactory.initElements(driver, this);
 
     }
+    @Step("clickOnPrivilegeButton")
 
     public void clickOnPrivilegeButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -49,18 +50,21 @@ public class Privileges {
 
         privilegesButton.click();
     }
+    @Step("clickOnAddPrivilegeButton")
 
     public void clickOnAddPrivilegeButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addNewPrivillegeButton));
         addNewPrivillegeButton.click();
     }
+    @Step("typeIntoAddNameField")
 
     public void typeIntoAddNameField(String name) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
         addNameField.sendKeys(name);
     }
+    @Step("clickOnSaveNewPrivilege")
 
     public void clickOnSaveNewPrivilege() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -72,7 +76,7 @@ public class Privileges {
         deletePrivilege.click();
     }
 
-    @Step("validate The Certificate Creation")
+    @Step("validateThePrivilegesCreation")
     public void validateThePrivilegesCreation(String privilege) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddPrivilege));

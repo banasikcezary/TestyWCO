@@ -54,57 +54,77 @@ public class GroupPage {
         PageFactory.initElements(driver, this);
 
     }
-
+    @Step("clickOnGroupButton")
     public void clickOnGroupButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(groupsButton));
         groupsButton.click();}
+    @Step("clickOnAddGroupButton")
+
     public void clickOnAddGroupButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addGroupButton));
         addGroupButton.click();}
+    @Step("typeIntoAddNameField")
+
     public void typeIntoAddNameField(String addName){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
         addNameField.clear();
         addNameField.sendKeys(addName);}
+    @Step("typeIntoAddDescriptionField")
+
     public void typeIntoAddDescriptionField(String description){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addDescriptionField));
         addDescriptionField.sendKeys(description);}
+    @Step("clickOnSaveNewGroupButton")
+
     public void clickOnSaveNewGroupButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveNewGroupButton));
         saveNewGroupButton.click();}
+    @Step("clickOnChooseGroup")
+
     public void clickOnChooseGroup(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseGroup));
         chooseGroup.click();}
+    @Step("selectChooseRole")
+
     public void selectChooseRole(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRole));
         chooseRole.click();
        selectRole.click();}
+    @Step("clickAddRoleButton")
+
     public void clickAddRoleButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addRoleButton));
         addRoleButton.click();}
+    @Step("clickDeleteRoleButton")
+
     public void clickDeleteRoleButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRoleButton));
         deleteRoleButton.click();}
+    @Step("clickOnDeleteGroupButton")
+
     public void clickOnDeleteGroupButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteGroupButton));
         deleteGroupButton.click();}
+    @Step("clickOnEditGroupButton")
+
     public void clickOnEditGroupButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(editGroupButton));
         editGroupButton.click();}
 
 
-    @Step("validateAddRoleForCertificate")
-    public void validateAddRoleForCertificate() {
+    @Step("validateAddRoleForGroup")
+    public void validateAddRoleForGroup() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkRoleInGroup));
 
@@ -115,8 +135,8 @@ public class GroupPage {
         assertEquals(result, "Super Admin");
     }
 
-    @Step("validateAddRoleForCertificate")
-    public void validateDeleteRoleForCertificate() {
+    @Step("validateDeleteRoleForGroup")
+    public void validateDeleteRoleForGroup() {
 
 
         List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_')])[last()]"));
@@ -126,7 +146,7 @@ public class GroupPage {
 
     }
 
-    @Step("validateAddRoleForCertificate")
+    @Step("validateAddNewGroup")
     public void validateAddNewGroup(String groupName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
@@ -139,7 +159,7 @@ public class GroupPage {
     }
 
 
-    @Step("validateAddRoleForCertificate")
+    @Step("validateDeleteGroup")
     public void validateDeleteGroup(String groupName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));

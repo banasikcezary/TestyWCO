@@ -9,7 +9,9 @@ import testng.listeners.RetryAnalyzer;
 public class editGroup extends TestBase {
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Edit Group",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryEditGroup() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -25,11 +27,12 @@ public class editGroup extends TestBase {
         group.clickOnGroupButton();
         group.clickOnChooseGroup();
         group.clickOnEditGroupButton();
-        group.typeIntoAddNameField("test123");
+        String editName="test123";
+        group.typeIntoAddNameField(editName);
         group.typeIntoAddDescriptionField("test opisu grupy");
         group.clickOnSaveNewGroupButton();
 
-        group.validateAddNewGroup("test123");
+        group.validateAddNewGroup(editName);
 
     }
 

@@ -9,7 +9,9 @@ public class ImportCsv extends TestBase {
 
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Import Csv File",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryImportCsvFile() {
 
         LoginPage loginPage = new LoginPage(driver);

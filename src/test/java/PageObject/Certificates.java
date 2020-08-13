@@ -260,7 +260,7 @@ WebElement clearButton;
         assertNotEquals(result,certificate);
 
     }
-
+    @Step("clear Certificate SearchField")
     public void clearCertificateSearchField(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(clearButton));

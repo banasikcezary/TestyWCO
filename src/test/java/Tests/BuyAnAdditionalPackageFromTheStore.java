@@ -8,7 +8,9 @@ import testng.listeners.RetryAnalyzer;
 public class BuyAnAdditionalPackageFromTheStore extends TestBase {
 
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Buy An Additional Package From The Store",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryBuyAnAdditionalPackageFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

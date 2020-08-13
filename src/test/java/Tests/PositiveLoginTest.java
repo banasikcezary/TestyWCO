@@ -7,7 +7,9 @@ import testng.listeners.RetryAnalyzer;
 public class PositiveLoginTest extends TestBase {
 
     @Test(priority = 1,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Positive Log into Account",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryPositiveLogintoAccount() {
 
         LoginPage loginPage = new LoginPage(driver);

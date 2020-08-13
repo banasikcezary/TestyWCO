@@ -9,7 +9,9 @@ import testng.listeners.RetryAnalyzer;
 public class EditConnectionsSettingsTest extends TestBase {
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Edit User Settings",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryEditUserSettings() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -20,8 +22,9 @@ public class EditConnectionsSettingsTest extends TestBase {
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
-        userList.typeIntoSearchfield("adod2232");
-        userList.checkIfTheUserYouAreLookingForExists("adod2232");
+        String nazwaUzytkownika="adod2232";
+        userList.typeIntoSearchfield(nazwaUzytkownika);
+        userList.checkIfTheUserYouAreLookingForExists(nazwaUzytkownika);
 
         userList.clickOnUser();
 

@@ -9,7 +9,9 @@ import testng.listeners.RetryAnalyzer;
 public class addNewRoleForCertificate extends TestBase {
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Add New Role For Certificate",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryAddNewRoleForCertificate() {
 
         LoginPage loginPage = new LoginPage(driver);

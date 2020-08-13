@@ -7,7 +7,9 @@ import testng.listeners.RetryAnalyzer;
 
 public class SellingFunctionalityFromTheStore extends TestBase {
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Sell Functionalities From The Store",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTrySellFunctionalitiesFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

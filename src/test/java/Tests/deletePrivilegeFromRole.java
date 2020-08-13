@@ -10,7 +10,9 @@ import testng.listeners.RetryAnalyzer;
 public class deletePrivilegeFromRole extends TestBase {
 
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description ="as Admin Try Delete Privilege From Role",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryDeletePrivilegeFromRole() {
 
         LoginPage loginPage = new LoginPage(driver);

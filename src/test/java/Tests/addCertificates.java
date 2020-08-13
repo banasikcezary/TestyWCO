@@ -10,7 +10,10 @@ import testng.listeners.RetryAnalyzer;
 public class addCertificates extends TestBase {
 
     @Test(priority = 1,
-            retryAnalyzer = RetryAnalyzer.class)
+            description ="as Admin Try Add New Certificate",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
+
     public void asAdminTryAddNewCertificate() {
 
         LoginPage loginPage = new LoginPage(driver);

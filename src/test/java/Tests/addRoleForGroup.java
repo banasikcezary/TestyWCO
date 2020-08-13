@@ -9,7 +9,9 @@ import testng.listeners.RetryAnalyzer;
 public class addRoleForGroup extends TestBase {
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Add Role For Group",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryAddRoleForGroup() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -27,7 +29,7 @@ public class addRoleForGroup extends TestBase {
         group.selectChooseRole();
         group.clickAddRoleButton();
 
-        group.validateAddRoleForCertificate();
+        group.validateAddRoleForGroup();
     }
 
 }

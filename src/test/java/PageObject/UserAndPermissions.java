@@ -1,5 +1,6 @@
 package PageObject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -63,6 +64,7 @@ public class UserAndPermissions {
         PageFactory.initElements(driver, this);
 
     }
+    @Step("clickOnUserAndPermissionButton")
 
     public void clickOnUserAndPermissionButton() {
 
@@ -71,6 +73,7 @@ public class UserAndPermissions {
         userAndPermission.click();
     }
 
+    @Step("clickOnUserButton")
     public void clickOnUserButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(users));
@@ -78,6 +81,7 @@ public class UserAndPermissions {
         actions.moveToElement(users).click().build().perform();
     }
 
+    @Step("clickOnAddUserButton")
     public void clickOnAddUserButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addUserButton));
@@ -85,6 +89,7 @@ public class UserAndPermissions {
         addUserButton.click();
     }
 
+    @Step("typeIntoLoginField")
     public void typeIntoLoginField(String login) {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -94,18 +99,21 @@ public class UserAndPermissions {
         loginField.sendKeys(login);
     }
 
+    @Step("typeIntoFirstNameField")
     public void typeIntoFirstNameField(String firstName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(firstNameField));
         firstNameField.sendKeys(firstName);
     }
 
+    @Step("typeIntoLastName")
     public void typeIntoLastName(String lastName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(lastNameField));
         lastNameField.sendKeys(lastName);
     }
 
+    @Step("typeIntoEmailField")
     public void typeIntoEmailField(String email) {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -113,6 +121,7 @@ public class UserAndPermissions {
         emailField.sendKeys(email);
     }
 
+    @Step("typeIntoPhoneField")
     public void typeIntoPhoneField(String phone) {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -120,6 +129,7 @@ public class UserAndPermissions {
         phoneField.sendKeys(phone);
     }
 
+    @Step("clickOnSaveNewUserButton")
     public void clickOnSaveNewUserButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveUserButton));
@@ -128,6 +138,7 @@ public class UserAndPermissions {
 
     }
 
+    @Step("assertUser")
     public void assertUser(String user) {
         driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -137,6 +148,7 @@ public class UserAndPermissions {
         assertEquals(name, user);
     }
 
+    @Step("assertDeleteUser")
     public void assertDeleteUser(String user) {
         driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -146,6 +158,7 @@ public class UserAndPermissions {
         assertNotEquals(name, user);
     }
 
+    @Step("typeIntoSearchUserField")
     public void typeIntoSearchUserField(String searchUser) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(searchUserField));
@@ -153,11 +166,13 @@ public class UserAndPermissions {
         searchUserField.sendKeys(searchUser);
     }
 
-      public void clickOnSearchButton(){
+    @Step("clickOnSearchButton")
+    public void clickOnSearchButton(){
           WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
           webDriverWait.until(ExpectedConditions.elementToBeClickable(searchButton));
         searchButton.click();}
 
+    @Step("clickOnShowRoleButton")
     public void clickOnShowRoleButton() {
 
 
@@ -175,6 +190,7 @@ public class UserAndPermissions {
         }
     }
 
+    @Step("clickOnAddAssignmentButton")
     public void clickOnAddAssignmentButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addAssignmentButton));
@@ -182,6 +198,7 @@ public class UserAndPermissions {
 
     }
 
+    @Step("selectRole")
     public void selectRole() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(selectRole));
@@ -191,6 +208,7 @@ public class UserAndPermissions {
 
     }
 
+    @Step("clickAddRoleButton")
     public void clickAddRoleButton() {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -198,6 +216,7 @@ public class UserAndPermissions {
         addRoleButton.click();
     }
 
+    @Step("assertionAddRoleForUser")
     public void assertionAddRoleForUser(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(assertUserRole));
@@ -207,6 +226,7 @@ public class UserAndPermissions {
 
 
 
+    @Step("clickOnDeleteUser")
     public void clickOnDeleteUser(String user) {
 
         try {

@@ -10,7 +10,9 @@ import testng.listeners.RetryAnalyzer;
 public class deleteCertificate extends TestBase {
 
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Delete Certificate",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryDeleteCertificate() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,7 +26,8 @@ public class deleteCertificate extends TestBase {
         user.clickOnUserAndPermissionButton();
         Certificates cert = new Certificates(driver);
         cert.clickOnCertificatesButton();
-        cert.typeIntoSearchNameField("Artur");
+        String certyficate="Artur";
+        cert.typeIntoSearchNameField(certyficate);
         cert.clickOnSearchCertificateButton();
         cert.clickOnDeleteCertificateButton();
         Dialog dialog = new Dialog(driver);
@@ -32,7 +35,7 @@ public class deleteCertificate extends TestBase {
         cert.clearCertificateSearchField();
 
 
-        cert.validateTheCertificateDelete("Artur");
+        cert.validateTheCertificateDelete(certyficate);
 
     }
 

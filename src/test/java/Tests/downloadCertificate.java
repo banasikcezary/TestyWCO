@@ -9,7 +9,9 @@ import testng.listeners.RetryAnalyzer;
 public class downloadCertificate extends TestBase {
 
     @Test(priority = 2,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Download Certificate",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryDownloadCertificate() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -23,7 +25,8 @@ public class downloadCertificate extends TestBase {
         user.clickOnUserAndPermissionButton();
         Certificates cert = new Certificates(driver);
         cert.clickOnCertificatesButton();
-        cert.typeIntoSearchNameField("Artur");
+        String deleteCertificateName="Artur";
+        cert.typeIntoSearchNameField(deleteCertificateName);
         cert.clickOnSearchCertificateButton();
         cert.clickOnDownloadCertificateButton();
 

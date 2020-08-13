@@ -8,7 +8,9 @@ import testng.listeners.RetryAnalyzer;
 public class BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed extends TestBase {
 
     @Test(priority = 3,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Buy Functionalities With Exceeding The Amount To Be Used From The Store",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryBuyFunctionalitiesWithExceedingTheAmountToBeUsedFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);

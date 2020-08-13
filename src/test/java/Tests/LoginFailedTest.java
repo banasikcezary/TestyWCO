@@ -7,7 +7,9 @@ import testng.listeners.RetryAnalyzer;
 public class LoginFailedTest extends TestBase {
 
     @Test(priority = 1,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as User Try Log into Account Fail",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asUserTryLogintoAccountFail() {
 
         LoginPage loginPage = new LoginPage(driver);

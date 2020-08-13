@@ -1,5 +1,6 @@
 package PageObject;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -35,6 +36,8 @@ public class RecordingPage {
         PageFactory.initElements(driver, this);
 
     }
+    @Step("clickOnRecordingTab")
+
     public void clickOnRecordingTab(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(recordingTab));
@@ -63,6 +66,7 @@ public class RecordingPage {
 //        filter.click();
 //    }
 
+    @Step("clickOnEditTagsButton")
 
     public void clickOnEditTagsButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -74,6 +78,7 @@ public class RecordingPage {
 
 
 
+    @Step("typeIntoEditTagsField")
 
     public void typeIntoEditTagsField(String editTags){
 
@@ -87,6 +92,8 @@ public class RecordingPage {
 
 
     }
+    @Step("clickOnSaveEditTagsButton")
+
     public void clickOnSaveEditTagsButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveEditTagsButton));

@@ -9,7 +9,9 @@ import testng.listeners.RetryAnalyzer;
 
 public class createNewGroup extends TestBase {
     @Test(priority = 1,
-            retryAnalyzer = RetryAnalyzer.class)
+            description = "as Admin Try Create New Group",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
     public void asAdminTryCreateNewGroup() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,7 +26,8 @@ public class createNewGroup extends TestBase {
         GroupPage group = new GroupPage(driver);
         group.clickOnGroupButton();
         group.clickOnAddGroupButton();
-        group.typeIntoAddNameField("test123");
+        String grupa="test123";
+        group.typeIntoAddNameField(grupa);
         group.typeIntoAddDescriptionField("test opisu grupy");
         group.clickOnSaveNewGroupButton();
         Dialog dialog = new Dialog(driver);
@@ -32,6 +35,6 @@ public class createNewGroup extends TestBase {
         group.clickOnGroupButton();
 
 
-        group.validateAddNewGroup("test123");
+        group.validateAddNewGroup(grupa);
     }
 }
