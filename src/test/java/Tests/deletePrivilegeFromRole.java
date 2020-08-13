@@ -30,7 +30,6 @@ public class deletePrivilegeFromRole extends TestBase {
         role.clickOnDeletePrivilegeFromRoleButton();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
-        role.clickOnRolesButton();
 
 
         role.validateDeletePermissionForRole();

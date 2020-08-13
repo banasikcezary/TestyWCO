@@ -24,7 +24,6 @@ public class addRoleForUser extends TestBase {
         UserAndPermissions user = new UserAndPermissions(driver);
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
-        ;
         user.clickOnShowRoleButton();
         user.clickOnAddAssignmentButton();
         user.selectRole();

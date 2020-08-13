@@ -28,10 +28,6 @@ public class CsvExport extends TestBase {
 
         userList.verifyDownloadFile("C:\\Users\\User\\Downloads","fileName.csv");
 
-        try{
-            Thread.sleep(5000);
-        }
-        catch(InterruptedException ie){
-        }
+
     }
 }

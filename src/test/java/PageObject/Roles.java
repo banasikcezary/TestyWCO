@@ -13,8 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.*;
 
 public class Roles {
 
@@ -59,7 +58,7 @@ public class Roles {
 
     @FindBy(xpath = "(//p[contains(@id,'role_name')])[last()]")
     WebElement verifyAddNewRole;
-    @FindBy(id = "open_folder_button_12")
+    @FindBy(xpath = "(//img[contains(@id,'open_folder_button_')])[last()]")
     WebElement showPermissionRole;
     @FindBy(id = "privilege_12_0")
     WebElement checkPermissionRole;
@@ -168,7 +167,7 @@ public class Roles {
     public void validateAddRole(String addRole) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
-        List<WebElement> allElement = driver.findElements(By.xpath("//p[contains(@id,'role_name')]"));
+        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_name')])[last()]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
@@ -176,7 +175,7 @@ public class Roles {
         if(result !=addRole) {
             WebDriverWait webDriverWait1 = new WebDriverWait(driver, 30);
             webDriverWait1.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
-            List<WebElement> allElement1 = driver.findElements(By.xpath("//p[contains(@id,'role_name')]"));
+            List<WebElement> allElement1 = driver.findElements(By.xpath("(//p[contains(@id,'role_name')])[last()]"));
             int count1 = allElement1.size();
             String result1 = allElement1.get(count1 - 1).getText();
 
@@ -191,7 +190,7 @@ public class Roles {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("//p[contains(@id,'role_name')]"));
+        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_name')])[last()]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
@@ -218,7 +217,7 @@ public class Roles {
 
 
 
-        List<WebElement> allElement = driver.findElements(By.id("privilege_13_0"));
+        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'privilege_')])[last()]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
@@ -227,17 +226,13 @@ public class Roles {
 
     @Step("validateDeletePermissionForRole")
     public void validateDeletePermissionForRole() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
-        showPermissionRole.click();
 
 
 
-        List<WebElement> allElement = driver.findElements(By.id("privilege_13_0"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
 
-        assertNotEquals(result, "W??czanie/wy??czanie ustawienia CLIR");
+        List<WebElement> allElement = driver.findElements(By.xpath("(//button[contains(@id, \"delete_privilege_\")])[last()]"));
+        assertTrue(allElement.isEmpty());
+
     }
 
 }
