@@ -26,7 +26,7 @@ public class TestBase {
 
         ChromeOptions options = new ChromeOptions();
 
-        driver = new RemoteWebDriver(new URL("http://192.168.56.1:4444/wd/hub"), options);
+        driver = new RemoteWebDriver(new URL("http://192.168.56.1:4445/wd/hub"), options);
         driver.manage().window().maximize();
 
         driver.navigate().to("http://172.25.0.33:8005/login");
