@@ -3,6 +3,7 @@ package Tests;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,12 +25,14 @@ public class TestBase {
     @BeforeMethod(alwaysRun = true)
     public void beforeTest() throws MalformedURLException {
 
-        ChromeOptions options = new ChromeOptions();
+        FirefoxOptions options = new FirefoxOptions();
 
         driver = new RemoteWebDriver(new URL("http://172.25.0.33:4433/wd/hub"), options);
         driver.manage().window().maximize();
 
         driver.navigate().to("http://172.25.0.33:8005/login");
+        System.out.println("Open Browser");
+
 
     }
 
@@ -37,8 +40,11 @@ public class TestBase {
     @Step("Disposing browser")
     @AfterMethod
     public void afterTest() {
-        driver.close();
+        //driver.close();
         driver.quit();
+
+        System.out.println("Closing Browser");
+
 
 
     }
