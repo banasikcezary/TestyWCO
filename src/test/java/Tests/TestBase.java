@@ -26,6 +26,8 @@ public class TestBase {
     public void beforeTest() throws MalformedURLException {
 
         FirefoxOptions options = new FirefoxOptions();
+        options.setCapability("marionette", false);
+
 
         driver = new RemoteWebDriver(new URL("http://172.25.0.33:4433/wd/hub"), options);
         driver.manage().window().maximize();
