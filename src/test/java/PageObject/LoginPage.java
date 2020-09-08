@@ -40,6 +40,8 @@ public class LoginPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(telNumber));
         telNumber.sendKeys(phoneNumber);
+        System.out.println("phone");
+
     }
     @Step("typeIntoUsernameField")
 
@@ -47,6 +49,9 @@ public class LoginPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(username));
         username.sendKeys(user);
+
+        System.out.println("user");
+
     }
     @Step("typeIntoPasswordField")
 
@@ -62,6 +67,9 @@ public class LoginPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(password));
         password.sendKeys(passFail);
+
+        System.out.println("pass");
+
     }
     @Step("clickIntoLogInButton")
 
@@ -69,8 +77,11 @@ public class LoginPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(logIn));
         Actions actions = new Actions(driver);
-        actions.moveToElement(logIn).click().build().perform();
-        //   logIn.click();}
+        //actions.moveToElement(logIn).click().build().perform();
+           logIn.click();
+
+        System.out.println("login");
+
     }
     @Step("checkPositiveLoginToApp")
 
@@ -84,7 +95,7 @@ public class LoginPage {
         public void checkNegativeLoginToApp() {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(logIn));
-            assertEquals(logIn.getText(), "Zaloguj");
+            assertEquals(logIn.getText(), "Zaloguj się");
         }
     }
 
