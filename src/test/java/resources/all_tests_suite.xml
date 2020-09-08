@@ -11,7 +11,7 @@
     <test name="test">
         <classes>
 <!--            <class name="Tests.addCertificates"/>-->
-<!--            <class name="Tests.addNewPrivilege"/>-->
+            <class name="Tests.addNewPrivilege"/>
 <!--            <class name="Tests.addNewRoleForCertificate"/>-->
 <!--            <class name="Tests.addPrivilegeForRole"/>-->
 <!--            <class name="Tests.addRole"/>-->
@@ -36,7 +36,7 @@
 <!--            <class name="Tests.GenerateCyclicalReport"/>-->
 <!--            <class name="Tests.GenerateSingleReport"/>-->
 <!--            <class name="Tests.ImportCsv"/>-->
-            <class name="Tests.LoginFailedTest"/>
+<!--            <class name="Tests.LoginFailedTest"/>-->
 <!--            <class name="Tests.PositiveLoginTest"/>-->
 <!--            <class name="Tests.RecordingTagsTest"/>-->
 <!--            <class name="Tests.SearchUserOnListTest"/>-->
