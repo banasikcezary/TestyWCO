@@ -1,8 +1,10 @@
 package Tests;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
@@ -25,11 +27,15 @@ public class TestBase {
     @BeforeMethod(alwaysRun = true)
     public void beforeTest() throws MalformedURLException {
 
-        FirefoxOptions options = new FirefoxOptions();
-        options.setCapability("marionette", true);
+        ChromeOptions options = new ChromeOptions();
+//        options.setCapability("marionette", true);
+        options.addArguments("--no-sandbox");
+   //     options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
 
 
-        driver = new RemoteWebDriver(new URL("http://192.168.216.133:4448/wd/hub"), options);
+
+        driver = new RemoteWebDriver(new URL("http://172.25.0.33:4433/wd/hub"), options);
         driver.manage().window().maximize();
 
         driver.navigate().to("http://172.25.0.33:8005/login");
