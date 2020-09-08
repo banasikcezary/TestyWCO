@@ -88,20 +88,28 @@ WebElement clearButton;
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(certificatesButton));
 
-        certificatesButton.click();}
+        certificatesButton.click();
+        System.out.println("1");
+        ;}
 
     @Step("click On Add User Button")
     public void clickOnAddUserButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addUserButton));
-        addUserButton.click();}
+        addUserButton.click();
+        System.out.println("2");
+
+    }
 
     @Step("type Into Name Field")
     public String typeIntoAddNameField(String name){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
         addNameField.sendKeys(name);
-    return name;}
+
+        System.out.println("3");
+
+        return name;}
 
 
 
@@ -109,41 +117,63 @@ WebElement clearButton;
     public void typeIntoAddEmailField(String email){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addEmailField));
-        addEmailField.sendKeys(email);}
+        addEmailField.sendKeys(email);
+        System.out.println("4");
+
+    }
     @Step("type Into City Field")
     public void typeIntoAddCityField(String city){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addCityField));
-        addCityField.sendKeys(city);}
+        addCityField.sendKeys(city);
+        System.out.println("5");
+
+    }
     @Step("type Into Country Field")
     public void typeIntoAddCountryField(String country){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addCountryField));
-        addCountryField.sendKeys(country);}
+        addCountryField.sendKeys(country);
+        System.out.println("6");
+    }
     @Step("type Into State Field")
     public void typeIntoAddStateField(String state){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addStateField));
-        addStateField.sendKeys(state);}
+        addStateField.sendKeys(state);
+
+        System.out.println("7");
+    }
     @Step("type Into Organisation Field")
     public void typeIntoAddOrganisationField(String organisation){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addOrganisationField));
-        addOrganisationField.sendKeys(organisation);}
+        addOrganisationField.sendKeys(organisation);
+        System.out.println("8");
+
+    }
     @Step("type Into OrganisationalUnit Field")
     public void typeIntoAddOrganisationalUnitField(String organisationalUnit){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addOrganisationalUnitField));
-        addOrganisationalUnitField.sendKeys(organisationalUnit);}
+        addOrganisationalUnitField.sendKeys(organisationalUnit);
+        System.out.println("9");
+
+    }
     @Step("load File With Certificates")
     public void loadFileWithCertificates(){
 
-        chooseFile.sendKeys("C:\\Users\\User\\Downloads\\cert.crt"); }
+        chooseFile.sendKeys("C:\\Users\\User\\Downloads\\cert.crt");
+        System.out.println("10");
+    }
     @Step("click Save New Certificate Button")
     public void clickSaveNewCertificateButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveNewCertidicate));
-        saveNewCertidicate.click(); }
+        saveNewCertidicate.click();
+        System.out.println("11");
+
+    }
     @Step("type Into Search Name Field")
     public void typeIntoSearchNameField(String searchName){
         try {
@@ -154,22 +184,26 @@ WebElement clearButton;
         }
         searchNameField.click();
         searchNameField.clear();
-        searchNameField.sendKeys(searchName);}
+        searchNameField.sendKeys(searchName);
+        System.out.println("12");
+
+    }
     @Step("click On Search Certificate Button")
     public void clickOnSearchCertificateButton() {
         Actions actions = new Actions(driver);
         actions.moveToElement(searchCertificateButton).click().build().perform();
+        System.out.println("13");
+
     }
     @Step("validate The Certificate Creation")
     public void validateTheCertificateCreation(String name){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyCreateCert));
 
-        List<WebElement> allElement=driver.findElements(By.xpath("(//p[contains(@id,'cn')])[last()]")) ;
-        int count=allElement.size();
-        String result=allElement.get(count-1).getText();
+      String certName=verifyCreateCert.getText();
 
-        assertEquals(result,name);
+        assertEquals(certName,name);
+        System.out.println("14");
 
     }
     @Step("click Into Show Roles")
@@ -241,10 +275,10 @@ WebElement clearButton;
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddRole));
 
-            List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role')])[last()]"));
-            int count = allElement.size();
-            String result = allElement.get(count - 1).getText();
 
+            List<WebElement> allElement=driver.findElements(By.xpath("(//p[contains(@id,'cn')])[last()]")) ;
+            int count=allElement.size();
+            String result=allElement.get(count-1).getText();
             assertEquals(result, "Super Admin");
         }
 
@@ -253,10 +287,8 @@ WebElement clearButton;
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyCreateCert));
 
-        List<WebElement> allElement=driver.findElements(By.xpath("(//p[contains(@id,'cn')])[last()]")) ;
-        int count=allElement.size();
-        String result=allElement.get(count-1).getText();
 
+        String result=verifyCreateCert.getText();
         assertNotEquals(result,certificate);
 
     }

@@ -10,37 +10,37 @@
 
     <test name="test">
         <classes>
-<!--            <class name="Tests.addCertificates"/>-->
+            <class name="Tests.addCertificates"/>
             <class name="Tests.addNewPrivilege"/>
-<!--            <class name="Tests.addNewRoleForCertificate"/>-->
-<!--            <class name="Tests.addPrivilegeForRole"/>-->
-<!--            <class name="Tests.addRole"/>-->
-<!--            <class name="Tests.addRoleForGroup"/>-->
-<!--            <class name="Tests.addRoleForUser"/>-->
-<!--            <class name="Tests.BuyAnAdditionalPackageFromTheStore"/>-->
-<!--            <class name="Tests.BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed"/>-->
-<!--            <class name="Tests.BuyingNewFunctionalitiesFromTheStore"/>-->
-<!--            <class name="Tests.createNewGroup"/>-->
-<!--            <class name="Tests.CreateNewUser"/>-->
-<!--            <class name="Tests.CsvExport"/>-->
-<!--            <class name="Tests.deleteCertificate"/>-->
-<!--            <class name="Tests.deleteGroup"/>-->
-<!--            <class name="Tests.deletePrivilegeFromRole"/>-->
-<!--            <class name="Tests.deleteRole"/>-->
-<!--            <class name="Tests.deleteRoleWithGroup"/>-->
-<!--            <class name="Tests.deleteUser"/>-->
-<!--            <class name="Tests.downloadCertificate"/>-->
-<!--            <class name="Tests.EditConnectionsSettingsTest"/>-->
-<!--            <class name="Tests.editGroup"/>-->
-<!--            <class name="Tests.editRole"/>-->
-<!--            <class name="Tests.GenerateCyclicalReport"/>-->
-<!--            <class name="Tests.GenerateSingleReport"/>-->
-<!--            <class name="Tests.ImportCsv"/>-->
-<!--            <class name="Tests.LoginFailedTest"/>-->
-<!--            <class name="Tests.PositiveLoginTest"/>-->
-<!--            <class name="Tests.RecordingTagsTest"/>-->
-<!--            <class name="Tests.SearchUserOnListTest"/>-->
-<!--            <class name="Tests.SellingFunctionalityFromTheStore"/>-->
+            <class name="Tests.addNewRoleForCertificate"/>
+            <class name="Tests.addPrivilegeForRole"/>
+            <class name="Tests.addRole"/>
+            <class name="Tests.addRoleForGroup"/>
+            <class name="Tests.addRoleForUser"/>
+            <class name="Tests.BuyAnAdditionalPackageFromTheStore"/>
+            <class name="Tests.BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed"/>
+            <class name="Tests.BuyingNewFunctionalitiesFromTheStore"/>
+            <class name="Tests.createNewGroup"/>
+            <class name="Tests.CreateNewUser"/>
+            <class name="Tests.CsvExport"/>
+            <class name="Tests.deleteCertificate"/>
+            <class name="Tests.deleteGroup"/>
+            <class name="Tests.deletePrivilegeFromRole"/>
+            <class name="Tests.deleteRole"/>
+            <class name="Tests.deleteRoleWithGroup"/>
+            <class name="Tests.deleteUser"/>
+            <class name="Tests.downloadCertificate"/>
+            <class name="Tests.EditConnectionsSettingsTest"/>
+            <class name="Tests.editGroup"/>
+            <class name="Tests.editRole"/>
+            <class name="Tests.GenerateCyclicalReport"/>
+            <class name="Tests.GenerateSingleReport"/>
+            <class name="Tests.ImportCsv"/>
+            <class name="Tests.LoginFailedTest"/>
+            <class name="Tests.PositiveLoginTest"/>
+            <class name="Tests.RecordingTagsTest"/>
+            <class name="Tests.SearchUserOnListTest"/>
+            <class name="Tests.SellingFunctionalityFromTheStore"/>
         </classes>
 
     </test>
