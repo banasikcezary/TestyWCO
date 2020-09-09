@@ -54,7 +54,7 @@ WebElement showRoles;
 WebElement addAssignmentButton;
 @FindBy(id = "choose_role")
 WebElement clickInRole;
-@FindBy(id = "mat-option-0")
+@FindBy(xpath = "//*[@id=\"mat-option-0\"]/div")
 WebElement clickOnSelectRole;
 @FindBy(id = "privilege_add")
 WebElement saveNewRoleButton;

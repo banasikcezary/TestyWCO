@@ -81,7 +81,7 @@ public class Privileges {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddPrivilege));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'name')])[last()]"));
+        List<WebElement> allElement = driver.findElements(By.xpath("//p[contains(@id,'name')]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 

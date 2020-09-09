@@ -20,8 +20,10 @@ public class SellingFunctionalityFromTheStore extends TestBase {
 
         ShopPage shopPage = new ShopPage(driver);
         shopPage.clickOnShopTab();
-        shopPage.sellFaxFunctionalities();
+        shopPage.sellPresentationByMajorNumberFunctionalities();
         shopPage.clickOnSaveChangeButton();
+
+        shopPage.checkSavingConfirmationText();
 
 
     }

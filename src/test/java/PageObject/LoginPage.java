@@ -77,10 +77,10 @@ public class LoginPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(logIn));
         Actions actions = new Actions(driver);
-        //actions.moveToElement(logIn).click().build().perform();
-           logIn.click();
+        actions.moveToElement(logIn).click().build().perform();
+          // logIn.click();
 
-        System.out.println("login");
+        System.out.println("click login");
 
     }
     @Step("checkPositiveLoginToApp")

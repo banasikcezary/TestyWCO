@@ -10,12 +10,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.testng.Assert.assertEquals;
+
 public class ShopPage {
 
    @FindBy(id ="shop_component_link")
     WebElement shopTab;
-   @FindBy(id = "Faks_input")
-    WebElement faxField;
+   @FindBy(id = "UMN_input")
+    WebElement presentationByMajorNumberField;
    @FindBy(id = "save_changes")
     WebElement saveChangeButton;
    @FindBy(id = "buy_package")
@@ -24,6 +26,11 @@ public class ShopPage {
    WebElement additionalFundsAvailableTab;
    @FindBy(id = "choose_package")
     WebElement valuePackage;
+   @FindBy(xpath = "//p[contains(text(),'Funkcjonalności zostały zapisane')]")
+   WebElement checkTextDialog;
+    @FindBy(xpath = "//p[contains(text(),'Kupiono pakiet')]")
+    WebElement checkTextDialogAdditionalPackage;
+
 
     private WebDriver driver;
     public ShopPage(WebDriver driver) {
@@ -41,28 +48,28 @@ public class ShopPage {
 
         shopTab.click();
     }
-    @Step("buyNewFaxFunctionalitiesWithExceedingTheAmount")
-    public void buyNewFaxFunctionalitiesWithExceedingTheAmount (){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
-        webDriverWait.ignoring(TimeoutException.class);
-
-        faxField.clear();
-        faxField.sendKeys("20000");
-    }
+//    @Step("buyNewFaxFunctionalitiesWithExceedingTheAmount")
+//    public void buyNewFaxFunctionalitiesWithExceedingTheAmount (){
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+//        webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
+//        webDriverWait.ignoring(TimeoutException.class);
+//
+//        presentationByMajorNumberField.clear();
+//        presentationByMajorNumberField.sendKeys("20000");
+//    }
     @Step("buyNewFaxFunctionalities")
-    public void buyNewFaxFunctionalities(){
+    public void buyNewPresentationByMajorNumberFunctionalities(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
-        faxField.clear();
-        faxField.sendKeys("7");
+        webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
+        presentationByMajorNumberField.clear();
+        presentationByMajorNumberField.sendKeys("7");
     }
     @Step("sellFaxFunctionalities")
-    public void sellFaxFunctionalities(){
+    public void sellPresentationByMajorNumberFunctionalities(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(faxField));
-        faxField.clear();
-        faxField.sendKeys("0");
+        webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
+        presentationByMajorNumberField.clear();
+        presentationByMajorNumberField.sendKeys("1");
     }
     @Step("clickOnSaveChangeButton")
     public void clickOnSaveChangeButton(){
@@ -90,4 +97,15 @@ public class ShopPage {
         Select listValuePackage = new Select(valuePackage);
         listValuePackage.selectByIndex(1);
     }
+
+    public void checkSavingConfirmationText(){
+
+        assertEquals(checkTextDialog.getText(),"Funkcjonalności zostały zapisane");
+    }
+
+    public void checkSavingAdditionalPackageConfirmationText(){
+
+        assertEquals(checkTextDialogAdditionalPackage.getText(),"Funkcjonalności zostały zapisane");
+    }
+
 }

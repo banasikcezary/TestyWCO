@@ -167,21 +167,18 @@ public class Roles {
     public void validateAddRole(String addRole) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
-        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_name')])[last()]"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
 
+        String roleName=verifyAddNewRole.getText();
 
-        if(result !=addRole) {
+        if(roleName !=addRole) {
             WebDriverWait webDriverWait1 = new WebDriverWait(driver, 30);
             webDriverWait1.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
-            List<WebElement> allElement1 = driver.findElements(By.xpath("(//p[contains(@id,'role_name')])[last()]"));
-            int count1 = allElement1.size();
-            String result1 = allElement1.get(count1 - 1).getText();
 
-            assertEquals(result1, addRole);
+            String roleName1=verifyAddNewRole.getText();
+
+            assertEquals(roleName1, addRole);
         }else{
-            assertEquals(result, addRole);
+            assertEquals(roleName, addRole);
         }
     }
 
@@ -190,11 +187,10 @@ public class Roles {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_name')])[last()]"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
+        String roleName=verifyAddNewRole.getText();
 
-        assertEquals(result, editRole);
+
+        assertEquals(roleName, editRole);
     }
 
     @Step("validateDeleteRole")
@@ -202,9 +198,8 @@ public class Roles {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_name')])[last()]"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
+
+        String result = verifyAddNewRole.getText();
 
         assertNotEquals(result, editRole);
     }

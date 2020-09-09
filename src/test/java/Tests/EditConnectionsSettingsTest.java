@@ -25,9 +25,7 @@ public class EditConnectionsSettingsTest extends TestBase {
         String nazwaUzytkownika="adod2232";
         userList.typeIntoSearchfield(nazwaUzytkownika);
         userList.checkIfTheUserYouAreLookingForExists(nazwaUzytkownika);
-
         userList.clickOnUser();
-
 
         ConnectionsSettingsPage connectionsSettingsPage = new ConnectionsSettingsPage(driver);
         connectionsSettingsPage.clickIntoEditButton();
@@ -35,7 +33,12 @@ public class EditConnectionsSettingsTest extends TestBase {
         connectionsSettingsPage.clickIntoToAgreeRecordingConnections();
         connectionsSettingsPage.clickIntoToAgreeDisableOutgoingCalls();
         connectionsSettingsPage.clickIntoToAgreeRecordingOutgoingCalls();
+        //connectionsSettingsPage.verifyChangeRadioButton();
+
         connectionsSettingsPage.clickIntoSaveSettingsButton();
+        connectionsSettingsPage.verifySaveSettings();
+
+
 
     }
 

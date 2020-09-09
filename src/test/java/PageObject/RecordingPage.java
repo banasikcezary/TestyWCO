@@ -22,10 +22,12 @@ public class RecordingPage {
     WebElement filter;
     @FindBy(xpath= "//*[@id=\"13869_edit_tags\"]")
     WebElement editTags;
-    @FindBy(xpath = "//*[@id=\"mat-input-8\"]")
+    @FindBy(id = "new_tag_input")
     WebElement tagsField;
     @FindBy(id = "save_button")
     WebElement saveEditTagsButton;
+    @FindBy(xpath = "//*[@id=\"mat-dialog-1\"]/app-tag-column-edit/form/div[6]/div[2]/span")
+    WebElement addTag;
 
 
 
@@ -88,6 +90,7 @@ public class RecordingPage {
 
         tagsField.clear();
         tagsField.sendKeys(editTags);
+        addTag.click();
 
 
 

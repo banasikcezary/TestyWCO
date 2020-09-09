@@ -18,7 +18,6 @@
             <class name="Tests.addRoleForGroup"/>
             <class name="Tests.addRoleForUser"/>
             <class name="Tests.BuyAnAdditionalPackageFromTheStore"/>
-            <class name="Tests.BuyingFunctionalityInTheStoreAndExceedingTheAmountToBeUsed"/>
             <class name="Tests.BuyingNewFunctionalitiesFromTheStore"/>
             <class name="Tests.createNewGroup"/>
             <class name="Tests.CreateNewUser"/>

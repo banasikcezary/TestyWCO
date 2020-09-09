@@ -128,9 +128,8 @@ public class GroupPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkRoleInGroup));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'role_')])[last()]"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
+
+        String result = checkRoleInGroup.getText();
 
         assertEquals(result, "Super Admin");
     }
@@ -151,9 +150,8 @@ public class GroupPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("(//button[contains(@id,'_list_element')])[last()]"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
+
+        String result = checkAddNewGroup.getText();
 
         assertEquals(result, groupName);
     }
@@ -164,9 +162,8 @@ public class GroupPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
 
-        List<WebElement> allElement = driver.findElements(By.xpath("(//button[contains(@id,'_list_element')])[last()]"));
-        int count = allElement.size();
-        String result = allElement.get(count - 1).getText();
+        String result = checkAddNewGroup.getText();
+
 
         assertNotEquals(result, groupName);
     }

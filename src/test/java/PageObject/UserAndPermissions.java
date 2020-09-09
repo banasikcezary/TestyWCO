@@ -140,17 +140,18 @@ public class UserAndPermissions {
 
     @Step("assertUser")
     public void assertUser(String user) {
-        driver.navigate().refresh();
+
+
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
 
         String name = assertRoleName.getText();
         assertEquals(name, user);
+
     }
 
     @Step("assertDeleteUser")
     public void assertDeleteUser(String user) {
-        driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
 
@@ -160,6 +161,7 @@ public class UserAndPermissions {
 
     @Step("typeIntoSearchUserField")
     public void typeIntoSearchUserField(String searchUser) {
+
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(searchUserField));
         searchUserField.click();
@@ -170,6 +172,7 @@ public class UserAndPermissions {
     public void clickOnSearchButton(){
           WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
           webDriverWait.until(ExpectedConditions.elementToBeClickable(searchButton));
+        searchButton.click();
         searchButton.click();}
 
     @Step("clickOnShowRoleButton")

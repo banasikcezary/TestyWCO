@@ -25,6 +25,8 @@ public class BuyAnAdditionalPackageFromTheStore extends TestBase {
         shopPage.selectValuePackageWithList();
         shopPage.clickOnBuyPackageButton();
 
+        shopPage.checkSavingAdditionalPackageConfirmationText();
+
 
     }
 

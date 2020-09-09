@@ -8,6 +8,7 @@ import testng.listeners.RetryAnalyzer;
 public class GenerateSingleReport extends TestBase {
 
     @Test(priority = 2,
+            enabled=false,
             description = "as User Try Generate Single Report",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)

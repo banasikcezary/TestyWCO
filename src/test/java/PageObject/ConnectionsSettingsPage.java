@@ -10,6 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class ConnectionsSettingsPage {
 
     @FindBy(xpath = "//*[@id=\"1591_edit_element\"]")
@@ -24,6 +27,8 @@ public class ConnectionsSettingsPage {
     WebElement recordingOutgoingCalls;
     @FindBy(id ="save-button")
     WebElement saveSettingsButton;
+    @FindBy(xpath = "//*[contains(text(),'Konfiguracja zostala zaaktualizowana')]")
+    WebElement textVerify;
 
 
     private WebDriver driver;
@@ -45,7 +50,10 @@ public class ConnectionsSettingsPage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(recordingVPABXConnections));
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingVPABXConnections).click().perform();
-        }
+//        recordingVPABXConnections.click();
+//        assertTrue(recordingVPABXConnections.isSelected());
+
+    }
 
     @Step("click Into Agree Recording Connections")
     public void clickIntoToAgreeRecordingConnections(){
@@ -53,7 +61,10 @@ public class ConnectionsSettingsPage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(recordingConnections));
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingConnections).click().perform();
-        }
+
+        //assertTrue(recordingConnections.isSelected());
+
+    }
     @Step("clickIntoToAgreeDisableOutgoingCalls")
     public void clickIntoToAgreeDisableOutgoingCalls(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -68,12 +79,25 @@ public class ConnectionsSettingsPage {
         Actions actions = new Actions(driver);
         actions.moveToElement(recordingOutgoingCalls).click().perform();
         }
+
+    @Step("verifyChangeRadioButton")
+    public void verifyChangeRadioButton(){
+        assertTrue(disableOutgoingCalls.isSelected());
+        assertTrue(recordingOutgoingCalls.isSelected());
+
+        }
     @Step("clickIntoSaveSettingsButton")
     public void clickIntoSaveSettingsButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveSettingsButton));
         saveSettingsButton.click();}
 
+ public void verifySaveSettings(){
 
+     WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+     webDriverWait.until(ExpectedConditions.visibilityOf(textVerify));
+        assertEquals(textVerify.getText(),"Konfiguracja zostala zaaktualizowana");
+
+ }
 
 }

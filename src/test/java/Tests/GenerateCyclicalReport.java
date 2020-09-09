@@ -9,6 +9,7 @@ public class GenerateCyclicalReport extends TestBase {
 
 
     @Test(priority = 2,
+            enabled=false,
             description = "as User Try Generate Cyclical Report",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
