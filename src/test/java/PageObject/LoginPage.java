@@ -1,8 +1,7 @@
 package PageObject;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -82,6 +81,9 @@ public class LoginPage {
 
         System.out.println("click login");
 
+
+
+
     }
     @Step("checkPositiveLoginToApp")
 
@@ -93,9 +95,20 @@ public class LoginPage {
     @Step("checkNegativeLoginToApp")
 
         public void checkNegativeLoginToApp() {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.visibilityOf(logIn));
-            assertEquals(logIn.getText(), "Zaloguj się");
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        try {
+            Alert alert = driver.switchTo().alert();
+           String text= alert.getText();
+            alert.accept();
+
+            assertEquals(text, "Nie udało się zalogować");
+
+        } catch(UnhandledAlertException noe) {
+            // No alert found on page, proceed with test.
+        }
+
         }
     }
 

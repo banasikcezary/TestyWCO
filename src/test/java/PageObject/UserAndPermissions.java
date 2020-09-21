@@ -48,11 +48,14 @@ public class UserAndPermissions {
     @FindBy(xpath = "(//p[contains(@id,\"username\")])[last()]")
     WebElement assertRoleName;
 
-    @FindBy(id = "mat-option-0")
+    @FindBy(id = "Super Admin_option")
     WebElement role;
 
     @FindBy(xpath = "(//*[contains(@id, \"role_\")])[last()]")
     WebElement assertUserRole;
+
+    @FindBy(id = "next_page_button")
+    WebElement btnNextPage;
 
 
 
@@ -145,8 +148,17 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
 
+
+
         String name = assertRoleName.getText();
-        assertEquals(name, user);
+
+        while (name!=user){
+            btnNextPage.click();
+            name=assertRoleName.getText();
+        }
+        if(name==user) {
+            assertEquals(name, user);
+        }
 
     }
 

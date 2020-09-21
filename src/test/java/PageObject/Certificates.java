@@ -54,7 +54,7 @@ WebElement showRoles;
 WebElement addAssignmentButton;
 @FindBy(id = "choose_role")
 WebElement clickInRole;
-@FindBy(xpath = "//*[@id=\"mat-option-0\"]/div")
+@FindBy(id = "Super Admin_option")
 WebElement clickOnSelectRole;
 @FindBy(id = "privilege_add")
 WebElement saveNewRoleButton;
@@ -163,7 +163,7 @@ WebElement clearButton;
     @Step("load File With Certificates")
     public void loadFileWithCertificates(){
 
-        chooseFile.sendKeys("C:\\Users\\User\\Downloads\\cert.crt");
+        chooseFile.sendKeys("C:\\Users\\User\\Downloads\\ca (6).crt");
         System.out.println("10");
     }
     @Step("click Save New Certificate Button")
@@ -276,7 +276,7 @@ WebElement clearButton;
             webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddRole));
 
 
-            List<WebElement> allElement=driver.findElements(By.xpath("(//p[contains(@id,'cn')])[last()]")) ;
+            List<WebElement> allElement=driver.findElements(By.xpath("(//p[contains(@id,'role_')])[last()]")) ;
             int count=allElement.size();
             String result=allElement.get(count-1).getText();
             assertEquals(result, "Super Admin");

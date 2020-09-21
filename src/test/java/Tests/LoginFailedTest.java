@@ -18,7 +18,7 @@ public class LoginFailedTest extends TestBase {
         loginPage.typeIntoPasswordFieldFailed("bad");
         loginPage.clickIntoLogInButton();
 
-       // loginPage.checkNegativeLoginToApp();
+        loginPage.checkNegativeLoginToApp();
 
     }
 }

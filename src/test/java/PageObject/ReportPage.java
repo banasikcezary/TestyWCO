@@ -36,6 +36,36 @@ public class ReportPage {
     WebElement endReportDateForCyclical;
     @FindBy(xpath = "//*[@id=\"collapseCyclicReport\"]/form/button")
     WebElement generateCyclicalReport;
+////////////////
+    @FindBy(id = "report5")
+    WebElement extensionsAndTransfersReport;
+
+    @FindBy(id = "report10")
+    WebElement recordedCallsReport;
+    @FindBy(id = "report11")
+    WebElement recordedCallsDetailsReport;
+    @FindBy(id = "report12")
+    WebElement downloadFileReport;
+@FindBy(id = "report21")
+WebElement auditLogsReport;
+    @FindBy(id = "report22")
+    WebElement auditLogsPlusReport;
+    @FindBy(id = "report23")
+    WebElement functionalityOnUsersReport;
+    @FindBy(id = "report24")
+    WebElement apiCallsReport;
+
+    @FindBy(id = "report_22_startReportDate")
+    WebElement startReportDateField;
+    @FindBy(id = "report_22_endReportDate")
+    WebElement endReportDateField;
+    @FindBy(id = "report_22_generate_report_button")
+    WebElement generateReportAuditLogPlus;
+
+    @FindBy(xpath = "//*[@id=\"report_list\"]/mat-row[1]/mat-cell[2]")
+    WebElement assertCreateReport;
+
+
 
 
     private WebDriver driver;

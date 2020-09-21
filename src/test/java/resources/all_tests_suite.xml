@@ -11,10 +11,10 @@
     <test name="test">
         <classes>
 <!--            <class name="Tests.addCertificates"/>-->
-            <class name="Tests.addNewPrivilege"/>
+<!--            <class name="Tests.addNewPrivilege"/>-->
 <!--            <class name="Tests.addNewRoleForCertificate"/>-->
 <!--            <class name="Tests.addPrivilegeForRole"/>-->
-<!--            <class name="Tests.addRole"/>-->
+            <class name="Tests.addRole"/>
 <!--            <class name="Tests.addRoleForGroup"/>-->
 <!--            <class name="Tests.addRoleForUser"/>-->
 <!--            <class name="Tests.BuyAnAdditionalPackageFromTheStore"/>-->

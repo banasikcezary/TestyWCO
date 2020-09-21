@@ -30,7 +30,7 @@ public class GroupPage {
     WebElement chooseGroup;
     @FindBy(id = "choose_role")
     WebElement chooseRole;
-    @FindBy(id = "mat-option-0")
+    @FindBy(id = "Super Admin_option")
     WebElement selectRole;
     @FindBy(id = "add_role_button")
     WebElement addRoleButton;

@@ -8,8 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import static org.testng.Assert.*;
@@ -21,7 +24,7 @@ public class UserList {
     WebElement searchField;
     @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row[1]")
     WebElement checkList;
-    @FindBy(id = "mat-checkbox-27")
+    @FindBy(xpath = "//*[@id=\"adod23_select_checkbox\"]/label/div")
     WebElement checkbox;
     @FindBy(id = "export_csv_button")
     WebElement exportCsvButton;
@@ -89,20 +92,45 @@ public class UserList {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(exportCsvButton));
         exportCsvButton.click();
     }
-    public boolean verifyDownloadFile(String downloadPath, String fileName){
 
-
-            File dir = new File(downloadPath);
-            File[] dirContents = dir.listFiles();
-
-            for (int i = 0; i < dirContents.length; i++) {
-                if (dirContents[i].getName().equals(fileName)) {
-                    dirContents[i].delete();
+    public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(timeoutSeconds))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+        wait.until((x) -> {
+            File[] files = new File(downloadPath).listFiles();
+            for (File file : files) {
+                if (file.getName().contains(fileName)) {
                     return true;
-
                 }
             }
             return false;
+        });
+    }
+    public void verifyDownloadFile(String downloadPath){
+
+
+        File folder = new File(downloadPath);
+
+        File[] listOfFiles = folder.listFiles();
+        boolean found = false;
+        File f = null;
+
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                String fileName = listOfFile.getName();
+                System.out.println("File " + listOfFile.getName());
+                if (fileName.matches("fileName.csv")) {
+
+                    assertEquals(fileName,"fileName.csv");
+
+                    listOfFile.delete();
+                }
+            }
+        }
+
+
     }
     @Step("clickOnButtonImportCsv")
     public void clickOnButtonImportCsv(){

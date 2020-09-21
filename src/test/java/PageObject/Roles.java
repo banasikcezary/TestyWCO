@@ -43,12 +43,12 @@ public class Roles {
     WebElement addPrivilageForNewRole;
     @FindBy(id = "choose_privilege")
     WebElement choosePrivilage;
-    @FindBy(id="mat-option-0")
+    @FindBy(id="Definiowanie zakresów userów telefonicznych: numer, ID, num. kadrowy, tel_option")
     WebElement selectPrivilage;
     @FindBy(id = "privilege_add")
     WebElement savePrivilege;
 
-    @FindBy(xpath = "(//img)[last()]")
+    @FindBy(xpath = "(//div[contains(@id, \"open_folder_button_\")])[last()]")
     WebElement openRole;
     @FindBy(xpath = "(//button[contains(@id, \"delete_privilege_\")])[last()]")
     WebElement deletePrivilegeFromRole;
@@ -58,7 +58,7 @@ public class Roles {
 
     @FindBy(xpath = "(//p[contains(@id,'role_name')])[last()]")
     WebElement verifyAddNewRole;
-    @FindBy(xpath = "(//img[contains(@id,'open_folder_button_')])[last()]")
+    @FindBy(xpath = "(//div[contains(@id,'open_folder_button_')])[last()]")
     WebElement showPermissionRole;
     @FindBy(id = "privilege_12_0")
     WebElement checkPermissionRole;
@@ -216,7 +216,7 @@ public class Roles {
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertEquals(result, "W??czanie/wy??czanie ustawienia CLIR");
+        assertEquals(result, "Definiowanie zakresów userów telefonicznych: numer, ID, num. kadrowy, tel");
     }
 
     @Step("validateDeletePermissionForRole")

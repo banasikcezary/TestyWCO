@@ -14,41 +14,59 @@ import static org.testng.Assert.assertEquals;
 
 public class ShopPage {
 
-   @FindBy(id ="shop_component_link")
+    @FindBy(id = "shop_component_link")
     WebElement shopTab;
-   @FindBy(id = "UMN_input")
+    @FindBy(id = "UMN_input")
     WebElement presentationByMajorNumberField;
-   @FindBy(id = "save_changes")
+    @FindBy(id = "save_changes")
     WebElement saveChangeButton;
-   @FindBy(id = "buy_package")
+    @FindBy(id = "buy_package")
     WebElement buyPackage;
-   @FindBy(xpath = "//*[@id=\"navbarNav\"]/ul/li[3]/a")
-   WebElement additionalFundsAvailableTab;
-   @FindBy(id = "choose_package")
+    @FindBy(xpath = "//*[@id=\"navbarNav\"]/ul/li[3]/a")
+    WebElement additionalFundsAvailableTab;
+    @FindBy(id = "choose_package")
     WebElement valuePackage;
-   @FindBy(xpath = "//p[contains(text(),'Funkcjonalności zostały zapisane')]")
-   WebElement checkTextDialog;
+    @FindBy(xpath = "//p[contains(text(),'Funkcjonalności zostały zapisane')]")
+    WebElement checkTextDialog;
     @FindBy(xpath = "//p[contains(text(),'Kupiono pakiet')]")
     WebElement checkTextDialogAdditionalPackage;
 
+    @FindBy(id = "USR_input")
+    WebElement userField;
+
 
     private WebDriver driver;
+
     public ShopPage(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
 
     }
+
     @Step("clickOnShopTab")
 
-    public void clickOnShopTab(){
+    public void upValueUser() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(userField));
+
+        Integer a = Integer.parseInt(userField.getAttribute("value"));
+        Integer newValue = a + 1;
+        userField.clear();
+        userField.sendKeys(newValue.toString());
+    }
+
+    @Step("clickOnShopTab")
+
+    public void clickOnShopTab() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(shopTab));
         webDriverWait.ignoring(TimeoutException.class);
 
         shopTab.click();
     }
-//    @Step("buyNewFaxFunctionalitiesWithExceedingTheAmount")
+
+    //    @Step("buyNewFaxFunctionalitiesWithExceedingTheAmount")
 //    public void buyNewFaxFunctionalitiesWithExceedingTheAmount (){
 //        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
 //        webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
@@ -58,54 +76,58 @@ public class ShopPage {
 //        presentationByMajorNumberField.sendKeys("20000");
 //    }
     @Step("buyNewFaxFunctionalities")
-    public void buyNewPresentationByMajorNumberFunctionalities(){
+    public void buyNewPresentationByMajorNumberFunctionalities() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
         presentationByMajorNumberField.clear();
         presentationByMajorNumberField.sendKeys("7");
     }
+
     @Step("sellFaxFunctionalities")
-    public void sellPresentationByMajorNumberFunctionalities(){
+    public void sellPresentationByMajorNumberFunctionalities() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
         presentationByMajorNumberField.clear();
         presentationByMajorNumberField.sendKeys("1");
     }
+
     @Step("clickOnSaveChangeButton")
-    public void clickOnSaveChangeButton(){
+    public void clickOnSaveChangeButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveChangeButton));
         saveChangeButton.click();
     }
+
     @Step("clickOnBuyPackageButton")
-    public void clickOnBuyPackageButton(){
+    public void clickOnBuyPackageButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(buyPackage));
         buyPackage.click();
     }
+
     @Step("clickOnAdditionalFundsAvailableTab")
-    public void clickOnAdditionalFundsAvailableTab(){
+    public void clickOnAdditionalFundsAvailableTab() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(additionalFundsAvailableTab));
         additionalFundsAvailableTab.click();
     }
 
     @Step("selectValuePackageWithList")
-    public void selectValuePackageWithList(){
+    public void selectValuePackageWithList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(valuePackage));
         Select listValuePackage = new Select(valuePackage);
         listValuePackage.selectByIndex(1);
     }
 
-    public void checkSavingConfirmationText(){
+    public void checkSavingConfirmationText() {
 
-        assertEquals(checkTextDialog.getText(),"Funkcjonalności zostały zapisane");
+        assertEquals(checkTextDialog.getText(), "Funkcjonalności zostały zapisane");
     }
 
-    public void checkSavingAdditionalPackageConfirmationText(){
+    public void checkSavingAdditionalPackageConfirmationText() {
 
-        assertEquals(checkTextDialogAdditionalPackage.getText(),"Funkcjonalności zostały zapisane");
+        assertEquals(checkTextDialogAdditionalPackage.getText(), "Funkcjonalności zostały zapisane");
     }
 
 }

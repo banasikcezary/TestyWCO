@@ -22,11 +22,12 @@ public class CsvExport extends TestBase {
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
-        userList.typeIntoSearchfield("adod2232");
+        userList.typeIntoSearchfield("adod22321");
         userList.clickOnCheckboxUSR();
         userList.clickOnButtonExportToCsv();
 
-        userList.verifyDownloadFile("C:\\Users\\User\\Downloads","fileName.csv");
+       userList.waitForFileDownloaded("fileName.csv", 10,"C:\\Users\\User\\Downloads");
+        userList.verifyDownloadFile("C:\\Users\\User\\Downloads");
 
 
     }

@@ -1,7 +1,8 @@
 package Tests;
 
-import PageObject.Dialog;
+import PageObject.Configuration;
 import PageObject.LoginPage;
+import PageObject.ShopPage;
 import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
@@ -21,25 +22,27 @@ public class CreateNewUser extends TestBase {
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.clickOnShopTab();
+        shopPage.upValueUser();
+        shopPage.clickOnSaveChangeButton();
+        shopPage.checkSavingConfirmationText();
+
+        Configuration configuration = new Configuration(driver);
+        configuration.clickConfigurationLink();
+        configuration.clickLinkUserList();
+        configuration.typeIntoTxtLoginField();
+        configuration.clickInCheckboxShowInGui();
+        configuration.clickSaveButton();
+
 
         UserAndPermissions user = new UserAndPermissions(driver);
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
-        user.clickOnAddUserButton();
-        String login="KarolN";
-        user.typeIntoLoginField(login);
-        user.typeIntoFirstNameField("Karol");
-        user.typeIntoLastName("Nowak");
-        user.typeIntoEmailField("qwerty@o2.pl");
-        user.typeIntoPhoneField("666555777");
-        user.clickOnSaveNewUserButton();
-        Dialog dialog = new Dialog(driver);
-        dialog.clickOnAcceptPopupButton();
-        user.clickOnUserButton();
-        user.typeIntoSearchUserField(login);
+        user.typeIntoSearchUserField("KarolN");
         user.clickOnSearchButton();
 
-        user.assertUser(login);
+        user.assertUser("KarolN");
 
 
     }

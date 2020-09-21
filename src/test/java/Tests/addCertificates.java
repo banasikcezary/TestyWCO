@@ -4,10 +4,14 @@ import PageObject.Certificates;
 import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
 public class addCertificates extends TestBase {
+
+
+
 
     @Test(priority = 1,
             description ="as Admin Try Add New Certificate",

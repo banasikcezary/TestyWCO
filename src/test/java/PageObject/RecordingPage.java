@@ -20,13 +20,13 @@ public class RecordingPage {
     WebElement filterNumberField;
     @FindBy(id = "filter_button")
     WebElement filter;
-    @FindBy(xpath= "//*[@id=\"13869_edit_tags\"]")
+    @FindBy(xpath= "(//*[contains(@id,'_edit_tags')])[1]")
     WebElement editTags;
     @FindBy(id = "new_tag_input")
     WebElement tagsField;
     @FindBy(id = "save_button")
     WebElement saveEditTagsButton;
-    @FindBy(xpath = "//*[@id=\"mat-dialog-1\"]/app-tag-column-edit/form/div[6]/div[2]/span")
+    @FindBy(id = "add_new_tag")
     WebElement addTag;
 
 

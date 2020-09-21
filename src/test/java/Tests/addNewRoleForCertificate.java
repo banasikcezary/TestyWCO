@@ -1,6 +1,7 @@
 package Tests;
 
 import PageObject.Certificates;
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
@@ -31,6 +32,8 @@ public class addNewRoleForCertificate extends TestBase {
         cert.clickAddAssignmentButton();
         cert.selectChooseRole();
         cert.clickOnSaveNewRoleButton();
+        Dialog dialog = new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
 
         cert.validateAddRoleForCertificate();
 
