@@ -1,19 +1,21 @@
 package Tests;
 
-import PageObject.Certificates;
 import PageObject.Dialog;
 import PageObject.LoginPage;
+import PageObject.Privileges;
 import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class addNewRoleForCertificate extends TestBase {
+public class deletePrivilege extends TestBase {
 
-    @Test(priority = 2,
-            description = "as Admin Try Add New Role For Certificate",
+
+    @Test(priority = 5,
+            description ="as Admin Try Add New Privilege",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryAddNewRoleForCertificate() {
+    public void asAdminTryDeletePrivilege() {
+
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48617890766");
@@ -24,18 +26,18 @@ public class addNewRoleForCertificate extends TestBase {
 
         UserAndPermissions user = new UserAndPermissions(driver);
         user.clickOnUserAndPermissionButton();
-        Certificates cert = new Certificates(driver);
-        cert.clickOnCertificatesButton();
-        cert.typeIntoSearchNameField("Artur");
-        cert.clickOnSearchCertificateButton();
-        cert.clickIntoShowRoles();
-        cert.clickAddAssignmentButton();
-        cert.selectChooseRole();
-        cert.clickOnSaveNewRoleButton();
+        Privileges privileges = new Privileges(driver);
+        privileges.clickOnPrivilegeButton();
+        String privilege ="testNameField";
+
+        privileges.clickOnDeletePrivilegeButton(privilege);
+
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
+        privileges.clickOnPrivilegeButton();
 
-        cert.validateAddRoleForCertificate();
+
+        privileges.validateDeletePrivileges(privilege);
 
     }
 
