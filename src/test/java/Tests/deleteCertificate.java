@@ -1,6 +1,5 @@
 package Tests;
 
-import PageObject.Certificates;
 import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
@@ -9,7 +8,7 @@ import testng.listeners.RetryAnalyzer;
 
 public class deleteCertificate extends TestBase {
 
-    @Test(priority = 3,
+    @Test(priority = 4,
             description = "as Admin Try Delete Certificate",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
@@ -24,19 +23,12 @@ public class deleteCertificate extends TestBase {
 
         UserAndPermissions user = new UserAndPermissions(driver);
         user.clickOnUserAndPermissionButton();
-        Certificates cert = new Certificates(driver);
-        cert.clickOnCertificatesButton();
-        String certyficate="Artur";
-        cert.typeIntoSearchNameField(certyficate);
-        cert.clickOnSearchCertificateButton();
-        cert.clickOnDeleteCertificateButton();
-        Dialog dialog = new Dialog(driver);
-        dialog.clickOnAcceptPopupButton();
-        cert.clearCertificateSearchField();
 
-
-        cert.validateTheCertificateDelete(certyficate);
-
+        user.clickOnUserButton();
+        user.typeIntoSearchUserField("KarolN");
+        user.clickOnSearchButton();
+        user.clickIntoCertificateButton();
+        user.clickIntoDeleteCertificateButton();
     }
 
 }

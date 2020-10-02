@@ -6,8 +6,15 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.time.Duration;
 
 import static org.testng.Assert.*;
 
@@ -35,7 +42,7 @@ public class UserAndPermissions {
     WebElement searchUserField;
     @FindBy(id = "search_button")
     WebElement searchButton;
-    @FindBy(xpath = "(//button[text()=\"Pokaż role\"])[last()]")
+    @FindBy(xpath = "(//button[text()=\"Pokaż role \"])[last()]")
     WebElement showRoleButton;
     @FindBy(id = "add_assignment_button")
     WebElement addAssignmentButton;
@@ -43,10 +50,12 @@ public class UserAndPermissions {
     WebElement selectRole;
     @FindBy(id = "privilege_add")
     WebElement addRoleButton;
-    @FindBy(xpath = "(//button[text()=\"Usuń\"])[last()]")
+    @FindBy(xpath = "(//button[text()=\"Usuń \"])[last()]")
     WebElement deleteUser;
     @FindBy(xpath = "(//p[contains(@id,\"username\")])[last()]")
     WebElement assertRoleName;
+    @FindBy(id = "page_message")
+    WebElement pageMessage;
 
     @FindBy(id = "Super Admin_option")
     WebElement role;
@@ -56,6 +65,17 @@ public class UserAndPermissions {
 
     @FindBy(id = "next_page_button")
     WebElement btnNextPage;
+
+
+    @FindBy (xpath = "(//button[text()=\" Certyfikat \"])[last()]")
+    WebElement btnCertificate;
+    @FindBy(xpath = "(//input[@type=\"file\"])[last()]")
+    WebElement addCertificate;
+    @FindBy(xpath = "(//button[text()=\"Pobierz\"])[last()]")
+    WebElement downloadCert;
+    @FindBy(xpath = "(//button[text()=\"Usuń\"])[last()]")
+    WebElement deleteCert;
+
 
 
 
@@ -73,6 +93,8 @@ public class UserAndPermissions {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(userAndPermission));
+//        Actions actions = new Actions(driver);
+//        actions.moveToElement(userAndPermission).click().build().perform();
         userAndPermission.click();
     }
 
@@ -152,23 +174,21 @@ public class UserAndPermissions {
 
         String name = assertRoleName.getText();
 
-        while (name!=user){
-            btnNextPage.click();
-            name=assertRoleName.getText();
-        }
-        if(name==user) {
+
             assertEquals(name, user);
-        }
+
 
     }
 
     @Step("assertDeleteUser")
     public void assertDeleteUser(String user) {
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
+        webDriverWait.until(ExpectedConditions.visibilityOf(pageMessage));
 
-        String name = assertRoleName.getText();
-        assertNotEquals(name, user);
+        String name = pageMessage.getText();
+        assertEquals(name, "Nie ma użytkowników");
     }
 
     @Step("typeIntoSearchUserField")
@@ -241,34 +261,131 @@ public class UserAndPermissions {
 
 
 
+
     @Step("clickOnDeleteUser")
     public void clickOnDeleteUser(String user) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
+
+        String name = assertRoleName.getText();
+
+        if(name.equals(user)) {
+
+            try {
+
+                webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteUser));
+                deleteUser.click();
+            } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+
+                webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteUser));
+                deleteUser.click();
+            }
+
+
+        }else{
+            throw new IllegalArgumentException("Nie ma takiego usera");
+
+        }
+    }
+    @Step("clickIntoCertificateButton")
+    public void clickIntoCertificateButton(){
+
+
 
         try {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteUser));
-           deleteUser.click();
-            driver.findElement(By.xpath("//html")).click();
-            driver.navigate().refresh();
-            WebDriverWait webDriverWait1 = new WebDriverWait(driver, 30);
-            webDriverWait1.until(ExpectedConditions.visibilityOf(assertRoleName));
-            String name = assertRoleName.getText();
-            assertNotEquals(name, user);
-
-        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
-
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));
+            btnCertificate.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteUser));
-            deleteUser.click();
-            driver.findElement(By.xpath("//html")).click();
-            driver.navigate().refresh();
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));
+            btnCertificate.click();
+        }
 
-            WebDriverWait webDriverWait1 = new WebDriverWait(driver, 30);
-            webDriverWait1.until(ExpectedConditions.visibilityOf(assertRoleName));
-            String name = assertRoleName.getText();
-            assertNotEquals(name, user);
+    }
+
+
+    @Step("clickIntoAddCertificateButton")
+    public void clickIntoAddCertificateButton() {
+
+        addCertificate.sendKeys("src/test/java/resources/123.crt");
+
+    }
+
+    @Step("assertAddCertificate")
+    public void assertAddCertificate(){
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnAcceptPopupButton();
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));
+            btnCertificate.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));
+            btnCertificate.click();
+        }
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(downloadCert));
+
+        downloadCert.isDisplayed();
+    }
+
+    @Step("clickIntoDownloadCertificateButton")
+    public void clickIntoDownloadCertificateButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(downloadCert));
+        downloadCert.click();
+    }
+
+    public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(timeoutSeconds))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+        wait.until((x) -> {
+            File[] files = new File(downloadPath).listFiles();
+            for (File file : files) {
+                if (file.getName().contains(fileName)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+    }
+    public void verifyDownloadFile(String name, String downloadPath){
+
+
+        File folder = new File(downloadPath);
+
+        File[] listOfFiles = folder.listFiles();
+        boolean found = false;
+        File f = null;
+
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                String fileName = listOfFile.getName();
+                System.out.println("File " + listOfFile.getName());
+                if (fileName.matches(name)) {
+
+                    assertEquals(fileName,name);
+
+                    listOfFile.delete();
+                }
+            }
         }
 
 
+    }
+
+    @Step("clickIntoDeleteCertificateButton")
+    public void clickIntoDeleteCertificateButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteCert));
+        deleteCert.click();
     }
 }

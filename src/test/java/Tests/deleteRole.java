@@ -26,7 +26,7 @@ public class deleteRole extends TestBase {
         user.clickOnUserAndPermissionButton();
         Roles role = new Roles(driver);
         role.clickOnRolesButton();
-        role.clickDeleteRoleButton();
+        role.clickDeleteRoleButton("Rola123445");
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
         role.clickOnRolesButton();

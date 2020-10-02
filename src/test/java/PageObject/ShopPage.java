@@ -34,6 +34,11 @@ public class ShopPage {
     @FindBy(id = "USR_input")
     WebElement userField;
 
+    @FindBy(id = "save_modal_button")
+    WebElement saveModalButton;
+    @FindBy(id = "7 zł_option")
+    WebElement chooseOption;
+
 
     private WebDriver driver;
 
@@ -79,16 +84,25 @@ public class ShopPage {
     public void buyNewPresentationByMajorNumberFunctionalities() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
+
+        Integer a = Integer.parseInt(presentationByMajorNumberField.getAttribute("value"));
+        Integer newValue = a + 1;
+
         presentationByMajorNumberField.clear();
-        presentationByMajorNumberField.sendKeys("7");
+        presentationByMajorNumberField.sendKeys(newValue.toString());
     }
 
     @Step("sellFaxFunctionalities")
     public void sellPresentationByMajorNumberFunctionalities() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
+
+
+        Integer a = Integer.parseInt(presentationByMajorNumberField.getAttribute("value"));
+        Integer newValue = a - 1;
+
         presentationByMajorNumberField.clear();
-        presentationByMajorNumberField.sendKeys("1");
+        presentationByMajorNumberField.sendKeys(newValue.toString());
     }
 
     @Step("clickOnSaveChangeButton")
@@ -116,18 +130,25 @@ public class ShopPage {
     public void selectValuePackageWithList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(valuePackage));
-        Select listValuePackage = new Select(valuePackage);
-        listValuePackage.selectByIndex(1);
+       valuePackage.click();
+
+        webDriverWait.until(ExpectedConditions.visibilityOf(chooseOption));
+
+        chooseOption.click();
     }
 
     public void checkSavingConfirmationText() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(checkTextDialog));
+       assertEquals(checkTextDialog.getText(), "Funkcjonalności zostały zapisane");
 
-//        assertEquals(checkTextDialog.getText(), "Funkcjonalności zostały zapisane");
+        webDriverWait.until(ExpectedConditions.visibilityOf(saveModalButton));
+        saveModalButton.click();
     }
 
     public void checkSavingAdditionalPackageConfirmationText() {
 
-        assertEquals(checkTextDialogAdditionalPackage.getText(), "Funkcjonalności zostały zapisane");
+        assertEquals(checkTextDialogAdditionalPackage.getText(), "Kupiono pakiet");
     }
 
 }

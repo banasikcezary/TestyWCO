@@ -38,7 +38,7 @@ public class ReportPage {
     WebElement generateCyclicalReport;
 ////////////////
     @FindBy(id = "report5")
-    WebElement extensionsAndTransfersReport;
+    WebElement extensionsNumberAndTransfersReport;
 
     @FindBy(id = "report10")
     WebElement recordedCallsReport;

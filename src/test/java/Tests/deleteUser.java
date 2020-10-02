@@ -7,7 +7,7 @@ import testng.listeners.RetryAnalyzer;
 
 public class deleteUser extends TestBase {
 
-    @Test(priority = 3,
+    @Test(priority = 5,
             description = "as Admin Try Delete User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
@@ -25,6 +25,10 @@ public class deleteUser extends TestBase {
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
         String deleteUser="KarolN";
+        user.typeIntoSearchUserField(deleteUser);
+        user.clickOnSearchButton();
+
+
         user.clickOnDeleteUser(deleteUser);
 
         user.assertDeleteUser(deleteUser);

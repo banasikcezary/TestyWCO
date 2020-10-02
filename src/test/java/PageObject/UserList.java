@@ -24,6 +24,7 @@ public class UserList {
     WebElement searchField;
     @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row[1]")
     WebElement checkList;
+
     @FindBy(xpath = "//*[@id=\"adod23_select_checkbox\"]/label/div")
     WebElement checkbox;
     @FindBy(id = "export_csv_button")
@@ -84,12 +85,15 @@ public class UserList {
     public void clickOnCheckboxUSR(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(checkbox));
+
         checkbox.click();
     }
     @Step("clickOnButtonExportToCsv")
     public void clickOnButtonExportToCsv(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(exportCsvButton));
+//        Actions action = new Actions(driver);
+//        action.moveToElement(exportCsvButton).click().build().perform();
         exportCsvButton.click();
     }
 
@@ -139,12 +143,18 @@ public class UserList {
         importCsv.click();
     }
     @Step("clickOnButtonChooseFile")
-    public void clickOnButtonChooseFile(){
+    public void clickOnButtonChooseFile(String lokalizacja){
 
-        chooseFileButton.sendKeys("C:\\Users\\User\\Downloads\\1.csv");
+        chooseFileButton.sendKeys(lokalizacja);
     }
     @Step("clickOnButtonSendFileToApp")
     public void clickOnButtonSendFileToApp(){
+
+        try{
+            Thread.sleep(5000);
+        }
+        catch(InterruptedException ie){
+        }
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(sendFileButton));
         sendFileButton.click();

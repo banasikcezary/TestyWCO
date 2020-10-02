@@ -7,6 +7,8 @@ import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
+import java.awt.*;
+
 public class CreateNewUser extends TestBase {
 
 
@@ -14,7 +16,7 @@ public class CreateNewUser extends TestBase {
             description = "as Admin Try Create New User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryCreateNewUser() {
+    public void asAdminTryCreateNewUser() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48617890766");
         loginPage.typeIntoUsernameField("u.user1");
@@ -31,8 +33,13 @@ public class CreateNewUser extends TestBase {
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
         configuration.clickLinkUserList();
-        configuration.typeIntoTxtLoginField();
+        configuration.selectNewUser();
         configuration.clickInCheckboxShowInGui();
+        configuration.typeIntoLoginField("KarolN");
+        configuration.typeIntoFirstNameField("Karol");
+        configuration.typeIntoLastNameInputField("Nowak");
+        configuration.typeIntoNumberInputField("444555980");
+        configuration.typeIntoEmailInputField("nowakkk@o2.pl");
         configuration.clickSaveButton();
 
 

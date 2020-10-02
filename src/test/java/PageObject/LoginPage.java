@@ -58,6 +58,8 @@ public class LoginPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(password));
         password.sendKeys(pass);
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cooki));
         cooki.click();
     }
     @Step("typeIntoPasswordFieldFailed")

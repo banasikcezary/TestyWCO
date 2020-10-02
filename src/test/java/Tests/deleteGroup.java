@@ -28,12 +28,14 @@ public class deleteGroup extends TestBase {
         GroupPage group = new GroupPage(driver);
         group.clickOnGroupButton();
         group.clickOnChooseGroup();
-        group.clickOnDeleteGroupButton();
+        String groupName ="test123";
+
+        group.clickOnDeleteGroupButton(groupName);
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
 
 
-        group.validateDeleteGroup("test123");
+        group.validateDeleteGroup(groupName);
     }
 
 }

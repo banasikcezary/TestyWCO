@@ -157,11 +157,21 @@ public class Roles {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(deletePrivilegeFromRole));
         deletePrivilegeFromRole.click();}
     @Step("clickDeleteRoleButton")
-    public void clickDeleteRoleButton(){
+    public void clickDeleteRoleButton(String deleteRoles) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRole));
-        deleteRole.click();}
+        webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
 
+        String roleName=verifyAddNewRole.getText();
+
+
+        if (roleName.equals(deleteRoles)) {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRole));
+            deleteRole.click();
+        }else{
+            throw new IllegalArgumentException("Nie ma takiej roli");
+
+        }
+    }
 
     @Step("validateAddRole")
     public void validateAddRole(String addRole) {

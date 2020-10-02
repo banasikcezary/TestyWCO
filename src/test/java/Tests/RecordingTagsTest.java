@@ -20,10 +20,7 @@ public class RecordingTagsTest extends TestBase {
 
         RecordingPage recordingPage = new RecordingPage(driver);
         recordingPage.clickOnRecordingTab();
-//        recordingPage.clickOnButtonfilterCriteria();
-//        recordingPage.clickOnButtonFilterNumber();
-//        recordingPage.typeIntoFilterNumberField();
-//        recordingPage.clickOnFilterButton();
+
         recordingPage.clickOnEditTagsButton();
         recordingPage.typeIntoEditTagsField("test");
         recordingPage.clickOnSaveEditTagsButton();

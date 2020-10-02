@@ -22,7 +22,7 @@ public class ImportCsv extends TestBase {
 
         UserList userList = new UserList(driver);
         userList.clickOnButtonImportCsv();
-        userList.clickOnButtonChooseFile();
+        userList.clickOnButtonChooseFile("src/test/java/resources/1.csv");
         userList.clickOnButtonSendFileToApp();
 
 

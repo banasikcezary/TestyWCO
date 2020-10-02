@@ -33,7 +33,6 @@ public class EditConnectionsSettingsTest extends TestBase {
         connectionsSettingsPage.clickIntoToAgreeRecordingConnections();
         connectionsSettingsPage.clickIntoToAgreeDisableOutgoingCalls();
         connectionsSettingsPage.clickIntoToAgreeRecordingOutgoingCalls();
-        //connectionsSettingsPage.verifyChangeRadioButton();
 
         connectionsSettingsPage.clickIntoSaveSettingsButton();
         connectionsSettingsPage.verifySaveSettings();

@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
         import org.openqa.selenium.support.ui.Select;
         import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 import static org.testng.Assert.*;
@@ -77,6 +78,7 @@ public class GroupPage {
     public void typeIntoAddDescriptionField(String description){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addDescriptionField));
+        addDescriptionField.clear();
         addDescriptionField.sendKeys(description);}
     @Step("clickOnSaveNewGroupButton")
 
@@ -105,16 +107,35 @@ public class GroupPage {
         addRoleButton.click();}
     @Step("clickDeleteRoleButton")
 
-    public void clickDeleteRoleButton(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRoleButton));
-        deleteRoleButton.click();}
+    public void clickDeleteRoleButton() {
+
+
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRoleButton));
+            deleteRoleButton.click();
+        }
+
+
     @Step("clickOnDeleteGroupButton")
 
-    public void clickOnDeleteGroupButton(){
+    public void clickOnDeleteGroupButton(String groupName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteGroupButton));
-        deleteGroupButton.click();}
+        webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
+
+
+        String result = checkAddNewGroup.getText();
+
+
+        if (result.equals(groupName)) {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteGroupButton));
+            deleteGroupButton.click();
+
+        }else{
+            throw new IllegalArgumentException("Nie ma takiej grupy");
+
+        }
+
+    }
     @Step("clickOnEditGroupButton")
 
     public void clickOnEditGroupButton(){
