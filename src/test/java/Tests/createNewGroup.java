@@ -19,7 +19,7 @@ public class createNewGroup extends TestBase {
         loginPage.typeIntoUsernameField("u.user1");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
-        loginPage.checkPositiveLoginToApp();
+        //loginPage.checkPositiveLoginToApp();
 
         UserAndPermissions user = new UserAndPermissions(driver);
         user.clickOnUserAndPermissionButton();

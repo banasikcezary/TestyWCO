@@ -28,34 +28,35 @@ public class TestBase {
     public void beforeTest() throws MalformedURLException {
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
+         options.addArguments("--no-sandbox");
+      options.addArguments("--headless");
+       options.addArguments("--window-size=1920,1080");
         options.addArguments("--disable-gpu");
 
 
-        driver = new RemoteWebDriver(new URL("http://172.25.0.33:4433/wd/hub"), options);
+
+
+
+        driver = new RemoteWebDriver(new URL("http://http://172.25.0.33:4444/wd/hub"), options);
 
         RemoteWebDriver remoteWebDriver = (RemoteWebDriver) this.driver;
         remoteWebDriver.setFileDetector(new LocalFileDetector());
 
 
-        driver.manage().window().maximize();
+     //  driver.manage().window().maximize();
 
-        driver.navigate().to("http://172.25.0.33:7080/login");
+        driver.navigate().to("http://172.25.0.33:7080/wco/login");
         System.out.println("Open Browser");
 
 
     }
 
-//    @Attachment(value = "Screenshot", type = "image/png")
-//    public byte[] screenshot() {
-//        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-//    }
+
 
     @Step("Disposing browser")
     @AfterMethod
     public void afterTest() {
 
-//        screenshot();
         driver.close();
         driver.quit();
 

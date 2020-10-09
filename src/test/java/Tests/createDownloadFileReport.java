@@ -5,13 +5,13 @@ import PageObject.ReportPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class createExtensionsNumberAndTransfersReport extends TestBase{
+public class createDownloadFileReport extends TestBase{
 
     @Test(priority = 3,
             description = "as Admin Try Generate Report",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asUserTryGenerateExtensionsNumberAndTransfersReport() {
+    public void asUserTryGenerateDownloadFileReport() {
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,17 +24,19 @@ public class createExtensionsNumberAndTransfersReport extends TestBase{
         ReportPage report=new ReportPage(driver);
         report.clickOnReportTab();
         report.clickOnProperty();
-        report.clickOnExtensionsNumberAndTransfersReport();
-        report.typeInStartReportDateForExtensionsNumberAndTransfersField();
-        report.typeInEndReportDateForExtensionsNumberAndTransfersField();
+        report.clickOnDownloadFileReport();
+        report.typeInStartReportDateForDownloadFileField();
+        report.typeInEndReportDateForDownloadFileField();
 
-        report.clickInSelectionUser5();
-        report.clickInSelectUser5();
+        report.clickInSelectionAdmin12();
+        report.clickInSelectAdmin12();
 
-        report.clickInGenerateExtensionsNumberAndTransfers();
+        report.clickInGenerateDownloadFile();
 
-        report.checkGenerateNewReport("Rozkład połączeń na różne numery wewnętrzne i transfery");
+        report.checkGenerateNewReport("Pobrane pliki");
         report.checkStatusNewReport();
+
+
     }
 
 }

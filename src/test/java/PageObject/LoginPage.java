@@ -58,8 +58,9 @@ public class LoginPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(password));
         password.sendKeys(pass);
+        System.out.println("pass");
 
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(cooki));
+       webDriverWait.until(ExpectedConditions.elementToBeClickable(cooki));
         cooki.click();
     }
     @Step("typeIntoPasswordFieldFailed")
@@ -77,9 +78,11 @@ public class LoginPage {
     public void clickIntoLogInButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(logIn));
+        logIn.isDisplayed();
         Actions actions = new Actions(driver);
         actions.moveToElement(logIn).click().build().perform();
-          // logIn.click();
+      //     logIn.click();
+       // ((JavascriptExecutor)driver).executeScript("arguments[0].click();", logIn);
 
         System.out.println("click login");
 
@@ -91,7 +94,7 @@ public class LoginPage {
 
     public void checkPositiveLoginToApp() {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(logoutButton));
             assertEquals(logoutButton.getText(), "Wyloguj");
         }
     @Step("checkNegativeLoginToApp")

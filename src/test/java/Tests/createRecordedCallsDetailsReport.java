@@ -5,13 +5,13 @@ import PageObject.ReportPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class createExtensionsNumberAndTransfersReport extends TestBase{
+public class createRecordedCallsDetailsReport extends TestBase{
 
     @Test(priority = 3,
             description = "as Admin Try Generate Report",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asUserTryGenerateExtensionsNumberAndTransfersReport() {
+    public void asUserTryGenerateRecordedCallsDetailsReport() {
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -24,16 +24,16 @@ public class createExtensionsNumberAndTransfersReport extends TestBase{
         ReportPage report=new ReportPage(driver);
         report.clickOnReportTab();
         report.clickOnProperty();
-        report.clickOnExtensionsNumberAndTransfersReport();
-        report.typeInStartReportDateForExtensionsNumberAndTransfersField();
-        report.typeInEndReportDateForExtensionsNumberAndTransfersField();
+        report.clickOnRecordedCallsDetailsReport();
+        report.typeInStartReportDateForRecordedCallsDetailsField();
+        report.typeInEndReportDateForRecordedCallsDetailsField();
 
-        report.clickInSelectionUser5();
-        report.clickInSelectUser5();
+        report.clickInSelectionMainNumber11();
+        report.clickInSelectNumber11();
 
-        report.clickInGenerateExtensionsNumberAndTransfers();
+        report.clickInGenerateRecordedCallsDetails();
 
-        report.checkGenerateNewReport("Rozkład połączeń na różne numery wewnętrzne i transfery");
+        report.checkGenerateNewReport("Nagrane połączenia szczegółowo");
         report.checkStatusNewReport();
     }
 

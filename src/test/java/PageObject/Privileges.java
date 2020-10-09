@@ -1,10 +1,7 @@
 package PageObject;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -49,14 +46,17 @@ public class Privileges {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(privilegesButton));
         webDriverWait.ignoring(TimeoutException.class);
+    //    ((JavascriptExecutor)driver).executeScript("arguments[0].click();", privilegesButton);
 
-        privilegesButton.click();
+      privilegesButton.click();
     }
     @Step("clickOnAddPrivilegeButton")
 
     public void clickOnAddPrivilegeButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addNewPrivillegeButton));
+       // ((JavascriptExecutor)driver).executeScript("arguments[0].click();", addNewPrivillegeButton);
+
         addNewPrivillegeButton.click();
     }
     @Step("typeIntoAddNameField")
@@ -65,6 +65,9 @@ public class Privileges {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(addNameField));
         addNameField.sendKeys(name);
+
+      //  ((JavascriptExecutor)driver).executeScript("arguments[0].sendKeys(name);", addNameField);
+
     }
     @Step("clickOnSaveNewPrivilege")
 

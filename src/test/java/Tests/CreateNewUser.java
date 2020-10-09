@@ -36,10 +36,10 @@ public class CreateNewUser extends TestBase {
         configuration.selectNewUser();
         configuration.clickInCheckboxShowInGui();
         configuration.typeIntoLoginField("KarolN");
-        configuration.typeIntoFirstNameField("Karol");
-        configuration.typeIntoLastNameInputField("Nowak");
-        configuration.typeIntoNumberInputField("444555980");
-        configuration.typeIntoEmailInputField("nowakkk@o2.pl");
+        configuration.typeIntoFirstNameField("Karoool");
+        configuration.typeIntoLastNameInputField("Nowa");
+      //  configuration.typeIntoNumberInputField("48444555666");
+        configuration.typeIntoEmailInputField("nowakkyufk@o2.pl");
         configuration.clickSaveButton();
 
 

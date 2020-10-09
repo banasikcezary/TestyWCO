@@ -95,7 +95,9 @@ public class UserAndPermissions {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(userAndPermission));
 //        Actions actions = new Actions(driver);
 //        actions.moveToElement(userAndPermission).click().build().perform();
-        userAndPermission.click();
+      //  userAndPermission.click();
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", userAndPermission);
+
     }
 
     @Step("clickOnUserButton")

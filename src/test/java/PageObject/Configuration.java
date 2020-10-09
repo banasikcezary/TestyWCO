@@ -92,7 +92,7 @@ public class Configuration {
         driver.findElement(By.xpath("//html")).click();
 
 
-//        assertEquals(confirmText.getText(), "Konfiguracja zostala zaaktualizowana");
+     //   assertEquals(confirmText.getText(), "Konfiguracja zostala zaaktualizowana");
     }
 
     @Step("typeIntoLoginField")
