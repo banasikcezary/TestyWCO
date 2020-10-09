@@ -37,7 +37,7 @@ public class TestBase {
 
 
 
-        driver = new RemoteWebDriver(new URL("http://http://172.25.0.33:4444/wd/hub"), options);
+        driver = new RemoteWebDriver(new URL("http://172.25.0.33:4444/wd/hub"), options);
 
         RemoteWebDriver remoteWebDriver = (RemoteWebDriver) this.driver;
         remoteWebDriver.setFileDetector(new LocalFileDetector());

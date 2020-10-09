@@ -22,7 +22,7 @@ public class EditConnectionsSettingsTest extends TestBase {
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
-        String nazwaUzytkownika="adod2232";
+        String nazwaUzytkownika="fana";
         userList.typeIntoSearchfield(nazwaUzytkownika);
         userList.checkIfTheUserYouAreLookingForExists(nazwaUzytkownika);
         userList.clickOnUser();

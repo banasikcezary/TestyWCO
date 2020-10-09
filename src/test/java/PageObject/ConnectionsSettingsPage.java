@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 
 public class ConnectionsSettingsPage {
 
-    @FindBy(xpath = "//*[@id=\"1591_edit_element\"]")
+    @FindBy(xpath = "//button[contains(@id,'_edit_element')]")
     WebElement editSettingsButton;
     @FindBy(id ="mat-radio-2")
     WebElement recordingVPABXConnections;

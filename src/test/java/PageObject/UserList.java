@@ -25,7 +25,7 @@ public class UserList {
     @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row[1]")
     WebElement checkList;
 
-    @FindBy(xpath = "//*[@id=\"adod23_select_checkbox\"]/label/div")
+    @FindBy(id = "fana_select_checkbox")
     WebElement checkbox;
     @FindBy(id = "export_csv_button")
     WebElement exportCsvButton;

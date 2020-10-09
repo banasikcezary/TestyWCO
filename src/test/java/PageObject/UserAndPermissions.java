@@ -76,6 +76,8 @@ public class UserAndPermissions {
     @FindBy(xpath = "(//button[text()=\"Usuń\"])[last()]")
     WebElement deleteCert;
 
+    @FindBy(id = "clear_button")
+    WebElement clearbutton;
 
 
 
@@ -114,6 +116,13 @@ public class UserAndPermissions {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addUserButton));
 
         addUserButton.click();
+    }
+    @Step("clickOnClearButton")
+    public void clickOnClearButton() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(clearbutton));
+
+        clearbutton.click();
     }
 
     @Step("typeIntoLoginField")
@@ -197,8 +206,7 @@ public class UserAndPermissions {
     public void typeIntoSearchUserField(String searchUser) {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(searchUserField));
-        searchUserField.click();
+        webDriverWait.until(ExpectedConditions.visibilityOf(searchUserField));
         searchUserField.sendKeys(searchUser);
     }
 
@@ -207,7 +215,9 @@ public class UserAndPermissions {
           WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
           webDriverWait.until(ExpectedConditions.elementToBeClickable(searchButton));
         searchButton.click();
-        searchButton.click();}
+
+
+    }
 
     @Step("clickOnShowRoleButton")
     public void clickOnShowRoleButton() {

@@ -22,7 +22,7 @@ public class CsvExport extends TestBase {
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
-        userList.typeIntoSearchfield("adod2232");
+        userList.typeIntoSearchfield("fana");
         userList.clickOnCheckboxUSR();
         userList.clickOnButtonExportToCsv();
 

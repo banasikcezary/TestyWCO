@@ -22,7 +22,7 @@ public class SearchUserOnListTest extends TestBase {
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
-        String user="adod2232";
+        String user="fana";
         userList.typeIntoSearchfield(user);
 
         userList.checkIfTheUserYouAreLookingForExists(user);

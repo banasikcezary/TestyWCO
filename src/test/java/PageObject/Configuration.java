@@ -2,6 +2,7 @@ package PageObject;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -83,12 +84,14 @@ public class Configuration {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSave));
 
+         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", btnSave);
 
-        btnSave.click();
+      //  btnSave.click();
 
         webDriverWait.until(ExpectedConditions.visibilityOf(confirmText));
                confirmText.isDisplayed();
 
+        driver.findElement(By.xpath("//html")).click();
         driver.findElement(By.xpath("//html")).click();
 
 

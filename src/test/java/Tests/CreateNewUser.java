@@ -24,11 +24,11 @@ public class CreateNewUser extends TestBase {
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
-        ShopPage shopPage = new ShopPage(driver);
-        shopPage.clickOnShopTab();
-        shopPage.upValueUser();
-        shopPage.clickOnSaveChangeButton();
-        shopPage.checkSavingConfirmationText();
+//        ShopPage shopPage = new ShopPage(driver);
+//        shopPage.clickOnShopTab();
+//        shopPage.upValueUser();
+//        shopPage.clickOnSaveChangeButton();
+//        shopPage.checkSavingConfirmationText();
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
@@ -36,16 +36,17 @@ public class CreateNewUser extends TestBase {
         configuration.selectNewUser();
         configuration.clickInCheckboxShowInGui();
         configuration.typeIntoLoginField("KarolN");
-        configuration.typeIntoFirstNameField("Karoool");
-        configuration.typeIntoLastNameInputField("Nowa");
+        //configuration.typeIntoFirstNameField("Karoool");
+       // configuration.typeIntoLastNameInputField("Nowa");
       //  configuration.typeIntoNumberInputField("48444555666");
-        configuration.typeIntoEmailInputField("nowakkyufk@o2.pl");
+        configuration.typeIntoEmailInputField("now@o2.pl");
         configuration.clickSaveButton();
 
 
         UserAndPermissions user = new UserAndPermissions(driver);
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
+        user.clickOnClearButton();
         user.typeIntoSearchUserField("KarolN");
         user.clickOnSearchButton();
 
