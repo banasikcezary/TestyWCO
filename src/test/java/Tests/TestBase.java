@@ -37,7 +37,7 @@ public class TestBase {
 
 
 
-        driver = new RemoteWebDriver(new URL("http://172.25.0.33:4444/wd/hub"), options);
+        driver = new RemoteWebDriver(new URL("http://192.168.216.62:4448/wd/hub"), options);
 
         RemoteWebDriver remoteWebDriver = (RemoteWebDriver) this.driver;
         remoteWebDriver.setFileDetector(new LocalFileDetector());
@@ -45,7 +45,7 @@ public class TestBase {
 
      //  driver.manage().window().maximize();
 
-        driver.navigate().to("http://172.25.0.33:7080/wco/login");
+        driver.navigate().to("http://localhost:8075/cert-wco/login");
         System.out.println("Open Browser");
 
 

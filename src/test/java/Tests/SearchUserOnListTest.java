@@ -15,16 +15,16 @@ public class SearchUserOnListTest extends TestBase {
     public void asUserTrySearchUserOnTheList() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField("u.user1");
-        loginPage.typeIntoPasswordField("pass1");
+        loginPage.typeIntoPhoneNumberField("+48918171385");
+        loginPage.typeIntoUsernameField("CRMNO5VWW56");
+        loginPage.typeIntoPasswordField("Orange12345!");
         loginPage.clickIntoLogInButton();
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
-        String user="fana";
+        String user="KarolN";
+        userList.selectAllColumns();
         userList.typeIntoSearchfield(user);
-
         userList.checkIfTheUserYouAreLookingForExists(user);
     }
 }

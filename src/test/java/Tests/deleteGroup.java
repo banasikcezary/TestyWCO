@@ -7,6 +7,8 @@ import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
+import java.awt.*;
+
 public class deleteGroup extends TestBase {
 
 
@@ -14,12 +16,12 @@ public class deleteGroup extends TestBase {
             description = "as Admin Try Delete Group",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryDeleteGroup() {
+    public void asAdminTryDeleteGroup() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField("u.user1");
-        loginPage.typeIntoPasswordField("pass1");
+        loginPage.typeIntoPhoneNumberField("+48918171385");
+        loginPage.typeIntoUsernameField("CRMNO5VWW56");
+        loginPage.typeIntoPasswordField("Orange12345!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -29,9 +31,10 @@ public class deleteGroup extends TestBase {
         group.clickOnGroupButton();
         group.clickOnChooseGroup();
         String groupName ="test123";
+        Dialog dialog = new Dialog(driver);
 
         group.clickOnDeleteGroupButton(groupName);
-        Dialog dialog = new Dialog(driver);
+        dialog.clickOnConfirmButton();
         dialog.clickOnAcceptPopupButton();
 
 

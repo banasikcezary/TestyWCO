@@ -16,9 +16,9 @@ public class deleteRole extends TestBase {
     public void asAdminTryDeleteRole() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField("u.user1");
-        loginPage.typeIntoPasswordField("pass1");
+        loginPage.typeIntoPhoneNumberField("+48918171385");
+        loginPage.typeIntoUsernameField("CRMNO5VWW56");
+        loginPage.typeIntoPasswordField("Orange12345!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -28,6 +28,7 @@ public class deleteRole extends TestBase {
         role.clickOnRolesButton();
         role.clickDeleteRoleButton("Rola123445");
         Dialog dialog = new Dialog(driver);
+        dialog.clickOnConfirmButton();
         dialog.clickOnAcceptPopupButton();
         role.clickOnRolesButton();
 

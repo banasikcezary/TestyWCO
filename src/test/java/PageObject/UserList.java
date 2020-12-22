@@ -22,7 +22,7 @@ public class UserList {
     WebElement userListLink;
     @FindBy(id = "filterValue_placeholder")
     WebElement searchField;
-    @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row[1]")
+    @FindBy(xpath = "//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5][text()=\"KarolN\"]")
     WebElement checkList;
 
     @FindBy(id = "fana_select_checkbox")
@@ -35,6 +35,14 @@ public class UserList {
     WebElement chooseFileButton;
     @FindBy(id = "send_button")
     WebElement sendFileButton;
+
+    @FindBy(id = "visible_columns_button")
+    WebElement visibleColumnsButton;
+    @FindBy(id = "select_all_button")
+    WebElement showAllColumns;
+    @FindBy(id = "pick_button")
+    WebElement confirmShowAllColumns;
+
 
 
     private WebDriver driver;
@@ -62,7 +70,7 @@ public class UserList {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
-            assertTrue(checkList.getText().contains(user));
+            assertEquals(checkList.getText(), user);
             System.out.println(checkList.getText());
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex)
@@ -158,6 +166,20 @@ public class UserList {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(sendFileButton));
         sendFileButton.click();
+    }
+
+
+    public void selectAllColumns(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
+        visibleColumnsButton.click();
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
+        showAllColumns.click();
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
+        confirmShowAllColumns.click();
+
     }
 
 }

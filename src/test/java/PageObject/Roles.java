@@ -1,9 +1,7 @@
 package PageObject;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -41,11 +39,11 @@ public class Roles {
 
     @FindBy(xpath = "(//button[text()=\"Dodaj uprawnienie\"])[last()]")
     WebElement addPrivilageForNewRole;
-    @FindBy(id = "choose_privilege")
-    WebElement choosePrivilage;
-    @FindBy(id="Definiowanie zakresów userów telefonicznych: numer, ID, num. kadrowy, tel_option")
+    @FindBy(id = "filter_value_input")
+    WebElement sendNamePrivilege;
+    @FindBy(xpath="(//mat-checkbox[contains(@id,\"mat-checkbox-\")])[last()]")
     WebElement selectPrivilage;
-    @FindBy(id = "privilege_add")
+    @FindBy(id = "save_button")
     WebElement savePrivilege;
 
     @FindBy(xpath = "(//div[contains(@id, \"open_folder_button_\")])[last()]")
@@ -62,6 +60,8 @@ public class Roles {
     WebElement showPermissionRole;
     @FindBy(id = "privilege_12_0")
     WebElement checkPermissionRole;
+    @FindBy(xpath = "//p[contains(text(),'Rola została zapisana')]")
+    WebElement confirmInformation;
 
 
     private WebDriver driver;
@@ -74,10 +74,10 @@ public class Roles {
     @Step("clickOnRolesButton")
 
     public void clickOnRolesButton(){
+
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(rolesButton));
-//        Actions actions=new Actions(driver);
-//        actions.moveToElement(rolesButton).click().build().perform();
+
        rolesButton.click();
     }
     @Step("clickOnAddRoleButton")
@@ -137,8 +137,8 @@ public class Roles {
     @Step("selectChoosePrivilege")
     public void selectChoosePrivilege(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(choosePrivilage));
-        choosePrivilage.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(sendNamePrivilege));
+        sendNamePrivilege.sendKeys("kasowanie raportów");
         selectPrivilage.click();
     }
     @Step("clickOnSavePrivilege")
@@ -226,7 +226,7 @@ public class Roles {
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertEquals(result, "Definiowanie zakresów userów telefonicznych: numer, ID, num. kadrowy, tel");
+        assertEquals(result, "Kasowanie raportów");
     }
 
     @Step("validateDeletePermissionForRole")

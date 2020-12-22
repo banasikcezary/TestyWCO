@@ -42,29 +42,29 @@ public class ReportPage {
 ////////////////////////////////////////////////////////////////////
     @FindBy(id = "report5_user_selection")
     WebElement selectionUser5;
-    @FindBy(id = "report5_select_3877")
+    @FindBy(xpath = "//*[contains(text(),'Karol N')]")
     WebElement selectUser5;
 
     @FindBy(id = "report10_number_selection")
     WebElement selectionMainNumber10;
-    @FindBy(id = "report10_select_48222903840")
+    @FindBy(xpath = "(//span[contains(text(),'48918171385')])[2]")
     WebElement selectNumber10;
 
 
     @FindBy(id = "report11_number_selection")
     WebElement selectionMainNumber11;
-    @FindBy(id = "report11_select_48222903840")
+    @FindBy(xpath = "(//span[contains(text(),'48918171385')])[2]")
     WebElement selectNumber11;
 
     @FindBy(id = "report12_admin_selection")
     WebElement selectionAdmin12;
-    @FindBy(id = "report12_select_7")
+    @FindBy(xpath = "//*[contains(text(),'Karol N')]")
     WebElement selectAdmin12;
 
 
     @FindBy(id = "report23_user_selection")
     WebElement selectionUser23;
-    @FindBy(id = "report23_select_3877")
+    @FindBy(xpath = "//*[contains(text(),'Karol N')]")
     WebElement selectUser23;
 
     ////////////////raport num.wew i transfery////
@@ -579,9 +579,9 @@ public class ReportPage {
 
     @Step("clickInGenerateApiCalls")
     public void checkGenerateNewReport(String newReportType) {
+        driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(assertTypeCreateReport));
-        driver.navigate().refresh();
         String typeRaport = assertTypeCreateReport.getText();
         if (typeRaport.equals(newReportType)) {
             System.out.println("Raport jest w trakcie generowania");

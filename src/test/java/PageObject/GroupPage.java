@@ -31,7 +31,7 @@ public class GroupPage {
     WebElement chooseGroup;
     @FindBy(id = "choose_role")
     WebElement chooseRole;
-    @FindBy(id = "Super Admin_option")
+    @FindBy(id = "AG_option")
     WebElement selectRole;
     @FindBy(id = "add_role_button")
     WebElement addRoleButton;
@@ -152,7 +152,7 @@ public class GroupPage {
 
         String result = checkRoleInGroup.getText();
 
-        assertEquals(result, "Super Admin");
+        assertEquals(result, "Admin Główny");
     }
 
     @Step("validateDeleteRoleForGroup")

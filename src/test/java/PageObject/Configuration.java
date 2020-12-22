@@ -42,6 +42,12 @@ public class Configuration {
     @FindBy(xpath = "(//mat-dialog-container[contains(@id,\"mat-dialog\")])")
     WebElement confirmText;
 
+    @FindBy(id = "filter_value_input")
+    WebElement userSearchField;
+    @FindBy(id = "delete_button")
+    WebElement deleteButton;
+
+
 
     private WebDriver driver;
     public Configuration(WebDriver driver) {
@@ -102,6 +108,7 @@ public class Configuration {
     public void typeIntoLoginField(String login){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(loginInput));
+        loginInput.clear();
         loginInput.sendKeys(login);
     }
 
@@ -133,5 +140,16 @@ public class Configuration {
         emailInput.sendKeys(email);
     }
 
+    public void typeIntoUserSearchField(String userName){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(userSearchField));
+        userSearchField.sendKeys(userName);
+    }
+
+    public void clickOnDeleteButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteButton));
+        deleteButton.click();
+    }
 
 }

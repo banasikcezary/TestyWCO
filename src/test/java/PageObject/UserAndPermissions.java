@@ -52,12 +52,12 @@ public class UserAndPermissions {
     WebElement addRoleButton;
     @FindBy(xpath = "(//button[text()=\"Usuń \"])[last()]")
     WebElement deleteUser;
-    @FindBy(xpath = "(//p[contains(@id,\"username\")])[last()]")
+    @FindBy(xpath = "//p[contains(text(),'KarolN')]")
     WebElement assertRoleName;
     @FindBy(id = "page_message")
     WebElement pageMessage;
 
-    @FindBy(id = "Super Admin_option")
+    @FindBy(id = "AG_option")
     WebElement role;
 
     @FindBy(xpath = "(//*[contains(@id, \"role_\")])[last()]")
@@ -191,16 +191,16 @@ public class UserAndPermissions {
 
     }
 
-    @Step("assertDeleteUser")
-    public void assertDeleteUser(String user) {
-        Dialog dialog=new Dialog(driver);
-        dialog.clickOnAcceptPopupButton();
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(pageMessage));
-
-        String name = pageMessage.getText();
-        assertEquals(name, "Nie ma użytkowników");
-    }
+//    @Step("assertDeleteUser")
+//    public void assertDeleteUser(String user) throws AWTException {
+//        Dialog dialog=new Dialog(driver);
+//        dialog.clickOnAcceptPopupButton();
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+//        webDriverWait.until(ExpectedConditions.visibilityOf(pageMessage));
+//
+//        String name = pageMessage.getText();
+//        assertEquals(name, "Nie ma użytkowników");
+//    }
 
     @Step("typeIntoSearchUserField")
     public void typeIntoSearchUserField(String searchUser) {
@@ -268,37 +268,13 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(assertUserRole));
         String userRola = assertUserRole.getText();
-        assertEquals(userRola,"Super Admin");
+        assertEquals(userRola,"Admin Główny");
     }
 
 
 
 
-    @Step("clickOnDeleteUser")
-    public void clickOnDeleteUser(String user) {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
 
-        String name = assertRoleName.getText();
-
-        if(name.equals(user)) {
-
-            try {
-
-                webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteUser));
-                deleteUser.click();
-            } catch (org.openqa.selenium.StaleElementReferenceException ex) {
-
-                webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteUser));
-                deleteUser.click();
-            }
-
-
-        }else{
-            throw new IllegalArgumentException("Nie ma takiego usera");
-
-        }
-    }
     @Step("clickIntoCertificateButton")
     public void clickIntoCertificateButton(){
 
@@ -327,7 +303,7 @@ public class UserAndPermissions {
     }
 
     @Step("assertAddCertificate")
-    public void assertAddCertificate(){
+    public void assertAddCertificate() throws AWTException {
         Dialog dialog=new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
 

@@ -14,9 +14,9 @@ public class BuyAnAdditionalPackageFromTheStore extends TestBase {
     public void asUserTryBuyAnAdditionalPackageFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField("u.user1");
-        loginPage.typeIntoPasswordField("pass1");
+        loginPage.typeIntoPhoneNumberField("+48918171385");
+        loginPage.typeIntoUsernameField("CRMNO5VWW56");
+        loginPage.typeIntoPasswordField("Orange12345!");
         loginPage.clickIntoLogInButton();
 
         ShopPage shopPage = new ShopPage(driver);

@@ -7,17 +7,19 @@ import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
+import java.awt.*;
+
 public class createNewGroup extends TestBase {
     @Test(priority = 1,
             description = "as Admin Try Create New Group",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryCreateNewGroup() {
+    public void asAdminTryCreateNewGroup() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField("u.user1");
-        loginPage.typeIntoPasswordField("pass1");
+        loginPage.typeIntoPhoneNumberField("+48918171385");
+        loginPage.typeIntoUsernameField("CRMNO5VWW56");
+        loginPage.typeIntoPasswordField("Orange12345!");
         loginPage.clickIntoLogInButton();
         //loginPage.checkPositiveLoginToApp();
 
@@ -32,6 +34,7 @@ public class createNewGroup extends TestBase {
         group.clickOnSaveNewGroupButton();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
+        dialog.refreshPage();
         group.clickOnGroupButton();
 
 

@@ -6,17 +6,19 @@ import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
+import java.awt.*;
+
 public class addRoleForUser extends TestBase {
     @Test(priority = 2,
             description = "as Admin Try Add Role For User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryAddRoleForUser() {
+    public void asAdminTryAddRoleForUser() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48617890766");
-        loginPage.typeIntoUsernameField("u.user1");
-        loginPage.typeIntoPasswordField("pass1");
+        loginPage.typeIntoPhoneNumberField("+48918171385");
+        loginPage.typeIntoUsernameField("CRMNO5VWW56");
+        loginPage.typeIntoPasswordField("Orange12345!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
