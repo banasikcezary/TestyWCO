@@ -36,6 +36,13 @@ public class deleteUser extends TestBase {
         configuration.selectNewUser();
         configuration.clickOnDeleteButton();
 
+        user.clickOnUserAndPermissionButton();
+        user.clickOnUserButton();
+        user.typeIntoSearchUserField(deleteUser);
+        user.clickOnSearchButton();
+
+        user.assertDeleteUser(deleteUser);
+
 
     }
 }

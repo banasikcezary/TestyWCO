@@ -1,5 +1,6 @@
 package PageObject;
 
+import Tests.deleteRecording;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -8,6 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.io.File;
@@ -16,7 +20,6 @@ import java.nio.file.Paths;
 import java.time.Duration;
 
 import static org.testng.Assert.*;
-
 public class UserList {
     @FindBy(id = "user_list_link")
     WebElement userListLink;
@@ -42,6 +45,53 @@ public class UserList {
     WebElement showAllColumns;
     @FindBy(id = "pick_button")
     WebElement confirmShowAllColumns;
+
+    ///////////////////////////////////////////
+
+    @FindBy(id = "recDirectlyIncoming_edit_button")
+    WebElement btnEditRecDirectlyIncoming;
+    @FindBy(id = "recOutgoing_edit_button")
+    WebElement btnEditRecOutgoing;
+    @FindBy(id = "canSwitchOffRecOutgoing_edit_button")
+    WebElement btnEditSwitchOffRecOutgoing;
+    @FindBy(id = "directIncomingCalls_edit_button")
+    WebElement btnEditOppb;
+    @FindBy(id = "organizationalUnit_edit_button")
+    WebElement btnEditOrganizationalUnit;
+    @FindBy(id = "blacklist_edit_button")
+    WebElement btnEditBlackList;
+    @FindBy(id = "context_edit_button")
+    WebElement btnEditWhiteList;
+
+    @FindBy(xpath = "//*[@id=\"integracja\"]/div/div/div/div[1]/li/a[1]")
+    WebElement temat;
+
+    @FindBy(id = "change_from_select")
+    WebElement changeValueFrom;
+    @FindBy(id = "change_to_select")
+    WebElement changeValueTo;
+
+    @FindBy(id = "change_from_option_Nie")
+    WebElement changeValueFromNot;
+    @FindBy(id = "change_to_option_Tak")
+    WebElement changeValueToYes;
+    @FindBy(id = "save_button")
+    WebElement btnSave;
+
+    @FindBy(id = "new_value_checkbox-input")
+    WebElement checkboxNewValue;
+    @FindBy(id = "new_value_input")
+    WebElement newValueOrganizationUnit;
+
+    @FindBy(id = "add_list_operation-input")
+    WebElement massAddList;
+    @FindBy(id = "delete_list_operation-input")
+    WebElement massDeleteList;
+
+    @FindBy(id = "(//div[text()=\" BlackListaTest \"])")
+    WebElement chooseBlackList;
+    @FindBy(id = "(//div[text()=\" WhiteListaTest \"])")
+    WebElement chooseWhiteList;
 
 
 
@@ -106,6 +156,10 @@ public class UserList {
     }
 
     public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
+        //
+        Logger logger = LoggerFactory.getLogger(deleteRecording.class);
+
+
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(timeoutSeconds))
                 .pollingEvery(Duration.ofMillis(500))
@@ -133,11 +187,11 @@ public class UserList {
             if (listOfFile.isFile()) {
                 String fileName = listOfFile.getName();
                 System.out.println("File " + listOfFile.getName());
-                if (fileName.matches("fileName.csv")) {
+                if (fileName.matches("yournewstyle.csv")) {
 
                     assertEquals(fileName,"fileName.csv");
 
-                    listOfFile.delete();
+               //   listOfFile.delete();
                 }
             }
         }
@@ -181,5 +235,99 @@ public class UserList {
         confirmShowAllColumns.click();
 
     }
+
+    public void clickOnButtonEditRecDirectlyIncoming(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecDirectlyIncoming));
+        btnEditRecDirectlyIncoming.click();
+    }
+    public void clickOnEditRecOutgoing(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecOutgoing));
+        btnEditRecOutgoing.click();
+    }
+    public void clickOnEditSwitchOffRecOutgoing(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditSwitchOffRecOutgoing));
+        btnEditSwitchOffRecOutgoing.click();
+    }
+    public void clickOnEditOppb(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOppb));
+        btnEditOppb.click();
+    }
+    public void clickOnEditOrganizationalUnit(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOrganizationalUnit));
+        btnEditOrganizationalUnit.click();
+    }
+    public void clickOnEditBlackList(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditBlackList));
+        btnEditBlackList.click();
+    }
+    public void clickOnEditWhiteList(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditWhiteList));
+        btnEditWhiteList.click();
+    }
+
+    public void clickOn(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(temat));
+        temat.click();
+        try{
+            Thread.sleep(5000);
+        }
+        catch(InterruptedException ie){
+        }
+    }
+
+    public void setValueFromNotToYesMassChange(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueFrom));
+        changeValueFrom.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueFromNot));
+        changeValueFromNot.click();
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueTo));
+        changeValueTo.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueToYes));
+        changeValueToYes.click();
+
+    }
+    public void clickOnSaveBtn(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSave));
+        btnSave.click();
+    }
+
+    public void setValueForOrganizationUnitMassChange(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(checkboxNewValue));
+        checkboxNewValue.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(newValueOrganizationUnit));
+        newValueOrganizationUnit.sendKeys("Warszawa");
+
+    }
+
+    public void addBlackListMassChange(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(massAddList));
+        massAddList.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseBlackList));
+        chooseBlackList.click();
+
+    }
+
+    public void addWhiteListMassChange(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(massAddList));
+        massAddList.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseWhiteList));
+        chooseWhiteList.click();
+
+    }
+
 
 }

@@ -21,6 +21,9 @@ public class Dialog {
     @FindBy(id = "save-button")
     WebElement confirmButton;
 
+    @FindBy(xpath = "(//*[contains(@class,\"alert alert-warning alert-dismissible fade show\")])")
+    WebElement alert;
+
 
     private WebDriver driver;
 
@@ -49,5 +52,30 @@ public class Dialog {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(confirmButton));
         confirmButton.click();
+    }
+
+    public void verifyAlertBeforeLogin(String message) {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(alert));
+        String text= alert.getText();
+
+        if (text.equals(message)) {
+            System.out.println("Poprawny komunikat");
+        } else {
+            throw new IllegalArgumentException("Niepoprawny komunikat");
+        }
+    }
+    public void verifyAlertAfterLogin(String message) {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(alert));
+        String text= alert.getText();
+
+        if (text.equals(message)) {
+            System.out.println("Poprawny komunikat");
+        } else {
+            throw new IllegalArgumentException("Niepoprawny komunikat");
+        }
     }
 }

@@ -41,7 +41,7 @@ public class Roles {
     WebElement addPrivilageForNewRole;
     @FindBy(id = "filter_value_input")
     WebElement sendNamePrivilege;
-    @FindBy(xpath="(//mat-checkbox[contains(@id,\"mat-checkbox-\")])[last()]")
+    @FindBy(xpath="(//div[contains(@class,\"mat-checkbox-inner\")])[last()]")
     WebElement selectPrivilage;
     @FindBy(id = "save_button")
     WebElement savePrivilege;
@@ -138,7 +138,8 @@ public class Roles {
     public void selectChoosePrivilege(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(sendNamePrivilege));
-        sendNamePrivilege.sendKeys("kasowanie raportów");
+        sendNamePrivilege.sendKeys("Raporty audytowe - kasowanie");
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectPrivilage));
         selectPrivilage.click();
     }
     @Step("clickOnSavePrivilege")
@@ -220,13 +221,11 @@ public class Roles {
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
         showPermissionRole.click();
 
-
-
         List<WebElement> allElement = driver.findElements(By.xpath("(//p[contains(@id,'privilege_')])[last()]"));
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertEquals(result, "Kasowanie raportów");
+        assertEquals(result, "Raporty audytowe - kasowanie");
     }
 
     @Step("validateDeletePermissionForRole")

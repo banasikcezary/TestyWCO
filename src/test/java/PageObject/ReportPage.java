@@ -163,7 +163,19 @@ public class ReportPage {
     WebElement assertTypeCreateReport;
     @FindBy(xpath = "//*[@id=\"report_list\"]/mat-row[1]/mat-cell[3]")
     WebElement assertStatusCreateReport;
+/////////////////////////////////////////////////////
+    ///////////////////////////////
+    ////////////////////
 
+
+    @FindBy(xpath = "(//span[contains(@id, \"_delte_report\")])[1]")
+    WebElement btnDeleteLastRaport;
+
+    @FindBy(xpath = "(//span[contains(@id, \"_generate_pdf_report\")])[1]")
+    WebElement btnDownloadPDFLastRaport;
+
+    @FindBy(xpath = "(//div[contains(@id, \"_generate_csv_report\")])[1]")
+    WebElement btnDownloadCSVLastRaport;
 
     private WebDriver driver;
 
@@ -613,6 +625,26 @@ public class ReportPage {
         webDriverWait.until(ExpectedConditions.visibilityOf(assertStatusCreateReport));
         return assertStatusCreateReport.getText();
     }
+
+
+
+    public void deleteLastReport() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnDeleteLastRaport));
+        btnDeleteLastRaport.click();
+    }
+
+    public void downloadLastReportPDF() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnDownloadPDFLastRaport));
+        btnDownloadPDFLastRaport.click();
+    }
+    public void downloadLastReportCSV() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnDownloadCSVLastRaport));
+        btnDownloadCSVLastRaport.click();
+    }
+
 }
 
 

@@ -5,14 +5,12 @@ import PageObject.ShopPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class BuyingNewFunctionalitiesFromTheStore extends TestBase {
-
-
+public class SellingBlackListFromTheStore extends TestBase {
     @Test(priority = 3,
-            description = "as User Try Buy New Functionalities From The Store",
+            description = "as User Try Sell Functionalities From The Store",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asUserTryBuyNewFunctionalitiesFromTheStore() {
+    public void asUserTrySellFunctionalitiesFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48918171385");
@@ -22,11 +20,12 @@ public class BuyingNewFunctionalitiesFromTheStore extends TestBase {
 
         ShopPage shopPage = new ShopPage(driver);
         shopPage.clickOnShopTab();
-        shopPage.buyNewPresentationByMajorNumberFunctionalities();
+        shopPage.sellBlackListFunctionalities();
         shopPage.clickOnSaveChangeButton();
 
         shopPage.checkSavingConfirmationText();
 
 
     }
+
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.testng.Assert.assertEquals;
@@ -16,8 +15,8 @@ public class ShopPage {
 
     @FindBy(id = "shop_component_link")
     WebElement shopTab;
-    @FindBy(id = "UMN_input")
-    WebElement presentationByMajorNumberField;
+    @FindBy(id = "BLL_input")
+    WebElement BLL_input;
     @FindBy(id = "save_changes")
     WebElement saveChangeButton;
     @FindBy(id = "buy_package")
@@ -38,6 +37,9 @@ public class ShopPage {
     WebElement saveModalButton;
     @FindBy(id = "7 zł_option")
     WebElement chooseOption;
+
+    @FindBy(id = "NWTL_input")
+    WebElement wtlInput;
 
 
     private WebDriver driver;
@@ -81,28 +83,51 @@ public class ShopPage {
 //        presentationByMajorNumberField.sendKeys("20000");
 //    }
     @Step("buyNewFaxFunctionalities")
-    public void buyNewPresentationByMajorNumberFunctionalities() {
+    public void buyNewBlackListFunctionalities() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
+        webDriverWait.until(ExpectedConditions.visibilityOf(BLL_input));
 
-        Integer a = Integer.parseInt(presentationByMajorNumberField.getAttribute("value"));
+        Integer a = Integer.parseInt(BLL_input.getAttribute("value"));
         Integer newValue = a + 1;
 
-        presentationByMajorNumberField.clear();
-        presentationByMajorNumberField.sendKeys(newValue.toString());
+        BLL_input.clear();
+        BLL_input.sendKeys(newValue.toString());
+    }
+
+    public void buyNewWhiteListFunctionalities() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(wtlInput));
+
+        Integer a = Integer.parseInt(wtlInput.getAttribute("value"));
+        Integer newValue = a + 1;
+
+        wtlInput.clear();
+        wtlInput.sendKeys(newValue.toString());
     }
 
     @Step("sellFaxFunctionalities")
-    public void sellPresentationByMajorNumberFunctionalities() {
+    public void sellBlackListFunctionalities() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(presentationByMajorNumberField));
+        webDriverWait.until(ExpectedConditions.visibilityOf(BLL_input));
 
 
-        Integer a = Integer.parseInt(presentationByMajorNumberField.getAttribute("value"));
+        Integer a = Integer.parseInt(BLL_input.getAttribute("value"));
         Integer newValue = a - 1;
 
-        presentationByMajorNumberField.clear();
-        presentationByMajorNumberField.sendKeys(newValue.toString());
+        BLL_input.clear();
+        BLL_input.sendKeys(newValue.toString());
+    }
+
+    public void sellWhiteListFunctionalities() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(wtlInput));
+
+
+        Integer a = Integer.parseInt(wtlInput.getAttribute("value"));
+        Integer newValue = a - 1;
+
+        wtlInput.clear();
+        wtlInput.sendKeys(newValue.toString());
     }
 
     @Step("clickOnSaveChangeButton")

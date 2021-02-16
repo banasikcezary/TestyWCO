@@ -60,7 +60,7 @@ public class UserAndPermissions {
     @FindBy(id = "AG_option")
     WebElement role;
 
-    @FindBy(xpath = "(//*[contains(@id, \"role_\")])[last()]")
+    @FindBy(xpath = "(//*[contains(@id, \"role_\")])[1]")
     WebElement assertUserRole;
 
     @FindBy(id = "next_page_button")
@@ -191,16 +191,15 @@ public class UserAndPermissions {
 
     }
 
-//    @Step("assertDeleteUser")
-//    public void assertDeleteUser(String user) throws AWTException {
-//        Dialog dialog=new Dialog(driver);
-//        dialog.clickOnAcceptPopupButton();
-//        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-//        webDriverWait.until(ExpectedConditions.visibilityOf(pageMessage));
-//
-//        String name = pageMessage.getText();
-//        assertEquals(name, "Nie ma użytkowników");
-//    }
+    @Step("assertDeleteUser")
+    public void assertDeleteUser(String user) throws AWTException {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(pageMessage));
+
+        String name = pageMessage.getText();
+        assertEquals(name, "Nie ma użytkowników");
+    }
 
     @Step("typeIntoSearchUserField")
     public void typeIntoSearchUserField(String searchUser) {
@@ -249,8 +248,8 @@ public class UserAndPermissions {
     public void selectRole() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(selectRole));
-
         selectRole.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(role));
         role.click();
 
     }

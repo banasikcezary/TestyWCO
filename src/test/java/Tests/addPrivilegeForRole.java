@@ -33,7 +33,7 @@ public class addPrivilegeForRole extends TestBase {
         role.clickOnSavePrivilege();
 //        Dialog dialog = new Dialog(driver);
 //        dialog.clickOnAcceptPopupButton();
-        user.clickOnUserAndPermissionButton();
+      //  user.clickOnUserAndPermissionButton();
         role.clickOnRolesButton();
 
 
