@@ -21,9 +21,9 @@ public class ShopPage {
     WebElement saveChangeButton;
     @FindBy(id = "buy_package")
     WebElement buyPackage;
-    @FindBy(xpath = "//*[@id=\"navbarNav\"]/ul/li[3]/a")
+    @FindBy(id = "available_additional_packets")
     WebElement additionalFundsAvailableTab;
-    @FindBy(id = "choose_package")
+    @FindBy(xpath = "(//*[(@class='mat-radio-button mat-accent')])[46]")
     WebElement valuePackage;
     @FindBy(xpath = "//p[contains(text(),'Funkcjonalności zostały zapisane')]")
     WebElement checkTextDialog;
@@ -154,12 +154,9 @@ public class ShopPage {
     @Step("selectValuePackageWithList")
     public void selectValuePackageWithList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(valuePackage));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(valuePackage));
        valuePackage.click();
 
-        webDriverWait.until(ExpectedConditions.visibilityOf(chooseOption));
-
-        chooseOption.click();
     }
 
     public void checkSavingConfirmationText() {

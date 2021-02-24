@@ -15,14 +15,19 @@ public class DownloadLastReportPdf extends TestBase{
 
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("TestyQA");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
         ReportPage report = new ReportPage(driver);
         report.clickOnReportTab();
         report.downloadLastReportPDF();
+
+        String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
+
+        report.waitForFileDownloaded( "Raport", 50,downloadDir);
+        report.verifyDownloadFile(downloadDir);
     }
 }

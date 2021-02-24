@@ -8,17 +8,18 @@ import testng.listeners.RetryAnalyzer;
 public class BuyingBlackListFromTheStore extends TestBase {
 
 
-    @Test(priority = 3,
+    @Test(priority = 1,
             description = "as User Try Buy New Functionalities From The Store",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
     public void asUserTryBuyNewFunctionalitiesFromTheStore() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
+        loginPage.typeIntoPasswordField("1234qwert");
         loginPage.clickIntoLogInButton();
+        loginPage.checkPositiveLoginToApp();
 
         ShopPage shopPage = new ShopPage(driver);
         shopPage.clickOnShopTab();

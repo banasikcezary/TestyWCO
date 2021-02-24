@@ -41,7 +41,7 @@ public class Roles {
     WebElement addPrivilageForNewRole;
     @FindBy(id = "filter_value_input")
     WebElement sendNamePrivilege;
-    @FindBy(xpath="(//div[contains(@class,\"mat-checkbox-inner\")])[last()]")
+    @FindBy(xpath="(//div[contains(@class,\"mat-checkbox-inner\")])[1]")
     WebElement selectPrivilage;
     @FindBy(id = "save_button")
     WebElement savePrivilege;
@@ -177,10 +177,16 @@ public class Roles {
     @Step("validateAddRole")
     public void validateAddRole(String addRole) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
-
-        String roleName=verifyAddNewRole.getText();
-
+        String roleName;
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
+             roleName=verifyAddNewRole.getText();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
+             roleName=verifyAddNewRole.getText();
+        }
         if(roleName !=addRole) {
             WebDriverWait webDriverWait1 = new WebDriverWait(driver, 30);
             webDriverWait1.until(ExpectedConditions.visibilityOf(verifyAddNewRole));
@@ -225,7 +231,7 @@ public class Roles {
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertEquals(result, "Raporty audytowe - kasowanie");
+        assertEquals(result, "Raporty audytowe - Kasowanie");
     }
 
     @Step("validateDeletePermissionForRole")

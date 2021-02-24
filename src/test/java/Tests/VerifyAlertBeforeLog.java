@@ -15,7 +15,8 @@ public class VerifyAlertBeforeLog  extends TestBase{
     public void verifyAlertBeforeLog() {
 
         Dialog dialog = new Dialog(driver);
-        dialog.verifyAlertBeforeLogin(" Komunikat testowy przed autoryzacja");
+        dialog.verifyAlertBeforeLogin("×\n" +
+                "Komunikat testowy przed autoryzacja");
     }
 
 }

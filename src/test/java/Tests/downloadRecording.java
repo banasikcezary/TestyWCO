@@ -16,9 +16,9 @@ public class downloadRecording extends TestBase{
     public void asAdminTryDownloadRecording() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("TestyQA");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -28,7 +28,10 @@ public class downloadRecording extends TestBase{
         recordingPage.downloadRecordingWithList();
         recordingPage.operationAutorization("password");
 
+        String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
 
+        recordingPage.waitForFileDownloaded( ".zip", 50,downloadDir);
+        recordingPage.verifyDownloadFile(downloadDir);
 
     }
 

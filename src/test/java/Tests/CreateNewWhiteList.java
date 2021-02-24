@@ -15,27 +15,28 @@ public class CreateNewWhiteList extends TestBase{
             alwaysRun = true)
     public void asAdminTryCreateNewWhiteList()  {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
+        loginPage.typeIntoPasswordField("1234qwert");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
-        ShopPage shopPage = new ShopPage(driver);
-        shopPage.clickOnShopTab();
-        shopPage.buyNewWhiteListFunctionalities();
+
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
+        configuration.clickOnFunctionalitySettings();
         configuration.clickOnWhiteListFunctionality();
         configuration.clickOnLastWhiteList();
         configuration.completeNameAndDescriptionWhiteList("WhiteListaTest","DescBlackList");
         configuration.addNumberForWhiteList("48333444333");
         configuration.clickOnButtonSaveWhiteList();
+        configuration.verifySaveWhiteList();
+
+
         configuration.clickOnLinkActivationWhiteList();
         configuration.clickOnActivationLastWhiteList();
 
-        configuration.verifySaveWhiteList();
         configuration.verifyActivateWhitelist();
 
 

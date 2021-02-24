@@ -3,6 +3,7 @@ package PageObject;
 import Tests.deleteRecording;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -78,19 +79,19 @@ public class UserList {
     @FindBy(id = "save_button")
     WebElement btnSave;
 
-    @FindBy(id = "new_value_checkbox-input")
+    @FindBy(css = "label[for='new_value_checkbox-input']")
     WebElement checkboxNewValue;
     @FindBy(id = "new_value_input")
     WebElement newValueOrganizationUnit;
 
-    @FindBy(id = "add_list_operation-input")
+    @FindBy(css = "[id='add_list_operation'] .mat-radio-label")
     WebElement massAddList;
     @FindBy(id = "delete_list_operation-input")
     WebElement massDeleteList;
 
-    @FindBy(id = "(//div[text()=\" BlackListaTest \"])")
+    @FindBy(xpath = "(//div[text()=\" BlackListaTest \"])")
     WebElement chooseBlackList;
-    @FindBy(id = "(//div[text()=\" WhiteListaTest \"])")
+    @FindBy(xpath = "(//div[text()=\" WhiteListaTest \"])")
     WebElement chooseWhiteList;
 
 
@@ -187,11 +188,12 @@ public class UserList {
             if (listOfFile.isFile()) {
                 String fileName = listOfFile.getName();
                 System.out.println("File " + listOfFile.getName());
-                if (fileName.matches("yournewstyle.csv")) {
+                String name="";
+                if (fileName.contains("fileName")) {
 
-                    assertEquals(fileName,"fileName.csv");
+                    assertTrue(fileName.contains("fileName"));
 
-               //   listOfFile.delete();
+               listOfFile.delete();
                 }
             }
         }
@@ -238,38 +240,90 @@ public class UserList {
 
     public void clickOnButtonEditRecDirectlyIncoming(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecDirectlyIncoming));
-        btnEditRecDirectlyIncoming.click();
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecDirectlyIncoming));
+            btnEditRecDirectlyIncoming.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecDirectlyIncoming));
+            btnEditRecDirectlyIncoming.click();
+        }
     }
     public void clickOnEditRecOutgoing(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecOutgoing));
-        btnEditRecOutgoing.click();
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecOutgoing));
+            btnEditRecOutgoing.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecOutgoing));
+            btnEditRecOutgoing.click();
+        }
     }
     public void clickOnEditSwitchOffRecOutgoing(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditSwitchOffRecOutgoing));
-        btnEditSwitchOffRecOutgoing.click();
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditSwitchOffRecOutgoing));
+            btnEditSwitchOffRecOutgoing.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditSwitchOffRecOutgoing));
+            btnEditSwitchOffRecOutgoing.click();
+        }
     }
     public void clickOnEditOppb(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOppb));
-        btnEditOppb.click();
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOppb));
+            btnEditOppb.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOppb));
+            btnEditOppb.click();
+        }
     }
     public void clickOnEditOrganizationalUnit(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOrganizationalUnit));
-        btnEditOrganizationalUnit.click();
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOrganizationalUnit));
+            btnEditOrganizationalUnit.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOrganizationalUnit));
+            btnEditOrganizationalUnit.click();
+        }
     }
     public void clickOnEditBlackList(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditBlackList));
-        btnEditBlackList.click();
+
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditBlackList));
+            btnEditBlackList.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditBlackList));
+            btnEditBlackList.click();
+        }
     }
     public void clickOnEditWhiteList(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditWhiteList));
-        btnEditWhiteList.click();
+
+
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditWhiteList));
+            btnEditWhiteList.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditWhiteList));
+            btnEditWhiteList.click();
+        }
     }
 
     public void clickOn(){
@@ -302,19 +356,21 @@ public class UserList {
         btnSave.click();
     }
 
-    public void setValueForOrganizationUnitMassChange(){
+    public void setValueForOrganizationUnitMassChange(String value){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(checkboxNewValue));
         checkboxNewValue.click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(newValueOrganizationUnit));
-        newValueOrganizationUnit.sendKeys("Warszawa");
+        newValueOrganizationUnit.sendKeys(value);
 
     }
 
     public void addBlackListMassChange(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(massAddList));
-        massAddList.click();
+        Actions action=new Actions(driver);
+        action.moveToElement(massAddList).click().build().perform();
+        //massAddList.click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseBlackList));
         chooseBlackList.click();
 

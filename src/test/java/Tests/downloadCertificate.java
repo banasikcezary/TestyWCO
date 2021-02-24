@@ -14,9 +14,9 @@ public class downloadCertificate extends TestBase {
     public void asAdminTryDownloadCertificate() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
+        loginPage.typeIntoPasswordField("1234qwert");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -29,8 +29,11 @@ public class downloadCertificate extends TestBase {
         user.clickIntoCertificateButton();
         user.clickIntoDownloadCertificateButton();
 
-        user.waitForFileDownloaded("123 (1).crt", 10,"C:\\Users\\User\\Downloads");
-        user.verifyDownloadFile("123 (1).crt","C:\\Users\\User\\Downloads");
+        String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
+
+
+        user.waitForFileDownloaded("123", 10,downloadDir);
+        user.verifyDownloadFile(downloadDir);
 
 
     }

@@ -18,23 +18,18 @@ public class CsvExport extends TestBase {
             alwaysRun = true)
     public void asUserTryExportCsvFile() throws AWTException {
 
-//        LoginPage loginPage = new LoginPage(driver);
-//        loginPage.typeIntoPhoneNumberField("+48918171385");
-//        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-//        loginPage.typeIntoPasswordField("Orange12345!");
-//        loginPage.clickIntoLogInButton();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
+        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.clickIntoLogInButton();
 
         UserList userList = new UserList(driver);
-//        userList.clickIntoUserListLink();
-//        userList.clickOnButtonExportToCsv();
-        String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources";
-        userList.clickOn();
+        userList.clickIntoUserListLink();
+        userList.clickOnButtonExportToCsv();
+        String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
 
-        userList.waitForFileDownloaded( "yournewstyle.csv", 50,downloadDir);
-
-
-
-
+        userList.waitForFileDownloaded( "fileName", 50,downloadDir);
         userList.verifyDownloadFile(downloadDir);
 
         }

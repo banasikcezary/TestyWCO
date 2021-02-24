@@ -1,6 +1,7 @@
 package Tests;
 
 import PageObject.Configuration;
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.ShopPage;
 import PageObject.UserAndPermissions;
@@ -12,16 +13,16 @@ import java.awt.*;
 
 public class CreateNewUser extends TestBase {
 
-    @Ignore
+
     @Test(priority = 1,
             description = "as Admin Try Create New User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
     public void asAdminTryCreateNewUser() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
+        loginPage.typeIntoPasswordField("1234qwert");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -44,6 +45,9 @@ public class CreateNewUser extends TestBase {
 
         configuration.typeIntoEmailInputField("now@o2.pl");
         configuration.clickSaveButton();
+        configuration.clickSaveButton();
+        PageObject.Dialog dialog = new Dialog(driver);
+        dialog.confirmPopup();
 
 
         UserAndPermissions user = new UserAndPermissions(driver);

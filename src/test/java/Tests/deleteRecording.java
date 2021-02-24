@@ -16,16 +16,20 @@ public class deleteRecording extends TestBase {
     public void asAdminTryDeleteRecording() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("TestyQA");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
         RecordingPage recordingPage = new RecordingPage(driver);
         recordingPage.clickOnRecordingTab();
         recordingPage.chooseRecordingWithList();
+        int quentity =recordingPage.validateQuantityReportBefore();
         recordingPage.deleteRecordingWithList();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnConfirmButton();
+        recordingPage.validateQuantityReportAfter(quentity);
 
 
 

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -73,6 +74,7 @@ public class UserAndPermissions {
     WebElement addCertificate;
     @FindBy(xpath = "(//button[text()=\"Pobierz\"])[last()]")
     WebElement downloadCert;
+
     @FindBy(xpath = "(//button[text()=\"Usuń\"])[last()]")
     WebElement deleteCert;
 
@@ -193,7 +195,11 @@ public class UserAndPermissions {
 
     @Step("assertDeleteUser")
     public void assertDeleteUser(String user) throws AWTException {
-
+        try{
+            Thread.sleep(3000);
+        }
+        catch(InterruptedException ie){
+        }
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(pageMessage));
 
@@ -344,7 +350,7 @@ public class UserAndPermissions {
             return false;
         });
     }
-    public void verifyDownloadFile(String name, String downloadPath){
+    public void verifyDownloadFile(String downloadPath){
 
 
         File folder = new File(downloadPath);
@@ -357,15 +363,14 @@ public class UserAndPermissions {
             if (listOfFile.isFile()) {
                 String fileName = listOfFile.getName();
                 System.out.println("File " + listOfFile.getName());
-                if (fileName.matches(name)) {
+                if (fileName.contains("123")) {
 
-                    assertEquals(fileName,name);
+                    assertTrue(fileName.contains("123"));
 
                     listOfFile.delete();
                 }
             }
         }
-
 
     }
 

@@ -15,9 +15,9 @@ public class createAuditLogsPlusReport extends TestBase{
 
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
+        loginPage.typeIntoPasswordField("1234qwert");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -29,7 +29,7 @@ public class createAuditLogsPlusReport extends TestBase{
         report.typeInEndReportDateForAuditLogsPlusField();
         report.clickInGenerateAuditLogsPlus();
 
-        report.checkGenerateNewReport("Logi Audytowe plus");
+        report.checkGenerateNewReport("Szczegółowe Logi Audytowe");
         report.checkStatusNewReport();
 
 

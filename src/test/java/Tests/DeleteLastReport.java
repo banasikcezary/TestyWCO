@@ -1,5 +1,6 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.ReportPage;
 import org.testng.annotations.Test;
@@ -16,14 +17,19 @@ public class DeleteLastReport extends TestBase {
 
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("TestyQA");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
         ReportPage report = new ReportPage(driver);
         report.clickOnReportTab();
+        int quantity =report.validateQuantityReportBefore();
         report.deleteLastReport();
+        Dialog dialog=new Dialog(driver);
+        dialog.clickOnConfirmButton();
+
+        report.validateQuantityReportAfter(quantity);
     }
 }

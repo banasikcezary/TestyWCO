@@ -15,14 +15,15 @@ public class VerifyAlertAfterLog extends TestBase{
     public void verifyAlertAfterLog() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
+        loginPage.typeIntoPasswordField("1234qwert");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
         Dialog dialog= new Dialog(driver);
-        dialog.verifyAlertAfterLogin(" Komunikat testowy po autoryzacji");
+        dialog.verifyAlertAfterLogin("×\n" +
+                "Komunikat testowy po autoryzacji");
 
     }
 }

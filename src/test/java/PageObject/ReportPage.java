@@ -1,17 +1,22 @@
 package PageObject;
 
+import Tests.deleteRecording;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static org.testng.Assert.assertEquals;
+import java.io.File;
+import java.time.Duration;
+
+import static org.testng.Assert.*;
 
 public class ReportPage {
 
@@ -47,13 +52,13 @@ public class ReportPage {
 
     @FindBy(id = "report10_number_selection")
     WebElement selectionMainNumber10;
-    @FindBy(xpath = "(//span[contains(text(),'48918171385')])[2]")
+    @FindBy(xpath = "(//mat-option[contains(@id,'report10_select_')])")
     WebElement selectNumber10;
 
 
     @FindBy(id = "report11_number_selection")
     WebElement selectionMainNumber11;
-    @FindBy(xpath = "(//span[contains(text(),'48918171385')])[2]")
+    @FindBy(xpath = "(//mat-option[contains(@id,'report11_select_')])")
     WebElement selectNumber11;
 
     @FindBy(id = "report12_admin_selection")
@@ -177,6 +182,9 @@ public class ReportPage {
     @FindBy(xpath = "(//div[contains(@id, \"_generate_csv_report\")])[1]")
     WebElement btnDownloadCSVLastRaport;
 
+    @FindBy(css = "[class='mat-paginator-range-label']")
+    WebElement validateQuantityReport;
+
     private WebDriver driver;
 
     public ReportPage(WebDriver driver) {
@@ -288,7 +296,7 @@ public class ReportPage {
     public void typeInStartReportDateForExtensionsNumberAndTransfersField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate5));
-        startReportDate5.sendKeys("1.10.2020");
+        startReportDate5.sendKeys("1.02.2021");
     }
 
     @Step("typeInStartReportDateForExtensionsNumberAndTransfersField")
@@ -332,7 +340,7 @@ public class ReportPage {
     public void typeInStartReportDateForRecordedCallsField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate10));
-        startReportDate10.sendKeys("1.10.2020");
+        startReportDate10.sendKeys("1.02.2021");
     }
 
     @Step("typeInEndReportDateForRecordedCallsField")
@@ -375,7 +383,7 @@ public class ReportPage {
     public void typeInStartReportDateForRecordedCallsDetailsField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate11));
-        startReportDate11.sendKeys("1.10.2020");
+        startReportDate11.sendKeys("1.02.2021");
     }
 
     @Step("typeInEndReportDateForRecordedCallsDetailsField")
@@ -418,7 +426,7 @@ public class ReportPage {
     public void typeInStartReportDateForDownloadFileField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate12));
-        startReportDate12.sendKeys("1.10.2020");
+        startReportDate12.sendKeys("1.02.2021");
     }
 
     @Step("typeInEndReportDateForDownloadFileField")
@@ -463,13 +471,15 @@ public class ReportPage {
     public void typeInStartReportDateForAuditLogsField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate21));
-        startReportDate21.sendKeys("1.10.2020");
+        startReportDate21.clear();
+        startReportDate21.sendKeys("1.02.2021");
     }
 
     @Step("typeInEndReportDateForAuditLogsField")
     public void typeInEndReportDateForAuditLogsField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(endReportDate21));
+        endReportDate21.clear();
         endReportDate21.sendKeys("2.10.2020");
     }
 
@@ -494,7 +504,8 @@ public class ReportPage {
     public void typeInStartReportDateForAuditLogsPlusField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate22));
-        startReportDate22.sendKeys("1.10.2020");
+        startReportDate22.clear();
+        startReportDate22.sendKeys("1.02.2021");
     }
 
     @Step("typeInEndReportDateForAuditLogsPlusField")
@@ -526,7 +537,7 @@ public class ReportPage {
     public void typeInStartReportDateForFunctionalityOnUsersField() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(startReportDate23));
-        startReportDate23.sendKeys("1.10.2020");
+        startReportDate23.sendKeys("1.02.2021");
     }
 
     @Step("typeInEndReportDateForFunctionalityOnUsersField")
@@ -592,6 +603,7 @@ public class ReportPage {
     @Step("clickInGenerateApiCalls")
     public void checkGenerateNewReport(String newReportType) {
         driver.navigate().refresh();
+        driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(assertTypeCreateReport));
         String typeRaport = assertTypeCreateReport.getText();
@@ -634,6 +646,30 @@ public class ReportPage {
         btnDeleteLastRaport.click();
     }
 
+    public int validateQuantityReportBefore() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
+        String quantity = validateQuantityReport.getText();
+
+        String qua = quantity.replace("1 – 10 of ","");
+        int foo = Integer.parseInt(qua);
+        System.out.println(foo);
+        return foo;
+    }
+    public void validateQuantityReportAfter(int beforeQuantity) {
+        driver.navigate().refresh();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
+        String quantity = validateQuantityReport.getText();
+
+        String qua = quantity.replace("1 – 10 of ","");
+        int foo = Integer.parseInt(qua);
+        System.out.println(foo);
+        int after=foo;
+        assertNotEquals(beforeQuantity,after);
+
+    }
+
     public void downloadLastReportPDF() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnDownloadPDFLastRaport));
@@ -644,7 +680,48 @@ public class ReportPage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnDownloadCSVLastRaport));
         btnDownloadCSVLastRaport.click();
     }
+    public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
+        //
+        Logger logger = LoggerFactory.getLogger(deleteRecording.class);
 
+
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(timeoutSeconds))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+        wait.until((x) -> {
+            File[] files = new File(downloadPath).listFiles();
+            for (File file : files) {
+                if (file.getName().contains(fileName)) {
+                    return true;
+                }
+            }
+            return false;
+        });
+    }
+    public void verifyDownloadFile(String downloadPath) {
+
+
+        File folder = new File(downloadPath);
+
+        File[] listOfFiles = folder.listFiles();
+        boolean found = false;
+        File f = null;
+
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                String fileName = listOfFile.getName();
+                System.out.println("File " + listOfFile.getName());
+                String name = "";
+                if (fileName.contains("Raport")) {
+
+                    assertTrue(fileName.contains("Raport"));
+
+                    listOfFile.delete();
+                }
+            }
+        }
+    }
 }
 
 

@@ -13,16 +13,20 @@ public class RecordingTagsTest extends TestBase {
     public void asUserTryEditTagsInRecords() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48517583010");
+        loginPage.typeIntoUsernameField("TestyQA");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
+        loginPage.checkPositiveLoginToApp();
 
         RecordingPage recordingPage = new RecordingPage(driver);
         recordingPage.clickOnRecordingTab();
         recordingPage.clickOnEditTagsButton();
-        recordingPage.typeIntoEditTagsField("test");
+        recordingPage.clickTagsCheckbox();
         recordingPage.clickOnSaveEditTagsButton();
+        recordingPage.clickOnRecordingTab();
+        recordingPage.clickOnEditTagsButton();
+        recordingPage.validationEditTagsButton();
 
 
     }

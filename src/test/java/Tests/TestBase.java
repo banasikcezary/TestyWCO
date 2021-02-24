@@ -46,41 +46,26 @@ public class TestBase {
 //        options.addArguments("--no-sandbox");
 //        options.addArguments("--headless");
 //        options.addArguments("--window-size=1920,1080");
-//        options.addArguments("--disable-gpu");
-//        options.addArguments("--disable-extensions");
-//        options.addArguments("--ignore-certificate-errors");
-//        options.addArguments("--disable-web-security");
-//        options.addArguments("--disable-save-password-bubble");
 
 
-   //   String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources";
+
+      String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
 
 
-//        Map<String, Object> prefs = new HashMap<String, Object>();
-//        prefs.put("download.default_directory", downloadDir);
-//        prefs.put(" download.prompt_for_download", false);
-//        prefs.put("download.directory_upgrade", true);
-      //  prefs.put("safebrowsing.enabled", false);
-       // prefs.put("profile.default_content_settings.popups",0);
-       // prefs.put("behavior", "allow");
-    //    prefs.put("safebrowsing.disable_download_protection", true);
-      //  prefs.put("browser.download.manager.showWhenStarting", false);
-//        prefs.put("profile.default_content_setting_values.automatic_downloads",1);
-//        prefs.put("credentials_enable_service",false);
-//        prefs.put("profile.password_manager_enabled", false);
-//
-//
-//        options.setExperimentalOption("prefs", prefs);
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("download.default_directory", downloadDir);
+
+//      options.setExperimentalOption("prefs", prefs);
 //        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 //        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 
 
-        driver = new RemoteWebDriver(new URL("http://192.168.216.62:4448/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://192.168.216.62:4448/wd/hub"),capabilities);
 
         RemoteWebDriver remoteWebDriver = (RemoteWebDriver) this.driver;
         remoteWebDriver.setFileDetector(new LocalFileDetector());
 
-        driver.navigate().to("https://paczkadoukrainy.pl/");
+        driver.navigate().to("http://localhost:8075/cert-wco/");
         System.out.println("Open Browser");
     }
 
