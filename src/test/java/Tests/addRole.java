@@ -15,9 +15,9 @@ public class addRole extends TestBase {
     public void asAdminTryAddNewRole() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
-        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 

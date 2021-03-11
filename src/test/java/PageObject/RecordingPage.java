@@ -43,6 +43,8 @@ public class RecordingPage {
 /////////////////
     @FindBy(xpath = "(//mat-checkbox[contains(@id,\"mat-checkbox-\")])[1]")
     WebElement chooseRec;
+    @FindBy(xpath = "(//mat-checkbox[contains(@id,\"mat-checkbox-\")])[last()]")
+    WebElement chooseLastRec;
     @FindBy(xpath = "(//button[text()=\"Pobierz nagranie\"])")
     WebElement btnDownloadRec;
     @FindBy(xpath = "(//button[text()=\"Usuń nagranie\"])")
@@ -193,6 +195,11 @@ actions.moveToElement(tagsField).click().build().perform();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRec));
         chooseRec.click();
     }
+    public void chooseLastRecordingWithList(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseLastRec));
+        chooseLastRec.click();
+    }
     public void downloadRecordingWithList(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnDownloadRec));
@@ -208,9 +215,11 @@ actions.moveToElement(tagsField).click().build().perform();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String quantity = validateQuantityReport.getText();
+        String firstqa=quantity.replace("1 – ","");
+        String numberReport=firstqa.replace(" of ","");
+        String finalNumberReport=numberReport.substring(1);
 
-        String qua = quantity.replace("1 – 10 of ","");
-        int foo = Integer.parseInt(qua);
+        int foo = Integer.parseInt(finalNumberReport);
         System.out.println(foo);
         return foo;
     }
@@ -219,9 +228,11 @@ actions.moveToElement(tagsField).click().build().perform();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String quantity = validateQuantityReport.getText();
+        String firstqa=quantity.replace("1 – ","");
+        String numberReport=firstqa.replace(" of ","");
+        String finalNumberReport=numberReport.substring(1);
 
-        String qua = quantity.replace("1 – 10 of ","");
-        int foo = Integer.parseInt(qua);
+        int foo = Integer.parseInt(finalNumberReport);
         System.out.println(foo);
         int after=foo;
         assertNotEquals(beforeValue,after);

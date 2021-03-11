@@ -30,7 +30,7 @@ WebElement confirmGenerateKey;
 WebElement confirmText;
 
 
-    private WebDriver driver;
+    public WebDriver driver;
 
     public Dialog(WebDriver driver) {
 
@@ -49,17 +49,24 @@ WebElement confirmText;
     }
     public void confirmPopup(){
         Actions actions=new Actions(driver);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
-            actions.moveToElement(new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(confirmText))).perform();
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
             confirmText.isDisplayed();
-            driver.findElement(By.xpath("//html")).click();
+            System.out.println(confirmText.getText());
+
+            actions.sendKeys(Keys.ESCAPE).perform();
+           // driver.findElement(By.xpath("//html")).click();
             driver.navigate().refresh();
         }
         catch(org.openqa.selenium.StaleElementReferenceException ex)
         {
-            actions.moveToElement(new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(confirmText))).perform();
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
             confirmText.isDisplayed();
-            driver.findElement(By.xpath("//html")).click();
+            System.out.println(confirmText.getText());
+            actions.sendKeys(Keys.ESCAPE).perform();
+            // driver.findElement(By.xpath("//html")).click();
             driver.navigate().refresh();
         }
 

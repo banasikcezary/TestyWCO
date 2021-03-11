@@ -650,20 +650,30 @@ public class ReportPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String quantity = validateQuantityReport.getText();
+        System.out.println(quantity);
 
-        String qua = quantity.replace("1 – 10 of ","");
-        int foo = Integer.parseInt(qua);
+        String firstqa=quantity.replace("1 – ","");
+        System.out.println(firstqa);
+
+        String numberReport=firstqa.replace(" of ","");
+        System.out.println(numberReport);
+
+        String finalNumberReport=numberReport.substring(2);
+        System.out.println(finalNumberReport);
+       // String qua = quantity.replace("1 – "+finalNumberReport+" of ","");
+        int foo = Integer.parseInt(finalNumberReport);
         System.out.println(foo);
         return foo;
     }
     public void validateQuantityReportAfter(int beforeQuantity) {
-        driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String quantity = validateQuantityReport.getText();
+        String firstqa=quantity.replace("1 – ","");
+        String numberReport=firstqa.replace(" of ","");
+        String finalNumberReport=numberReport.substring(2);
 
-        String qua = quantity.replace("1 – 10 of ","");
-        int foo = Integer.parseInt(qua);
+        int foo = Integer.parseInt(finalNumberReport);
         System.out.println(foo);
         int after=foo;
         assertNotEquals(beforeQuantity,after);

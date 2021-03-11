@@ -8,7 +8,7 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class WybórFormatuNagrańMp3 extends TestBase {
+public class WlaczOppbNaUserze extends TestBase{
 
     @Test(priority = 2,
             description = "as Admin Try Create New User",
@@ -16,9 +16,9 @@ public class WybórFormatuNagrańMp3 extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
-        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -27,20 +27,13 @@ public class WybórFormatuNagrańMp3 extends TestBase {
         configuration.clickConfigurationLink();
 
 
-        configuration.clickOnFunctionalitySettings();
-        configuration.clickOnSettingsRec();
-        configuration.selectMp3Option();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField("KarolN");
+        configuration.selectNewUser();
+        configuration.switchOnOppbOnUser();
 
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
-
-
-        configuration.verifyChooseMp3Option();
-
-
-
-
-
     }
 }

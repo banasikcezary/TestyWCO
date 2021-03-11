@@ -8,7 +8,7 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class WłączMożliwośćTagowaniaDlaUsera extends TestBase {
+public class WyborFormatuNagranMp3 extends TestBase {
 
     @Test(priority = 2,
             description = "as Admin Try Create New User",
@@ -16,9 +16,9 @@ public class WłączMożliwośćTagowaniaDlaUsera extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -26,14 +26,21 @@ public class WłączMożliwośćTagowaniaDlaUsera extends TestBase {
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
 
-        configuration.clickLinkUserList();
-        configuration.typeIntoUserSearchField("KarolN");
-        configuration.selectNewUser();
-        configuration.switchOnTagEnabledOnUser();
+
+        configuration.clickOnFunctionalitySettings();
+        configuration.clickOnSettingsRec();
+        configuration.selectMp3Option();
 
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
+
+
+        configuration.verifyChooseMp3Option();
+
+
+
+
 
     }
 }

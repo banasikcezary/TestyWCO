@@ -270,6 +270,11 @@ public class UserAndPermissions {
 
     @Step("assertionAddRoleForUser")
     public void assertionAddRoleForUser(){
+        try{
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException ie){
+        }
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(assertUserRole));
         String userRola = assertUserRole.getText();

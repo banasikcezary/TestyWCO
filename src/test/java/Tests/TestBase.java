@@ -25,27 +25,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 
-
 @Listeners(TestListener.class)
-
 public class TestBase {
-
-
     public WebDriver driver;
 
     @Step("Loading configuration from configuration.properties")
     @BeforeMethod(alwaysRun = true)
     public void beforeTest() throws IOException {
-
-
-
-
-
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--no-sandbox");
-//        options.addArguments("--headless");
-//        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        options.addArguments("--window-size=1920,1080");
 
 
 
@@ -55,9 +46,9 @@ public class TestBase {
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("download.default_directory", downloadDir);
 
-//      options.setExperimentalOption("prefs", prefs);
-//        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-//        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+      options.setExperimentalOption("prefs", prefs);
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+       capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 
 
         driver = new RemoteWebDriver(new URL("http://192.168.216.62:4448/wd/hub"),capabilities);
@@ -65,7 +56,7 @@ public class TestBase {
         RemoteWebDriver remoteWebDriver = (RemoteWebDriver) this.driver;
         remoteWebDriver.setFileDetector(new LocalFileDetector());
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
+        driver.navigate().to("https://wck.orange.pl/");
         System.out.println("Open Browser");
     }
 

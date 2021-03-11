@@ -18,9 +18,9 @@ public class SearchRecording extends TestBase {
     public void asAdminTryDownloadRecording() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
-        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("UserTest");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 

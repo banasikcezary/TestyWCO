@@ -8,17 +8,17 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class KasowanieNajstarszychNagrańBezBlokowaniaNagrywaniaPoPrzekroczeniuPakietu extends TestBase {
+public class WlaczKomunikatSpersonalizowanyNaUserze extends TestBase{
 
-    @Test(priority = 2,
+    @Test(priority = 5,
             description = "as Admin Try Create New User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
-        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -27,21 +27,13 @@ public class KasowanieNajstarszychNagrańBezBlokowaniaNagrywaniaPoPrzekroczeniuP
         configuration.clickConfigurationLink();
 
 
-        configuration.clickOnFunctionalitySettings();
-        configuration.clickOnSettingsRec();
-        configuration.clickOnDeletingRecordingsWithoutBlockingCallsButton();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField("KarolN");
+        configuration.selectNewUser();
+        configuration.switchOnPersonalizedAnnouncementOnUser();
 
         configuration.clickSaveButton();
-        PageObject.Dialog dialog=new Dialog(driver);
+        Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
-
-        configuration.clickOnFunctionalitySettings();
-        configuration.clickOnSettingsRec();
-        configuration.verifyDeletingRecordingsWithoutBlockingCallsOption();
-
-
-
-
-
     }
 }

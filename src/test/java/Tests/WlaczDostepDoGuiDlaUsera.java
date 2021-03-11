@@ -8,7 +8,7 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class WłączApiDlaUsera extends TestBase {
+public class WlaczDostepDoGuiDlaUsera extends TestBase{
 
     @Test(priority = 2,
             description = "as Admin Try Create New User",
@@ -16,9 +16,9 @@ public class WłączApiDlaUsera extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -26,10 +26,11 @@ public class WłączApiDlaUsera extends TestBase {
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
 
+
         configuration.clickLinkUserList();
         configuration.typeIntoUserSearchField("KarolN");
         configuration.selectNewUser();
-        configuration.switchOnApiAccessOnUser();
+        configuration.switchOnGuiAccessOnUser();
 
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);

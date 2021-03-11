@@ -13,7 +13,7 @@ public class addCertificates extends TestBase {
 
 
 
-    @Test(priority = 2,
+    @Test(priority = 3,
             description ="as Admin Try Add New Certificate",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
@@ -21,9 +21,9 @@ public class addCertificates extends TestBase {
     public void asAdminTryAddNewCertificate() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
-        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 

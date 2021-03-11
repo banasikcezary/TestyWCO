@@ -1,14 +1,13 @@
 package Tests;
 
 import PageObject.Configuration;
-import PageObject.Dialog;
 import PageObject.LoginPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class VipListaNagrywanieZKomunikatemVipListy  extends TestBase {
+public class WlaczPojedynczeNagrywanieDlaWewnetrznych extends TestBase{
 
     @Test(priority = 2,
             description = "as Admin Try Create New User",
@@ -27,15 +26,8 @@ public class VipListaNagrywanieZKomunikatemVipListy  extends TestBase {
         configuration.clickConfigurationLink();
 
 
-        configuration.clickOnFunctionalitySettings();
-        configuration.clickOnSettingsRec();
-        configuration.chooseSettingsVipList();
-        configuration.addNumberToVipList("48333444335");
-        configuration.setRecordingAndAnnouncementIvr();
+        configuration.switchOnSingleRecForInsideCalls();
 
-        configuration.clickSaveButton();
-        PageObject.Dialog dialog = new Dialog(driver);
-        dialog.confirmPopup();
 
     }
 }

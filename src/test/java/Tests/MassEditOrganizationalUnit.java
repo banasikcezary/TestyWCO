@@ -1,5 +1,6 @@
 package Tests;
 
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserList;
 import org.testng.annotations.Test;
@@ -14,9 +15,9 @@ public class MassEditOrganizationalUnit extends TestBase {
     public void asUserTryMassEditOrganizationalUnit() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
-        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Centralka123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -26,6 +27,12 @@ public class MassEditOrganizationalUnit extends TestBase {
         userList.clickOnEditOrganizationalUnit();
         userList.setValueForOrganizationUnitMassChange("Warszawa");
         userList.clickOnSaveBtn();
+
+        Dialog dialog=new Dialog(driver);
+        dialog.confirmPopup();
+
+        userList.validationValueMassChangeOrganizationalUnit();
+
 
 
     }

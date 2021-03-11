@@ -7,17 +7,17 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class WłączRodo extends TestBase{
+public class WlaczLogowanieZCertyfikatem extends TestBase {
 
-    @Test(priority = 2,
+    @Test(priority = 7,
             description = "as Admin Try Create New User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -26,7 +26,7 @@ public class WłączRodo extends TestBase{
         configuration.clickConfigurationLink();
 
 
-        configuration.switchOnRodo();
+        configuration.switchOnLoginWithCertificate();
 
 
     }

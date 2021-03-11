@@ -15,9 +15,9 @@ public class VipListaNagrywajZKomunikatem extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48918171385");
-        loginPage.typeIntoUsernameField("CRMNO5VWW56");
-        loginPage.typeIntoPasswordField("Orange12345!");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -29,7 +29,7 @@ public class VipListaNagrywajZKomunikatem extends TestBase {
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnSettingsRec();
         configuration.chooseSettingsVipList();
-        configuration.addNumberToVipList("48333444334");
+        configuration.addNumberToVipList("48333444332");
         configuration.setRecordingAndAnnouncement();
 
         configuration.clickSaveButton();

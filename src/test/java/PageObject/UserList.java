@@ -1,26 +1,21 @@
 package PageObject;
 
-import Tests.deleteRecording;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.ILoggerFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class UserList {
     @FindBy(id = "user_list_link")
     WebElement userListLink;
@@ -39,7 +34,8 @@ public class UserList {
     WebElement chooseFileButton;
     @FindBy(id = "send_button")
     WebElement sendFileButton;
-
+@FindBy(id = "yes_button")
+WebElement confirmButton;
     @FindBy(id = "visible_columns_button")
     WebElement visibleColumnsButton;
     @FindBy(id = "select_all_button")
@@ -53,6 +49,8 @@ public class UserList {
     WebElement btnEditRecDirectlyIncoming;
     @FindBy(id = "recOutgoing_edit_button")
     WebElement btnEditRecOutgoing;
+    @FindBy(id = "status_edit_button")
+    WebElement btnEditStatus;
     @FindBy(id = "canSwitchOffRecOutgoing_edit_button")
     WebElement btnEditSwitchOffRecOutgoing;
     @FindBy(id = "directIncomingCalls_edit_button")
@@ -76,6 +74,10 @@ public class UserList {
     WebElement changeValueFromNot;
     @FindBy(id = "change_to_option_Tak")
     WebElement changeValueToYes;
+    @FindBy(id = "change_from_option_Nieaktywny")
+    WebElement changeValueFromNotActive;
+    @FindBy(id = "change_to_option_Aktywny")
+    WebElement changeValueToActive;
     @FindBy(id = "save_button")
     WebElement btnSave;
 
@@ -91,64 +93,92 @@ public class UserList {
 
     @FindBy(xpath = "(//div[text()=\" BlackListaTest \"])")
     WebElement chooseBlackList;
+    @FindBy(xpath = "//*[contains(text(),'Czarna Lista')]")
+    WebElement chooseMassBlackList;
+    @FindBy(xpath = "//*[contains(text(),'Biała lista')]")
+    WebElement chooseMassWhiteList;
+    @FindBy(css = "[class*='userBlackLists ']>[mattooltipclass=\"multiline-tooltip\"]")
+    WebElement verifyMassBlackList;
+    @FindBy(css = "[class*='userWhiteLists ']>[mattooltipclass=\"multiline-tooltip\"]")
+    WebElement verifyMassWhiteList;
     @FindBy(xpath = "(//div[text()=\" WhiteListaTest \"])")
     WebElement chooseWhiteList;
-
+    @FindBy(css = "mat-row>[class*='description-cell d-flex justify-content-center mat-cell cdk-column-userStatus']")
+    private List<WebElement> checkMassStatus;
+    @FindBy(css = "mat-row>[class*='duration-cell d-flex justify-content-center mat-cell cdk-column-recordingDirectlyIncomingCalls']")
+    private List<WebElement> checkRecordingDirectlyIncomingCalls;
+    @FindBy(css = "mat-row>[class*='duration-cell d-flex justify-content-center mat-cell cdk-column-recordingOutgoingCalls']")
+    private List<WebElement> checkRecordingOutgoingCalls;
+    @FindBy(css = "duration-cell d-flex justify-content-center mat-cell cdk-column-canSwitchOffRecordingOutgoingCalls")
+    private List<WebElement> checkCanSwitchOffRecordingOutgoingCalls;
+    @FindBy(css = "duration-cell d-flex justify-content-center mat-cell cdk-column-directIncomingCalls")
+    private List<WebElement> checkDirectIncomingCalls;
+    @FindBy(css = "mat-row>[class*='duration-cell d-flex justify-content-center mat-cell cdk-column-organizationalUnit']")
+    private List<WebElement> checkOrganizationalUnit;
+    @FindBy(id = "refresh_button")
+    WebElement btnRefreshStatus;
 
 
     private WebDriver driver;
+
     public UserList(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
 
     }
+
     @Step("clickIntoUserListLink")
 
-    public void clickIntoUserListLink(){
+    public void clickIntoUserListLink() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(userListLink));
-        userListLink.click();}
+        userListLink.click();
+    }
+
     @Step("typeIntoSearchfield")
-    public void typeIntoSearchfield(String searchUser){
+    public void typeIntoSearchfield(String searchUser) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(searchField));
         searchField.clear();
         searchField.sendKeys(searchUser);
-    searchField.sendKeys(Keys.ENTER);}
+        searchField.sendKeys(Keys.ENTER);
+    }
+
     @Step("checkIfTheUserYouAreLookingForExists")
-    public void checkIfTheUserYouAreLookingForExists(String user){
+    public void checkIfTheUserYouAreLookingForExists(String user) {
         try {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
             assertEquals(checkList.getText(), user);
             System.out.println(checkList.getText());
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(checkList));
             assertTrue(checkList.getText().contains(user));
             System.out.println(checkList.getText());
         }
 
-        }
-    @Step("clickOnUser")
-    public void clickOnUser(){
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(checkList));
-            Actions action = new Actions(driver);
-            action.moveToElement(checkList).click().build().perform();
     }
+
+    @Step("clickOnUser")
+    public void clickOnUser() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(checkList));
+        Actions action = new Actions(driver);
+        action.moveToElement(checkList).click().build().perform();
+    }
+
     @Step("clickOnCheckboxUSR")
-    public void clickOnCheckboxUSR(){
+    public void clickOnCheckboxUSR() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(checkbox));
 
         checkbox.click();
     }
+
     @Step("clickOnButtonExportToCsv")
-    public void clickOnButtonExportToCsv(){
+    public void clickOnButtonExportToCsv() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(exportCsvButton));
 //        Actions action = new Actions(driver);
@@ -158,7 +188,7 @@ public class UserList {
 
     public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
         //
-        Logger logger = LoggerFactory.getLogger(deleteRecording.class);
+        //  Logger logger = LoggerFactory.getLogger(deleteRecording.class);
 
 
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
@@ -175,7 +205,8 @@ public class UserList {
             return false;
         });
     }
-    public void verifyDownloadFile(String downloadPath){
+
+    public void verifyDownloadFile(String downloadPath) {
 
 
         File folder = new File(downloadPath);
@@ -188,157 +219,164 @@ public class UserList {
             if (listOfFile.isFile()) {
                 String fileName = listOfFile.getName();
                 System.out.println("File " + listOfFile.getName());
-                String name="";
+                String name = "";
                 if (fileName.contains("fileName")) {
 
                     assertTrue(fileName.contains("fileName"));
 
-               listOfFile.delete();
+                    listOfFile.delete();
                 }
             }
         }
 
 
     }
+
     @Step("clickOnButtonImportCsv")
-    public void clickOnButtonImportCsv(){
+    public void clickOnButtonImportCsv() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(importCsv));
         importCsv.click();
     }
+
     @Step("clickOnButtonChooseFile")
-    public void clickOnButtonChooseFile(String lokalizacja){
+    public void clickOnButtonChooseFile(String lokalizacja) {
 
         chooseFileButton.sendKeys(lokalizacja);
     }
-    @Step("clickOnButtonSendFileToApp")
-    public void clickOnButtonSendFileToApp(){
 
-        try{
+    @Step("clickOnButtonSendFileToApp")
+    public void clickOnButtonSendFileToApp() {
+
+        try {
             Thread.sleep(5000);
-        }
-        catch(InterruptedException ie){
+        } catch (InterruptedException ie) {
         }
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(sendFileButton));
         sendFileButton.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(confirmButton));
+
+        confirmButton.click();
     }
 
 
-    public void selectAllColumns(){
+    public void selectAllColumns() {
+        Actions actions = new Actions(driver);
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
         visibleColumnsButton.click();
-
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(showAllColumns));
         showAllColumns.click();
 
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(confirmShowAllColumns));
         confirmShowAllColumns.click();
 
     }
 
-    public void clickOnButtonEditRecDirectlyIncoming(){
+    public void clickOnButtonEditRecDirectlyIncoming() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecDirectlyIncoming));
             btnEditRecDirectlyIncoming.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecDirectlyIncoming));
             btnEditRecDirectlyIncoming.click();
         }
     }
-    public void clickOnEditRecOutgoing(){
+
+    public void clickOnEditRecOutgoing() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecOutgoing));
             btnEditRecOutgoing.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditRecOutgoing));
             btnEditRecOutgoing.click();
         }
     }
-    public void clickOnEditSwitchOffRecOutgoing(){
+
+    public void clickOnEditStatus() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditStatus));
+            btnEditStatus.click();
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditStatus));
+            btnEditStatus.click();
+        }
+    }
+
+    public void clickOnEditSwitchOffRecOutgoing() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditSwitchOffRecOutgoing));
             btnEditSwitchOffRecOutgoing.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditSwitchOffRecOutgoing));
             btnEditSwitchOffRecOutgoing.click();
         }
     }
-    public void clickOnEditOppb(){
+
+    public void clickOnEditOppb() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOppb));
             btnEditOppb.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOppb));
             btnEditOppb.click();
         }
     }
-    public void clickOnEditOrganizationalUnit(){
+
+    public void clickOnEditOrganizationalUnit() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOrganizationalUnit));
             btnEditOrganizationalUnit.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditOrganizationalUnit));
             btnEditOrganizationalUnit.click();
         }
     }
-    public void clickOnEditBlackList(){
+
+    public void clickOnEditBlackList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
 
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditBlackList));
             btnEditBlackList.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditBlackList));
             btnEditBlackList.click();
         }
     }
-    public void clickOnEditWhiteList(){
+
+    public void clickOnEditWhiteList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
 
 
         try {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditWhiteList));
             btnEditWhiteList.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditWhiteList));
             btnEditWhiteList.click();
         }
     }
 
-    public void clickOn(){
+    public void clickOn() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(temat));
         temat.click();
-        try{
+        try {
             Thread.sleep(5000);
-        }
-        catch(InterruptedException ie){
+        } catch (InterruptedException ie) {
         }
     }
 
-    public void setValueFromNotToYesMassChange(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+    public void setValueFromNotToYesMassChange() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueFrom));
         changeValueFrom.click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueFromNot));
@@ -350,13 +388,349 @@ public class UserList {
         changeValueToYes.click();
 
     }
-    public void clickOnSaveBtn(){
+
+    public void setValueFromNotActiveToActiveMassChange() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueFrom));
+        changeValueFrom.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueFromNotActive));
+        changeValueFromNotActive.click();
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueTo));
+        changeValueTo.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(changeValueToActive));
+        changeValueToActive.click();
+
+    }
+
+    public void validationValueMassChangeOrganizationalUnit() {
+        driver.navigate().refresh();
+
+        validationValueFromActiveToNotActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[16]")));
+        for (int i = 1; i <= checkOrganizationalUnit.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[16]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[16]"));
+            String status = element.getText();
+            System.out.println(i);
+
+            switch (status) {
+                case "Warszawa":
+                    System.out.println("Status został zmianiony poprawnie");
+                    break;
+                case "empty":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[16]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[16]"));
+                    String status1 = element1.getText();
+                    if (status1.equals("Warszawa")) {
+                        System.out.println("Udało się");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "Warszawa");
+                    }
+            }
+
+        }
+
+
+    }
+
+    public void validationValueFromNotToYesMassChangeDirectIncomingCalls() {
+        driver.navigate().refresh();
+
+        validationValueFromActiveToNotActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[15]")));
+        for (int i = 1; i <= checkDirectIncomingCalls.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]"));
+            String status = element.getText();
+            System.out.println(i);
+
+            switch (status) {
+                case "Tak":
+                    System.out.println("Status został zmianiony poprawnie");
+                    break;
+                case "Nie":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]"));
+                    String status1 = element1.getText();
+                    if (status1.equals("Tak")) {
+                        System.out.println("Udało się");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "Tak");
+                    }
+            }
+
+        }
+    }
+
+
+    public void validationValueFromNotToYesMassChangeCanSwitchOffRecordingOutgoingCalls() {
+        driver.navigate().refresh();
+
+        validationValueFromActiveToNotActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[14]")));
+
+        for (int i = 1; i <= checkCanSwitchOffRecordingOutgoingCalls.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[14]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[14]"));
+            String status = element.getText();
+            System.out.println(i);
+
+
+            switch (status) {
+                case "Tak":
+                    System.out.println("Status został zmianiony poprawnie");
+                    break;
+                case "Nie":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[14]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[14]"));
+                    String status1 = element1.getText();
+                    if (status1.equals("Tak")) {
+                        System.out.println("Udało się");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "Tak");
+                    }
+            }
+
+        }
+
+
+    }
+
+    public void validationValueFromNotToYesMassChangeRecordingOutgoingCalls() {
+        driver.navigate().refresh();
+
+        validationValueFromActiveToNotActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[13]")));
+        for (int i = 1; i <= checkRecordingOutgoingCalls.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]"));
+            String status = element.getText();
+            System.out.println(i);
+
+
+            switch (status) {
+                case "Tak":
+                    System.out.println("Status został zmianiony poprawnie");
+                    break;
+                case "Nie":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]"));
+                    String status1 = element1.getText();
+                    if (status1.equals("Tak")) {
+                        System.out.println("Udało się");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "Tak");
+                    }
+            }
+
+        }
+
+
+    }
+
+    public void validationValueFromNotToYesMassChangeRecordingDirectlyIncomingCalls() {
+        driver.navigate().refresh();
+
+        validationValueFromActiveToNotActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[12]")));
+
+        for (int i = 1; i <= checkRecordingDirectlyIncomingCalls.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]"));
+            String status = element.getText();
+            System.out.println(i);
+
+            switch (status) {
+                case "Tak":
+                    System.out.println("Status został zmianiony poprawnie");
+                    break;
+                case "Nie":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]"));
+                    String status1 = element1.getText();
+
+                    if (status1.equals("Tak")) {
+                        System.out.println("Udało się");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "Tak");
+                    }
+            }
+
+
+        }
+    }
+    public void validationLoginAfterImportCsv() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]"));
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]")));
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='user2']")));
+
+        for (int i = 1; i <= login.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+            String status = element.getText();
+            System.out.println(i);
+
+            switch (status) {
+                case "user2":
+                    System.out.println("Import został wykonany poprawnie");
+                    System.out.println("----------------------------------------------");
+                    break;
+                case "":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+                    String status1 = element1.getText();
+
+                    if (status1.equals("user2")) {
+                        System.out.println("Import został wykonany poprawnie");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "user2");
+                    }
+            }
+
+
+        }
+    }
+
+    public void validationValueFromActiveToNotActiveMassChange() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+
+
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]"));
+        for (int i = 1; i <= elements.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]"));
+            String status = element.getText();
+            System.out.println(i);
+            switch (status) {
+                case "A":
+                    System.out.println("Status został zmianiony poprawnie");
+                    System.out.println("----------------------------------------------");
+
+                    break;
+                case "N":
+                    throw new IllegalArgumentException("Wystąpił błąd podczas masowej zmiany, status nie został zmieniony");
+                case "WTZ":
+
+                    String value;
+                    int numberValue = 0;
+                    do {
+
+                        driver.navigate().refresh();
+
+                        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+                        List<WebElement> elements2 = driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]"));
+                        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]")));
+
+                        WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]"));
+                        value = element1.getText();
+                        System.out.println(value);
+
+                        numberValue++;
+                        System.out.println(numberValue);
+                    } while (value.equals("WTZ") && numberValue < 60);
+
+                    if (value.equals("A")) {
+                        System.out.println("Status został zmianiony poprawnie");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(value, "A");
+                    }
+
+                    break;
+                case "B":
+                    throw new IllegalArgumentException("Wystąpił błąd podczas masowej zmiany");
+                default: {
+                    throw new IllegalArgumentException("Wystąpił błąd podczas masowej zmiany");
+
+                }
+
+
+            }
+        }
+    }
+
+
+    public void validationImportUser() {
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]"));
+
+        assertEquals(2, elements.size());
+
+    }
+
+    public int validationImportNewUser() {
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]"));
+
+        return elements.size();
+    }
+
+
+    public void clickOnSaveBtn() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSave));
         btnSave.click();
     }
 
-    public void setValueForOrganizationUnitMassChange(String value){
+    public void setValueForOrganizationUnitMassChange(String value) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(checkboxNewValue));
         checkboxNewValue.click();
@@ -365,23 +739,47 @@ public class UserList {
 
     }
 
-    public void addBlackListMassChange(){
+    public void addBlackListMassChange() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(massAddList));
-        Actions action=new Actions(driver);
+        Actions action = new Actions(driver);
         action.moveToElement(massAddList).click().build().perform();
         //massAddList.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseBlackList));
-        chooseBlackList.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseMassBlackList));
+        chooseMassBlackList.click();
 
     }
 
-    public void addWhiteListMassChange(){
+    public void verifyMassBlackList(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+     webDriverWait.until(ExpectedConditions.visibilityOf(verifyMassBlackList));
+       Actions actions=new Actions(driver);
+       actions.clickAndHold(verifyMassBlackList).build().perform();
+        String ToolTipText = driver.findElement(By.cssSelector("mat-tooltip-component>div")).getText();
+
+        System.out.println(ToolTipText);
+
+        assertTrue(ToolTipText.contains("Czarna Lista")
+);
+    }
+    public void verifyMassWhiteList(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(verifyMassWhiteList));
+        Actions actions=new Actions(driver);
+        actions.clickAndHold(verifyMassWhiteList).build().perform();
+        String ToolTipText = driver.findElement(By.cssSelector("mat-tooltip-component>div")).getText();
+
+        System.out.println(ToolTipText);
+
+        assertTrue(ToolTipText.contains("Biała lista")
+        );
+    }
+    public void addWhiteListMassChange() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(massAddList));
         massAddList.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseWhiteList));
-        chooseWhiteList.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseMassWhiteList));
+        chooseMassWhiteList.click();
 
     }
 

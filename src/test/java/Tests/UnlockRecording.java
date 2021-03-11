@@ -9,16 +9,16 @@ import java.awt.*;
 
 public class UnlockRecording extends TestBase {
 
-    @Test(priority = 3,
+    @Test(priority = 4,
             description = "as Admin Try Delete Privilege From Role",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
     public void asAdminTryDownloadRecording() throws AWTException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("CRM8DLP5JDR");
-        loginPage.typeIntoPasswordField("1234qwert");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("UserTest");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 

@@ -17,8 +17,8 @@ public class DeleteLastReport extends TestBase {
 
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48517583010");
-        loginPage.typeIntoUsernameField("TestyQA");
+        loginPage.typeIntoPhoneNumberField("+48690408932");
+        loginPage.typeIntoUsernameField("UserTest");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -29,6 +29,7 @@ public class DeleteLastReport extends TestBase {
         report.deleteLastReport();
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();
+        dialog.confirmPopup();
 
         report.validateQuantityReportAfter(quantity);
     }

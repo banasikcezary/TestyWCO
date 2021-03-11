@@ -43,8 +43,8 @@ public class GroupPage {
     WebElement editGroupButton;
     @FindBy(xpath = "(//p[contains(@id,'role_')])[last()]")
     WebElement checkRoleInGroup;
-    @FindBy(xpath = "(//button[contains(@id,'_list_element')])[last()]")
-    WebElement checkAddNewGroup;
+    @FindBy(xpath = "(//button[contains(@id,'_list_element')])")
+    private List<WebElement> checkAddNewGroup;
 
 
 
@@ -120,10 +120,10 @@ public class GroupPage {
 
     public void clickOnDeleteGroupButton(String groupName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(checkAddNewGroup));
 
 
-        String result = checkAddNewGroup.getText();
+        String result = checkAddNewGroup.get(0).getText();
 
 
         if (result.equals(groupName)) {
@@ -169,24 +169,21 @@ public class GroupPage {
     @Step("validateAddNewGroup")
     public void validateAddNewGroup(String groupName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
+        webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup.get(0)));
 
 
-        String result = checkAddNewGroup.getText();
+        String result = checkAddNewGroup.get(0).getText();
 
         assertEquals(result, groupName);
     }
 
 
     @Step("validateDeleteGroup")
-    public void validateDeleteGroup(String groupName) {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup));
+    public void validateDeleteGroup() {
+        driver.navigate().refresh();
+        clickOnGroupButton();
 
-        String result = checkAddNewGroup.getText();
-
-
-        assertNotEquals(result, groupName);
+        assertTrue(checkAddNewGroup.isEmpty());
     }
 
 }
