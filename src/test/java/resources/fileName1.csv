@@ -1,0 +1,2 @@
+userStatus,login,firstName,lastName,number,email,recordingDirectlyIncomingCalls,recordingOutgoingCalls,canSwitchOffRecordingOutgoingCalls,directIncomingCalls,serviceNumber,description,organizationalUnit,guiAccess,apiAccess
+0,user2,user,two,48690408930,,0,0,0,0,,,Warszawa,0,0
