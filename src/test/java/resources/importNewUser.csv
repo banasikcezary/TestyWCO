@@ -1,0 +1,2 @@
+userStatus,login,firstName,lastName,number,email,recordingDirectlyIncomingCalls,recordingOutgoingCalls,canSwitchOffRecordingOutgoingCalls,directIncomingCalls,serviceNumber,description,organizationalUnit,guiAccess,apiAccess
+0,user3,user,three,,,0,0,0,0,,,Kielce,0,0
