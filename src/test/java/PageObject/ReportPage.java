@@ -44,6 +44,7 @@ public class ReportPage {
     WebElement endReportDateForCyclical;
     @FindBy(xpath = "//*[@id=\"collapseCyclicReport\"]/form/button")
     WebElement generateCyclicalReport;
+
 ////////////////////////////////////////////////////////////////////
     @FindBy(id = "report5_user_selection")
     WebElement selectionUser5;
@@ -81,6 +82,22 @@ public class ReportPage {
     WebElement endReportDate5;
     @FindBy(id = "report_5_generate_report_button")
     WebElement generate5;
+
+    @FindBy(id ="report_5_cyclic_checkbox")
+    WebElement cbxExtensionsNumberAndTransfersReportCyclic;
+
+    @FindBy(id = "report_5_add_all_button")
+    WebElement btnAddAllUsers;
+    ////////////////////////////////////////Raporty cykliczne ///////////////////////
+    @FindBy(css = "[formcontrolname=\"intervalValue\"]")
+    WebElement txtValueIntervalGenerate;
+    @FindBy(css = "[formcontrolname=\"periodValue\"]")
+    WebElement txtValuePeriodReport;
+    @FindBy(id = "cyclicReportInstance")
+    WebElement lnkInstanceCyclicalReport;
+    @FindBy(css = "[class=\"element-row mat-row ng-star-inserted\"]:first-of-type [class*=description]:nth-of-type(2)")
+    WebElement checkLastInstanceCyclicalReport;
+
     //////////////// nagrania raporty//////////
     @FindBy(id = "report10")
     WebElement recordedCallsReport;
@@ -91,7 +108,8 @@ public class ReportPage {
     @FindBy(id = "report_10_generate_report_button")
     WebElement generate10;
 
-
+@FindBy(id = "report_10_cyclic_checkbox")
+WebElement recordedCallsReportCyclic;
     ////////////////////// nagrania szczegółowo /////////////
     @FindBy(id = "report11")
     WebElement recordedCallsDetailsReport;
@@ -101,6 +119,9 @@ public class ReportPage {
     WebElement endReportDate11;
     @FindBy(id = "report_11_generate_report_button")
     WebElement generate11;
+
+    @FindBy(id = "report_11_cyclic_checkbox")
+    WebElement recordedCallsDetailsReportCyclic;
 
     ///////////////////// Pobrane pliki ////////////////
     @FindBy(id = "report12")
@@ -113,7 +134,11 @@ public class ReportPage {
     @FindBy(id = "report_12_generate_report_button")
     WebElement generate12;
 
+@FindBy(id = "report_12_cyclic_checkbox")
+WebElement fileReportCyclic;
 
+@FindBy(id = "report_12_add_all_button")
+WebElement btnAddAllAdmin;
     ////////////////// logi audytowe ////////////////
 
     @FindBy(id = "report21")
@@ -126,6 +151,8 @@ public class ReportPage {
     @FindBy(id = "report_21_generate_report_button")
     WebElement generate21;
 
+    @FindBy(id = "report_21_config_sftp_connection_checkbox")
+    WebElement btnAuditLogsReportCyclic;
 
 //////////////////// logi szczegółowe /////////////
 
@@ -138,6 +165,9 @@ public class ReportPage {
     @FindBy(id = "report_22_generate_report_button")
     WebElement generate22;
 
+    @FindBy(id = "report_22_cyclic_checkbox")
+    WebElement btnAuditLogsPlusReportCyclic;
+
 /////////////////// funkcjonalności na userze ///////////////
 
     @FindBy(id = "report23")
@@ -149,6 +179,11 @@ public class ReportPage {
     @FindBy(id = "report_23_generate_report_button")
     WebElement generate23;
 
+    @FindBy(id = "report_23_cyclic_checkbox")
+    WebElement btnFunctionalityOnUsersReportCyclic;
+
+    @FindBy(id = "report_23_add_all_button")
+    WebElement btnAddAllUserFunctionalityReport;
     /////////////// wywołania API /////////////////
 
 
@@ -291,6 +326,55 @@ public class ReportPage {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(extensionsNumberAndTransfersReport));
         extensionsNumberAndTransfersReport.click();
     }
+    public void clickOnExtensionsNumberAndTransfersReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxExtensionsNumberAndTransfersReportCyclic));
+        cbxExtensionsNumberAndTransfersReportCyclic.click();
+    }
+    public void clickOnRecordedCallsReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(recordedCallsReportCyclic));
+        recordedCallsReportCyclic.click();
+    }
+
+    public void clickOnRecordedCallsDetailsReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(recordedCallsDetailsReportCyclic));
+        recordedCallsDetailsReportCyclic.click();
+    }
+
+    public void clickOnFileReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(fileReportCyclic));
+        fileReportCyclic.click();
+    }
+    public void chooseAllAdmin(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnAddAllAdmin));
+        btnAddAllAdmin.click();
+    }
+
+    public void clickOnAuditLogsReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnAuditLogsReportCyclic));
+        btnAuditLogsReportCyclic.click();
+    }
+    public void clickOnAuditLogsPlusReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnAuditLogsPlusReportCyclic));
+        btnAuditLogsPlusReportCyclic.click();
+    }
+    public void clickOnFunctionalityOnUsersReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnFunctionalityOnUsersReportCyclic));
+        btnFunctionalityOnUsersReportCyclic.click();
+    }
+    public void chooseAllUserForFunctionalityOnUsersReportCyclic(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnAddAllUserFunctionalityReport));
+        btnAddAllUserFunctionalityReport.click();
+    }
+
 
     @Step("typeInStartReportDateForExtensionsNumberAndTransfersField")
     public void typeInStartReportDateForExtensionsNumberAndTransfersField() {
@@ -320,12 +404,18 @@ public class ReportPage {
         driver.findElement(By.xpath("//html")).click();
 
     }
+    public void chooseAllUser5(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnAddAllUsers));
+        btnAddAllUsers.click();
+    }
 
     @Step("typeInStartReportDateForExtensionsNumberAndTransfersField")
     public void clickInGenerateExtensionsNumberAndTransfers() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(generate5));
         generate5.click();
+
     }
     ///////////////////// Nagrania   ///////////
 
@@ -646,6 +736,35 @@ public class ReportPage {
         btnDeleteLastRaport.click();
     }
 
+    public void chooseValueCyclicalReport(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(txtValueIntervalGenerate));
+        txtValueIntervalGenerate.clear();
+        txtValueIntervalGenerate.sendKeys("1");
+        webDriverWait.until(ExpectedConditions.visibilityOf(txtValuePeriodReport));
+
+        txtValuePeriodReport.clear();
+        txtValuePeriodReport.sendKeys("1");
+
+
+    }
+    public void checkGenerateCyclicReport(String newReportType) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkInstanceCyclicalReport));
+        lnkInstanceCyclicalReport.click();
+        webDriverWait.until(ExpectedConditions.visibilityOf(checkLastInstanceCyclicalReport));
+        String typeRaport = checkLastInstanceCyclicalReport.getText();
+        System.out.println(typeRaport);
+        if (typeRaport.equals(newReportType)) {
+            System.out.println("Instancja raportu została stworzona");
+        } else {
+            throw new IllegalArgumentException("Raport nie pojawił się na liście");
+        }
+    }
+
+
+
+
     public int validateQuantityReportBefore() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
@@ -679,6 +798,7 @@ public class ReportPage {
         assertNotEquals(beforeQuantity,after);
 
     }
+
 
     public void downloadLastReportPDF() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);

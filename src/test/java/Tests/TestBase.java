@@ -34,8 +34,8 @@ public class TestBase {
     public void beforeTest() throws IOException {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--headless");
         options.addArguments("--window-size=1920,1080");
 
 

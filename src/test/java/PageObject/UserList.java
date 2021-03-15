@@ -30,6 +30,8 @@ public class UserList {
     WebElement exportCsvButton;
     @FindBy(id = "import_csv_button")
     WebElement importCsv;
+    @FindBy(id = "new_import_csv_button")
+    WebElement importNewUserCsv;
     @FindBy(id = "file")
     WebElement chooseFileButton;
     @FindBy(id = "send_button")
@@ -239,6 +241,13 @@ WebElement confirmButton;
         importCsv.click();
     }
 
+    @Step("clickOnButtonImportCsv")
+    public void clickOnButtonImportNewUserCsv() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(importNewUserCsv));
+        importNewUserCsv.click();
+    }
+
     @Step("clickOnButtonChooseFile")
     public void clickOnButtonChooseFile(String lokalizacja) {
 
@@ -406,7 +415,7 @@ WebElement confirmButton;
     public void validationValueMassChangeOrganizationalUnit() {
         driver.navigate().refresh();
 
-        validationValueFromActiveToNotActiveMassChange();
+        validationValueFromNotActiveToActiveMassChange();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[16]")));
         for (int i = 1; i <= checkOrganizationalUnit.size(); i++) {
@@ -443,7 +452,7 @@ WebElement confirmButton;
     public void validationValueFromNotToYesMassChangeDirectIncomingCalls() {
         driver.navigate().refresh();
 
-        validationValueFromActiveToNotActiveMassChange();
+        validationValueFromNotActiveToActiveMassChange();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[15]")));
         for (int i = 1; i <= checkDirectIncomingCalls.size(); i++) {
@@ -479,7 +488,7 @@ WebElement confirmButton;
     public void validationValueFromNotToYesMassChangeCanSwitchOffRecordingOutgoingCalls() {
         driver.navigate().refresh();
 
-        validationValueFromActiveToNotActiveMassChange();
+        validationValueFromNotActiveToActiveMassChange();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[14]")));
 
@@ -518,7 +527,7 @@ WebElement confirmButton;
     public void validationValueFromNotToYesMassChangeRecordingOutgoingCalls() {
         driver.navigate().refresh();
 
-        validationValueFromActiveToNotActiveMassChange();
+        validationValueFromNotActiveToActiveMassChange();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[13]")));
         for (int i = 1; i <= checkRecordingOutgoingCalls.size(); i++) {
@@ -556,7 +565,7 @@ WebElement confirmButton;
     public void validationValueFromNotToYesMassChangeRecordingDirectlyIncomingCalls() {
         driver.navigate().refresh();
 
-        validationValueFromActiveToNotActiveMassChange();
+        validationValueFromNotActiveToActiveMassChange();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[12]")));
 
@@ -609,6 +618,7 @@ List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_ta
                     System.out.println("Import został wykonany poprawnie");
                     System.out.println("----------------------------------------------");
                     break;
+
                 case "":
                     driver.navigate().refresh();
                     webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
@@ -627,8 +637,45 @@ List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_ta
 
         }
     }
+    public void validationLoginAfterImportNewUserCsv() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]"));
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]")));
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='user3']")));
 
-    public void validationValueFromActiveToNotActiveMassChange() {
+        for (int i = login.size(); i <= login.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+            String status = element.getText();
+            System.out.println(i);
+
+            switch (status) {
+                case "user3":
+                    System.out.println("Import został wykonany poprawnie");
+                    System.out.println("----------------------------------------------");
+                    break;
+
+                case "":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+                    String status1 = element1.getText();
+
+                    if (status1.equals("user3")) {
+                        System.out.println("Import został wykonany poprawnie");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "user3");
+                    }
+            }
+
+
+        }
+    }
+    public void validationValueFromNotActiveToActiveMassChange() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
 
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));

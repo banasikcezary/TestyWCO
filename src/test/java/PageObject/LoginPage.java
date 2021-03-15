@@ -25,6 +25,18 @@ public class LoginPage {
     @FindBy(xpath = "/html/body/app-root/cookie-law/cookie-law-component/div/div/a")
     WebElement cooki;
 
+    @FindBy(id = "change_password")
+    WebElement lnkChangePass;
+    @FindBy(css = "[formcontrolname=\"old_password\"]")
+    WebElement txtOldPass;
+    @FindBy(css = "[formcontrolname=\"password\"]")
+    WebElement txtPass;
+    @FindBy(css = "[formcontrolname=\"password_repeat\"]")
+    WebElement txtRepeatPass;
+    @FindBy(id = "change_password_button")
+    WebElement btnChangePass;
+
+
     private WebDriver driver;
 
     public LoginPage(WebDriver driver) {
@@ -97,6 +109,38 @@ public class LoginPage {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(logoutButton));
             assertEquals(logoutButton.getText(), "Wyloguj");
         }
+
+public void changePasswordUser(String oldPassword, String password, String passwordRepeat){
+    WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+    webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkChangePass));
+    lnkChangePass.click();
+
+    webDriverWait.until(ExpectedConditions.visibilityOf(txtOldPass));
+    txtOldPass.clear();
+    txtOldPass.sendKeys(oldPassword);
+
+    webDriverWait.until(ExpectedConditions.visibilityOf(txtPass));
+    txtPass.clear();
+    txtPass.sendKeys(password);
+
+    webDriverWait.until(ExpectedConditions.visibilityOf(txtRepeatPass));
+    txtRepeatPass.clear();
+    txtRepeatPass.sendKeys(passwordRepeat);
+
+    webDriverWait.until(ExpectedConditions.elementToBeClickable(btnChangePass));
+    btnChangePass.click();
+
+}
+
+public void clickOnLogoutButton(){
+    WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+    webDriverWait.until(ExpectedConditions.elementToBeClickable(logoutButton));
+    Actions actions=new Actions(driver);
+    actions.moveToElement(logoutButton).click().build().perform();
+
+}
+
+
     @Step("checkNegativeLoginToApp")
 
         public void checkNegativeLoginToApp() {

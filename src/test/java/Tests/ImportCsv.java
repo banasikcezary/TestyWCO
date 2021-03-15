@@ -31,7 +31,7 @@ public class ImportCsv extends TestBase {
         Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
 
-        userList.validationValueFromActiveToNotActiveMassChange();
+        userList.validationValueFromNotActiveToActiveMassChange();
         userList.validationLoginAfterImportCsv();
 
 
