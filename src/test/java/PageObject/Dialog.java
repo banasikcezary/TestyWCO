@@ -32,7 +32,7 @@ WebElement confirmText;
 
 @FindBy(id = "sms")
 WebElement txtSms;
-@FindBy(css = "[type=\"submit\"]")
+@FindBy(css = "[role=\"dialog\"] button[type=\"submit\"]")
 WebElement btnSubmitSms;
 @FindBy(css = "p.ng-star-inserted")
 private WebElement warningMessageSms;
@@ -59,6 +59,7 @@ private WebElement warningMessageSms;
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(txtSms));
 
+        webDriverWait.until(ExpectedConditions.visibilityOf(btnSubmitSms));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSubmitSms));
         btnSubmitSms.click();
 
