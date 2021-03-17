@@ -80,6 +80,64 @@ public class UserAndPermissions {
 
     @FindBy(id = "clear_button")
     WebElement clearbutton;
+    @FindBy(id = "privileges")
+    WebElement lnkPrivileges;
+    ///////////////// SMS //////////
+    @FindBy(css = "#send_sms_1")
+    WebElement chooseSmsVerResetPassword;
+    @FindBy(css = "#send_sms_3")
+    WebElement chooseSmsVerMassChange;
+    @FindBy(css = "#send_sms_6")
+    WebElement chooseSmsVerListenRec;
+    @FindBy(css = "#send_sms_7")
+    WebElement chooseSmsVerDownloadRec;
+    @FindBy(css = "#send_sms_8")
+    WebElement chooseSmsVerDeleteRec;
+    @FindBy(id = "send_sms_11")
+    WebElement chooseSmsVerDownloadReport;
+    @FindBy(id = "send_sms_12")
+    WebElement chooseSmsVerDeleteReport;
+    @FindBy(id = "send_sms_13")
+    WebElement chooseSmsVerDeleteAuditReport;
+    @FindBy(id = "send_sms_16")
+    WebElement chooseSmsVerSaveGlobalParameter;
+    @FindBy(id = "send_sms_17")
+    WebElement chooseSmsVerSaveAndDeleteUser;
+    @FindBy(id = "send_sms_19")
+    WebElement chooseSmsVerOppb;
+    @FindBy(id = "send_sms_20")
+    WebElement chooseSmsVerGenerateKey;
+    @FindBy(id = "send_sms_21")
+    WebElement chooseSmsVerCreateWhiteAndBlackList;
+    @FindBy(id = "send_sms_22")
+    WebElement chooseSmsVerAddWhiteAndBlackListToUser;
+
+    @FindBy(id = "send_sms_25")
+    WebElement chooseSmsVerBuyFunctional;
+    @FindBy(id = "send_sms_29")
+    WebElement chooseSmsVerAddAndDeleteRoleWithGroup;
+    @FindBy(id = "send_sms_30")
+    WebElement chooseSmsVerPermissionConfiguration;
+
+    @FindBy(id = "send_sms_33")
+    WebElement chooseSmsVerAbilityToDisableRecording;
+
+    @FindBy(id = "send_sms_34")
+    WebElement chooseSmsVerRecIn;
+    @FindBy(id = "send_sms_35")
+    WebElement chooseSmsVerRecOut;
+
+    @FindBy(id = "send_sms_36")
+    WebElement chooseSmsVerUseTags;
+
+
+
+
+
+
+
+    @FindBy(css = "#reset_1")
+    WebElement btnResetPassword;
 
 
 
@@ -118,6 +176,211 @@ public class UserAndPermissions {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addUserButton));
 
         addUserButton.click();
+    }
+    public void clickOnLinkPrivilleges() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPrivileges));
+
+        lnkPrivileges.click();
+    }
+
+    public void clickOnSmsVerifyResetPassword() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerResetPassword));
+
+        chooseSmsVerResetPassword.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_1[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyMassChange() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerMassChange));
+
+        chooseSmsVerMassChange.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_3[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyListenRec() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerListenRec));
+
+        chooseSmsVerListenRec.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_6[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyDownloadRec() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDownloadRec));
+
+        chooseSmsVerDownloadRec.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_7[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyDeleteRec() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteRec));
+
+        chooseSmsVerDeleteRec.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_8[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyDownloadReport() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDownloadReport));
+
+        chooseSmsVerDownloadReport.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_11[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyDeleteReport() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteReport));
+
+        chooseSmsVerDeleteReport.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyDeleteAuditReport() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteAuditReport));
+
+        chooseSmsVerDeleteAuditReport.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_13[class*='mat-checkbox-checked']")));
+
+    }
+
+    public void clickOnSmsVerifySaveGlobalParameter() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerSaveGlobalParameter));
+
+        chooseSmsVerSaveGlobalParameter.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_16[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifySaveAndDeleteUser() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerSaveAndDeleteUser));
+
+        chooseSmsVerSaveAndDeleteUser.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_17[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyOppb() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerOppb));
+
+        chooseSmsVerOppb.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_19[class*='mat-checkbox-checked']")));
+
+    }
+
+    public void clickOnSmsVerifyGenerateKey() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerGenerateKey));
+
+        chooseSmsVerGenerateKey.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_20[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyCreateWhiteAndBlackList() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerCreateWhiteAndBlackList));
+
+        chooseSmsVerCreateWhiteAndBlackList.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_21[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyAddWhiteAndBlackListToUser() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddWhiteAndBlackListToUser));
+
+        chooseSmsVerAddWhiteAndBlackListToUser.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_22[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyBuyFunctional() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerBuyFunctional));
+
+        chooseSmsVerBuyFunctional.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_25[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyAddAndDeleteRoleWithGroup() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddAndDeleteRoleWithGroup));
+
+        chooseSmsVerAddAndDeleteRoleWithGroup.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_29[class*='mat-checkbox-checked']")));
+
+    }
+
+    public void clickOnSmsVerifyPermissionConfiguration() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerPermissionConfiguration));
+
+        chooseSmsVerPermissionConfiguration.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_30[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyAbilityToDisableRecording() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAbilityToDisableRecording));
+
+        chooseSmsVerAbilityToDisableRecording.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_33[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyRecIn() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerRecIn));
+
+        chooseSmsVerRecIn.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_34[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyRecOut() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerRecOut));
+
+        chooseSmsVerRecOut.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_35[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickOnSmsVerifyUseTags() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerUseTags));
+
+        chooseSmsVerUseTags.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_36[class*='mat-checkbox-checked']")));
+
+    }
+    public void clickResetPassword() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnResetPassword));
+        btnResetPassword.click();
+
     }
     @Step("clickOnClearButton")
     public void clickOnClearButton() {

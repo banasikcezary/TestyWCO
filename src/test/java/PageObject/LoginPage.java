@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
 
 public class LoginPage {
@@ -23,7 +25,7 @@ public class LoginPage {
     @FindBy(id = "logout_button")
     WebElement logoutButton;
     @FindBy(xpath = "/html/body/app-root/cookie-law/cookie-law-component/div/div/a")
-    WebElement cooki;
+    private List<WebElement> cooki;
 
     @FindBy(id = "change_password")
     WebElement lnkChangePass;
@@ -72,8 +74,12 @@ public class LoginPage {
         password.sendKeys(pass);
         System.out.println("pass");
 
-       webDriverWait.until(ExpectedConditions.elementToBeClickable(cooki));
-        cooki.click();
+        if(!cooki.isEmpty()) {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(cooki.get(0)));
+            cooki.get(0).click();
+        }else{
+            System.out.println("cooki not displayed");
+        }
     }
     @Step("typeIntoPasswordFieldFailed")
 
@@ -134,9 +140,11 @@ public void changePasswordUser(String oldPassword, String password, String passw
 
 public void clickOnLogoutButton(){
     WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+    webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
     webDriverWait.until(ExpectedConditions.elementToBeClickable(logoutButton));
     Actions actions=new Actions(driver);
-    actions.moveToElement(logoutButton).click().build().perform();
+    logoutButton.isDisplayed();
+    actions.moveToElement(logoutButton).doubleClick().build().perform();
 
 }
 

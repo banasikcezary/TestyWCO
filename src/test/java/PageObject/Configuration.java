@@ -309,7 +309,7 @@ public class Configuration {
     @FindBy(id = "can_tag_enabled")
     WebElement cbxTagEnabled;
 
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[3]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[4]")
     WebElement lnkOneTimeOffRecording;
     @FindBy(id = "enable_can_switch_off_recording_outgoing_calls")
     WebElement cbxOneTimeOffRecording;
@@ -336,7 +336,7 @@ public class Configuration {
     @FindBy(css = "#cdk-accordion-child-black_list mat-list-option")
     private List<WebElement> chooseLastBlackListUserWithList;
 
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[6]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[7]")
     WebElement lnkWhiteListUser;
     @FindBy(id = "select_whitelist")
     WebElement selectWhiteListUser;
@@ -525,6 +525,7 @@ WebElement inputWavPl;
 
     }
 
+
     @Step("typeIntoTxtLoginField")
     public void selectNewUser() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -708,7 +709,12 @@ WebElement inputWavPl;
         confirmText.isDisplayed();
         driver.findElement(By.xpath("//html")).click();
     }
+    public void clickOnButtonSaveBlackListSms() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSaveBlackList));
+        btnSaveBlackList.click();
 
+    }
     public void verifySaveBlackList() {
         driver.navigate().refresh();
         clickConfigurationLink();
@@ -1557,6 +1563,19 @@ WebElement inputWavPl;
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(chooseLastWhiteListUserWithList));
         String lastBlackList = chooseLastWhiteListUserWithList.get(0).getText();
         System.out.println(lastBlackList);
+    }
+    public void addWhiteListOnUserSmsValidation() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkWhiteListUser));
+        lnkWhiteListUser.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectWhiteListUser));
+        selectWhiteListUser.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseLastWhiteList));
+        chooseLastWhiteList.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnAddUserWhiteList));
+        btnAddUserWhiteList.click();
+
+
     }
 
     public void deleteWhiteListOnUser(String user) {

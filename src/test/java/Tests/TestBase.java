@@ -21,6 +21,9 @@ import testng.listeners.TestListener;
 import java.io.IOException;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -28,6 +31,32 @@ import java.util.logging.Level;
 @Listeners(TestListener.class)
 public class TestBase {
     public WebDriver driver;
+
+    // Connection object
+    static Connection con = null;
+    // Statement object
+    public static Statement stmt;
+    // Constant for Database URL
+    public static String DB_URL = "jdbc:mysql://localhost:8040";
+    // Constant for Database Username
+    public static String DB_USER = "root";
+    // Constant for Database Password
+    public static String DB_PASSWORD = "Bond007$";
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        try {
+            // Make the database connection
+            String dbClass = "com.mysql.jdbc.Driver";
+            Class.forName(dbClass).newInstance();
+            // Get connection to DB
+            Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            // Statement object to send the SQL statement to the Database
+            stmt = con.createStatement();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Step("Loading configuration from configuration.properties")
     @BeforeMethod(alwaysRun = true)
@@ -69,6 +98,14 @@ public class TestBase {
 
         System.out.println("Closing Browser");
 
+    }
+
+    @AfterMethod
+    public void tearDown() throws Exception {
+        // Close DB connection
+        if (con != null) {
+            con.close();
+        }
     }
 
 }

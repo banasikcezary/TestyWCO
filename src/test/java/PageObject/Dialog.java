@@ -1,6 +1,7 @@
 package PageObject;
 
 import io.qameta.allure.Step;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +30,12 @@ WebElement confirmGenerateKey;
 @FindBy(xpath = "(//mat-dialog-container[contains(@id,\"mat-dialog\")])")
 WebElement confirmText;
 
+@FindBy(id = "sms")
+WebElement txtSms;
+@FindBy(css = "[type=\"submit\"]")
+WebElement btnSubmitSms;
+@FindBy(css = "p.ng-star-inserted")
+private WebElement warningMessageSms;
 
     public WebDriver driver;
 
@@ -46,6 +53,29 @@ WebElement confirmText;
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(acceptPopupButton));
         acceptPopupButton.click();
+    }
+    public void confirmSms(String smsKey) {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(txtSms));
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSubmitSms));
+        btnSubmitSms.click();
+
+        webDriverWait.until(ExpectedConditions.visibilityOf(warningMessageSms));
+
+        if(warningMessageSms.isDisplayed()){
+            assertEquals(warningMessageSms.getText(),"Niepoprawny sms kod");
+
+        }else {
+            throw new IllegalArgumentException( "Nie znaleziono ostrzegającego komunikatu po wpisaniu niepoprawnej wartości");
+        }
+        txtSms.clear();
+        txtSms.sendKeys(smsKey);
+        btnSubmitSms.click();
+
+
+
     }
     public void confirmPopup(){
         Actions actions=new Actions(driver);
