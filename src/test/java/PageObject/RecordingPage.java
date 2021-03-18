@@ -34,7 +34,7 @@ public class RecordingPage {
     WebElement filter;
     @FindBy(xpath= "(//*[contains(@id,'_edit_tags')])[1]")
     WebElement editTags;
-    @FindBy(xpath = "(//*[contains(@class,'mat-checkbox-inner-container')])[last()]")
+    @FindBy(xpath = "(//mat-checkbox[contains(@id,'mat-checkbox')])[last()]")
     WebElement tagsField;
     @FindBy(id = "save_button")
     WebElement saveEditTagsButton;

@@ -30,6 +30,8 @@ public class Configuration {
     WebElement chkShowInGui;
     @FindBy(id = "save_button")
     WebElement btnSave;
+    @FindBy(xpath = "(//*[contains(@id,'mat-expansion-panel-header-')])[3]")
+    WebElement lnkGlobalParameter;
 
     @FindBy(id = "login_input")
     WebElement loginInput;
@@ -620,6 +622,12 @@ WebElement inputWavPl;
         webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteButton));
         deleteButton.click();
     }
+    public void clickOnGlobalParameter() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkGlobalParameter));
+        lnkGlobalParameter.click();
+    }
+
 
 
     public void clickOnFunctionalitySettings() {
@@ -1397,6 +1405,18 @@ WebElement inputWavPl;
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_rodo_checkbox[class*='mat-checkbox-checked']")));
 
     }
+    public void switchOnRodoSms() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxRodo));
+        cbxRodo.click();
+
+    }
+    public void verifyRodoSms() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_rodo_checkbox[class*='mat-checkbox-checked']")));
+
+    }
 
     public void switchOnSingleRecForInsideCalls() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -1405,7 +1425,18 @@ WebElement inputWavPl;
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_single_recording_checkbox[class*='mat-checkbox-checked']")));
 
     }
+    public void switchOnSingleRecForInsideCallsSms() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxSingleRec));
+        cbxSingleRec.click();
 
+    }
+    public void verifyRecForInsideCallsSms() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_single_recording_checkbox[class*='mat-checkbox-checked']")));
+
+
+    }
     public void switchOnBlockAutoDeleteReport() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxAutoDeleteReport));

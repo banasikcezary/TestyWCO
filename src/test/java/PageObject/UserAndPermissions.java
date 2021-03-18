@@ -337,7 +337,13 @@ public class UserAndPermissions {
 
         chooseSmsVerPermissionConfiguration.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_30[class*='mat-checkbox-checked']")));
+
+    }
+    public void SmsVerifyPermissionConfiguration() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_30[class*='mat-checkbox']")));
 
     }
     public void clickOnSmsVerifyAbilityToDisableRecording() {
