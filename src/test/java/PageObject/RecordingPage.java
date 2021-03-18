@@ -289,8 +289,6 @@ actions.moveToElement(tagsField).click().build().perform();
 
     }
     public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
-        //
-        Logger logger = LoggerFactory.getLogger(deleteRecording.class);
 
 
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
