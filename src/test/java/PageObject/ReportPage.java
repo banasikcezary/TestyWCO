@@ -1,6 +1,5 @@
 package PageObject;
 
-import Tests.deleteRecording;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -811,8 +810,6 @@ WebElement btnAddAllAdmin;
         btnDownloadCSVLastRaport.click();
     }
     public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
-        //
-        Logger logger = LoggerFactory.getLogger(deleteRecording.class);
 
 
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
