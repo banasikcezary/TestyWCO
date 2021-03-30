@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -199,6 +200,9 @@ WebElement confirmButton;
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
         wait.until((x) -> {
             File[] files = new File(downloadPath).listFiles();
+            if (Objects.isNull(files)) {
+                return false;
+            }
             for (File file : files) {
                 if (file.getName().contains(fileName)) {
                     return true;

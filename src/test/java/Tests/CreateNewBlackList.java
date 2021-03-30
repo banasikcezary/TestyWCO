@@ -23,27 +23,19 @@ public class CreateNewBlackList extends TestBase{
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
-
-
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnBlackListFunctionality();
         configuration.clickOnLastBlackList();
-
         configuration.completeNameAndDescription("BlackListaTest","DescBlackList");
         configuration.addNumberForBlackList("48333444333");
         configuration.clickOnButtonSaveBlackList();
-
-
-        configuration.verifySaveBlackList();
-
+        configuration.verifySaveBlackList("BlackListaTest");
 
         configuration.clickOnLinkActivationBlackList();
         configuration.clickOnActivationLastBlackList();
 
-
         configuration.verifyActivateBlacklist();
-
     }}
 

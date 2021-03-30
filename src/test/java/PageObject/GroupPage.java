@@ -3,12 +3,13 @@ package PageObject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
-        import org.openqa.selenium.support.FindBy;
-        import org.openqa.selenium.support.PageFactory;
-        import org.openqa.selenium.support.ui.ExpectedConditions;
-        import org.openqa.selenium.support.ui.Select;
-        import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.sql.SQLOutput;
 import java.util.List;
@@ -59,9 +60,13 @@ public class GroupPage {
     public void clickOnGroupButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(groupsButton));
-        groupsButton.click();}
-    @Step("clickOnAddGroupButton")
 
+        Actions actions = new Actions(driver);
+        actions.moveToElement(groupsButton).click().build().perform();
+        // groupsButton.click();
+    }
+
+    @Step("clickOnAddGroupButton")
     public void clickOnAddGroupButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addGroupButton));
@@ -98,7 +103,7 @@ public class GroupPage {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRole));
         chooseRole.click();
-       selectRole.click();}
+        selectRole.click();}
     @Step("clickAddRoleButton")
 
     public void clickAddRoleButton(){
@@ -110,10 +115,10 @@ public class GroupPage {
     public void clickDeleteRoleButton() {
 
 
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRoleButton));
-            deleteRoleButton.click();
-        }
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(deleteRoleButton));
+        deleteRoleButton.click();
+    }
 
 
     @Step("clickOnDeleteGroupButton")
@@ -123,7 +128,7 @@ public class GroupPage {
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(checkAddNewGroup));
 
 
-        String result = checkAddNewGroup.get(0).getText();
+        String result = checkAddNewGroup.get(checkAddNewGroup.size() - 1).getText();
 
 
         if (result.equals(groupName)) {
@@ -170,20 +175,21 @@ public class GroupPage {
     public void validateAddNewGroup(String groupName) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(checkAddNewGroup.get(0)));
-
-
-        String result = checkAddNewGroup.get(0).getText();
-
-        assertEquals(result, groupName);
+        boolean flag = false;
+        for (WebElement element : checkAddNewGroup) {
+            if (groupName.equals(element.getText())) {
+                flag = true;
+            }
+        }
+        assertTrue(flag);
     }
 
 
     @Step("validateDeleteGroup")
     public void validateDeleteGroup() {
-        driver.navigate().refresh();
         clickOnGroupButton();
 
-        assertTrue(checkAddNewGroup.isEmpty());
+        assertTrue(checkAddNewGroup.isEmpty() || !checkAddNewGroup.get(checkAddNewGroup.size() - 1).getText().equals("test123"));
     }
 
 }

@@ -21,13 +21,9 @@ public class WlaczRodo extends TestBase{
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
-
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
 
-
         configuration.switchOnRodo();
-
-
     }
 }

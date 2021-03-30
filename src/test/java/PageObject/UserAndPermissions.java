@@ -43,7 +43,7 @@ public class UserAndPermissions {
     WebElement searchUserField;
     @FindBy(id = "search_button")
     WebElement searchButton;
-    @FindBy(xpath = "(//button[text()=\"Pokaż role \"])[last()]")
+    @FindBy(id = "roles_0")
     WebElement showRoleButton;
     @FindBy(id = "add_assignment_button")
     WebElement addAssignmentButton;
@@ -157,7 +157,7 @@ public class UserAndPermissions {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(userAndPermission));
 //        Actions actions = new Actions(driver);
 //        actions.moveToElement(userAndPermission).click().build().perform();
-      //  userAndPermission.click();
+        //  userAndPermission.click();
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", userAndPermission);
 
     }
@@ -393,7 +393,9 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(clearbutton));
 
-        clearbutton.click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(clearbutton).click().build().perform();
+        // clearbutton.click();
     }
 
     @Step("typeIntoLoginField")
@@ -447,19 +449,11 @@ public class UserAndPermissions {
 
     @Step("assertUser")
     public void assertUser(String user) {
-
-
+        WebElement searched = driver.findElement(By.xpath("//p[contains(text(),'" + user + "')]"));
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(assertRoleName));
-
-
-
-        String name = assertRoleName.getText();
-
-
-            assertEquals(name, user);
-
-
+        webDriverWait.until(ExpectedConditions.visibilityOf(searched));
+        // String name = assertRoleName.getText();
+        // assertEquals(name, user);
     }
 
     @Step("assertDeleteUser")
@@ -486,37 +480,26 @@ public class UserAndPermissions {
 
     @Step("clickOnSearchButton")
     public void clickOnSearchButton(){
-          WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-          webDriverWait.until(ExpectedConditions.elementToBeClickable(searchButton));
-        searchButton.click();
-
-
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(searchButton));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(searchButton).click().build().perform();
     }
 
     @Step("clickOnShowRoleButton")
     public void clickOnShowRoleButton() {
-
-
-
-        try {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
-            showRoleButton.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
-            showRoleButton.click();
-        }
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(showRoleButton).click().build().perform();
     }
 
     @Step("clickOnAddAssignmentButton")
     public void clickOnAddAssignmentButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(addAssignmentButton));
-        addAssignmentButton.click();
-
+        Actions actions = new Actions(driver);
+        actions.moveToElement(addAssignmentButton).click().build().perform();
     }
 
     @Step("selectRole")
@@ -556,21 +539,10 @@ public class UserAndPermissions {
 
     @Step("clickIntoCertificateButton")
     public void clickIntoCertificateButton(){
-
-
-
-        try {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));
-            btnCertificate.click();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));
-            btnCertificate.click();
-        }
-
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(btnCertificate).click().build().perform();
     }
 
 
