@@ -67,7 +67,7 @@ public class Configuration {
     WebElement inputDescBlackList;
     @FindBy(xpath = "(//*[contains(@class,\"mat-checkbox-layout\")])[last()]")
     WebElement checkboxGlobalBlackList;
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[4]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[5]")
     WebElement lnkNumberBlackList;
     @FindBy(id = "add_number_input")
     WebElement inputAddNumberBlackList;
@@ -77,7 +77,7 @@ public class Configuration {
     WebElement btnSaveBlackList;
     @FindBy(id = "remove_blacklist_button")
     WebElement btnDeleteBlackList;
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[3]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[4]")
     WebElement lnkActivationBlackList;
     @FindBy(xpath = "(//*[contains(@class,\"mat-checkbox-inner-container mat-checkbox-inner-container-no-side-margin\")])[last()]")
     WebElement checkboxActivateLastBlackList;
@@ -107,7 +107,7 @@ public class Configuration {
     WebElement inputDescWhiteList;
     @FindBy(xpath = "(//*[contains(@class,\"mat-checkbox-layout\")])[last()]")
     WebElement checkboxGlobalWhiteList;
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[4]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[5]")
     WebElement lnkNumberWhiteList;
     @FindBy(id = "add_number_input")
     WebElement inputAddNumberBlackWhiteList;
@@ -117,7 +117,7 @@ public class Configuration {
     WebElement btnSaveWhiteList;
     @FindBy(id = "remove_whitelist_button")
     WebElement btnDeleteWhiteList;
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[3]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header-\")])[4]")
     WebElement lnkActivationWhiteList;
     @FindBy(xpath = "(//*[contains(@class,\"mat-checkbox-inner-container mat-checkbox-inner-container-no-side-margin\")])[last()]")
     WebElement checkboxActivateLastWhiteList;
@@ -284,7 +284,6 @@ public class Configuration {
 
     ///////////////////////// Ustawienia globalne
 
-
     @FindBy(id = "enable_rodo_checkbox")
     WebElement cbxRodo;
     @FindBy(id = "enable_single_recording_checkbox")
@@ -432,12 +431,12 @@ public class Configuration {
 
     @FindBy(css = "[formcontrolname=\"blockRedirectFromPhone\"]")
     WebElement cbxBlockRedirectFromPhone;
-///////////////////////////////////////////Komunikat spersonalizowany//////////////////////////////////////
+    ///////////////////////////////////////////Komunikat spersonalizowany//////////////////////////////////////
     @FindBy(css = "div.list-expansion-panel>mat-action-list>button:nth-of-type(2)")
     WebElement lnkPersonalizedMessage;
     @FindBy(css = "#message_type>div:first-of-type>mat-radio-button")
     WebElement rbtDefaultMessage;
-/////////////////////
+    /////////////////////
     ////////////////////
     ////////////////////////////
     ///////////////////////
@@ -448,10 +447,10 @@ public class Configuration {
     WebElement lnkMessageIncomingCalls;
     @FindBy(css = "#customMsgPanelInDirect mat-radio-button[value=\"NONE\"]")
     WebElement noMessageIncomingCalls;
-@FindBy(css = "#customMsgPanelInDirect mat-radio-button[value=\"TTS\"]")
-WebElement ttsIncomingCalls;
-@FindBy(id = "personalMsgTextPolishCustomInDirectMsg")
-WebElement txtTtsIncomingCalls;
+    @FindBy(css = "#customMsgPanelInDirect mat-radio-button[value=\"TTS\"]")
+    WebElement ttsIncomingCalls;
+    @FindBy(id = "personalMsgTextPolishCustomInDirectMsg")
+    WebElement txtTtsIncomingCalls;
 
 
     @FindBy(css = "#customMsgPanelOut")
@@ -476,26 +475,26 @@ WebElement txtTtsIncomingCalls;
 
 
     ////////////////////////////////////////////////////
-@FindBy(css = "mat-slide-toggle[id*=\"mat-slide-toggle\"]")
-WebElement messageConfigurationForUser;
-@FindBy(css = "[role=\"combobox\"]")
-WebElement chooseUserList;
-@FindBy(css = "[role=\"listbox\"]>mat-option:last-of-type")
-WebElement selectLastUser;
-@FindBy(css = "[id=\"message_type\"]>div:last-of-type>mat-radio-button")
-WebElement rbtPersonalizedMessageUser;
+    @FindBy(css = "mat-slide-toggle[id*=\"mat-slide-toggle\"]")
+    WebElement messageConfigurationForUser;
+    @FindBy(css = "[role=\"combobox\"]")
+    WebElement chooseUserList;
+    @FindBy(css = "[role=\"listbox\"]>mat-option:last-of-type")
+    WebElement selectLastUser;
+    @FindBy(css = "[id=\"message_type\"]>div:last-of-type>mat-radio-button")
+    WebElement rbtPersonalizedMessageUser;
 
-@FindBy(css = "[formcontrolname=\"languageCustomInDirectMsg\"]")
-WebElement chooseLanguagePersonalizedMessageIncoming;
+    @FindBy(css = "[formcontrolname=\"languageCustomInDirectMsg\"]")
+    WebElement chooseLanguagePersonalizedMessageIncoming;
     @FindBy(css = "[formcontrolname=\"languageCustomOutMsg\"]")
     WebElement chooseLanguagePersonalizedMessageOutgoing;
-@FindBy(css = "[role=\"option\"]:nth-of-type(3)")
-WebElement choosePLEng;
-@FindBy(id = "personalMsgTextEnglishCustomInDirectMsg")
-WebElement txtEnglishCustomInDirectMsg;
+    @FindBy(css = "[role=\"option\"]:nth-of-type(3)")
+    WebElement choosePLEng;
+    @FindBy(id = "personalMsgTextEnglishCustomInDirectMsg")
+    WebElement txtEnglishCustomInDirectMsg;
 
-@FindBy(xpath = "(//input[@type=\"file\"])[1]")
-WebElement inputWavPl;
+    @FindBy(xpath = "(//input[@type=\"file\"])[1]")
+    WebElement inputWavPl;
     @FindBy(xpath = "(//input[@type=\"file\"])[2]")
     WebElement inputWavEng;
 
@@ -523,7 +522,7 @@ WebElement inputWavPl;
     public void clickLinkUserList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkUserList));
-      lnkUserList.click();
+        lnkUserList.click();
 
     }
 
@@ -641,7 +640,8 @@ WebElement inputWavPl;
     public void clickOnBlackListFunctionality() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkBlackList));
-        lnkBlackList.click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(lnkBlackList).click().build().perform();
     }
 
     public void clickOnLastBlackList() {
@@ -723,28 +723,22 @@ WebElement inputWavPl;
         btnSaveBlackList.click();
 
     }
-    public void verifySaveBlackList() {
-        driver.navigate().refresh();
-        clickConfigurationLink();
-        clickOnFunctionalitySettings();
+    public void verifySaveBlackList(String blacklist) {
+        clickOnWhiteListFunctionality();
+        clickOnWhiteListFunctionality();
         clickOnBlackListFunctionality();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkBlackListLast));
-
-        assertEquals(lnkBlackListLast.getText(), "BlackListaTest");
-
+        assertEquals(lnkBlackListLast.getText(), blacklist);
     }
 
-    public void verifySaveWhiteList() {
-
-        driver.navigate().refresh();
-        clickConfigurationLink();
-        clickOnFunctionalitySettings();
+    public void verifySaveWhiteList(String whitelist) {
+        clickOnBlackListFunctionality();
+        clickOnBlackListFunctionality();
         clickOnWhiteListFunctionality();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkWhiteListLast));
-        assertEquals(lnkWhiteListLast.getText(), "WhiteListaTest");
-
+        assertEquals(lnkWhiteListLast.getText(), whitelist);
     }
 
     public void verifyActivateGlobalBlacklist() {
@@ -801,7 +795,8 @@ WebElement inputWavPl;
     public void clickOnWhiteListFunctionality() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkWhiteList));
-        lnkWhiteList.click();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(lnkWhiteList).click().build().perform();
     }
 
     public void clickOnLastWhiteList() {
@@ -1399,12 +1394,13 @@ WebElement inputWavPl;
     }
 
     public void switchOnRodo() {
+        clickOnGlobalParameter();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxRodo));
         cbxRodo.click();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_rodo_checkbox[class*='mat-checkbox-checked']")));
-
     }
+
     public void switchOnRodoSms() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxRodo));
@@ -1438,22 +1434,21 @@ WebElement inputWavPl;
 
     }
     public void switchOnBlockAutoDeleteReport() {
+        clickOnGlobalParameter();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxAutoDeleteReport));
         cbxAutoDeleteReport.click();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#block_report_removal_checkbox[class*='mat-checkbox-checked']")));
-
-
     }
 
     public void switchOnLoginWithCertificate() {
+        clickOnGlobalParameter();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxLoggWithCert));
         cbxLoggWithCert.click();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnConfirmButton();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable__checkbox[class*='mat-checkbox-checked']")));
-
     }
 
     public void switchOnOppbOnUser() {
@@ -1586,9 +1581,9 @@ WebElement inputWavPl;
         btnAddUserWhiteList.click();
         Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
-       clickLinkUserList();
-       typeIntoUserSearchField(login);
-       selectNewUser();
+        clickLinkUserList();
+        typeIntoUserSearchField(login);
+        selectNewUser();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkWhiteListUser));
         lnkWhiteListUser.click();
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(chooseLastWhiteListUserWithList));
@@ -1815,38 +1810,38 @@ WebElement inputWavPl;
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[formcontrolname=\"communicateActiveCallEnd\"][class*='mat-checkbox-checked']")));
 
     }
-public void switchOnBlockRedirectFromPhone(){
-    WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkCallForwarding));
-    lnkCallForwarding.click();
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxBlockRedirectFromPhone));
-cbxBlockRedirectFromPhone.click();
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSaveForwarding));
-    btnSaveForwarding.click();
-}
+    public void switchOnBlockRedirectFromPhone(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkCallForwarding));
+        lnkCallForwarding.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxBlockRedirectFromPhone));
+        cbxBlockRedirectFromPhone.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSaveForwarding));
+        btnSaveForwarding.click();
+    }
 
-public void verifyBlockRedirectFromPhone(String user){
-   clickConfigurationLink();
-   clickLinkUserList();
-    typeIntoUserSearchField(user);
-    selectNewUser();
+    public void verifyBlockRedirectFromPhone(String user){
+        clickConfigurationLink();
+        clickLinkUserList();
+        typeIntoUserSearchField(user);
+        selectNewUser();
 
-    WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkCallForwarding));
-    lnkCallForwarding.click();
-    webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[formcontrolname=\"blockRedirectFromPhone\"][class*='mat-checkbox-checked']")));
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkCallForwarding));
+        lnkCallForwarding.click();
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[formcontrolname=\"blockRedirectFromPhone\"][class*='mat-checkbox-checked']")));
 
-}
+    }
 
 
-public void setDefaultMessage(){
-    WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPersonalizedMessage));
-    lnkPersonalizedMessage.click();
+    public void setDefaultMessage(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPersonalizedMessage));
+        lnkPersonalizedMessage.click();
 
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(rbtDefaultMessage));
-    rbtDefaultMessage.click();
-}
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(rbtDefaultMessage));
+        rbtDefaultMessage.click();
+    }
 
     public void verifyDefaultMessage(){
         clickOnFunctionalitySettings();
@@ -1959,46 +1954,46 @@ public void setDefaultMessage(){
 
     }
 
-public void setPersonalizedMessageForUserIncomingCalls(String ttsPl, String ttsEng){
-    WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPersonalizedMessage));
-    lnkPersonalizedMessage.click();
+    public void setPersonalizedMessageForUserIncomingCalls(String ttsPl, String ttsEng){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPersonalizedMessage));
+        lnkPersonalizedMessage.click();
 
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(messageConfigurationForUser));
-    messageConfigurationForUser.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(messageConfigurationForUser));
+        messageConfigurationForUser.click();
 
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseUserList));
-    chooseUserList.click();
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(selectLastUser));
-    selectLastUser.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseUserList));
+        chooseUserList.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectLastUser));
+        selectLastUser.click();
 
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(rbtPersonalizedMessageUser));
-    rbtPersonalizedMessageUser.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(rbtPersonalizedMessageUser));
+        rbtPersonalizedMessageUser.click();
 
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkMessageIncomingCalls));
-    lnkMessageIncomingCalls.click();
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseLanguagePersonalizedMessageIncoming));
-    chooseLanguagePersonalizedMessageIncoming.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkMessageIncomingCalls));
+        lnkMessageIncomingCalls.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseLanguagePersonalizedMessageIncoming));
+        chooseLanguagePersonalizedMessageIncoming.click();
 
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(choosePLEng));
-    choosePLEng.click();
-
-
-
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(ttsIncomingCalls));
-    ttsIncomingCalls.click();
-
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(txtTtsIncomingCalls));
-    txtTtsIncomingCalls.clear();
-    txtTtsIncomingCalls.sendKeys(ttsPl);
-    webDriverWait.until(ExpectedConditions.elementToBeClickable(txtEnglishCustomInDirectMsg));
-    txtEnglishCustomInDirectMsg.clear();
-    txtEnglishCustomInDirectMsg.sendKeys(ttsEng);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(choosePLEng));
+        choosePLEng.click();
 
 
-}
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(ttsIncomingCalls));
+        ttsIncomingCalls.click();
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(txtTtsIncomingCalls));
+        txtTtsIncomingCalls.clear();
+        txtTtsIncomingCalls.sendKeys(ttsPl);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(txtEnglishCustomInDirectMsg));
+        txtEnglishCustomInDirectMsg.clear();
+        txtEnglishCustomInDirectMsg.sendKeys(ttsEng);
+
+
+    }
     public void verifyPersonalizedMessageForUserIncomingCalls(){
-       clickOnFunctionalitySettings();
+        clickOnFunctionalitySettings();
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPersonalizedMessage));
@@ -2081,16 +2076,5 @@ public void setPersonalizedMessageForUserIncomingCalls(String ttsPl, String ttsE
         lnkMessageOutgoingCalls.click();
 
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#customMsgPanelOut mat-radio-button[value=\"FILE_WAV\"][class*='mat-radio-checked']")));
-
-
-
-
-
-
     }
-
-
-
-
-
 }

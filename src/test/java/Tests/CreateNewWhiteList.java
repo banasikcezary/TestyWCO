@@ -2,7 +2,6 @@ package Tests;
 
 import PageObject.Configuration;
 import PageObject.LoginPage;
-import PageObject.ShopPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -21,24 +20,19 @@ public class CreateNewWhiteList extends TestBase{
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
-
-
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnWhiteListFunctionality();
         configuration.clickOnLastWhiteList();
-        configuration.completeNameAndDescriptionWhiteList("WhiteListaTest","DescBlackList");
+        configuration.completeNameAndDescriptionWhiteList("WhiteListaTest","DescWhiteList");
         configuration.addNumberForWhiteList("48333444333");
         configuration.clickOnButtonSaveWhiteList();
-        configuration.verifySaveWhiteList();
-
+        configuration.verifySaveWhiteList("WhiteListaTest");
 
         configuration.clickOnLinkActivationWhiteList();
         configuration.clickOnActivationLastWhiteList();
 
         configuration.verifyActivateWhitelist();
-
-
     }
 }

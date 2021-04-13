@@ -1,19 +1,16 @@
 package Tests;
 
-import PageObject.Configuration;
 import PageObject.LoginPage;
+import PageObject.ShopPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-import java.awt.*;
-
-public class WlaczLogowanieZCertyfikatem extends TestBase {
-
-    @Test(priority = 7,
-            description = "as Admin Try Create New User",
+public class SellingWhiteListFromTheStore extends TestBase {
+    @Test(priority = 3,
+            description = "as User Try Sell Functionalities From The Store",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryCreateNewBlackList() throws AWTException {
+    public void asUserTrySellFunctionalitiesFromTheStore() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
         loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
@@ -21,9 +18,11 @@ public class WlaczLogowanieZCertyfikatem extends TestBase {
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
-        Configuration configuration = new Configuration(driver);
-        configuration.clickConfigurationLink();
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.clickOnShopTab();
+        shopPage.sellWhiteListFunctionalities();
+        shopPage.clickOnSaveChangeButton();
 
-        configuration.switchOnLoginWithCertificate();
+        shopPage.checkSavingConfirmationText();
     }
 }

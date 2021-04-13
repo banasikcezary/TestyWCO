@@ -34,10 +34,7 @@ public class createNewGroup extends TestBase {
         group.clickOnSaveNewGroupButton();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
-        dialog.refreshPage();
         group.clickOnGroupButton();
-
-
         group.validateAddNewGroup(grupa);
     }
 }
