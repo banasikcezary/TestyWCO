@@ -5,7 +5,7 @@ import PageObject.ReportPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class DownloadLastReportPdf extends TestBase{
+public class DownloadLastReportPdf extends TestBase {
 
     @Test(priority = 3,
             description = "as Admin Try Generate Report",

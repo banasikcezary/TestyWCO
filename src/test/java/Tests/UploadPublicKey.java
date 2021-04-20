@@ -8,7 +8,7 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class UploadPublicKey extends TestBase{
+public class UploadPublicKey extends TestBase {
 
     @Test(priority = 4,
             description = "as Admin Try Create New User",

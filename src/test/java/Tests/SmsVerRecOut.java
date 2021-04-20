@@ -1,7 +1,7 @@
 package Tests;
 
-import PageObject.*;
 import PageObject.Dialog;
+import PageObject.*;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 

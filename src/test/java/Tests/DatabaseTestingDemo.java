@@ -124,10 +124,13 @@
 
 package Tests;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
-public class DatabaseTestingDemo extends TestBase{
+public class DatabaseTestingDemo extends TestBase {
 
     public String test(String lastDate, String newDate) {
         try {

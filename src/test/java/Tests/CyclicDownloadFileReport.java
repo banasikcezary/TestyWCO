@@ -6,7 +6,7 @@ import PageObject.ReportPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class CyclicDownloadFileReport extends TestBase{
+public class CyclicDownloadFileReport extends TestBase {
 
     @Test(priority = 3,
             description = "as Admin Try Generate Report",

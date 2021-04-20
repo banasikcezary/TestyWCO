@@ -10,7 +10,7 @@ import testng.listeners.RetryAnalyzer;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 
-public class SmsVerAbilityToDisableRecording extends TestBase{
+public class SmsVerAbilityToDisableRecording extends TestBase {
 
     @Test(priority = 2,
             description = "as Admin Try Create New User",

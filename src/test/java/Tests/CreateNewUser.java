@@ -1,11 +1,7 @@
 package Tests;
 
-import PageObject.Configuration;
 import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.ShopPage;
-import PageObject.UserAndPermissions;
-import org.testng.annotations.Ignore;
+import PageObject.*;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 

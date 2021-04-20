@@ -1,6 +1,5 @@
 package Tests;
 
-import PageObject.Configuration;
 import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;

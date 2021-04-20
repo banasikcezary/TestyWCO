@@ -8,7 +8,7 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class NotAvailableCallForwardingTts extends TestBase{
+public class NotAvailableCallForwardingTts extends TestBase {
 
     @Test(priority = 3,
             description = "as Admin Try Create New User",

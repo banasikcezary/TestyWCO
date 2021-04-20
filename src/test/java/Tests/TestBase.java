@@ -1,14 +1,8 @@
 package Tests;
 
-
 import io.qameta.allure.Step;
-
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
@@ -19,14 +13,12 @@ import org.testng.annotations.Listeners;
 import testng.listeners.TestListener;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 
 @Listeners(TestListener.class)
 public class TestBase {

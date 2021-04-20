@@ -2,12 +2,10 @@ package Tests;
 
 import PageObject.LoginPage;
 import PageObject.UserList;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class CsvExport extends TestBase {
 

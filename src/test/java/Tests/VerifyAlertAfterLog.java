@@ -5,7 +5,7 @@ import PageObject.LoginPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class VerifyAlertAfterLog extends TestBase{
+public class VerifyAlertAfterLog extends TestBase {
 
 
     @Test(priority = 1,

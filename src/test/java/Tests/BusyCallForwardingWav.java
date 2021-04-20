@@ -8,7 +8,7 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class BusyCallForwardingWav extends TestBase{
+public class BusyCallForwardingWav extends TestBase {
 
 
     @Test(priority = 3,

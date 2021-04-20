@@ -5,7 +5,7 @@ import PageObject.LoginPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class ActivateGlobalWhiteList extends TestBase{
+public class ActivateGlobalWhiteList extends TestBase {
 
 
     @Test(priority = 3,

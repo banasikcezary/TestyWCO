@@ -3,7 +3,6 @@ package Tests;
 import PageObject.Configuration;
 import PageObject.Dialog;
 import PageObject.LoginPage;
-import PageObject.ShopPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 

@@ -7,7 +7,7 @@ import PageObject.UserList;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class MassEditRecOutgoing extends TestBase{
+public class MassEditRecOutgoing extends TestBase {
 
     @Test(priority = 2,
             description = "as User Try Search User On The List",
@@ -31,7 +31,7 @@ public class MassEditRecOutgoing extends TestBase{
         Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
 
-userList.validationValueFromNotToYesMassChangeRecordingOutgoingCalls();
+        userList.validationValueFromNotToYesMassChangeRecordingOutgoingCalls();
 
 
     }

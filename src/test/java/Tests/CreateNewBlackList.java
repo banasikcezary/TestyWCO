@@ -2,13 +2,10 @@ package Tests;
 
 import PageObject.Configuration;
 import PageObject.LoginPage;
-import PageObject.ShopPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-import java.awt.*;
-
-public class CreateNewBlackList extends TestBase{
+public class CreateNewBlackList extends TestBase {
 
 
     @Test(priority = 2,

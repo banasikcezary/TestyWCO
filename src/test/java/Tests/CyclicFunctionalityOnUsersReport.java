@@ -6,7 +6,7 @@ import PageObject.ReportPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class CyclicFunctionalityOnUsersReport extends TestBase{
+public class CyclicFunctionalityOnUsersReport extends TestBase {
 
     @Test(priority = 3,
             description = "as Admin Try Generate Report",
@@ -29,7 +29,7 @@ public class CyclicFunctionalityOnUsersReport extends TestBase{
         report.clickOnFunctionalityOnUsersReportCyclic();
         report.chooseValueCyclicalReport();
 
-report.chooseAllUserForFunctionalityOnUsersReportCyclic();
+        report.chooseAllUserForFunctionalityOnUsersReportCyclic();
 
         report.clickInGenerateFunctionalityOnUsers();
 

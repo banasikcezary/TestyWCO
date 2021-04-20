@@ -7,7 +7,7 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class LockRecording extends TestBase{
+public class LockRecording extends TestBase {
 
 
     @Test(priority = 3,

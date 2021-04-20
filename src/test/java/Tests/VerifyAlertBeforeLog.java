@@ -1,11 +1,10 @@
 package Tests;
 
 import PageObject.Dialog;
-import PageObject.LoginPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-public class VerifyAlertBeforeLog  extends TestBase{
+public class VerifyAlertBeforeLog  extends TestBase {
 
 
     @Test(priority = 1,
