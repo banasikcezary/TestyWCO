@@ -41,7 +41,7 @@ public class CreateNewUser extends TestBase {
 
         configuration.typeIntoFirstNameField("Karol");
         configuration.typeIntoLastNameInputField("N");
-      //  configuration.typeIntoNumberInputField("48444555612");
+      //configuration.typeIntoNumberInputField("48690408930");
 
         configuration.typeIntoEmailInputField("now@o2.pl");
         configuration.clickSaveButton();

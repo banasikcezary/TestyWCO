@@ -103,6 +103,29 @@ private WebElement warningMessageSms;
 
     }
 
+    public void confirmPopupPasswordForUser(){
+        Actions actions=new Actions(driver);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        try {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
+            confirmText.isDisplayed();
+            System.out.println(confirmText.getText());
+            assertEquals(confirmText.getText(), "Hasło dla użytkownika zostało zmienione.");
+
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
+            confirmText.isDisplayed();
+            System.out.println(confirmText.getText());
+            assertEquals(confirmText.getText(), "Hasło dla użytkownika zostało zmienione.");
+
+
+        }
+
+    }
+
     public void refreshPage(){
         driver.navigate().refresh();
 

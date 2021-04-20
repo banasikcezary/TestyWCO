@@ -16,7 +16,6 @@ public class SmsVerMassChange extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -34,7 +33,7 @@ public class SmsVerMassChange extends TestBase {
 
         loginPage.clickOnLogoutButton();
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
+        loginPage.typeIntoUsernameField("KarolN");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -47,12 +46,6 @@ public class SmsVerMassChange extends TestBase {
         userList.clickOnEditStatus();
         userList.setValueFromNotActiveToActiveMassChange();
         userList.clickOnSaveBtn();
-
-
-
-
-
-
 
 
         PageObject.Dialog dialog=new Dialog(driver);
@@ -68,5 +61,9 @@ public class SmsVerMassChange extends TestBase {
         dialog.confirmPopup();
 
         userList.validationValueFromNotActiveToActiveMassChange();
+
+        user.clickOnUserAndPermissionButton();
+        user.clickOnLinkPrivilleges();
+        user.turnOffSmsVerifyMassChange();
     }
 }

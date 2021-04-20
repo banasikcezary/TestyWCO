@@ -4,6 +4,7 @@ import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.Roles;
 import PageObject.UserAndPermissions;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -17,10 +18,12 @@ public class deletePrivilegeFromRole extends TestBase {
             alwaysRun = true)
     public void asAdminTryDeletePrivilegeFromRole() throws AWTException {
 
+        driver.navigate().to("http://localhost:8075/superadmin/login");
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoUsernameField("superadminbs");
+        loginPage.typeIntoPasswordField("Super2020!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 

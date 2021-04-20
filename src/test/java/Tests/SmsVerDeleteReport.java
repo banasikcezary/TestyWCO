@@ -18,7 +18,6 @@ public class SmsVerDeleteReport extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -36,7 +35,7 @@ public class SmsVerDeleteReport extends TestBase {
 
         loginPage.clickOnLogoutButton();
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
+        loginPage.typeIntoUsernameField("KarolN");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -62,7 +61,7 @@ public class SmsVerDeleteReport extends TestBase {
         String lastDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis() + 600000L);
         System.out.println(lastDate);
         report.clickOnReportTab();
-        int quantity =report.validateQuantityReportBefore();
+        String quantity =report.validateQuantityReportBefore();
         report.deleteLastReport();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();
@@ -78,6 +77,12 @@ public class SmsVerDeleteReport extends TestBase {
         dialog.confirmPopup();
 
         report.validateQuantityReportAfter(quantity);
+
+
+
+        user.clickOnUserAndPermissionButton();
+        user.clickOnLinkPrivilleges();
+        user.turnOffSmsVerifyDeleteReport();
 
 
     }

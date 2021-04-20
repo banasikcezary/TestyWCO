@@ -25,14 +25,14 @@ public class WlaczApiDlaUsera extends TestBase {
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
-
         configuration.clickLinkUserList();
         configuration.typeIntoUserSearchField("KarolN");
         configuration.selectNewUser();
         configuration.switchOnApiAccessOnUser();
-
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
+
+        configuration.verifySwitchOnApi("KarolN");
     }
 }

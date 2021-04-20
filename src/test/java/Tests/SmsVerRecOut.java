@@ -1,9 +1,7 @@
 package Tests;
 
-import PageObject.Configuration;
+import PageObject.*;
 import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -18,13 +16,12 @@ public class SmsVerRecOut extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
         loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoPasswordField("Centralka123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -72,5 +69,19 @@ public class SmsVerRecOut extends TestBase {
 
         configuration.clickSaveButton();
         dialog.confirmPopup();
+
+        UserList userList=new UserList(driver);
+        userList.clickIntoUserListLink();
+        userList.validationValueWtzChange();
+
+        configuration.clickConfigurationLink();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField("KarolN");
+        configuration.selectNewUser();
+        configuration.verifySwitchOnRecOut();
+
+        user.clickOnUserAndPermissionButton();
+        user.clickOnLinkPrivilleges();
+        user.turnOffSmsVerifyRecOut();
     }
 }

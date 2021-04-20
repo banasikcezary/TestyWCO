@@ -16,13 +16,12 @@ public class SmsVerDeleteAuditReport extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
        LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+       loginPage.typeIntoPhoneNumberField("+48690408932");
+       loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+       loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -33,9 +32,9 @@ public class SmsVerDeleteAuditReport extends TestBase {
         user.clickOnSmsVerifyDeleteAuditReport();
 
         loginPage.clickOnLogoutButton();
-        loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
-        loginPage.typeIntoPasswordField("pass1");
+       loginPage.typeIntoPhoneNumberField("+48690408932");
+       loginPage.typeIntoUsernameField("KarolN");
+       loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -55,7 +54,7 @@ public class SmsVerDeleteAuditReport extends TestBase {
         String lastDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis() + 600000L);
         System.out.println(lastDate);
         report.clickOnReportTab();
-        int quantity =report.validateQuantityReportBefore();
+        String quantity =report.validateQuantityReportBefore();
         report.deleteLastReport();
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();
@@ -72,6 +71,8 @@ public class SmsVerDeleteAuditReport extends TestBase {
 
         report.validateQuantityReportAfter(quantity);
 
-
+       user.clickOnUserAndPermissionButton();
+       user.clickOnLinkPrivilleges();
+        user.turnOffSmsVerifyDeleteAuditReport();
     }
 }

@@ -764,36 +764,37 @@ WebElement btnAddAllAdmin;
 
 
 
-    public int validateQuantityReportBefore() {
+    public String validateQuantityReportBefore() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String quantity = validateQuantityReport.getText();
         System.out.println(quantity);
 
-        String firstqa=quantity.replace("1 – ","");
-        System.out.println(firstqa);
-
-        String numberReport=firstqa.replace(" of ","");
-        System.out.println(numberReport);
-
-        String finalNumberReport=numberReport.substring(2);
-        System.out.println(finalNumberReport);
-       // String qua = quantity.replace("1 – "+finalNumberReport+" of ","");
-        int foo = Integer.parseInt(finalNumberReport);
-        System.out.println(foo);
-        return foo;
+//        String firstqa=quantity.replace("1 – ","");
+//        System.out.println(firstqa);
+//
+//        String numberReport=firstqa.replace(" of ","");
+//        System.out.println(numberReport);
+//
+//        String finalNumberReport=numberReport.substring(3);
+//        System.out.println(finalNumberReport);
+//       // String qua = quantity.replace("1 – "+finalNumberReport+" of ","");
+//        int foo = Integer.parseInt(finalNumberReport);
+//        System.out.println(foo);
+        return quantity;
     }
-    public void validateQuantityReportAfter(int beforeQuantity) {
+    public void validateQuantityReportAfter(String beforeQuantity) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
-        String quantity = validateQuantityReport.getText();
-        String firstqa=quantity.replace("1 – ","");
-        String numberReport=firstqa.replace(" of ","");
-        String finalNumberReport=numberReport.substring(2);
-
-        int foo = Integer.parseInt(finalNumberReport);
-        System.out.println(foo);
-        int after=foo;
+        String after = validateQuantityReport.getText();
+        System.out.println(after);
+//        String firstqa=quantity.replace("1 – ","");
+//        String numberReport=firstqa.replace(" of ","");
+//        String finalNumberReport=numberReport.substring(2);
+//
+//        int foo = Integer.parseInt(finalNumberReport);
+//        System.out.println(foo);
+//        int after=foo;
         assertNotEquals(beforeQuantity,after);
 
     }

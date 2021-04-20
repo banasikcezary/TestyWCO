@@ -18,7 +18,6 @@ public class SmsVerAbilityToDisableRecording extends TestBase{
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
 

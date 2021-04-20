@@ -1,6 +1,7 @@
 package Tests;
 
 import PageObject.Configuration;
+import PageObject.Dialog;
 import PageObject.LoginPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
@@ -29,6 +30,12 @@ public class UstawHasloDoKluczaDlaUsera extends TestBase{
         configuration.typeIntoUserSearchField("KarolN");
         configuration.selectNewUser();
         configuration.setPasswordForKeyOnUser("123456");
+
+        configuration.acceptPasswordToKeyForUser("123456");
+
+        Dialog dialog=new Dialog(driver);
+        dialog.confirmPopupPasswordForUser();
+
 
     }
 }

@@ -35,5 +35,7 @@ public class WlaczMozliwoscTagowaniaDlaUsera extends TestBase {
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
 
+        configuration.verifySwitchOnTagEnabled("KarolN");
+
     }
 }

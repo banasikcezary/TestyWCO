@@ -16,7 +16,6 @@ public class SmsVerGenerateKey extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -34,7 +33,7 @@ public class SmsVerGenerateKey extends TestBase {
 
         loginPage.clickOnLogoutButton();
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
+        loginPage.typeIntoUsernameField("KarolN");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -72,5 +71,10 @@ public class SmsVerGenerateKey extends TestBase {
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnSettingsRec();
         configuration.verifyGenerateInterlanKey();
+
+
+        user.clickOnUserAndPermissionButton();
+        user.clickOnLinkPrivilleges();
+        user.turnOffSmsVerifyGenerateKey();
     }
 }

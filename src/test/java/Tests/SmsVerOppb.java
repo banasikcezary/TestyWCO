@@ -16,7 +16,6 @@ public class SmsVerOppb extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -34,7 +33,7 @@ public class SmsVerOppb extends TestBase {
 
         loginPage.clickOnLogoutButton();
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
+        loginPage.typeIntoUsernameField("KarolN");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -70,5 +69,19 @@ public class SmsVerOppb extends TestBase {
 
         configuration.clickSaveButton();
         dialog.confirmPopup();
+
+        UserList userList=new UserList(driver);
+        userList.clickIntoUserListLink();
+        userList.validationValueWtzChange();
+
+        configuration.clickConfigurationLink();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField("KarolN");
+        configuration.selectNewUser();
+        configuration.verifySwitchOppbOnUser();
+
+        user.clickOnUserAndPermissionButton();
+        user.clickOnLinkPrivilleges();
+        user.turnOffSmsVerifyVerifyOppb();
     }
 }

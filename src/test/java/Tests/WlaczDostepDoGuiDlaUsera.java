@@ -25,15 +25,14 @@ public class WlaczDostepDoGuiDlaUsera extends TestBase{
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
-
-
         configuration.clickLinkUserList();
         configuration.typeIntoUserSearchField("KarolN");
         configuration.selectNewUser();
         configuration.switchOnGuiAccessOnUser();
-
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
+
+        configuration.verifySwitchOnGuiAccess("KarolN");
     }
 }

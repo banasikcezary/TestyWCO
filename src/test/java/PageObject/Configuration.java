@@ -145,6 +145,11 @@ public class Configuration {
     @FindBy(css = "[type='password']")
     WebElement txtPasswordKey;
 
+    @FindBy(css = "button[class*=\"mat-button\"]:nth-of-type(2)")
+    WebElement btnSavePassword;
+    @FindBy(css = "[class*=\"mat-dialog\"] [type=\"password\"]")
+    WebElement txtPasswordToKeyUser;
+
     ////// Klucz publiczny//////////////
     @FindBy(css = "#keygeneration_type>mat-radio-button:nth-of-type(2)>label")
     WebElement rbtPublicKey;
@@ -317,18 +322,20 @@ public class Configuration {
     @FindBy(id = "save_user_can_switch_off_recording_outgoing_calls_button")
     WebElement btnSaveOneTimeOffRecording;
 
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[4]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[5]")
     WebElement lnkPasswordKeyForUser;
     @FindBy(id = "passwordForUserPrivateKey")
     WebElement txtPasswordKeyForUser;
     @FindBy(id = "save_user_password_button")
     WebElement btnSavePasswordKeyForUser;
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[3]")
+    WebElement lnkGlobalSettings;
 
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[5]")
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[6]")
     WebElement lnkBlackListUser;
     @FindBy(id = "select_blacklist")
     WebElement selectBlackListUser;
-    @FindBy(css = "mat-option:last-of-type")
+    @FindBy(xpath = "(//span[contains(text(),'BlackListaTest')])[1]")
     WebElement chooseLastBlackList;
     @FindBy(id = "add_blacklist_button")
     WebElement btnAddUserBlackList;
@@ -341,7 +348,7 @@ public class Configuration {
     WebElement lnkWhiteListUser;
     @FindBy(id = "select_whitelist")
     WebElement selectWhiteListUser;
-    @FindBy(css = "mat-option:last-of-type")
+    @FindBy(xpath = "(//span[contains(text(),'WhiteListaTest')])[1]")
     WebElement chooseLastWhiteList;
     @FindBy(id = "add_whitelist_button")
     WebElement btnAddUserWhiteList;
@@ -517,7 +524,12 @@ public class Configuration {
         Actions actions = new Actions(driver);
         actions.moveToElement(lnkConfiguration).click().perform();
     }
+    public void clickLinkGlobalSettings() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkGlobalSettings));
+        lnkGlobalSettings.click();
 
+    }
     @Step("clickLinkUserList")
     public void clickLinkUserList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -898,6 +910,14 @@ public class Configuration {
         webDriverWait.until(ExpectedConditions.visibilityOf(txtPasswordKey));
         txtPasswordKey.clear();
         txtPasswordKey.sendKeys(password);
+    }
+    public void acceptPasswordToKeyForUser(String pass){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(txtPasswordToKeyUser));
+        txtPasswordToKeyUser.clear();
+        txtPasswordToKeyUser.sendKeys(pass);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSavePassword));
+        btnSavePassword.click();
     }
 
     public void verifyGenerateInterlanKey() {
@@ -1418,6 +1438,14 @@ public class Configuration {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxSingleRec));
         cbxSingleRec.click();
+
+    }
+
+    public void verifySwitchOnSingeRecForInsideCalls(){
+        driver.navigate().refresh();
+        clickLinkGlobalSettings();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxSingleRec));
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_single_recording_checkbox[class*='mat-checkbox-checked']")));
 
     }
@@ -1455,7 +1483,12 @@ public class Configuration {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxOppb));
         cbxOppb.click();
+    }
+    public void verifySwitchOppbOnUser(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#directly_incoming_checkbox[class*='mat-checkbox-checked']")));
+
+
     }
 
     public void switchOnTransferOnUser() {
@@ -1469,14 +1502,25 @@ public class Configuration {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxRecordingDirectlyIncomingCalls));
         cbxRecordingDirectlyIncomingCalls.click();
+    }
+    public void verifySwitchOnRecIn(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[formcontrolname=\"recordingDirectlyIncomingCalls\"][class*='mat-checkbox-checked']")));
+
+
     }
 
     public void switchOnRecordingOutgoingCallsOnUser() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxRecordingOutgoingCalls));
         cbxRecordingOutgoingCalls.click();
+    }
+
+    public void verifySwitchOnRecOut(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[formcontrolname=\"recordingOutgoingCalls\"][class*='mat-checkbox-checked']")));
+
+
     }
 
     public void switchOnPersonalizedAnnouncementOnUser() {
@@ -1490,21 +1534,49 @@ public class Configuration {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxApiAccess));
         cbxApiAccess.click();
+    }
+    public void verifySwitchOnApi(String user){
+        clickConfigurationLink();
+        clickLinkUserList();
+        typeIntoUserSearchField(user);
+        selectNewUser();
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxApiAccess));
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[formcontrolname=\"apiAccess\"][class*='mat-checkbox-checked']")));
+
     }
 
     public void switchOnGuiAccessOnUser() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxGuiAccess));
         cbxGuiAccess.click();
+    }
+    public void verifySwitchOnGuiAccess(String user){
+        clickLinkUserList();
+        typeIntoUserSearchField(user);
+        selectNewUser();
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxGuiAccess));
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_gui_application_access_checkbox[class*='mat-checkbox-checked']")));
+
     }
 
     public void switchOnTagEnabledOnUser() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxTagEnabled));
         cbxTagEnabled.click();
+    }
+
+    public void verifySwitchOnTagEnabled(String user){
+       clickLinkUserList();
+       typeIntoUserSearchField(user);
+       selectNewUser();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxTagEnabled));
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#can_tag_enabled[class*='mat-checkbox-checked']")));
+
     }
 
     public void switchOnOneTimeOffRecordingOnUser() {
@@ -1513,10 +1585,20 @@ public class Configuration {
         lnkOneTimeOffRecording.click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxOneTimeOffRecording));
         cbxOneTimeOffRecording.click();
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_can_switch_off_recording_outgoing_calls[class*='mat-checkbox-checked']")));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSaveOneTimeOffRecording));
         btnSaveOneTimeOffRecording.click();
     }
+    public void verifySwitchOnOneTimeOffRecordingOnUser(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkOneTimeOffRecording));
+        lnkOneTimeOffRecording.click();
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#enable_can_switch_off_recording_outgoing_calls[class*='mat-checkbox-checked']")));
+
+
+
+    }
+
+
 
     public void setPasswordForKeyOnUser(String pass) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);

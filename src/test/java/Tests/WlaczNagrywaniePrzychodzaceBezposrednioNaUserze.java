@@ -3,6 +3,7 @@ package Tests;
 import PageObject.Configuration;
 import PageObject.Dialog;
 import PageObject.LoginPage;
+import PageObject.UserList;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -35,6 +36,16 @@ public class WlaczNagrywaniePrzychodzaceBezposrednioNaUserze extends TestBase {
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
+
+        UserList userList=new UserList(driver);
+        userList.clickIntoUserListLink();
+        userList.validationValueWtzChange();
+
+        configuration.clickConfigurationLink();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField("KarolN");
+        configuration.selectNewUser();
+        configuration.verifySwitchOnRecIn();
 
     }
 }

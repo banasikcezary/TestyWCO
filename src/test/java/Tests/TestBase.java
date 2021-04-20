@@ -37,7 +37,7 @@ public class TestBase {
     // Statement object
     public static Statement stmt;
     // Constant for Database URL
-    public static String DB_URL = "jdbc:mysql://localhost:8040";
+    public static String DB_URL = "jdbc:mysql://localhost:8040/vpabx?serverTimezone=UTC";
     // Constant for Database Username
     public static String DB_USER = "root";
     // Constant for Database Password
@@ -47,7 +47,7 @@ public class TestBase {
     public void setUp() throws Exception {
         try {
             // Make the database connection
-            String dbClass = "com.mysql.jdbc.Driver";
+            String dbClass = "com.mysql.cj.jdbc.Driver";
             Class.forName(dbClass).newInstance();
             // Get connection to DB
             Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -85,7 +85,7 @@ public class TestBase {
         RemoteWebDriver remoteWebDriver = (RemoteWebDriver) this.driver;
         remoteWebDriver.setFileDetector(new LocalFileDetector());
 
-        driver.navigate().to("https://wck.orange.pl/");
+        driver.navigate().to("http://localhost:8075/cert-wco/login");
         System.out.println("Open Browser");
     }
 
@@ -99,7 +99,6 @@ public class TestBase {
         System.out.println("Closing Browser");
 
     }
-
     @AfterMethod
     public void tearDown() throws Exception {
         // Close DB connection

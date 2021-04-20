@@ -24,9 +24,12 @@ public class WlaczPojedynczeNagrywanieDlaWewnetrznych extends TestBase{
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
+        configuration.clickLinkGlobalSettings();
+
 
 
         configuration.switchOnSingleRecForInsideCalls();
+        configuration.verifySwitchOnSingeRecForInsideCalls();
 
 
     }

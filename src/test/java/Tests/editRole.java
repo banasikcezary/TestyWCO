@@ -9,16 +9,20 @@ import testng.listeners.RetryAnalyzer;
 
 public class editRole extends TestBase {
 
-    @Test(priority = 2,
+    @Test(priority = 4,
             description = "as Admin Try Edit Role",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
     public void asAdminTryEditRole() {
 
+
+
+        driver.navigate().to("http://localhost:8075/superadmin/login");
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoUsernameField("superadminbs");
+        loginPage.typeIntoPasswordField("Super2020!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 

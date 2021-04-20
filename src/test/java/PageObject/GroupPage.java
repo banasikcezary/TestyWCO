@@ -28,7 +28,7 @@ public class GroupPage {
     WebElement addDescriptionField;
     @FindBy(id = "group_add")
     WebElement saveNewGroupButton;
-    @FindBy(xpath = "(//*[@class=\"mat-list-item-content\"])[last()]")
+    @FindBy(xpath = "(//button[contains(@id,'list')])[last()]")
     WebElement chooseGroup;
     @FindBy(id = "choose_role")
     WebElement chooseRole;

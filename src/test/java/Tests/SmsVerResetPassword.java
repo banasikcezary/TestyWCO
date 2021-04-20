@@ -17,7 +17,6 @@ public class SmsVerResetPassword extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -34,7 +33,7 @@ public class SmsVerResetPassword extends TestBase {
         user.clickOnSmsVerifyResetPassword();
         loginPage.clickOnLogoutButton();
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
+        loginPage.typeIntoUsernameField("KarolN");
         loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
@@ -50,6 +49,10 @@ public class SmsVerResetPassword extends TestBase {
         Dialog dialog = new Dialog(driver);
         dialog.confirmSms(smsKey);
         dialog.clickOnAcceptPopupButton();
+
+        user.clickOnUserAndPermissionButton();
+        user.clickOnLinkPrivilleges();
+        user.turnOffSmsVerifyResetPassword();
 
 
     }

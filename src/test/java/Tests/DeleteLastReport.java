@@ -18,14 +18,14 @@ public class DeleteLastReport extends TestBase {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
-        loginPage.typeIntoPasswordField("pass1");
+        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
         ReportPage report = new ReportPage(driver);
         report.clickOnReportTab();
-        int quantity =report.validateQuantityReportBefore();
+        String quantity =report.validateQuantityReportBefore();
         report.deleteLastReport();
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();

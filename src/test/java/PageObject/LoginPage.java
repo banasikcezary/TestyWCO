@@ -144,7 +144,10 @@ public void clickOnLogoutButton(){
     webDriverWait.until(ExpectedConditions.elementToBeClickable(logoutButton));
     Actions actions=new Actions(driver);
     logoutButton.isDisplayed();
-    actions.moveToElement(logoutButton).doubleClick().build().perform();
+    actions.moveToElement(logoutButton).click().build().perform();
+    if(logoutButton.isDisplayed()){
+        actions.moveToElement(logoutButton).click().build().perform();
+    }
 
 }
 

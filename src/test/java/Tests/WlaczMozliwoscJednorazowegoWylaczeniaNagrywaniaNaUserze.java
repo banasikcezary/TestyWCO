@@ -34,5 +34,11 @@ public class WlaczMozliwoscJednorazowegoWylaczeniaNagrywaniaNaUserze extends Tes
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
+
+        driver.navigate().refresh();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField("KarolN");
+        configuration.selectNewUser();
+        configuration.verifySwitchOnOneTimeOffRecordingOnUser();
     }
 }

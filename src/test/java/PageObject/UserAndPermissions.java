@@ -180,26 +180,57 @@ public class UserAndPermissions {
     public void clickOnLinkPrivilleges() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPrivileges));
+        Actions actions=new Actions(driver);
+        actions.moveToElement(lnkPrivileges).click().build().perform();
+        if (lnkPrivileges.isDisplayed())
+            actions.moveToElement(lnkPrivileges).click().build().perform();
 
-        lnkPrivileges.click();
     }
 
     public void clickOnSmsVerifyResetPassword() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerResetPassword));
 
-        chooseSmsVerResetPassword.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_1[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_1[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerResetPassword).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_1[class*='mat-checkbox-checked']")));
+        }
+    }
+
+    public void turnOffSmsVerifyResetPassword() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerResetPassword));
+
+        chooseSmsVerResetPassword.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_1[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyMassChange() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerMassChange));
 
-        chooseSmsVerMassChange.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_3[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_3[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerMassChange).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_3[class*='mat-checkbox-checked']")));
+        }
+
+    }
+    public void turnOffSmsVerifyMassChange() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerMassChange));
+
+        chooseSmsVerMassChange.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_3[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyListenRec() {
@@ -233,27 +264,71 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDownloadReport));
 
-        chooseSmsVerDownloadReport.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_11[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_11[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerDownloadReport).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_11[class*='mat-checkbox-checked']")));
+        }
+    }
+
+
+    public void turnOffSmsVerifyDownloadReport() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddAndDeleteRoleWithGroup));
+
+        chooseSmsVerDownloadReport.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_11[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyDeleteReport() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteReport));
 
-        chooseSmsVerDeleteReport.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerDeleteReport).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']")));
+        }
+    }
+
+
+
+    public void turnOffSmsVerifyDeleteReport() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteReport));
+
+        chooseSmsVerDeleteReport.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyDeleteAuditReport() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteAuditReport));
 
-        chooseSmsVerDeleteAuditReport.click();
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_13[class*='mat-checkbox-checked']"));
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_13[class*='mat-checkbox-checked']")));
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerDeleteAuditReport).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_13[class*='mat-checkbox-checked']")));
+        }
+    }
+
+    public void turnOffSmsVerifyDeleteAuditReport() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteAuditReport));
+
+        chooseSmsVerDeleteAuditReport.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_13[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
 
@@ -261,27 +336,68 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerSaveGlobalParameter));
 
-        chooseSmsVerSaveGlobalParameter.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_16[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_16[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerSaveGlobalParameter).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_16[class*='mat-checkbox-checked']")));
+        }
+    }
+    public void turnOffSmsVerifySaveGlobalParameter() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddAndDeleteRoleWithGroup));
+
+        chooseSmsVerSaveGlobalParameter.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_16[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifySaveAndDeleteUser() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerSaveAndDeleteUser));
 
-        chooseSmsVerSaveAndDeleteUser.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_17[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_17[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerSaveAndDeleteUser).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_17[class*='mat-checkbox-checked']")));
+        }
+
+    }
+    public void turnOffSmsVerifySaveAndDeleteUser() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerSaveAndDeleteUser));
+
+        chooseSmsVerSaveAndDeleteUser.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_17[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyOppb() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerOppb));
 
-        chooseSmsVerOppb.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_19[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_19[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerOppb).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_19[class*='mat-checkbox-checked']")));
+        }
+    }
+
+    public void turnOffSmsVerifyVerifyOppb() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerOppb));
+
+        chooseSmsVerOppb.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_19[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
 
@@ -289,45 +405,120 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerGenerateKey));
 
-        chooseSmsVerGenerateKey.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_20[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_20[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerGenerateKey).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_20[class*='mat-checkbox-checked']")));
+        }
+
+    }
+
+
+    public void turnOffSmsVerifyGenerateKey() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerGenerateKey));
+
+        chooseSmsVerGenerateKey.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_20[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyCreateWhiteAndBlackList() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerCreateWhiteAndBlackList));
 
-        chooseSmsVerCreateWhiteAndBlackList.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_21[class*='mat-checkbox-checked']")));
+
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_21[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerCreateWhiteAndBlackList).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_21[class*='mat-checkbox-checked']")));
+        }
+    }
+
+    public void turnOffSmsVerifyCreateWhiteAndBlackList() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerCreateWhiteAndBlackList));
+
+        chooseSmsVerCreateWhiteAndBlackList.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_21[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyAddWhiteAndBlackListToUser() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddWhiteAndBlackListToUser));
 
-        chooseSmsVerAddWhiteAndBlackListToUser.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_22[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_22[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerAddWhiteAndBlackListToUser).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_22[class*='mat-checkbox-checked']")));
+        }
 
     }
+
+    public void turnOffSmsVerifyAddWhiteAndBlackListToUser() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddAndDeleteRoleWithGroup));
+
+        chooseSmsVerAddWhiteAndBlackListToUser.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_22[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
+
+    }
+
+
     public void clickOnSmsVerifyBuyFunctional() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerBuyFunctional));
 
-        chooseSmsVerBuyFunctional.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_25[class*='mat-checkbox-checked']")));
+
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_25[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerBuyFunctional).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_25[class*='mat-checkbox-checked']")));
+        }
+    }
+    public void turnOffSmsVerifyBuyFunctional() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerBuyFunctional));
+
+        chooseSmsVerBuyFunctional.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_25[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyAddAndDeleteRoleWithGroup() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddAndDeleteRoleWithGroup));
 
-        chooseSmsVerAddAndDeleteRoleWithGroup.click();
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_29[class*='mat-checkbox-checked']"));
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_29[class*='mat-checkbox-checked']")));
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerAddAndDeleteRoleWithGroup).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_29[class*='mat-checkbox-checked']")));
+        }
+    }
+
+    public void turnOffSmsVerifyAddAndDeleteRoleWithGroup() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerAddAndDeleteRoleWithGroup));
+
+       chooseSmsVerAddAndDeleteRoleWithGroup.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_29[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
 
@@ -335,8 +526,25 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerPermissionConfiguration));
 
+
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_30[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerPermissionConfiguration).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_30[class*='mat-checkbox-checked']")));
+        }
+
+    }
+
+    public void turnOffSmsVerifyPermissionConfiguration() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerPermissionConfiguration));
+
         chooseSmsVerPermissionConfiguration.click();
 
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_30[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void SmsVerifyPermissionConfiguration() {
@@ -359,27 +567,72 @@ public class UserAndPermissions {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerRecIn));
 
-        chooseSmsVerRecIn.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_34[class*='mat-checkbox-checked']")));
+
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_34[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerRecIn).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_34[class*='mat-checkbox-checked']")));
+        }
 
     }
+    public void turnOffSmsVerifyRecIn() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerRecIn));
+
+        chooseSmsVerRecIn.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_34[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
+
+    }
+
     public void clickOnSmsVerifyRecOut() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerRecOut));
 
-        chooseSmsVerRecOut.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_35[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_35[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerRecOut).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_35[class*='mat-checkbox-checked']")));
+        }
+    }
+
+    public void turnOffSmsVerifyRecOut() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerRecOut));
+
+        chooseSmsVerRecOut.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_35[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickOnSmsVerifyUseTags() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerUseTags));
 
-        chooseSmsVerUseTags.click();
 
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_36[class*='mat-checkbox-checked']")));
+        java.util.List<WebElement> elements= driver.findElements(By.cssSelector("#send_sms_36[class*='mat-checkbox-checked']"));
+
+        if(elements.isEmpty()) {
+            Actions actions=new Actions(driver);
+            actions.moveToElement(chooseSmsVerUseTags).click().build().perform();
+            webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#send_sms_36[class*='mat-checkbox-checked']")));
+        }
+
+    }
+
+    public void turnOffSmsVerifyUseTags() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerUseTags));
+
+        chooseSmsVerUseTags.click();
+        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_36[class*='mat-checkbox-checked']"));
+        assertTrue(elements.isEmpty());
 
     }
     public void clickResetPassword() {

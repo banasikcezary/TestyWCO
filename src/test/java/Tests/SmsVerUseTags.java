@@ -16,13 +16,12 @@ public class SmsVerUseTags extends TestBase {
             alwaysRun = true)
     public void asAdminTryCreateNewBlackList() throws AWTException {
 
-        driver.navigate().to("http://localhost:8075/cert-wco/");
 
 
        LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+       loginPage.typeIntoPhoneNumberField("+48690408932");
+       loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
+       loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -33,9 +32,9 @@ public class SmsVerUseTags extends TestBase {
         user.clickOnSmsVerifyUseTags();
 
         loginPage.clickOnLogoutButton();
-        loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("UserTest");
-        loginPage.typeIntoPasswordField("pass1");
+       loginPage.typeIntoPhoneNumberField("+48690408932");
+       loginPage.typeIntoUsernameField("KarolN");
+       loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -59,6 +58,10 @@ public class SmsVerUseTags extends TestBase {
         recordingPage.clickOnRecordingTab();
         recordingPage.clickOnEditTagsButton();
         recordingPage.validationEditTagsButton();
+
+       user.clickOnUserAndPermissionButton();
+       user.clickOnLinkPrivilleges();
+       user.turnOffSmsVerifyUseTags();
 
     }
 }

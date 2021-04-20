@@ -14,8 +14,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class UserList {
     @FindBy(id = "user_list_link")
@@ -748,6 +747,74 @@ List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_ta
         }
     }
 
+    public void validationValueWtzChange() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+
+
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]"));
+        for (int i = 1; i <= elements.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]"));
+            String status = element.getText();
+            System.out.println(i);
+            switch (status) {
+                case "A":
+                case "N":
+                    System.out.println("Status został zmianiony poprawnie");
+                    System.out.println("----------------------------------------------");
+
+                    break;
+
+                case "WTZ":
+
+                    String value;
+                    int numberValue = 0;
+                    do {
+
+                        driver.navigate().refresh();
+
+                        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+
+                        List<WebElement> elements2 = driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]"));
+                        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]")));
+
+                        WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[3]"));
+                        value = element1.getText();
+                        System.out.println(value);
+
+                        numberValue++;
+                        System.out.println(numberValue);
+                    } while (value.equals("WTZ") && numberValue < 60);
+
+                    if (!value.equals("WTZ")) {
+                        System.out.println("Status został zmianiony poprawnie");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertNotEquals(value, "WTZ");
+                    }
+
+                    break;
+                case "B":
+                    throw new IllegalArgumentException("Wystąpił błąd podczas masowej zmiany");
+                default: {
+                    throw new IllegalArgumentException("Wystąpił błąd podczas masowej zmiany");
+
+                }
+
+
+            }
+        }
+    }
 
     public void validationImportUser() {
         driver.navigate().refresh();

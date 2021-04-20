@@ -74,7 +74,7 @@ public class Roles {
     @Step("clickOnRolesButton")
 
     public void clickOnRolesButton(){
-
+        driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(rolesButton));
 
@@ -138,7 +138,7 @@ public class Roles {
     public void selectChoosePrivilege(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(sendNamePrivilege));
-        sendNamePrivilege.sendKeys("Raporty audytowe - kasowanie");
+        sendNamePrivilege.sendKeys("105 Reset hasła");
         webDriverWait.until(ExpectedConditions.elementToBeClickable(selectPrivilage));
         selectPrivilage.click();
     }
@@ -146,7 +146,10 @@ public class Roles {
     public void clickOnSavePrivilege(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(savePrivilege));
-        savePrivilege.click();}
+        Actions actions=new Actions(driver);
+        actions.moveToElement(savePrivilege).click().build().perform();
+        //savePrivilege.click();
+    }
     @Step("clickOpenRole")
     public void clickOpenRole(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -231,7 +234,7 @@ public class Roles {
         int count = allElement.size();
         String result = allElement.get(count - 1).getText();
 
-        assertEquals(result, "Raporty audytowe - Kasowanie");
+        assertEquals(result, "105 Reset hasła");
     }
 
     @Step("validateDeletePermissionForRole")
