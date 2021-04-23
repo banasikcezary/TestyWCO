@@ -28,10 +28,9 @@ public class VilListaNagrywaj extends TestBase{
 
 
         configuration.clickOnFunctionalitySettings();
-        configuration.clickOnSettingsRec();
         configuration.chooseSettingsVipList();
         configuration.addNumberToVipList("48333444333");
-        configuration.setOnlyRecording();
+        configuration.setOnlyRecording("48333444333");
 
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);

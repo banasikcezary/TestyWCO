@@ -31,7 +31,7 @@ public class UstawHasloDoKluczaDlaUsera extends TestBase{
         configuration.selectNewUser();
         configuration.setPasswordForKeyOnUser("123456");
 
-        configuration.acceptPasswordToKeyForUser("123456");
+        configuration.acceptPasswordToKeyForUser("password");
 
         Dialog dialog=new Dialog(driver);
         dialog.confirmPopupPasswordForUser();

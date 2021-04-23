@@ -25,6 +25,7 @@ public class Dialog {
     WebElement alert;
     @FindBy(xpath = "(//*[@class=\"mat-dialog-content\"])/div/button[1]")
     WebElement continuePurchasing;
+
 @FindBy(css = "div.mat-dialog-actions>button:nth-of-type(2)>span")
 WebElement confirmGenerateKey;
 @FindBy(xpath = "(//mat-dialog-container[contains(@id,\"mat-dialog\")])")
@@ -166,6 +167,8 @@ Actions actions=new Actions(driver);
 
 
     }
+
+
 
     public void verifyAlertBeforeLogin(String message) {
 

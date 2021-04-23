@@ -27,10 +27,9 @@ public class VipListaNagrywajZKomunikatem extends TestBase {
 
 
         configuration.clickOnFunctionalitySettings();
-        configuration.clickOnSettingsRec();
         configuration.chooseSettingsVipList();
         configuration.addNumberToVipList("48333444332");
-        configuration.setRecordingAndAnnouncement();
+        configuration.setRecordingAndAnnouncement("48333444332");
 
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);

@@ -13,7 +13,7 @@ public class addRoleForUser extends TestBase {
             description = "as Admin Try Add Role For User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryAddRoleForUser() throws AWTException {
+    public void asAdminTryAddRoleForUser()  {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
@@ -31,12 +31,12 @@ public class addRoleForUser extends TestBase {
         user.clickOnSearchButton();
         user.clickOnShowRoleButton();
         user.clickOnAddAssignmentButton();
-        user.selectRole();
+        user.selectRole("AG_option");
         user.clickAddRoleButton();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
 
-        user.assertionAddRoleForUser();
+        user.assertionAddRoleForUser("Admin Główny");
 
     }
 

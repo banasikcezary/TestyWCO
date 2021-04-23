@@ -34,7 +34,7 @@ public class DeleteBlackList extends TestBase {
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();
 
-        configuration.verifyDeleteBlackList();
+        configuration.verifyDeleteBlackList("BlackListaTest");
 
 
     }

@@ -31,7 +31,7 @@ public class VipListaNagrywanieZKomunikatemVipListy  extends TestBase {
         configuration.clickOnSettingsRec();
         configuration.chooseSettingsVipList();
         configuration.addNumberToVipList("48333444335");
-        configuration.setRecordingAndAnnouncementIvr();
+        configuration.setRecordingAndAnnouncementIvr("48333444335");
 
         configuration.clickSaveButton();
         PageObject.Dialog dialog = new Dialog(driver);

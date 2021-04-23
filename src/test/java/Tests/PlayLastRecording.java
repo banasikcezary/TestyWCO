@@ -7,13 +7,13 @@ import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
 
-public class downloadRecording extends TestBase{
+public class PlayLastRecording extends TestBase{
 
     @Test(priority = 3,
             description ="as Admin Try Delete Privilege From Role",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryDownloadRecording() throws AWTException {
+    public void asAdminTryDownloadRecording()   {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
@@ -24,19 +24,14 @@ public class downloadRecording extends TestBase{
 
         RecordingPage recordingPage = new RecordingPage(driver);
         recordingPage.clickOnRecordingTab();
-        recordingPage.chooseRecordingWithList();
-        recordingPage.downloadRecordingWithList();
-        recordingPage.operationAutorization("wrongPas");
+        recordingPage.clickPlayRecButton();
+        recordingPage.operationAutorizationPlayRec("invalidPass");
         recordingPage.verifyWrongPasswordForRec();
-        recordingPage.downloadRecordingWithList();
-        recordingPage.operationAutorization("123456");
-        String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
+        recordingPage.clickPlayRecButton();
+        recordingPage.operationAutorizationPlayRec("123456");
+        recordingPage.verifyPlayRecDialog();
 
-        recordingPage.waitForFileDownloaded( ".zip", 50,downloadDir);
-        recordingPage.verifyDownloadFile(downloadDir);
+
 
     }
-
-
-
 }

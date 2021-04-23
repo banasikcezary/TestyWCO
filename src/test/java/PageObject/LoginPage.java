@@ -99,8 +99,10 @@ public class LoginPage {
         logIn.isDisplayed();
         Actions actions = new Actions(driver);
         actions.moveToElement(logIn).click().build().perform();
-      //     logIn.click();
-       // ((JavascriptExecutor)driver).executeScript("arguments[0].click();", logIn);
+      if(logIn.isDisplayed()){
+          actions.moveToElement(logIn).click().build().perform();
+
+      }
 
         System.out.println("click login");
 

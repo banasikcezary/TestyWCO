@@ -20,7 +20,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class Configuration {
 
-    @FindBy(id = "configuration_component_link")
+    @FindBy(css = "#configuration_component_link")
     WebElement lnkConfiguration;
     @FindBy(xpath = "//*[contains(@id,'mat-expansion-panel-header-')][1]")
     WebElement lnkUserList;
@@ -215,8 +215,7 @@ public class Configuration {
     WebElement txtNumberVipList;
     @FindBy(id = "add_button")
     WebElement btnAddNumberVipList;
-    @FindBy(css = "mat-selection-list#vip_ivr_selection_list>mat-list-option:last-of-type")
-    WebElement selectLastNumber;
+
     @FindBy(css = "mat-checkbox[formcontrolname=\"doRecord\"]")
     WebElement btnDoRecord;
     @FindBy(css = "mat-checkbox[formcontrolname=\"doAnnouncement\"]")
@@ -359,9 +358,9 @@ public class Configuration {
 
     ////////////// Przekierowanie user/////////////////
 
-    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[7]")
-    WebElement lnkCallForwarding;
     @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[8]")
+    WebElement lnkCallForwarding;
+    @FindBy(xpath = "(//*[contains(@id,\"mat-expansion-panel-header\")])[9]")
     WebElement lnkPernamentCallForwarding;
     @FindBy(css = "[formcontrolname=\"communicateActivePermanent\"]")
     WebElement cbxActivatePernamentForwarding;
@@ -523,6 +522,11 @@ public class Configuration {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkConfiguration));
         Actions actions = new Actions(driver);
         actions.moveToElement(lnkConfiguration).click().perform();
+
+        if(lnkConfiguration.isDisplayed()){
+            actions.moveToElement(lnkConfiguration).click().perform();
+
+        }
     }
     public void clickLinkGlobalSettings() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -672,7 +676,7 @@ public class Configuration {
         inputDescBlackList.sendKeys(descBlackList);
     }
 
-    public void verifyDeleteBlackList() {
+    public void verifyDeleteBlackList(String blackListDelete) {
 
 
         driver.findElement(By.xpath("//html")).click();
@@ -683,7 +687,7 @@ public class Configuration {
         clickOnBlackListFunctionality();
 
         if (!elementList.isEmpty()) {
-            assertNotEquals(lnkBlackListLast.getText(), "BlackListaTest");
+            assertNotEquals(lnkBlackListLast.getText(), blackListDelete);
         }
     }
 
@@ -728,6 +732,7 @@ public class Configuration {
         webDriverWait.until(ExpectedConditions.visibilityOf(confirmText));
         confirmText.isDisplayed();
         driver.findElement(By.xpath("//html")).click();
+        driver.navigate().refresh();
     }
     public void clickOnButtonSaveBlackListSms() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -736,8 +741,7 @@ public class Configuration {
 
     }
     public void verifySaveBlackList(String blacklist) {
-        clickOnWhiteListFunctionality();
-        clickOnWhiteListFunctionality();
+
         clickOnBlackListFunctionality();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkBlackListLast));
@@ -745,8 +749,7 @@ public class Configuration {
     }
 
     public void verifySaveWhiteList(String whitelist) {
-        clickOnBlackListFunctionality();
-        clickOnBlackListFunctionality();
+
         clickOnWhiteListFunctionality();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkWhiteListLast));
@@ -853,6 +856,7 @@ public class Configuration {
         webDriverWait.until(ExpectedConditions.visibilityOf(confirmText));
         confirmText.isDisplayed();
         driver.findElement(By.xpath("//html")).click();
+        driver.navigate().refresh();
     }
 
     public void verifyActivateGlobalWhitelist() {
@@ -1009,7 +1013,7 @@ public class Configuration {
         btnSettingsRec.click();
     }
 
-    public void clickSaveButton() throws AWTException {
+    public void clickSaveButton()  {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnSave));
 
@@ -1165,11 +1169,12 @@ public class Configuration {
     }
 
 
-    public void setOnlyRecording() {
+    public void setOnlyRecording(String number) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectLastNumber));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'"+number+"')]")));
+        WebElement selectNumer =driver.findElement(By.xpath("//*[contains(text(),'"+number+"')]"));
         Actions actions = new Actions(driver);
-        actions.moveToElement(selectLastNumber).click().build().perform();
+        actions.moveToElement(selectNumer).click().build().perform();
 
         webDriverWait.until(ExpectedConditions.visibilityOf(btnDoAnnouncement));
         btnDoAnnouncement.click();
@@ -1183,11 +1188,15 @@ public class Configuration {
 
     }
 
-    public void setRecordingAndAnnouncement() {
+    public void setRecordingAndAnnouncement(String number) {
+
+
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectLastNumber));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'"+number+"')]")));
+
+        WebElement selectNumer =driver.findElement(By.xpath("//*[contains(text(),'"+number+"')]"));
         Actions actions = new Actions(driver);
-        actions.moveToElement(selectLastNumber).click().build().perform();
+        actions.moveToElement(selectNumer).click().build().perform();
 
 
         webDriverWait.until(ExpectedConditions.visibilityOf(btnDoRecord));
@@ -1198,16 +1207,20 @@ public class Configuration {
         assertTrue(classAtr.contains("mat-checkbox-checked"));
     }
 
-    public void setRecordingAndAnnouncementIvr() {
+    public void setRecordingAndAnnouncementIvr(String number) {
+
         driver.navigate().refresh();
         clickConfigurationLink();
         clickOnFunctionalitySettings();
         clickOnSettingsRec();
         chooseSettingsVipList();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectLastNumber));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'"+number+"')]")));
+
+        WebElement selectNumer =driver.findElement(By.xpath("//*[contains(text(),'"+number+"')]"));
+
         Actions actions = new Actions(driver);
-        actions.moveToElement(selectLastNumber).click().build().perform();
+        actions.moveToElement(selectNumer).click().build().perform();
 
 
         webDriverWait.until(ExpectedConditions.visibilityOf(btnAnnoucementIvr));

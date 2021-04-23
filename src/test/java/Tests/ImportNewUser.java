@@ -1,8 +1,6 @@
 package Tests;
 
-import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.UserList;
+import PageObject.*;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -18,9 +16,15 @@ public class ImportNewUser extends TestBase {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
         loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Centradslka123456!");
+        loginPage.typeIntoPasswordField("Orange123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
+
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.clickOnShopTab();
+        shopPage.buyNewUserFunctionalities();
+        shopPage.clickOnSaveChangeButton();
+        shopPage.checkSavingConfirmationText();
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
@@ -31,8 +35,28 @@ public class ImportNewUser extends TestBase {
         Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
 
-        userList.validationValueFromNotActiveToActiveMassChange();
+        userList.validationValueWtzChange();
+
         userList.validationLoginAfterImportNewUserCsv();
+
+
+        String deleteUser="user3";
+
+        Configuration configuration = new Configuration(driver);
+        configuration.clickConfigurationLink();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField(deleteUser);
+        configuration.selectNewUser();
+        configuration.clickOnDeleteButton();
+        dialog.clickOnConfirmButton();
+        dialog.clickOnAcceptPopupButton();
+UserAndPermissions user = new UserAndPermissions(driver);
+        user.clickOnUserAndPermissionButton();
+        user.clickOnUserButton();
+        user.typeIntoSearchUserField(deleteUser);
+        user.clickOnSearchButton();
+
+        user.assertDeleteUser(deleteUser);
 
 
 

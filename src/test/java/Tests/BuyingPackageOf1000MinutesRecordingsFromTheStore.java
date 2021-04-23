@@ -1,20 +1,20 @@
 package Tests;
 
 import PageObject.Configuration;
-import PageObject.Dialog;
 import PageObject.LoginPage;
+import PageObject.ShopPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-import java.awt.*;
+public class BuyingPackageOf1000MinutesRecordingsFromTheStore extends TestBase {
 
-public class PermanentCallForwardingTts  extends TestBase{
 
-    @Test(priority = 3,
-            description = "as Admin Try Create New User",
+    @Test(priority = 1,
+            description = "as User Try Buy New Functionalities From The Store",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryCreateNewBlackList() throws AWTException {
+    public void asUserTryBuyNewFunctionalitiesFromTheStore() {
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
         loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
@@ -22,20 +22,16 @@ public class PermanentCallForwardingTts  extends TestBase{
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.clickOnShopTab();
+        shopPage.buyNewPackage1000MinutesRecFunctionalities();
+        shopPage.clickOnSaveChangeButton();
+
+        shopPage.checkSavingConfirmationText();
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
-
-        configuration.clickLinkUserList();
-        configuration.typeIntoUserSearchField("KarolN");
-        configuration.selectNewUser();
-
-        configuration.setPernamentForwardingTts("nowy Test Przekierowanie", "48777666444");
-
-        PageObject.Dialog dialog=new Dialog(driver);
-        dialog.confirmPopup();
-
-        configuration.verifyPernamentForwardingTts("KarolN");
+        shopPage.checkBuyValuePackage1000MinutesRecInConfiguration();
 
 
     }

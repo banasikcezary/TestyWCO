@@ -60,6 +60,8 @@ public class RecordingPage {
     WebElement passwordField;
     @FindBy(id="password-recordings-download")
     WebElement btnSubmitPassword;
+    @FindBy(id = "password-recordings-play")
+    WebElement btnSubmitPasswordRec;
     @FindBy(id = "password-recordings-cancel")
     WebElement btnCancelPassword;
 
@@ -94,6 +96,13 @@ WebElement validSearchRec;
     WebElement showAllColumns;
     @FindBy(id = "pick_button")
     WebElement confirmShowAllColumns;
+
+    @FindBy(xpath = "(//*[contains(@class, \"playRec\")]//span)[1]")
+    WebElement btnPlayRec;
+    @FindBy(css = "[class*=\"play-pause\"]")
+    WebElement btnStartAndStopPlayRec;
+    @FindBy(css = "[role=\"dialog\"]>app-app-error>p")
+    WebElement txtDialogInformation;
 
     private WebDriver driver;
     public RecordingPage(WebDriver driver) {
@@ -254,6 +263,18 @@ actions.moveToElement(tagsField).click().build().perform();
         System.out.println(unlock);
         assertEquals(unlock, "lock_open");
     }
+
+    public void clickPlayRecButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnPlayRec));
+        btnPlayRec.click();
+    }
+    public void verifyPlayRecDialog(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(btnStartAndStopPlayRec));
+        btnStartAndStopPlayRec.isDisplayed();
+
+    }
     public void validationLock(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(validationLock));
@@ -285,8 +306,39 @@ actions.moveToElement(tagsField).click().build().perform();
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(btnSubmitPassword));
         btnSubmitPassword.click();
 
+    }
+    public void operationAutorizationPlayRec(String pass){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(passwordField));
+        passwordField.clear();
+        passwordField.sendKeys(pass);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(btnSubmitPasswordRec));
+        btnSubmitPasswordRec.click();
 
     }
+
+    public void verifyWrongPasswordForRec(){
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.visibilityOf(txtDialogInformation));
+            txtDialogInformation.isDisplayed();
+            assertEquals(txtDialogInformation.getText(), "Błędne hasło.");
+            Actions actions=new Actions(driver);
+            actions.sendKeys(Keys.ESCAPE).perform();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.visibilityOf(txtDialogInformation));
+            txtDialogInformation.isDisplayed();
+            assertEquals(txtDialogInformation.getText(), "Błędne hasło.");
+            Actions actions=new Actions(driver);
+            actions.sendKeys(Keys.ESCAPE).perform();
+        }
+
+
+    }
+
     public void waitForFileDownloaded(String fileName, int timeoutSeconds, String downloadPath) {
 
 

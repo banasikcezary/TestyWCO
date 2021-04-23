@@ -16,7 +16,10 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.time.Duration;
+import java.util.Objects;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItems;
 import static org.testng.Assert.*;
 
 public class UserAndPermissions {
@@ -58,11 +61,10 @@ public class UserAndPermissions {
     @FindBy(id = "page_message")
     WebElement pageMessage;
 
-    @FindBy(id = "AG_option")
-    WebElement role;
 
-    @FindBy(xpath = "(//*[contains(@id, \"role_\")])[1]")
-    WebElement assertUserRole;
+
+    @FindBy(css = "[id*=role_]")
+    private java.util.List<WebElement> assertUserRole;
 
     @FindBy(id = "next_page_button")
     WebElement btnNextPage;
@@ -710,7 +712,7 @@ public class UserAndPermissions {
     }
 
     @Step("assertDeleteUser")
-    public void assertDeleteUser(String user) throws AWTException {
+    public void assertDeleteUser(String user) {
         try{
             Thread.sleep(3000);
         }
@@ -734,17 +736,32 @@ public class UserAndPermissions {
     @Step("clickOnSearchButton")
     public void clickOnSearchButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(searchButton));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(searchButton));
         Actions actions = new Actions(driver);
         actions.moveToElement(searchButton).click().build().perform();
+        actions.moveToElement(searchButton).click().build().perform();
+
     }
 
     @Step("clickOnShowRoleButton")
     public void clickOnShowRoleButton() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(showRoleButton).click().build().perform();
+
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
+            Actions actions = new Actions(driver);
+            actions.moveToElement(showRoleButton).click().build().perform();
+
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(showRoleButton));
+            Actions actions = new Actions(driver);
+            actions.moveToElement(showRoleButton).click().build().perform();
+
+        }
     }
 
     @Step("clickOnAddAssignmentButton")
@@ -756,12 +773,13 @@ public class UserAndPermissions {
     }
 
     @Step("selectRole")
-    public void selectRole() {
+    public void selectRole(String role) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(selectRole));
         selectRole.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(role));
-        role.click();
+       WebElement chooseRole= driver.findElement(By.id(role));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRole));
+        chooseRole.click();
 
     }
 
@@ -774,23 +792,30 @@ public class UserAndPermissions {
     }
 
     @Step("assertionAddRoleForUser")
-    public void assertionAddRoleForUser(){
-        try{
+    public void assertionAddRoleForUser(String value) {
+        try {
             Thread.sleep(2000);
-        }
-        catch(InterruptedException ie){
+        } catch (InterruptedException ie) {
         }
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(assertUserRole));
-        String userRola = assertUserRole.getText();
-        assertEquals(userRola,"Admin Główny");
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(assertUserRole));
+
+
+             assertUserRole
+                    .stream()
+                    .filter(webElement -> Objects.equals(webElement.getText(), value))
+                    .findFirst()
+                    .orElseThrow(() -> new NoSuchElementException("No WebElement found containing " + value));
+
+assertUserRole.forEach(x-> System.out.println(x));
+
     }
 
 
 
 
 
-    @Step("clickIntoCertificateButton")
+        @Step("clickIntoCertificateButton")
     public void clickIntoCertificateButton(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnCertificate));

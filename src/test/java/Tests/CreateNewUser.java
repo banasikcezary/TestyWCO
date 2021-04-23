@@ -5,7 +5,6 @@ import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.ShopPage;
 import PageObject.UserAndPermissions;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -28,7 +27,7 @@ public class CreateNewUser extends TestBase {
 
         ShopPage shopPage = new ShopPage(driver);
         shopPage.clickOnShopTab();
-        shopPage.upValueUser();
+        shopPage.buyNewUserFunctionalities();
         shopPage.clickOnSaveChangeButton();
         shopPage.checkSavingConfirmationText();
 
