@@ -1,0 +1,2 @@
+login,firstName,lastName,number,email,recordingDirectlyIncomingCalls,recordingOutgoingCalls,canSwitchOffRecordingOutgoingCalls,directIncomingCalls,serviceNumber,description,organizationalUnit,guiAccess,apiAccess
+0,bk.test1,Bogdan,Test,48518277286,bk.test1@bluesoft.com,0,0,0,1,,test,Warszawa,0,0

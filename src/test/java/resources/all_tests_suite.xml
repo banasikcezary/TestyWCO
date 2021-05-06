@@ -10,7 +10,6 @@
 
     <test name="test">
         <classes>
-//
 <!--            <class name="Tests.createAuditLogsPlusReport"/>-->
 <!--            <class name="Tests.createAuditLogsReport"/>-->
 <!--            <class name="Tests.createDownloadFileReport"/>-->
@@ -121,14 +120,14 @@
 <!--            <class name="Tests.KonfigurujSftp"/>-->
 <!--&lt;!&ndash;            <class name="Tests.LockRecording"/>&ndash;&gt;-->
 <!--            <class name="Tests.LoginFailedTest"/>-->
-<!--&lt;!&ndash;            <class name="Tests.MassEditBlackList"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="Tests.MassAddBlackList"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            <class name="Tests.MassEditOppb"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            <class name="Tests.MassEditOrganizationalUnit"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            <class name="Tests.MassEditRecDirectlyIncoming"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            <class name="Tests.MassEditRecOutgoing"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            <class name="Tests.MassEditStatus"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            <class name="Tests.MassEditSwitchOffRecOutgoing"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            <class name="Tests.MassEditWhiteList"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="Tests.MassAddWhiteList"/>&ndash;&gt;-->
 <!--            <class name="Tests.NagrywajCyklicznie"/>-->
 <!--            <class name="Tests.NagrywajGodzinowo"/>-->
 <!--            <class name="Tests.NagrywajLosowo"/>-->
@@ -140,7 +139,7 @@
 <!--            <class name="Tests.PersonalizedMessageForUserIncomingCallsTTSPlEng"/>-->
 <!--            <class name="Tests.PersonalizedMessageForUserOutgoingCallsWavPlEng"/>-->
 <!--            <class name="Tests.PositiveLoginTest"/>-->
-<!--&lt;!&ndash;            <class name="Tests.RecordingTagsTest"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="Tests.AddTagsForRecTest"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            <class name="Tests.SearchRecording"/>&ndash;&gt;-->
 <!--            <class name="Tests.SearchUserOnListTest"/>-->
 <!--            <class name="Tests.SellingBlackListFromTheStore"/>-->
@@ -174,7 +173,7 @@
 <!--            <class name="Tests.UsuniecieTaguZeSłownika"/>-->
 <!--            <class name="Tests.VerifyAlertAfterLog"/>-->
 <!--            <class name="Tests.VerifyAlertBeforeLog"/>-->
-<!--            <class name="Tests.VilListaNagrywaj"/>-->
+<!--            <class name="Tests.ViplListaNagrywaj"/>-->
 <!--            <class name="Tests.VipListaNagrywajZKomunikatem"/>-->
 <!--            <class name="Tests.VipListaNagrywanieZKomunikatemVipListy"/>-->
 <!--            <class name="Tests.WlaczApiDlaUsera"/>-->

@@ -26,10 +26,9 @@ public class addRoleForGroup extends TestBase {
         GroupPage group = new GroupPage(driver);
         group.clickOnGroupButton();
         group.clickOnChooseGroup();
-        group.selectChooseRole();
+        group.selectChooseRole("AG_option");
         group.clickAddRoleButton();
-
-        group.validateAddRoleForGroup();
+        group.validateAddRoleForGroup("Admin Główny");
     }
 
 }

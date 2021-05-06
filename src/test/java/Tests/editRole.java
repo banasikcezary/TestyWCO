@@ -1,9 +1,7 @@
 package Tests;
 
-import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.Roles;
-import PageObject.UserAndPermissions;
+import PageObject.*;
+
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 

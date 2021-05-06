@@ -1,5 +1,6 @@
 package Tests;
 
+
 import PageObject.Configuration;
 import PageObject.Dialog;
 import PageObject.LoginPage;
@@ -17,8 +18,8 @@ public class BlockRedirectFromPhone extends TestBase{
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoUsernameField("RomanM");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -27,15 +28,28 @@ public class BlockRedirectFromPhone extends TestBase{
         configuration.clickConfigurationLink();
 
         configuration.clickLinkUserList();
-        configuration.typeIntoUserSearchField("KarolN");
+        configuration.typeIntoUserSearchField("user2");
         configuration.selectNewUser();
 
         configuration.switchOnBlockRedirectFromPhone();
 
-        PageObject.Dialog dialog=new Dialog(driver);
+PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
 
-        configuration.verifyBlockRedirectFromPhone("KarolN");
+        configuration.verifyBlockRedirectFromPhone("user2");
 
+        ///call
+
+
+        driver.navigate().refresh();
+
+
+        configuration.clickConfigurationLink();
+        configuration.clickLinkUserList();
+        configuration.typeIntoUserSearchField("user2");
+        configuration.selectNewUser();
+        configuration.switchOnBlockRedirectFromPhone();
+        dialog.confirmPopup();
+        configuration.verifyBlockRedirectFromPhoneOff("user2");
     }
 }

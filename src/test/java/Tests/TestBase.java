@@ -20,6 +20,7 @@ import testng.listeners.TestListener;
 
 import java.io.IOException;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -60,16 +61,24 @@ public class TestBase {
 
     @Step("Loading configuration from configuration.properties")
     @BeforeMethod(alwaysRun = true)
-    public void beforeTest() throws IOException {
+    public void beforeTest() {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--no-sandbox");
-//        options.addArguments("--headless");
-        options.addArguments("--window-size=1920,1080");
+      //  options.addArguments("--headless");
+        options.addArguments("--allow-running-insecure-content");
+        options.addArguments("--window-size=1980,1080");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--proxy-bypass-list=*");
+       // options.addArguments("--start-maximized");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--ignore-certificate-errors");
 
 
 
-      String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
+
+        String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
 
 
         Map<String, Object> prefs = new HashMap<String, Object>();
@@ -78,14 +87,20 @@ public class TestBase {
       options.setExperimentalOption("prefs", prefs);
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
        capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        try
+        {
+            driver = new RemoteWebDriver(new URL("http://192.168.216.62:4448/wd/hub"),capabilities);
+        }
+        catch(MalformedURLException e)
+        {
+            System.out.println(e);
+        }
 
-
-        driver = new RemoteWebDriver(new URL("http://192.168.216.62:4448/wd/hub"),capabilities);
 
         RemoteWebDriver remoteWebDriver = (RemoteWebDriver) this.driver;
         remoteWebDriver.setFileDetector(new LocalFileDetector());
 
-        driver.navigate().to("http://localhost:8075/cert-wco/login");
+        driver.navigate().to("https://wck.orange.pl");
         System.out.println("Open Browser");
     }
 

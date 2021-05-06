@@ -1,10 +1,7 @@
 package Tests;
 
-import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.Roles;
+import PageObject.*;
 import PageObject.UserAndPermissions;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -35,10 +32,7 @@ public class addPrivilegeForRole extends TestBase {
         role.clickAddPrivilegeForNewRole();
         role.selectChoosePrivilege();
         role.clickOnSavePrivilege();
-
         role.clickOnRolesButton();
-
-
         role.validateAddRole("testRoleName");
         role.validateAddPermissionForRole();
 

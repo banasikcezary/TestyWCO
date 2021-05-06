@@ -25,7 +25,7 @@ public class deleteRecording extends TestBase {
         RecordingPage recordingPage = new RecordingPage(driver);
         recordingPage.clickOnRecordingTab();
         recordingPage.chooseLastRecordingWithList();
-        int quentity =recordingPage.validateQuantityReportBefore();
+        String  quentity =recordingPage.validateQuantityReportBefore();
         recordingPage.deleteRecordingWithList();
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();

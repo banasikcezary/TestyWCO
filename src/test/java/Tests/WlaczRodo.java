@@ -25,5 +25,8 @@ public class WlaczRodo extends TestBase{
         configuration.clickConfigurationLink();
 
         configuration.switchOnRodo();
+
+
+
     }
 }

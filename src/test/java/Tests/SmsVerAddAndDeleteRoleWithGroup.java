@@ -44,7 +44,7 @@ public class SmsVerAddAndDeleteRoleWithGroup extends TestBase {
         GroupPage group = new GroupPage(driver);
         group.clickOnGroupButton();
         group.clickOnChooseGroup();
-        group.selectChooseRole();
+        group.selectChooseRole("AG_option");
         group.clickAddRoleButton();
         String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis() + 660000L);
         System.out.println(nowDate);
@@ -53,7 +53,7 @@ public class SmsVerAddAndDeleteRoleWithGroup extends TestBase {
         System.out.println(smsKey);
         PageObject.Dialog dialog = new Dialog(driver);
         dialog.confirmSms(smsKey);
-        group.validateAddRoleForGroup();
+        group.validateAddRoleForGroup("Admin Główny");
         dialog.confirmPopup();
         group.clickOnGroupButton();
         String lastDate2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis() + 600000L);

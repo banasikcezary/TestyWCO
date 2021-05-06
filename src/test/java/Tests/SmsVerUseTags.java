@@ -1,6 +1,7 @@
 package Tests;
 
 import PageObject.*;
+
 import PageObject.Dialog;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
@@ -46,7 +47,7 @@ public class SmsVerUseTags extends TestBase {
         recordingPage.clickTagsCheckbox();
         recordingPage.clickOnSaveEditTagsButton();
 
-        PageObject.Dialog dialog=new Dialog(driver);
+        Dialog dialog=new Dialog(driver);
 
 
         String nowDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis() + 660000L);
@@ -57,7 +58,7 @@ public class SmsVerUseTags extends TestBase {
         dialog.confirmSms(smsKey);
         recordingPage.clickOnRecordingTab();
         recordingPage.clickOnEditTagsButton();
-        recordingPage.validationEditTagsButton();
+        recordingPage.validationAddTagForRec();
 
        user.clickOnUserAndPermissionButton();
        user.clickOnLinkPrivilleges();

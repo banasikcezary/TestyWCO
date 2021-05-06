@@ -22,7 +22,6 @@ public class BuyingWhiteListFromTheStore extends TestBase {
         shopPage.clickOnShopTab();
         shopPage.buyNewWhiteListFunctionalities();
         shopPage.clickOnSaveChangeButton();
-
         shopPage.checkSavingConfirmationText();
     }
 }

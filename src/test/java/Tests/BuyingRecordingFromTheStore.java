@@ -1,7 +1,7 @@
 package Tests;
 
-import PageObject.LoginPage;
-import PageObject.ShopPage;
+import PageObject.*;
+
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 

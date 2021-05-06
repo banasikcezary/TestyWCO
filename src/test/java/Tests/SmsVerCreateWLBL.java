@@ -43,7 +43,7 @@ public class SmsVerCreateWLBL extends TestBase {
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnBlackListFunctionality();
-        configuration.clickOnLastBlackList();
+        configuration.clickOnLastBlackList("Czarna");
 
         configuration.completeNameAndDescription("BlackListaTestSMS","DescBlackList");
 

@@ -1,0 +1,48 @@
+package Tests;
+
+import PageObject.Configuration;
+import PageObject.Dialog;
+import PageObject.LoginPage;
+import org.testng.annotations.Test;
+import testng.listeners.RetryAnalyzer;
+
+import java.awt.*;
+
+public class VipListaTurnOffRec extends TestBase{
+
+    @Test(priority = 2,
+            description = "as Admin Try Create New User",
+            retryAnalyzer = RetryAnalyzer.class,
+            alwaysRun = true)
+    public void asAdminTryCreateNewBlackList() throws AWTException {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.typeIntoPhoneNumberField("+48690408934");
+        loginPage.typeIntoUsernameField("CRMOG8WX6VV");
+        loginPage.typeIntoPasswordField("Wcopassword1!");
+        loginPage.clickIntoLogInButton();
+        loginPage.checkPositiveLoginToApp();
+
+
+        Configuration configuration = new Configuration(driver);
+        configuration.clickConfigurationLink();
+
+
+        configuration.clickOnFunctionalitySettings();
+        configuration.chooseSettingsVipList();
+        configuration.addNumberToVipList("48333444333");
+        configuration.turnOffRecordingVipList("48333444333");
+
+        configuration.clickSaveButton();
+        PageObject.Dialog dialog=new Dialog(driver);
+        dialog.confirmPopup();
+
+
+
+
+
+
+
+
+
+    }
+}

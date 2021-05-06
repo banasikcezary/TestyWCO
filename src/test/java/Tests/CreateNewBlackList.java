@@ -27,15 +27,14 @@ public class CreateNewBlackList extends TestBase{
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnBlackListFunctionality();
-        configuration.clickOnLastBlackList();
+        configuration.clickOnLastBlackList("Czarna");
         configuration.completeNameAndDescription("BlackListaTest","DescBlackList");
         configuration.addNumberForBlackList("48333444333");
         configuration.clickOnButtonSaveBlackList();
+        configuration.clickOnFunctionalitySettings();
         configuration.verifySaveBlackList("BlackListaTest");
-
         configuration.clickOnLinkActivationBlackList();
         configuration.clickOnActivationLastBlackList();
-
         configuration.verifyActivateBlacklist();
     }}
 

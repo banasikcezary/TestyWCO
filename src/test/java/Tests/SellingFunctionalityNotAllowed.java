@@ -34,7 +34,7 @@ public class SellingFunctionalityNotAllowed extends TestBase {
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnBlackListFunctionality();
-        configuration.clickOnLastBlackList();
+        configuration.clickOnLastBlackList("Czarna");
         configuration.completeNameAndDescription("CzarnaListaTest1","DescBlackList");
         configuration.addNumberForBlackList("48333444333");
         configuration.clickOnButtonSaveBlackList();
@@ -56,7 +56,7 @@ public class SellingFunctionalityNotAllowed extends TestBase {
         configuration.clickOnFunctionalitySettings();
 
         configuration.clickOnBlackListFunctionality();
-        configuration.clickOnLastBlackList();
+        configuration.clickOnLastBlackList("CzarnaListaTest1");
         configuration.clickOnButtonDeleteBlackList();
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();

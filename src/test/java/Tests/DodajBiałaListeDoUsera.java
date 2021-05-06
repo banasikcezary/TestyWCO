@@ -1,8 +1,7 @@
 package Tests;
 
-import PageObject.Configuration;
-import PageObject.Dialog;
-import PageObject.LoginPage;
+import PageObject.*;
+
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -17,8 +16,8 @@ public class DodajBiałaListeDoUsera extends TestBase {
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoUsernameField("Pio");
+        loginPage.typeIntoPasswordField("Centralka123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -27,9 +26,9 @@ public class DodajBiałaListeDoUsera extends TestBase {
         configuration.clickConfigurationLink();
 
         configuration.clickLinkUserList();
-        configuration.typeIntoUserSearchField("KarolN");
+        configuration.typeIntoUserSearchField("Pio");
         configuration.selectNewUser();
-        configuration.addWhiteListOnUser("KarolN");
+        configuration.addWhiteListOnUser("Pio","WhiteListaTest");
 
 
 

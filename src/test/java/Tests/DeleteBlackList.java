@@ -27,13 +27,11 @@ public class DeleteBlackList extends TestBase {
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
-
         configuration.clickOnBlackListFunctionality();
-        configuration.clickOnLastBlackList();
+        configuration.clickOnLastBlackList("BlackListaTest");
         configuration.clickOnButtonDeleteBlackList();
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();
-
         configuration.verifyDeleteBlackList("BlackListaTest");
 
 

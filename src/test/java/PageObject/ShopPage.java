@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
 
 public class ShopPage {
@@ -120,9 +122,11 @@ WebElement txtActualValuePackage;
     public void clickOnShopTab() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(shopTab));
-        webDriverWait.ignoring(TimeoutException.class);
 
-        shopTab.click();
+List<WebElement> elementList=driver.findElements(By.id("BLL_input"));
+        if(elementList.isEmpty()){
+            shopTab.click();
+        }
     }
 
     //    @Step("buyNewFaxFunctionalitiesWithExceedingTheAmount")

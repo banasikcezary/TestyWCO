@@ -1,14 +1,16 @@
 package Tests;
+import PageObject.*;
 
 import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.UserAndPermissions;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-import java.awt.*;
 
 public class addRoleForUser extends TestBase {
+
+
+
     @Test(priority = 2,
             description = "as Admin Try Add Role For User",
             retryAnalyzer = RetryAnalyzer.class,
@@ -35,7 +37,6 @@ public class addRoleForUser extends TestBase {
         user.clickAddRoleButton();
         Dialog dialog = new Dialog(driver);
         dialog.clickOnAcceptPopupButton();
-
         user.assertionAddRoleForUser("Admin Główny");
 
     }

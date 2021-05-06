@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class LoginPage {
 
@@ -20,7 +21,7 @@ public class LoginPage {
     WebElement username;
     @FindBy(id = "password")
     WebElement password;
-    @FindBy(id = "login-button")
+    @FindBy(css = "[type=\"submit\"]")
     WebElement logIn;
     @FindBy(id = "logout_button")
     WebElement logoutButton;
@@ -37,6 +38,8 @@ public class LoginPage {
     WebElement txtRepeatPass;
     @FindBy(id = "change_password_button")
     WebElement btnChangePass;
+    @FindBy(css = "[class=\"text-danger\"]")
+    List<WebElement> txtValidationChangePass;
 
 
     private WebDriver driver;
@@ -95,18 +98,20 @@ public class LoginPage {
 
     public void clickIntoLogInButton() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(logIn));
-        logIn.isDisplayed();
-        Actions actions = new Actions(driver);
-        actions.moveToElement(logIn).click().build().perform();
-      if(logIn.isDisplayed()){
-          actions.moveToElement(logIn).click().build().perform();
-
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[type=\"submit\"]")));
+       logIn.click();
+       List<WebElement> elementList=driver.findElements(By.id("audit_log_link"));
+      if(elementList.isEmpty()){
+          logIn.click();
       }
 
         System.out.println("click login");
 
-
+    }
+    public void verifyLogoutAfterTime() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 300);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(logIn));
+        logIn.isDisplayed();
 
 
     }
@@ -114,14 +119,19 @@ public class LoginPage {
 
     public void checkPositiveLoginToApp() {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-            webDriverWait.until(ExpectedConditions.elementToBeClickable(logoutButton));
-            assertEquals(logoutButton.getText(), "Wyloguj");
+            webDriverWait.until(ExpectedConditions.visibilityOf(logoutButton));
+           // assertEquals(logoutButton.getText(), "Wyloguj");
         }
 
 public void changePasswordUser(String oldPassword, String password, String passwordRepeat){
     WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
     webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkChangePass));
     lnkChangePass.click();
+    List<WebElement> elements=driver.findElements(By.cssSelector("[formcontrolname=\"old_password\"]"));
+    if(elements.isEmpty()){
+        lnkChangePass.click();
+
+    }
 
     webDriverWait.until(ExpectedConditions.visibilityOf(txtOldPass));
     txtOldPass.clear();
@@ -139,6 +149,17 @@ public void changePasswordUser(String oldPassword, String password, String passw
     btnChangePass.click();
 
 }
+
+public void validationChangePasswordWrongNewValue(){
+    WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+    webDriverWait.until(ExpectedConditions.visibilityOfAllElements(txtValidationChangePass));
+    System.out.println(txtValidationChangePass.get(0).getText());
+    System.out.println(txtValidationChangePass.get(1).getText());
+    assertTrue(txtValidationChangePass.get(0).getText().equals("warning Hasło musi składać z 12 znaków, w tym małej i dużej litery, cyfry oraz znaku: #?!@$%^&*-"));
+    assertTrue(txtValidationChangePass.get(1).getText().equals("warning Hasło nie jest takie samo jak powyżej"));
+
+}
+
 
 public void clickOnLogoutButton(){
     WebDriverWait webDriverWait = new WebDriverWait(driver, 30);

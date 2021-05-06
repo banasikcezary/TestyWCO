@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.List;
 
 import static org.testng.Assert.*;
 
@@ -21,7 +22,7 @@ public class ReportPage {
 
     @FindBy(id = "reports_list_link")
     WebElement reportButton;
-    @FindBy(id = "headingOne")
+    @FindBy(css = "#headingOne")
     WebElement property;
     @FindBy(id = "heading_cyclic_report")
     WebElement cyclicalReport;
@@ -234,13 +235,17 @@ WebElement btnAddAllAdmin;
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(reportButton));
         reportButton.click();
+List<WebElement> elementList=driver.findElements(By.cssSelector("#headingOne"));
+        if(elementList.isEmpty()){
+            reportButton.click();
+        }
     }
 
     @Step("clickOnProperty")
 
     public void clickOnProperty() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(property));
+        webDriverWait.until(ExpectedConditions.visibilityOf(property));
         property.click();
     }
 
@@ -695,6 +700,10 @@ WebElement btnAddAllAdmin;
         driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(assertTypeCreateReport));
+        driver.navigate().refresh();
+        driver.navigate().refresh();
+        webDriverWait.until(ExpectedConditions.visibilityOf(assertTypeCreateReport));
+
         String typeRaport = assertTypeCreateReport.getText();
         if (typeRaport.equals(newReportType)) {
             System.out.println("Raport jest w trakcie generowania");
@@ -784,17 +793,12 @@ WebElement btnAddAllAdmin;
         return quantity;
     }
     public void validateQuantityReportAfter(String beforeQuantity) {
+        driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String after = validateQuantityReport.getText();
         System.out.println(after);
-//        String firstqa=quantity.replace("1 – ","");
-//        String numberReport=firstqa.replace(" of ","");
-//        String finalNumberReport=numberReport.substring(2);
-//
-//        int foo = Integer.parseInt(finalNumberReport);
-//        System.out.println(foo);
-//        int after=foo;
+
         assertNotEquals(beforeQuantity,after);
 
     }

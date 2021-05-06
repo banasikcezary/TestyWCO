@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import java.io.File;
@@ -23,24 +21,31 @@ public class RecordingPage {
 
     @FindBy(id = "recording_list_link")
     WebElement recordingTab;
+
+    @FindBy(id = "deletedRecordings")
+    WebElement lnkDeleteRec;
     @FindBy(id = "headingOne")
     WebElement filterCriteria;
     @FindBy(id = "numberHeader")
     WebElement filterNumber;
     @FindBy(id = "mainNumber")
     WebElement filterNumberField;
-    @FindBy(id = "filter_button")
-    WebElement filter;
+
     @FindBy(xpath= "(//*[contains(@id,'_edit_tags')])[1]")
     WebElement editTags;
-    @FindBy(xpath = "(//mat-checkbox[contains(@id,'mat-checkbox')])[last()]")
+    @FindBy(xpath= "(//*[contains(@id,'_edit_tags')])[2]")
+    WebElement editTagsUssd;
+
+
+
+    @FindBy(css = "[role=\"dialog\"] label[class*=checkbox]")
     WebElement tagsField;
     @FindBy(id = "save_button")
     WebElement saveEditTagsButton;
     @FindBy(id = "add_new_tag")
     WebElement addTag;
 /////////////////
-    @FindBy(xpath = "(//mat-checkbox[contains(@id,\"mat-checkbox-\")])[1]")
+    @FindBy(xpath = "(//mat-checkbox[contains(@id,\"mat-checkbox-\")])[1]//label")
     WebElement chooseRec;
     @FindBy(xpath = "(//mat-checkbox[contains(@id,\"mat-checkbox-\")])[last()]")
     WebElement chooseLastRec;
@@ -56,9 +61,9 @@ public class RecordingPage {
     WebElement searchField;
     @FindBy(xpath = "(//button[text()=\" Wyszukaj\"])")
     WebElement btnSearch;
-    @FindBy(xpath = "(//input[contains(@id, \"mat-input-\")])")
+    @FindBy(xpath = "(//input[contains(@id, \"mat-input-\")])[last()]")
     WebElement passwordField;
-    @FindBy(id="password-recordings-download")
+    @FindBy(css="mat-dialog-container [class=\"mat-dialog-actions\"]>button:nth-of-type(2)")
     WebElement btnSubmitPassword;
     @FindBy(id = "password-recordings-play")
     WebElement btnSubmitPasswordRec;
@@ -72,8 +77,8 @@ public class RecordingPage {
 
     @FindBy(id = "internalCallSection")
     WebElement selectInternalConnection;
-    @FindBy(xpath = "(//span[text()=\"Tak\"])")
-    WebElement chooseInternalConnectionAsTrue;
+    @FindBy(xpath = "(//span[text()=\"Nie\"])")
+    WebElement chooseInternalConnectionAsFalse;
 
     @FindBy(id = "filter_button")
     WebElement btnFilter;
@@ -104,6 +109,27 @@ WebElement validSearchRec;
     @FindBy(css = "[role=\"dialog\"]>app-app-error>p")
     WebElement txtDialogInformation;
 
+    /////////////////
+    @FindBy(id = "phoneCalls")
+    WebElement lnkPhoneCalls;
+
+    @FindBy(css = "mat-cell[class*=\"isRecorded\"]")
+    List<WebElement> listIsRec;
+    @FindBy(css = "[formcontrolname=\"isRecorded\"]")
+    WebElement selectListIsRec;
+
+    @FindBy(css = "mat-cell[class*=\"isVip\"]")
+    List<WebElement> listIsvipIvr;
+    @FindBy(css = "[formcontrolname=\"isVipivr\"]")
+    WebElement selectListIsVip;
+
+
+    @FindBy(css = "[role=\"option\"]:nth-of-type(2)")
+    WebElement chooseOptionNumber2;
+
+
+
+
     private WebDriver driver;
     public RecordingPage(WebDriver driver) {
 
@@ -114,9 +140,21 @@ WebElement validSearchRec;
     @Step("clickOnRecordingTab")
 
     public void clickOnRecordingTab(){
+
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[id*=\"mat-dialog-\"]")));
+
         webDriverWait.until(ExpectedConditions.elementToBeClickable(recordingTab));
         recordingTab.click();
+    }
+
+    public void clickOnDeleteRecording(){
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[id*=\"mat-dialog-\"]")));
+
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkDeleteRec));
+        lnkDeleteRec.click();
     }
     public void selectAllColumns(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -130,6 +168,15 @@ WebElement validSearchRec;
         webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
         actions.moveToElement(confirmShowAllColumns).click().build().perform();
 
+
+    }
+
+
+    public void verifyTooltipNotAllowedDeleteRec(String tooltip){
+        WebElement element = driver.findElement(By.cssSelector("#cdk-describedby-message-container"));
+        String content = (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].innerHTML", element);
+        System.out.println(content);
+assertTrue(content.contains(tooltip));
 
     }
 
@@ -161,11 +208,23 @@ WebElement validSearchRec;
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(editTags));
 
-        Actions action = new Actions(driver);
-        action.moveToElement(editTags).click().perform();
+       editTags.click();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id*=\"mat-dialog-\"]")));
+
+
+
     }
 
+    public void clickOnEditTagsUssdButton(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(editTagsUssd));
 
+        editTagsUssd.click();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id*=\"mat-dialog-\"]")));
+
+
+
+    }
 
     @Step("typeIntoEditTagsField")
 
@@ -173,11 +232,7 @@ WebElement validSearchRec;
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(tagsField));
-Actions actions=new Actions(driver);
-actions.moveToElement(tagsField).click().build().perform();
-
-
-
+tagsField.click();
 
     }
     @Step("clickOnSaveEditTagsButton")
@@ -186,27 +241,49 @@ actions.moveToElement(tagsField).click().build().perform();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(saveEditTagsButton));
         saveEditTagsButton.click();
+
     }
 
-    public void validationEditTagsButton(){
+    public void validationAddTagForRec(){
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(validationTags));
         String classAtr = validationTags.getAttribute("class");
 
         assertTrue(classAtr.contains("mat-checkbox-checked"));
+Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.ESCAPE).perform();
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[id*=\"mat-dialog-\"]")));
+
+    }
+
+    public void validationDeleteTagRec() {
+
+        java.util.List<WebElement> elements=driver.findElements(By.xpath("(//*[contains(@class,\"mat-checkbox-checked\")])[last()]"));
+        Assert.assertTrue(elements.isEmpty());
+
     }
 
 
     public void chooseRecordingWithList(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRec));
-        chooseRec.click();
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", chooseRec);
+      //chooseRec.click();
     }
     public void chooseLastRecordingWithList(){
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseLastRec));
-        chooseLastRec.click();
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRec));
+            chooseRec.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseRec));
+            chooseRec.click();
+        }
+
     }
     public void downloadRecordingWithList(){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -218,32 +295,44 @@ actions.moveToElement(tagsField).click().build().perform();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnDeleteRec));
         btnDeleteRec.click();
     }
+    public void trydDeleteRecordingWithList(){
 
-    public int validateQuantityReportBefore() {
+        assertFalse(btnDeleteRec.isEnabled());
+        Actions actions=new Actions(driver);
+        actions.moveToElement(btnDeleteRec).clickAndHold(btnDeleteRec).build().perform();
+    }
+
+    public String validateQuantityReportBefore() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String quantity = validateQuantityReport.getText();
-        String firstqa=quantity.replace("1 – ","");
-        String numberReport=firstqa.replace(" of ","");
-        String finalNumberReport=numberReport.substring(1);
 
-        int foo = Integer.parseInt(finalNumberReport);
+
+        String  foo = quantity;
         System.out.println(foo);
         return foo;
     }
-    public void validateQuantityReportAfter(int beforeValue) {
+    public void validateQuantityReportAfter(String beforeValue) {
         driver.navigate().refresh();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
         String quantity = validateQuantityReport.getText();
-        String firstqa=quantity.replace("1 – ","");
-        String numberReport=firstqa.replace(" of ","");
-        String finalNumberReport=numberReport.substring(1);
 
-        int foo = Integer.parseInt(finalNumberReport);
-        System.out.println(foo);
-        int after=foo;
+        System.out.println(quantity);
+        String after=quantity;
         assertNotEquals(beforeValue,after);
+
+    }
+
+    public void validateQuantityReportNotValid(String beforeValue) {
+        driver.navigate().refresh();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(validateQuantityReport));
+        String quantity = validateQuantityReport.getText();
+
+        System.out.println(quantity);
+        String after=quantity;
+        assertEquals(beforeValue,after);
 
     }
     public void lockRecordingWithList(){
@@ -273,6 +362,8 @@ actions.moveToElement(tagsField).click().build().perform();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(btnStartAndStopPlayRec));
         btnStartAndStopPlayRec.isDisplayed();
+
+        driver.navigate().refresh();
 
     }
     public void validationLock(){
@@ -317,7 +408,22 @@ actions.moveToElement(tagsField).click().build().perform();
 
     }
 
-    public void verifyWrongPasswordForRec(){
+    public void clickOnPhoneCallsTab(){
+
+        try {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.visibilityOf(lnkPhoneCalls));
+            lnkPhoneCalls.click();
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+            webDriverWait.until(ExpectedConditions.visibilityOf(lnkPhoneCalls));
+            lnkPhoneCalls.click();
+        }
+    }
+
+    public void verifyWrongPassword(){
         try {
             WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
             webDriverWait.until(ExpectedConditions.visibilityOf(txtDialogInformation));
@@ -395,12 +501,39 @@ actions.moveToElement(tagsField).click().build().perform();
         Actions actions=new Actions(driver);
         actions.moveToElement(selectInternalConnection).click().build().perform();
         //selectInternalConnection.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseInternalConnectionAsTrue));
-        actions.moveToElement(chooseInternalConnectionAsTrue).click().build().perform();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseInternalConnectionAsFalse));
+        actions.moveToElement(chooseInternalConnectionAsFalse).click().build().perform();
        // chooseInternalConnectionAsTrue.click();
         webDriverWait.until(ExpectedConditions.elementToBeClickable(btnFilter));
         actions.moveToElement(btnFilter).click().build().perform();
       //  btnFilter.click();
+    }
+
+    public void filterPhoneCallsByIsRecording(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectListIsRec));
+        Actions actions=new Actions(driver);
+        actions.moveToElement(selectListIsRec).click().build().perform();
+        //selectInternalConnection.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseOptionNumber2));
+        actions.moveToElement(chooseOptionNumber2).click().build().perform();
+        // chooseInternalConnectionAsTrue.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnFilter));
+        actions.moveToElement(btnFilter).click().build().perform();
+        //  btnFilter.click();
+    }
+    public void filterPhoneCallsByIsVip(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(selectListIsVip));
+        Actions actions=new Actions(driver);
+        actions.moveToElement(selectListIsVip).click().build().perform();
+        //selectInternalConnection.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseOptionNumber2));
+        actions.moveToElement(chooseOptionNumber2).click().build().perform();
+        // chooseInternalConnectionAsTrue.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(btnFilter));
+        actions.moveToElement(btnFilter).click().build().perform();
+        //  btnFilter.click();
     }
 public void validationInternalConnection(){
 
@@ -411,7 +544,7 @@ public void validationInternalConnection(){
 
         for (WebElement x : listInternalConnection) {
             System.out.println(x.getText());
-            assertEquals(x.getText(),"Tak");
+            assertEquals(x.getText(),"Nie");
         }
     }
     catch(org.openqa.selenium.StaleElementReferenceException ex)
@@ -420,12 +553,66 @@ public void validationInternalConnection(){
 
         for (WebElement x : listInternalConnection) {
             System.out.println(x.getText());
-            assertEquals(x.getText(),"Tak");
+            assertEquals(x.getText(),"Nie");
         }
     }
 
 }
+    public void validationCallsPhoneIsRec(){
 
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(listIsRec.get(0)));
+
+            for (WebElement x : listIsRec) {
+                System.out.println(x.getText());
+                assertEquals(x.getText(),"Tak");
+            }
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(listIsRec.get(0)));
+
+            for (WebElement x : listIsRec) {
+                System.out.println(x.getText());
+                assertEquals(x.getText(),"Tak");
+            }
+        }
+
+    }
+
+    public void validationCallsPhoneIsVip(){
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnFilter));
+
+            if(!listIsvipIvr.isEmpty()){
+            for (WebElement x : listIsvipIvr) {
+                System.out.println(x.getText());
+                assertEquals(x.getText(),"Nie");
+            }}
+            else {
+                System.out.println("Brak połączeń dla tego filtra");
+            }
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(btnFilter));
+
+            if(!listIsvipIvr.isEmpty()){
+                for (WebElement x : listIsvipIvr) {
+                    System.out.println(x.getText());
+                    assertEquals(x.getText(),"Nie");
+                }}
+            else {
+                System.out.println("Brak połączeń dla tego filtra");
+            }
+        }
+
+    }
     public void validationRecStatus(String status){
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);

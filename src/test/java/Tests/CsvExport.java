@@ -20,17 +20,16 @@ public class CsvExport extends TestBase {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoUsernameField("RomanM");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
 
         UserList userList = new UserList(driver);
         userList.clickIntoUserListLink();
         userList.clickOnButtonExportToCsv();
         String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
-
         userList.waitForFileDownloaded( "fileName", 50,downloadDir);
-        userList.verifyDownloadFile(downloadDir);
+        userList.verifyDownloadFile(downloadDir, "fileName");
 
         }
 

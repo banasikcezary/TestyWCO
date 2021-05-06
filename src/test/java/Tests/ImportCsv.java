@@ -32,7 +32,7 @@ public class ImportCsv extends TestBase {
         dialog.confirmPopup();
 
         userList.validationValueFromNotActiveToActiveMassChange();
-        userList.validationLoginAfterImportCsv();
+        userList.validationLoginInListUser("df",1);
 
 
 

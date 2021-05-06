@@ -1,8 +1,8 @@
 package Tests;
 
+import PageObject.*;
+
 import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.UserAndPermissions;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -46,7 +46,7 @@ public class SmsVerResetPassword extends TestBase {
         DatabaseTestingDemo databaseTestingDemo = new DatabaseTestingDemo();
         String smsKey = databaseTestingDemo.test(lastDate, nowDate);
         System.out.println(smsKey);
-        Dialog dialog = new Dialog(driver);
+        Dialog dialog=new Dialog(driver);
         dialog.confirmSms(smsKey);
         dialog.clickOnAcceptPopupButton();
 

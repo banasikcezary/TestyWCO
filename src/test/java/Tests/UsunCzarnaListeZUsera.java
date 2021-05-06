@@ -16,8 +16,8 @@ public class UsunCzarnaListeZUsera extends TestBase {
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoUsernameField("Pio");
+        loginPage.typeIntoPasswordField("Centralka123456!");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
@@ -26,9 +26,9 @@ public class UsunCzarnaListeZUsera extends TestBase {
         configuration.clickConfigurationLink();
 
         configuration.clickLinkUserList();
-        configuration.typeIntoUserSearchField("KarolN");
+        configuration.typeIntoUserSearchField("Pio");
         configuration.selectNewUser();
-        configuration.deleteBlackListOnUser("KarolN");
+        configuration.deleteBlackListOnUser("Pio","BlackListaTest");
 
     }
 }

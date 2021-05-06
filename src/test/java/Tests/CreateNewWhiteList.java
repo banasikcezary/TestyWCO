@@ -24,15 +24,13 @@ public class CreateNewWhiteList extends TestBase{
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
         configuration.clickOnWhiteListFunctionality();
-        configuration.clickOnLastWhiteList();
+        configuration.clickOnLastWhiteList("Biała");
         configuration.completeNameAndDescriptionWhiteList("WhiteListaTest","DescWhiteList");
         configuration.addNumberForWhiteList("48333444333");
         configuration.clickOnButtonSaveWhiteList();
         configuration.verifySaveWhiteList("WhiteListaTest");
-
         configuration.clickOnLinkActivationWhiteList();
         configuration.clickOnActivationLastWhiteList();
-
         configuration.verifyActivateWhitelist();
     }
 }

@@ -32,11 +32,8 @@ public class deleteGroup extends TestBase {
         group.clickOnChooseGroup();
         String groupName ="test123";
         Dialog dialog = new Dialog(driver);
-
         group.clickOnDeleteGroupButton(groupName);
         dialog.clickOnConfirmButton();
-
-
         group.validateDeleteGroup();
     }
 

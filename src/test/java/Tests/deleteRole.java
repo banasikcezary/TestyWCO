@@ -34,8 +34,6 @@ public class deleteRole extends TestBase {
         dialog.clickOnConfirmButton();
         dialog.clickOnAcceptPopupButton();
         role.clickOnRolesButton();
-
-
         role.validateDeleteRole("Rola123445");
     }
 

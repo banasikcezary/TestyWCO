@@ -22,7 +22,6 @@ public class WłaczBlokadeAutomatycznegoKasowaniaRaportów extends TestBase {
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
-
         configuration.switchOnBlockAutoDeleteReport();
     }
 }

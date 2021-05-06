@@ -1,8 +1,6 @@
 package Tests;
+import PageObject.*;
 
-import PageObject.Configuration;
-import PageObject.LoginPage;
-import PageObject.ShopPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -25,13 +23,11 @@ public class ActivateGlobalBlackList extends TestBase {
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
-
         configuration.clickOnBlackListFunctionality();
-        configuration.clickOnLastBlackList();
+        configuration.clickOnLastBlackList("BlackListaTest");
         configuration.clickOnGlobalBlackList();
         configuration.clickOnButtonSaveBlackList();
-
-        configuration.verifyActivateGlobalBlacklist();
+        configuration.verifyActivateGlobalBlacklist("BlackListaTest");
 
 
     }

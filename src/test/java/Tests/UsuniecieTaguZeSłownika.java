@@ -17,19 +17,19 @@ public class UsuniecieTaguZeSłownika extends TestBase {
     public void asAdminTryCreateNewBlackList() throws AWTException {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
-        loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");
-        loginPage.typeIntoPasswordField("Orange123456!");
+        loginPage.typeIntoUsernameField("RomanM2");
+        loginPage.typeIntoPasswordField("pass1");
         loginPage.clickIntoLogInButton();
         loginPage.checkPositiveLoginToApp();
 
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
-
-
-
         configuration.clickOnFunctionalitySettings();
         configuration.deleteTagFromDictionary();
+        configuration.clickConfigurationLink();
+        configuration.clickOnFunctionalitySettings();
+        configuration.deleteTagUssdFromDictionary();
 
 
     }

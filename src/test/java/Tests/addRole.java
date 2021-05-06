@@ -1,8 +1,7 @@
 package Tests;
 
-import PageObject.Dialog;
-import PageObject.LoginPage;
-import PageObject.Roles;
+import PageObject.*;
+
 import PageObject.UserAndPermissions;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;

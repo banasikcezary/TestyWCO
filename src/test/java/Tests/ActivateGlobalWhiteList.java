@@ -1,7 +1,7 @@
 package Tests;
 
-import PageObject.Configuration;
-import PageObject.LoginPage;
+import PageObject.*;
+
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -24,13 +24,11 @@ public class ActivateGlobalWhiteList extends TestBase{
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
         configuration.clickOnFunctionalitySettings();
-
         configuration.clickOnWhiteListFunctionality();
-        configuration.clickOnLastWhiteList();
+        configuration.clickOnLastWhiteList("WhiteListaTest");
         configuration.clickOnGlobalWhiteList();
         configuration.clickOnButtonSaveWhiteList();
-
-        configuration.verifyActivateGlobalWhitelist();
+        configuration.verifyActivateGlobalWhitelist("WhiteListaTest");
 
 
     }

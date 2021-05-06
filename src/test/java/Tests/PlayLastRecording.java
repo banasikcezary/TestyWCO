@@ -5,8 +5,6 @@ import PageObject.RecordingPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
-import java.awt.*;
-
 public class PlayLastRecording extends TestBase{
 
     @Test(priority = 3,
@@ -26,7 +24,7 @@ public class PlayLastRecording extends TestBase{
         recordingPage.clickOnRecordingTab();
         recordingPage.clickPlayRecButton();
         recordingPage.operationAutorizationPlayRec("invalidPass");
-        recordingPage.verifyWrongPasswordForRec();
+        recordingPage.verifyWrongPassword();
         recordingPage.clickPlayRecButton();
         recordingPage.operationAutorizationPlayRec("123456");
         recordingPage.verifyPlayRecDialog();

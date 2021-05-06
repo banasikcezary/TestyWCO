@@ -24,9 +24,7 @@ public class DownloadLastReportPdf extends TestBase{
         ReportPage report = new ReportPage(driver);
         report.clickOnReportTab();
         report.downloadLastReportPDF();
-
         String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
-
         report.waitForFileDownloaded( "Raport", 50,downloadDir);
         report.verifyDownloadFile(downloadDir);
     }

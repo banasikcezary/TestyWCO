@@ -1,8 +1,8 @@
 package Tests;
 
-import PageObject.Configuration;
+import PageObject.*;
+
 import PageObject.Dialog;
-import PageObject.LoginPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -33,7 +33,7 @@ public class BusyCallForwardingWav extends TestBase{
 
         configuration.setBusyForwardingWav("src/test/java/resources/sample.wav");
 
-        PageObject.Dialog dialog=new Dialog(driver);
+        Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
 
         configuration.verifyBusyForwardingWav("KarolN");

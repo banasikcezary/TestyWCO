@@ -17,7 +17,7 @@ public class CreateNewUser extends TestBase {
             description = "as Admin Try Create New User",
             retryAnalyzer = RetryAnalyzer.class,
             alwaysRun = true)
-    public void asAdminTryCreateNewUser() throws AWTException {
+    public void asAdminTryCreateNewUser() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeIntoPhoneNumberField("+48690408932");
         loginPage.typeIntoUsernameField("CRM2J2DF6ZZ");

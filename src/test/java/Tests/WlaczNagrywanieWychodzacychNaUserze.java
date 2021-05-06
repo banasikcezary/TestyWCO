@@ -26,23 +26,16 @@ public class WlaczNagrywanieWychodzacychNaUserze extends TestBase {
 
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
-
-
-
         configuration.clickLinkUserList();
         configuration.typeIntoUserSearchField("KarolN");
         configuration.selectNewUser();
         configuration.switchOnRecordingOutgoingCallsOnUser();
-
         configuration.clickSaveButton();
         PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
-
-
         UserList userList=new UserList(driver);
         userList.clickIntoUserListLink();
         userList.validationValueWtzChange();
-
         configuration.clickConfigurationLink();
         configuration.clickLinkUserList();
         configuration.typeIntoUserSearchField("KarolN");

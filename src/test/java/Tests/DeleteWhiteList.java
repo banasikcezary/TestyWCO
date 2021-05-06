@@ -27,11 +27,11 @@ public class DeleteWhiteList extends TestBase {
         configuration.clickOnFunctionalitySettings();
 
         configuration.clickOnWhiteListFunctionality();
-        configuration.clickOnLastWhiteList();
+        configuration.clickOnLastWhiteList("WhiteListaTest");
         configuration.clickOnButtonDeleteWhiteList();
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();
-        configuration.verifyDeleteWhiteList();
+        configuration.verifyDeleteWhiteList("WhiteListaTest");
 
 
 

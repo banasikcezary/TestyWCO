@@ -27,7 +27,7 @@ public class downloadRecording extends TestBase{
         recordingPage.chooseRecordingWithList();
         recordingPage.downloadRecordingWithList();
         recordingPage.operationAutorization("wrongPas");
-        recordingPage.verifyWrongPasswordForRec();
+        recordingPage.verifyWrongPassword();
         recordingPage.downloadRecordingWithList();
         recordingPage.operationAutorization("123456");
         String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";

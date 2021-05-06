@@ -37,7 +37,7 @@ public class ImportNewUser extends TestBase {
 
         userList.validationValueWtzChange();
 
-        userList.validationLoginAfterImportNewUserCsv();
+        userList.validationLoginInListUser("dsf",1);
 
 
         String deleteUser="user3";

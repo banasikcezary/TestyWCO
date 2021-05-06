@@ -26,17 +26,18 @@ public class Dialog {
     @FindBy(xpath = "(//*[@class=\"mat-dialog-content\"])/div/button[1]")
     WebElement continuePurchasing;
 
-@FindBy(css = "div.mat-dialog-actions>button:nth-of-type(2)>span")
-WebElement confirmGenerateKey;
-@FindBy(xpath = "(//mat-dialog-container[contains(@id,\"mat-dialog\")])")
-WebElement confirmText;
+    @FindBy(css = "div.mat-dialog-actions>button:nth-of-type(2)>span")
+    WebElement confirmGenerateKey;
+    @FindBy(css = "app-app-error>p")
+    WebElement confirmText;
 
-@FindBy(id = "sms")
-WebElement txtSms;
-@FindBy(css = "[role=\"dialog\"] button[type=\"submit\"]")
-WebElement btnSubmitSms;
-@FindBy(css = "p.ng-star-inserted")
-private WebElement warningMessageSms;
+
+    @FindBy(id = "sms")
+    WebElement txtSms;
+    @FindBy(css = "[role=\"dialog\"] button[type=\"submit\"]")
+    WebElement btnSubmitSms;
+    @FindBy(css = "p.ng-star-inserted")
+    private WebElement warningMessageSms;
 
     public WebDriver driver;
 
@@ -55,6 +56,7 @@ private WebElement warningMessageSms;
         webDriverWait.until(ExpectedConditions.elementToBeClickable(acceptPopupButton));
         acceptPopupButton.click();
     }
+
     public void confirmSms(String smsKey) {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
@@ -66,36 +68,39 @@ private WebElement warningMessageSms;
 
         webDriverWait.until(ExpectedConditions.visibilityOf(warningMessageSms));
 
-        if(warningMessageSms.isDisplayed()){
-            assertEquals(warningMessageSms.getText(),"Niepoprawny sms kod");
+        if (warningMessageSms.isDisplayed()) {
+            assertEquals(warningMessageSms.getText(), "Niepoprawny sms kod");
 
-        }else {
-            throw new IllegalArgumentException( "Nie znaleziono ostrzegającego komunikatu po wpisaniu niepoprawnej wartości");
+        } else {
+            throw new IllegalArgumentException("Nie znaleziono ostrzegającego komunikatu po wpisaniu niepoprawnej wartości");
         }
         txtSms.clear();
         txtSms.sendKeys(smsKey);
         btnSubmitSms.click();
 
 
-
     }
-    public void confirmPopup(){
-        Actions actions=new Actions(driver);
+
+    public void confirmPopup() {
+        Actions actions = new Actions(driver);
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
 
-            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
-            confirmText.isDisplayed();
+            webDriverWait.until(ExpectedConditions.visibilityOf(confirmText));
+            if (!confirmText.isDisplayed()) {
+                webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("app-app-error>p")));
+            }
+
             System.out.println(confirmText.getText());
 
             actions.sendKeys(Keys.ESCAPE).perform();
-           // driver.findElement(By.xpath("//html")).click();
+            // driver.findElement(By.xpath("//html")).click();
             driver.navigate().refresh();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
-            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
-            confirmText.isDisplayed();
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            webDriverWait.until(ExpectedConditions.visibilityOf(confirmText));
+            if (!confirmText.isDisplayed()) {
+                webDriverWait.until(ExpectedConditions.visibilityOf(confirmText));
+            }
             System.out.println(confirmText.getText());
             actions.sendKeys(Keys.ESCAPE).perform();
             // driver.findElement(By.xpath("//html")).click();
@@ -104,8 +109,28 @@ private WebElement warningMessageSms;
 
     }
 
-    public void confirmPopupPasswordForUser(){
-        Actions actions=new Actions(driver);
+    public void confirmPopupWrongInfo(String text) {
+        Actions actions = new Actions(driver);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        try {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
+            confirmText.isDisplayed();
+            assertEquals(confirmText.getText(), text);
+            actions.sendKeys(Keys.ESCAPE).perform();
+            driver.navigate().refresh();
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
+            confirmText.isDisplayed();
+            assertEquals(confirmText.getText(), text);
+            actions.sendKeys(Keys.ESCAPE).perform();
+            driver.navigate().refresh();
+        }
+
+    }
+
+    public void confirmPopupPasswordForUser() {
+        Actions actions = new Actions(driver);
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         try {
 
@@ -114,9 +139,7 @@ private WebElement warningMessageSms;
             System.out.println(confirmText.getText());
             assertEquals(confirmText.getText(), "Hasło dla użytkownika zostało zmienione.");
 
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.visibilityOfAllElements(confirmText));
             confirmText.isDisplayed();
             System.out.println(confirmText.getText());
@@ -127,36 +150,43 @@ private WebElement warningMessageSms;
 
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         driver.navigate().refresh();
 
     }
+
     public void clickOnConfirmButton() {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(confirmButton));
         confirmButton.click();
     }
+
+    public void notVisibleConfirmButton() {
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.invisibilityOf(confirmButton));
+    }
+
     public void clickOnContinuePurchasing() {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(continuePurchasing));
         continuePurchasing.click();
     }
+
     public void clickOnContinueGenerateKey() {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(confirmGenerateKey));
         confirmGenerateKey.click();
-Actions actions=new Actions(driver);
+        Actions actions = new Actions(driver);
         try {
             actions.moveToElement(new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(confirmText))).perform();
             confirmText.isDisplayed();
             driver.findElement(By.xpath("//html")).click();
             driver.navigate().refresh();
-        }
-        catch(org.openqa.selenium.StaleElementReferenceException ex)
-        {
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             actions.moveToElement(new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(confirmText))).perform();
             confirmText.isDisplayed();
             driver.findElement(By.xpath("//html")).click();
@@ -164,26 +194,24 @@ Actions actions=new Actions(driver);
         }
 
 
-
-
     }
-
 
 
     public void verifyAlertBeforeLogin(String message) {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(alert));
-        String text= alert.getText();
+        String text = alert.getText();
 
-        assertEquals(text,message);
+        assertEquals(text, message);
 
     }
+
     public void verifyAlertAfterLogin(String message) {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOfAllElements(alert));
-        String text= alert.getText();
+        String text = alert.getText();
 
         if (text.equals(message)) {
             System.out.println("Poprawny komunikat");

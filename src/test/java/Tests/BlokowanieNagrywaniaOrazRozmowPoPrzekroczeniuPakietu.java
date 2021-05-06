@@ -1,7 +1,9 @@
 package Tests;
 
-import PageObject.*;
+
+import PageObject.Configuration;
 import PageObject.Dialog;
+import PageObject.LoginPage;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
@@ -32,7 +34,7 @@ public class BlokowanieNagrywaniaOrazRozmowPoPrzekroczeniuPakietu extends TestBa
         configuration.clickOnLockRecAndCallsButton();
 
         configuration.clickSaveButton();
-        PageObject.Dialog dialog=new Dialog(driver);
+PageObject.Dialog dialog=new Dialog(driver);
         dialog.confirmPopup();
 
         configuration.clickOnFunctionalitySettings();

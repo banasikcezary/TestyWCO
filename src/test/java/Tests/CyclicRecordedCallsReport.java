@@ -28,15 +28,11 @@ public class CyclicRecordedCallsReport extends TestBase{
         report.clickOnRecordedCallsReport();
         report.clickOnRecordedCallsReportCyclic();
         report.chooseValueCyclicalReport();
-
         report.clickInSelectionMainNumber10();
         report.clickInSelectNumber10();
-
         report.clickInGenerateRecordedCalls();
-
         Dialog dialog= new Dialog(driver);
         dialog.confirmPopup();
-
         report.checkGenerateCyclicReport("Nagrane połączenia");
 
     }

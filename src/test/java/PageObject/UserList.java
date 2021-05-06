@@ -45,6 +45,9 @@ WebElement confirmButton;
     @FindBy(id = "pick_button")
     WebElement confirmShowAllColumns;
 
+    @FindBy(css = "#select_header")
+    WebElement cbxSelectAlluser;
+
     ///////////////////////////////////////////
 
     @FindBy(id = "recDirectlyIncoming_edit_button")
@@ -90,7 +93,7 @@ WebElement confirmButton;
 
     @FindBy(css = "[id='add_list_operation'] .mat-radio-label")
     WebElement massAddList;
-    @FindBy(id = "delete_list_operation-input")
+    @FindBy(css = "[id='delete_list_operation'] .mat-radio-label")
     WebElement massDeleteList;
 
     @FindBy(xpath = "(//div[text()=\" BlackListaTest \"])")
@@ -136,6 +139,10 @@ WebElement confirmButton;
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(userListLink));
         userListLink.click();
+        List<WebElement> elements=driver.findElements(By.id("visible_columns_button"));
+        if(elements.isEmpty()){
+            userListLink.click();
+        }
     }
 
     @Step("typeIntoSearchfield")
@@ -211,7 +218,7 @@ WebElement confirmButton;
         });
     }
 
-    public void verifyDownloadFile(String downloadPath) {
+    public void verifyDownloadFile(String downloadPath, String fileNameContains) {
 
 
         File folder = new File(downloadPath);
@@ -224,10 +231,10 @@ WebElement confirmButton;
             if (listOfFile.isFile()) {
                 String fileName = listOfFile.getName();
                 System.out.println("File " + listOfFile.getName());
-                String name = "";
-                if (fileName.contains("fileName")) {
+                String name = fileNameContains;
+                if (fileName.contains(fileNameContains)) {
 
-                    assertTrue(fileName.contains("fileName"));
+                    assertTrue(fileName.contains(fileNameContains));
 
                     listOfFile.delete();
                 }
@@ -274,15 +281,32 @@ WebElement confirmButton;
 
 
     public void selectAllColumns() {
-        Actions actions = new Actions(driver);
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(visibleColumnsButton));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(visibleColumnsButton));
         visibleColumnsButton.click();
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[id*=\"mat-dialog\"]")));
+
         webDriverWait.until(ExpectedConditions.elementToBeClickable(showAllColumns));
         showAllColumns.click();
 
         webDriverWait.until(ExpectedConditions.elementToBeClickable(confirmShowAllColumns));
         confirmShowAllColumns.click();
+
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[id*=\"mat-dialog\"]")));
+
+    }
+
+    public void selectAllUser(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(cbxSelectAlluser));
+        cbxSelectAlluser.click();
+
+
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("mat-checkbox[class*=\"mat-checkbox-checked\"]")));
+
 
     }
 
@@ -316,6 +340,7 @@ WebElement confirmButton;
         } catch (org.openqa.selenium.StaleElementReferenceException ex) {
             webDriverWait.until(ExpectedConditions.elementToBeClickable(btnEditStatus));
             btnEditStatus.click();
+
         }
     }
 
@@ -487,7 +512,40 @@ WebElement confirmButton;
         }
     }
 
+    public void validationValueFromYesToNoMassChangeDirectIncomingCalls() {
+        driver.navigate().refresh();
 
+        validationValueFromNotActiveToActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[15]")));
+        for (int i = 1; i <= checkDirectIncomingCalls.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]"));
+            String status = element.getText();
+            System.out.println(i);
+
+            switch (status) {
+                case "Nie":
+                    System.out.println("Status został zmianiony poprawnie");
+                    break;
+                case "Tak":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[15]"));
+                    String status1 = element1.getText();
+                    if (status1.equals("Tak")) {
+                        System.out.println("Udało się");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "Tak");
+                    }
+            }
+
+        }
+    }
     public void validationValueFromNotToYesMassChangeCanSwitchOffRecordingOutgoingCalls() {
         driver.navigate().refresh();
 
@@ -564,7 +622,43 @@ WebElement confirmButton;
 
 
     }
+    public void validationValueFromYesToNoMassChangeRecordingOutgoingCalls() {
+        driver.navigate().refresh();
 
+        validationValueFromNotActiveToActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[13]")));
+        for (int i = 1; i <= checkRecordingOutgoingCalls.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]"));
+            String status = element.getText();
+            System.out.println(i);
+
+
+            switch (status) {
+                case "Nie":
+                    System.out.println("Status został zmianiony poprawnie");
+                    break;
+                case "Tak":
+                    driver.navigate().refresh();
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]")));
+
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[13]"));
+                    String status1 = element1.getText();
+                    if (status1.equals("Tak")) {
+                        System.out.println("Udało się");
+                        System.out.println("----------------------------------------------");
+                    } else {
+                        assertEquals(status1, "Tak");
+                    }
+            }
+
+        }
+
+
+    }
     public void validationValueFromNotToYesMassChangeRecordingDirectlyIncomingCalls() {
         driver.navigate().refresh();
 
@@ -602,82 +696,125 @@ WebElement confirmButton;
 
         }
     }
-    public void validationLoginAfterImportCsv() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]"));
-        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]")));
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='user2']")));
 
-        for (int i = 1; i <= login.size(); i++) {
+    public void validationValueFromYesToNoMassChangeRecordingDirectlyIncomingCalls() {
+        driver.navigate().refresh();
 
-            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+        validationValueFromNotActiveToActiveMassChange();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 60);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[12]")));
 
-            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+        for (int i = 1; i <= checkRecordingDirectlyIncomingCalls.size(); i++) {
+
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]")));
+
+            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]"));
             String status = element.getText();
             System.out.println(i);
 
             switch (status) {
-                case "user2":
-                    System.out.println("Import został wykonany poprawnie");
-                    System.out.println("----------------------------------------------");
+                case "Nie":
+                    System.out.println("Status został zmianiony poprawnie");
                     break;
-
-                case "":
+                case "Tak":
                     driver.navigate().refresh();
-                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]")));
 
-                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[12]"));
                     String status1 = element1.getText();
 
-                    if (status1.equals("user2")) {
-                        System.out.println("Import został wykonany poprawnie");
+                    if (status1.equals("Tak")) {
+                        System.out.println("Udało się");
                         System.out.println("----------------------------------------------");
                     } else {
-                        assertEquals(status1, "user2");
+                        assertEquals(status1, "Tak");
                     }
             }
 
 
         }
     }
-    public void validationLoginAfterImportNewUserCsv() {
+
+    public void validationLoginInListUser(String nameUser,int usersSize) {
+
+
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]"));
-        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]")));
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='user3']")));
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[19]")));
 
-        for (int i = login.size(); i <= login.size(); i++) {
+        List<WebElement> login = driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]"));
+        System.out.println(login.size());
+assertTrue(login.size()==usersSize);
+login.forEach(x-> System.out.println(x.getText()));
+        if (!login.isEmpty()) {
 
-            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+                login
+                        .stream()
+                        .filter(webElement -> Objects.equals(webElement.getText(), nameUser))
+                        .findFirst()
+                        .orElseThrow(() -> new NoSuchElementException("No WebElement found containing " + nameUser));
+            } else {
+                driver.navigate().refresh();
+                webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]")));
 
-            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
-            String status = element.getText();
-            System.out.println(i);
+                login
+                        .stream()
+                        .filter(webElement -> Objects.equals(webElement.getText(), nameUser))
+                        .findFirst()
+                        .orElseThrow(() -> new NoSuchElementException("No WebElement found containing " + nameUser));
 
-            switch (status) {
-                case "user3":
-                    System.out.println("Import został wykonany poprawnie");
-                    System.out.println("----------------------------------------------");
-                    break;
-
-                case "":
-                    driver.navigate().refresh();
-                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
-
-                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
-                    String status1 = element1.getText();
-
-                    if (status1.equals("user3")) {
-                        System.out.println("Import został wykonany poprawnie");
-                        System.out.println("----------------------------------------------");
-                    } else {
-                        assertEquals(status1, "user3");
-                    }
             }
 
 
         }
-    }
+
+
+
+
+
+
+
+
+
+
+
+//    public void validationLoginAfterImportNewUserCsv() {
+//        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+//        List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]"));
+//        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[5]")));
+//        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='user3']")));
+//
+//        for (int i = login.size(); i <= login.size(); i++) {
+//
+//            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+//
+//            WebElement element = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+//            String status = element.getText();
+//            System.out.println(i);
+//
+//            switch (status) {
+//                case "user3":
+//                    System.out.println("Import został wykonany poprawnie");
+//                    System.out.println("----------------------------------------------");
+//                    break;
+//
+//                case "":
+//                    driver.navigate().refresh();
+//                    webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]")));
+//
+//                    WebElement element1 = driver.findElement(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row[" + i + "]/mat-cell[5]"));
+//                    String status1 = element1.getText();
+//
+//                    if (status1.equals("user3")) {
+//                        System.out.println("Import został wykonany poprawnie");
+//                        System.out.println("----------------------------------------------");
+//                    } else {
+//                        assertEquals(status1, "user3");
+//                    }
+//            }
+//
+//
+//        }
+//    }
     public void validationValueFromNotActiveToActiveMassChange() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
 
@@ -749,12 +886,29 @@ List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_ta
 
     public void validationValueWtzChange() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
 
-        webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
 
-        driver.navigate().refresh();
-        driver.navigate().refresh();
-        driver.navigate().refresh();
+        }
+        List<WebElement> elementsWtz=driver.findElements(By.xpath("(//*[contains(text(),'WTZ')])[1]"));
+
+        if(elementsWtz.isEmpty()){
+            int i=0;
+            do{
+                driver.navigate().refresh();
+                elementsWtz=driver.findElements(By.xpath("(//*[contains(text(),'WTZ')])[1]"));
+
+                i++;
+
+            }while (!elementsWtz.isEmpty() || i<10);
+
+        }
+
 
 
         webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id=\"users_list_mat_table\"]/mat-row/mat-cell[3]")));
@@ -857,18 +1011,24 @@ List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_ta
 
     }
 
-    public void addBlackListMassChange() {
+    public void addBlackListMassChange(String lista) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(massAddList));
         Actions action = new Actions(driver);
         action.moveToElement(massAddList).click().build().perform();
-        //massAddList.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseMassBlackList));
-        chooseMassBlackList.click();
-
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'"+lista+"')]")));
+        driver.findElement(By.xpath("//*[contains(text(),'"+lista+"')]")).click();
+    }
+    public void deleteBlackListMassChange(String lista) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(massDeleteList));
+        Actions action = new Actions(driver);
+        action.moveToElement(massDeleteList).click().build().perform();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'"+lista+"')]")));
+        driver.findElement(By.xpath("//*[contains(text(),'"+lista+"')]")).click();
     }
 
-    public void verifyMassBlackList(){
+    public void verifyMassBlackList(String lista){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
      webDriverWait.until(ExpectedConditions.visibilityOf(verifyMassBlackList));
        Actions actions=new Actions(driver);
@@ -877,10 +1037,44 @@ List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_ta
 
         System.out.println(ToolTipText);
 
-        assertTrue(ToolTipText.contains("Czarna Lista")
+        assertTrue(ToolTipText.contains(lista)
 );
     }
-    public void verifyMassWhiteList(){
+
+
+    public void verifyDeleteMassBlackList(String lista){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOf(verifyMassBlackList));
+        Actions actions=new Actions(driver);
+        actions.clickAndHold(verifyMassBlackList).build().perform();
+        List<WebElement> elements=driver.findElements(By.cssSelector("mat-tooltip-component>div"));
+if(elements.isEmpty()) {
+    webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("mat-tooltip-component>div")));
+}else {
+
+    System.out.println(elements.get(0).getText());
+
+    assertFalse(elements.get(0).getText().contains(lista));
+}
+}
+
+ public void verifyDeleteMassWhiteList(String lista){
+     WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+     webDriverWait.until(ExpectedConditions.visibilityOf(verifyMassWhiteList));
+     Actions actions=new Actions(driver);
+     actions.clickAndHold(verifyMassWhiteList).build().perform();
+     List<WebElement> elements=driver.findElements(By.cssSelector("mat-tooltip-component>div"));
+     if(elements.isEmpty()) {
+         webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("mat-tooltip-component>div")));
+     }else {
+
+         System.out.println(elements.get(0).getText());
+
+         assertFalse(elements.get(0).getText().contains(lista));
+     }
+ }
+
+    public void verifyMassWhiteList(String lista){
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.visibilityOf(verifyMassWhiteList));
         Actions actions=new Actions(driver);
@@ -889,17 +1083,24 @@ List<WebElement> login=driver.findElements(By.xpath("//*[@id=\"users_list_mat_ta
 
         System.out.println(ToolTipText);
 
-        assertTrue(ToolTipText.contains("Biała lista")
+        assertTrue(ToolTipText.contains(lista)
         );
     }
-    public void addWhiteListMassChange() {
+    public void addWhiteListMassChange(String lista) {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(massAddList));
         massAddList.click();
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseMassWhiteList));
-        chooseMassWhiteList.click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'"+lista+"')]")));
+        driver.findElement((By.xpath("//*[contains(text(),'"+lista+"')]"))).click();
 
     }
-
+    public void deleteWhiteListMassChange(String lista) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(massDeleteList));
+        Actions action = new Actions(driver);
+        action.moveToElement(massDeleteList).click().build().perform();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'"+lista+"')]")));
+        driver.findElement(By.xpath("//*[contains(text(),'"+lista+"')]")).click();
+    }
 
 }

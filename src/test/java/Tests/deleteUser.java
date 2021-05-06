@@ -4,12 +4,18 @@ import PageObject.Configuration;
 import PageObject.Dialog;
 import PageObject.LoginPage;
 import PageObject.UserAndPermissions;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import testng.listeners.RetryAnalyzer;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class deleteUser extends TestBase {
+
+
 
     @Test(priority = 6,
             description = "as Admin Try Delete User",
@@ -29,7 +35,6 @@ public class deleteUser extends TestBase {
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
         String deleteUser="KarolN";
-
         Configuration configuration = new Configuration(driver);
         configuration.clickConfigurationLink();
         configuration.clickLinkUserList();
@@ -39,12 +44,10 @@ public class deleteUser extends TestBase {
         Dialog dialog=new Dialog(driver);
         dialog.clickOnConfirmButton();
         dialog.clickOnAcceptPopupButton();
-
         user.clickOnUserAndPermissionButton();
         user.clickOnUserButton();
         user.typeIntoSearchUserField(deleteUser);
         user.clickOnSearchButton();
-
         user.assertDeleteUser(deleteUser);
 
 

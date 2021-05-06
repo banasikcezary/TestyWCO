@@ -25,7 +25,6 @@ public class DownloadLastReportCsv extends TestBase {
         report.clickOnReportTab();
         report.downloadLastReportCSV();
         String downloadDir = System.getProperty("user.dir") + "\\src\\test\\java\\resources\\downloadPath";
-
         report.waitForFileDownloaded( "Raport", 50,downloadDir);
         report.verifyDownloadFile(downloadDir);
 

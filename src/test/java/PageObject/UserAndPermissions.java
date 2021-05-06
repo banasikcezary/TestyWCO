@@ -157,10 +157,14 @@ public class UserAndPermissions {
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
         webDriverWait.until(ExpectedConditions.elementToBeClickable(userAndPermission));
-//        Actions actions = new Actions(driver);
-//        actions.moveToElement(userAndPermission).click().build().perform();
-        //  userAndPermission.click();
-        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", userAndPermission);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(userAndPermission).click().build().perform();
+        java.util.List<WebElement> elementList=driver.findElements(By.id("privileges"));
+        if(elementList.isEmpty()){
+            userAndPermission.click();
+
+        }
+
 
     }
 
@@ -181,10 +185,13 @@ public class UserAndPermissions {
     }
     public void clickOnLinkPrivilleges() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+
         webDriverWait.until(ExpectedConditions.elementToBeClickable(lnkPrivileges));
         Actions actions=new Actions(driver);
         actions.moveToElement(lnkPrivileges).click().build().perform();
-        if (lnkPrivileges.isDisplayed())
+
+        java.util.List<WebElement> elementList=driver.findElements(By.cssSelector("#send_sms_1"));
+        if (elementList.isEmpty())
             actions.moveToElement(lnkPrivileges).click().build().perform();
 
     }
@@ -304,11 +311,22 @@ public class UserAndPermissions {
 
     public void turnOffSmsVerifyDeleteReport() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteReport));
 
-        chooseSmsVerDeleteReport.click();
-        java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']"));
-        assertTrue(elements.isEmpty());
+        try {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteReport));
+            chooseSmsVerDeleteReport.click();
+            java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']"));
+            assertTrue(elements.isEmpty());
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(chooseSmsVerDeleteReport));
+            chooseSmsVerDeleteReport.click();
+            java.util.List<WebElement> elements=driver.findElements(By.cssSelector("#send_sms_12[class*='mat-checkbox-checked']"));
+            assertTrue(elements.isEmpty());
+        }
+
+
 
     }
     public void clickOnSmsVerifyDeleteAuditReport() {
@@ -704,11 +722,12 @@ public class UserAndPermissions {
 
     @Step("assertUser")
     public void assertUser(String user) {
-        WebElement searched = driver.findElement(By.xpath("//p[contains(text(),'" + user + "')]"));
         WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
-        webDriverWait.until(ExpectedConditions.visibilityOf(searched));
-        // String name = assertRoleName.getText();
-        // assertEquals(name, user);
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'" + user + "')]")));
+        WebElement searched = driver.findElement(By.xpath("//p[contains(text(),'" + user + "')]"));
+
+         String name = searched.getText();
+         assertEquals(name, user);
     }
 
     @Step("assertDeleteUser")
@@ -810,6 +829,26 @@ public class UserAndPermissions {
 assertUserRole.forEach(x-> System.out.println(x));
 
     }
+
+    public void deleteRoleWithUser(String rola){
+
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(assertUserRole));
+                for(int i=0; i<assertUserRole.size();i++){
+                   String role=assertUserRole.get(i).getText();
+                    if(role.equals(rola)){
+
+                        driver.findElement(By.cssSelector("[id*=delete_"+i+"]")).click();
+                    }
+                }
+    }
+
+    public void validationDeleteRoleWithUser(String rola){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
+        webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[contains(text(),'"+rola+"')]")));
+
+    }
+
 
 
 
